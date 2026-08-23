@@ -172,3 +172,9 @@ html[data-theme="white"] .runeschema-release button.runeschema-release__button:n
 }
 .rsdwl-profile-note h3 { margin: .2rem 0 .45rem; }
 .rsdwl-profile-note p { margin: 0; color: var(--muted); line-height: 1.65; }
+
+.runeschema-release__notice--unsupported {
+  border-left-color: #d58a45;
+  background: color-mix(in srgb, #d58a45 10%, var(--panel));
+}
+.runeschema-release__notice--unsupported strong { color: color-mix(in srgb, #e6a45f 78%, var(--text)); }
