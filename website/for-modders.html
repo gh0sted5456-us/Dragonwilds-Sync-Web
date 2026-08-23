@@ -100,8 +100,8 @@ Author: Your Name</code></pre><p>Add RuntimeRole, HotloadCapable, tags, links, a
       <p class="runeschema-release__lede">A compatibility-minded extension of official RuneSchema 0.6.0. Existing loaders stay intact while deterministic mod ordering, conflict reporting, broader schema generation, FModel conversion aids, spawn scaling, and scale-aware drops are added.</p>
       <div class="runeschema-release__actions">
         <a class="runeschema-release__button runeschema-release__button--primary" href="assets/downloads/RuneSchema-v0.6.1-Variant.zip" download>Download 0.6.1 Variant</a>
-        <a class="runeschema-release__button" href="assets/docs/runeschema-0.6.1-variant/INSTALLATION.md">Read installation guide</a>
-        <a class="runeschema-release__button" href="assets/docs/runeschema-0.6.1-variant/COMPARISON.md">Open full comparison</a>
+        <button class="runeschema-release__button" type="button" data-runeschema-dialog="runeschema-install-dialog">Read installation guide</button>
+        <button class="runeschema-release__button" type="button" data-runeschema-dialog="runeschema-comparison-dialog">Open full comparison</button>
       </div>
     </div>
     <img class="runeschema-release__mark" src="assets/runeschema-logo.png" alt="RuneSchema logo">
@@ -151,7 +151,91 @@ Example Mod B : 0</code></pre>
     }
   }
 ]</code></pre><div class="rune-code-notes"><div><span>SCALE</span><strong><code>2.5</code></strong><p>Applies a uniform 250% scale to the existing ash tree. The scalar value must be greater than zero.</p></div><div><span>DROPS</span><strong><code>25</code></strong><p>Adds a 25% resource-drop increase for the scaled tree. The value must be a non-negative number.</p></div><button class="button button-primary" type="button" data-rune-copy-code>Copy example JSON</button><small data-rune-copy-status aria-live="polite">Based directly on the supplied AshTree_1.json actor definition.</small></div></div><div class="runeschema-flavor-card__warning"><strong>Only two fields were added.</strong> Keep the actor's real <code>Type</code>, <code>Id</code>, <code>Class</code>, <code>Location</code>, and <code>Rotation</code>; adjust the scale and drop percentage for the result you want.</div></section></div></article></section>
+<dialog class="runeschema-dialog" id="runeschema-install-dialog" aria-labelledby="runeschema-install-title">
+  <div class="runeschema-dialog__shell">
+    <header class="runeschema-dialog__header">
+      <div><p class="runeschema-release__eyebrow">RuneSchema 0.6.1 Variant</p><h2 id="runeschema-install-title">Installation guide</h2></div>
+      <button class="runeschema-dialog__close" type="button" data-runeschema-close aria-label="Close installation guide">Close</button>
+    </header>
+    <div class="runeschema-dialog__body">
+      <p class="runeschema-dialog__lead">Install the included folder directly inside UE4SS Mods. Do not rename the singular <code>config</code> directory.</p>
+      <ol class="runeschema-dialog__timeline">
+        <li><strong>Download the package.</strong><span>Select <em>Download 0.6.1 Variant</em> on the Modding page and extract the ZIP.</span></li>
+        <li><strong>Find the included RuneSchema folder.</strong><span>The extracted package also contains the comparison and installation notes for offline reference.</span></li>
+        <li><strong>Copy RuneSchema into UE4SS Mods.</strong><span>Use the exact destination below. Merge or replace an older RuneSchema folder only after backing up any custom configuration.</span></li>
+        <li><strong>Launch Dragonwilds.</strong><span>RuneSchema can reconcile discovered content folders into <code>mods.txt</code> when the included tooling options remain enabled.</span></li>
+      </ol>
+      <h3>Required destination</h3>
+      <pre><code>RSDragonwilds/Binaries/Win64/ue4ss/Mods/RuneSchema/</code></pre>
+      <h3>Expected folder layout</h3>
+      <pre><code>RuneSchema/
+|-- enabled.txt
+|-- dlls/
+|   `-- main.dll
+|-- config/
+|   `-- config.json
+`-- mods/
+    `-- mods.txt</code></pre>
+      <div class="runeschema-dialog__callout"><strong>Important:</strong> the folder is named <code>config</code>, singular. RuneSchema will not read it correctly if it is renamed to <code>configs</code>.</div>
+      <h3>Adding RuneSchema content mods</h3>
+      <p>Place each content mod in <code>RuneSchema/mods/&lt;Mod Name&gt;/</code>. The variant can add newly discovered folders to <code>mods.txt</code>, preserve comments, remove stale entries, and use alphabetical fallback ordering.</p>
+      <pre><code>Example Mod A : 1
+Example Mod B : 0</code></pre>
+      <p><code>1</code> enables a content mod and <code>0</code> disables it without removing its folder. This file does not replace UE4SS's root activation file.</p>
+      <h3>Files created on demand</h3>
+      <ul>
+        <li><code>config/compatibility_report.txt</code> when compatibility reporting is enabled.</li>
+        <li><code>config/fmodel-input/</code> for optional exported FModel JSON input.</li>
+        <li><code>config/fmodel-snippets/</code> for generated, reviewable draft snippets.</li>
+      </ul>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="runeschema-dialog runeschema-dialog--wide" id="runeschema-comparison-dialog" aria-labelledby="runeschema-comparison-title">
+  <div class="runeschema-dialog__shell">
+    <header class="runeschema-dialog__header">
+      <div><p class="runeschema-release__eyebrow">Official 0.6.0 vs community 0.6.1</p><h2 id="runeschema-comparison-title">Full version comparison</h2></div>
+      <button class="runeschema-dialog__close" type="button" data-runeschema-close aria-label="Close version comparison">Close</button>
+    </header>
+    <div class="runeschema-dialog__body">
+      <p class="runeschema-dialog__lead">The variant preserves existing RuneSchema 0.6.0 loaders and property formats while adding opt-in authoring, ordering, reporting, and spawn controls.</p>
+      <div class="runeschema-dialog__callout"><strong>Baseline:</strong> official RuneSchema <code>0.6.0</code>, commit <code>c36d894b02eb006fafc079325035b924ac49f28d</code>, by UnskippableCutscene. The variant identifies itself at runtime as <code>0.6.1</code>.</div>
+      <div class="runeschema-comparison-table" role="table" aria-label="RuneSchema version comparison">
+        <div class="runeschema-comparison-table__row runeschema-comparison-table__head" role="row"><span>Area</span><span>Official 0.6.0</span><span>0.6.1 Variant</span></div>
+        <div class="runeschema-comparison-table__row" role="row"><strong>Existing loaders</strong><span>Assets, Blueprints, raw tables, recipes, spawns, strings, journals, courses, buildings, and enums.</span><span>Preserved.</span></div>
+        <div class="runeschema-comparison-table__row" role="row"><strong>Configuration</strong><span>Three flat settings; missing keys may repair with defaults.</span><span>Versioned configuration, nested tooling controls, old-value preservation, and retained unknown top-level data.</span></div>
+        <div class="runeschema-comparison-table__row" role="row"><strong>Content order</strong><span>Filesystem discovery order.</span><span>Optional deterministic <code>mods.txt</code> order with strict <code>1</code>/<code>0</code> activation and alphabetical fallback.</span></div>
+        <div class="runeschema-comparison-table__row" role="row"><strong>Compatibility</strong><span>No built-in report.</span><span>Optional startup-only report covering matching targets, properties, and full arrays.</span></div>
+        <div class="runeschema-comparison-table__row" role="row"><strong>FModel paths</strong><span>Some reference-object forms support <code>.0</code> paths.</span><span>Central normalization for references and top-level asset targets.</span></div>
+        <div class="runeschema-comparison-table__row" role="row"><strong>Generated schemas</strong><span>Utility, enums, and raw data tables.</span><span>Adds loaded asset and Blueprint class schemas while filtering unsafe identity and runtime bookkeeping suggestions.</span></div>
+        <div class="runeschema-comparison-table__row" role="row"><strong>FModel aid</strong><span>Not included.</span><span>Optional snippet generation from exported FModel JSON, producing drafts that must be reviewed.</span></div>
+        <div class="runeschema-comparison-table__row" role="row"><strong>Spawn scale</strong><span>Not included.</span><span>Uniform number or X/Y/Z vector for Actor and AI spawn entries.</span></div>
+        <div class="runeschema-comparison-table__row" role="row"><strong>Drop scaling</strong><span>Not included.</span><span>Explicit <code>DropIncreasePercent</code> or automatic scaling based on the largest scale component.</span></div>
+      </div>
+      <h3>Compatibility and limitations</h3>
+      <ul>
+        <li>Existing 0.6.0 mod formats remain supported.</li>
+        <li>Tooling can be disabled without changing core asset or Blueprint property syntax.</li>
+        <li>Compatibility reports are advisory and cannot detect every gameplay interaction.</li>
+        <li>Generated schemas and snippets are starting points, not guarantees that every property is safe to change.</li>
+        <li>Drop scaling applies only to supported <code>ItemsToDrop</code> structures with numeric minimum and maximum fields.</li>
+        <li>Unreal runtime reflection remains authoritative over cooked FModel export data.</li>
+      </ul>
+      <h3>Build verification</h3>
+      <ul>
+        <li>Shipping target: <code>Game__Shipping__Win64</code></li>
+        <li><code>mods.txt</code> functional tests: passed</li>
+        <li>FModel <code>.0</code> path-normalization tests: passed</li>
+        <li>DLL SHA-256: <code>3FAB77E786202E5E04F267DB9F055294126EBA87149E2E21A0E886BCFB2B3051</code></li>
+      </ul>
+      <p><a href="https://github.com/UnskippableCutscene/RuneSchema/tree/0.6.0">Official 0.6.0 source</a> | <a href="https://unskippablecutscene.github.io/RuneSchema-Docs/">Official RuneSchema documentation</a></p>
+    </div>
+  </div>
+</dialog>
 </main>
 <footer class="site-footer"><div class="footer-brand"><img src="assets/application-icon.png" alt=""><div><strong>Dragonwilds Sync</strong><span>For Modders</span></div></div><div class="footer-links"><a href="helpy.html">Read Helpy</a><a href="launcher-preview.html">Preview Launcher</a><a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub</a></div><p>ID.txt is declarative metadata. Dragonwilds Sync never executes package metadata.</p></footer><script src="script.js?v=nav-rune-1"></script><script src="modders.js?v=1"></script><script src="downloads-flavor.js?v=1"></script>
+  <script src="runeschema-variant.js?v=1"></script>
 </body></html>
+
 
