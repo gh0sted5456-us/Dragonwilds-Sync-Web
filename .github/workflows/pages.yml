@@ -131,6 +131,7 @@ jobs:
           node --check _site/downloads-linux.js
           node --check _site/downloads-flavor.js
           node --check _site/download-flip.js
+          node --check _site/runeschema-variant.js
 
           # The website is intentionally not a public server browser anymore.
           test ! -e _site/servers.html || { echo 'servers.html must not be deployed' >&2; exit 1; }
@@ -156,7 +157,7 @@ jobs:
           grep -q 'TCP 8422' _site/setup.html
           grep -q 'UDP 7777' _site/setup.html
           grep -q 'CGNAT / DOUBLE NAT' _site/setup.html
-          grep -q 'RuneSchema Item Size' _site/for-modders.html
+          grep -q 'See the experimental spawn fields in use.' _site/for-modders.html
           grep -q 'id="windows-download"' _site/downloads.html
           grep -q 'id="linux-download"' _site/downloads.html
           grep -q 'data-windows-quick-download' _site/downloads.html
@@ -164,8 +165,8 @@ jobs:
           ! grep -q 'v2.0.1' _site/download-flip.js
           grep -q 'DropIncreasePercent' _site/for-modders.html
           grep -q 'world-cards-20260823-1' _site/world-builder.html
-          test -s _site/assets/downloads/RuneSchema_ItemSize.zip
-          unzip -tqq _site/assets/downloads/RuneSchema_ItemSize.zip
+          test -s _site/assets/downloads/RuneSchema-0.6.1-Experimental.zip
+          unzip -tqq _site/assets/downloads/RuneSchema-0.6.1-Experimental.zip
 
           python3 - <<'PY'
           import json
