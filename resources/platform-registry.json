@@ -1,0 +1,163 @@
+{
+  "format": "dragonwilds-sync-platform-registry",
+  "version": 1,
+  "platforms": [
+    {
+      "key": "steam",
+      "label": "Steam",
+      "asset": "steam.svg",
+      "aliases": [
+        "steam",
+        "steamcmd"
+      ],
+      "storeUrl": "https://store.steampowered.com/app/1374490/RuneScape_Dragonwilds/",
+      "footerStore": true
+    },
+    {
+      "key": "windows",
+      "label": "Windows",
+      "asset": "windows.svg",
+      "aliases": [
+        "windows",
+        "win",
+        "win32",
+        "win64"
+      ],
+      "footerStore": false
+    },
+    {
+      "key": "xbox",
+      "label": "Xbox",
+      "asset": "xbox.svg",
+      "aliases": [
+        "xbox",
+        "xbox live",
+        "xbox network",
+        "xbox series",
+        "xbox series x",
+        "xbox series s"
+      ],
+      "storeUrl": "https://www.xbox.com/en-US/games/store/runescape-dragonwilds/9p402rwr63h4",
+      "footerStore": true
+    },
+    {
+      "key": "playstation",
+      "label": "PlayStation 5",
+      "asset": "playstation.svg",
+      "aliases": [
+        "playstation",
+        "playstation 5",
+        "playstation network",
+        "psn",
+        "ps5"
+      ],
+      "storeUrl": "https://store.playstation.com/en-us/concept/10017405/",
+      "footerStore": true
+    },
+    {
+      "key": "switch2",
+      "label": "Nintendo Switch 2",
+      "asset": "switch2.svg",
+      "aliases": [
+        "switch2",
+        "switch 2",
+        "nintendo switch 2",
+        "nintendo switch2"
+      ],
+      "legacyAliases": [
+        "nintendo",
+        "nintendo switch",
+        "switch"
+      ],
+      "storeUrl": "https://www.nintendo.com/en-gb/Games/Nintendo-Switch-2-games/RuneScape-Dragonwilds-3110764.html",
+      "footerStore": true
+    },
+    {
+      "key": "nintendo",
+      "label": "Nintendo Switch (legacy alias)",
+      "asset": "nintendo.svg",
+      "aliases": [
+        "nintendo",
+        "nintendo switch",
+        "switch"
+      ],
+      "normalizeTo": "switch2",
+      "footerStore": false
+    },
+    {
+      "key": "epicgames",
+      "label": "Epic Games",
+      "asset": "epicgames.svg",
+      "aliases": [
+        "epic",
+        "epic games",
+        "epicgames",
+        "epic games store"
+      ],
+      "storeUrl": "https://store.epicgames.com/p/runescape-dragonwilds-3a24c7",
+      "footerStore": true
+    },
+    {
+      "key": "linux",
+      "label": "Linux",
+      "asset": "linux.svg",
+      "aliases": [
+        "linux"
+      ],
+      "footerStore": false
+    },
+    {
+      "key": "discord",
+      "label": "Discord",
+      "asset": "discord.svg",
+      "aliases": [
+        "discord",
+        "rsdw"
+      ],
+      "footerStore": false
+    },
+    {
+      "key": "nexusmods",
+      "label": "Nexus Mods",
+      "asset": "nexusmods.svg",
+      "aliases": [
+        "nexus",
+        "nexus mods",
+        "nexusmods"
+      ],
+      "footerStore": false
+    },
+    {
+      "key": "ue4ss",
+      "label": "UE4SS",
+      "asset": "ue4ss.png",
+      "aliases": [
+        "ue4ss"
+      ],
+      "footerStore": false
+    },
+    {
+      "key": "runeschema",
+      "label": "RuneSchema",
+      "asset": "runeschema.png",
+      "aliases": [
+        "runeschema",
+        "rune schema"
+      ],
+      "footerStore": false
+    },
+    {
+      "key": "paks",
+      "label": "PAKs",
+      "asset": "paks.svg",
+      "aliases": [
+        "pak",
+        "paks",
+        ".pak",
+        ".utoc",
+        ".ucas"
+      ],
+      "footerStore": false
+    }
+  ]
+}

@@ -1,0 +1,750 @@
+{
+  "schema": "DragonwildsSync.Help.v1",
+  "version": 9,
+  "title": "Dragonwilds Sync Helpy",
+  "subtitle": "A living, system-by-system field guide shared by the website and desktop application.",
+  "updated_at": "2026-08-21",
+  "pages": [
+    {
+      "id": "getting-started",
+      "title": "Getting Started",
+      "category": "Start Here",
+      "summary": "First launch, Player Setup, profiles, and the recommended first run.",
+      "image": "../assets/help/02-worlds.png",
+      "image_alt": "Current Dragonwilds World Management workspace",
+      "intro": "Dragonwilds Sync organizes local saves, connected Worlds, hosted servers, characters, mods, and Sync metadata around profiles.",
+      "sections": [
+        {
+          "title": "First launch",
+          "steps": [
+            "Complete Player Setup and select the Dragonwilds installation.",
+            "Let Sync validate the game layout before installing or repairing shared prerequisites.",
+            "Pick a character after discovery completes.",
+            "Use Dragonwilds for Singleplayer, Co-Op, Dedicated hosting, profiles, and connections."
+          ]
+        },
+        {
+          "title": "Recommended first run",
+          "steps": [
+            "Validate the local game folder in Dragonwilds > Game Setup.",
+            "Confirm Character saves and World associations under Profile.",
+            "Review the active profile and master repository under Mods.",
+            "Launch once, then open Sync only when ready to link or publish a verified World."
+          ]
+        },
+        {
+          "title": "Offline behavior",
+          "body": "The public Helpy page is cached by the browser. The desktop application also retains a packaged fallback when GitHub Pages is unavailable."
+        },
+        {
+          "title": "Before first launch",
+          "body": "Launch Dragonwilds normally once so the game creates its expected folders. Back up irreplaceable saves before adopting a new manager, and verify the detected installation path before accepting repairs or migrations."
+        },
+        {
+          "title": "When something fails",
+          "body": "Read the visible operation result first. Do not repeatedly click Launch, Save, or Sync while an operation is still active. Record the failed stage, active profile, and exact message before retrying."
+        }
+      ],
+      "tips": [
+        "Visible operation errors remain authoritative.",
+        "Profiles isolate saves, mods, and runtime choices.",
+        "Refresh Helpy after a published documentation update."
+      ],
+      "screenshots": [
+        {
+          "id": "player-setup",
+          "title": "Player Setup on first launch",
+          "description": "Show installation discovery, the selected game path, and the continue action.",
+          "suggested_file": "assets/help/41-player-setup.png"
+        },
+        {
+          "id": "starter-profile",
+          "title": "A completed starter profile",
+          "description": "Show a valid World, character, and profile summary before the first launch.",
+          "suggested_file": "assets/help/42-starter-profile.png"
+        }
+      ]
+    },
+    {
+      "id": "appy-walkthrough",
+      "title": "Navigation & Appys",
+      "category": "Navigation",
+      "summary": "Persistent navigation, active context, search, notifications, and bounded workspaces.",
+      "image": "../assets/help/38-helpy-website.png",
+      "image_alt": "The shared Helpy website rendered from the repository JSON guide",
+      "intro": "The persistent navigation shell preserves the active World context while each Appy loads only the bounded workspace it owns.",
+      "sections": [
+        {
+          "title": "Dragonwilds",
+          "body": "Manage Singleplayer, Co-Op, Dedicated hosting, World profiles, installation paths, saves, and connections."
+        },
+        {
+          "title": "Profile and Characters",
+          "body": "Choose the exact save, inspect World associations, and hand it to the guarded RSDW Character Editor."
+        },
+        {
+          "title": "Mods",
+          "body": "Edit the canonical master repository or a profile-specific copy. Publishing and pulling are explicit actions."
+        },
+        {
+          "title": "RSDW-L",
+          "body": "Open Character, Item, Spell, Recipe, Quest, map, Spawner, and console tools with backup-first writes."
+        },
+        {
+          "title": "Sync",
+          "body": "Verify fingerprints, compare manifests, transfer only required files, and expose Website or Remote Access separately."
+        },
+        {
+          "title": "Helpy and Settings",
+          "body": "Helpy is this shared website page. Settings owns appearance, policy, integrations, updates, and system behavior."
+        },
+        {
+          "title": "Persistent context",
+          "body": "The current profile, World, and character stay selected as Appys change. Confirm the visible context before Save, Pull Master, Remove, Stop Server, or any action that writes or replaces data."
+        },
+        {
+          "title": "Search and operation feedback",
+          "body": "Each search filters its local workspace and keeps the magnifying glass inside the field. Toasts summarize operations, while status rows, progress details, and logs remain the authoritative diagnostic source."
+        }
+      ],
+      "tips": [
+        "The navigation rail stays mounted between Appys.",
+        "A success message never replaces runtime verification.",
+        "Website and desktop Help use this same JSON."
+      ],
+      "screenshots": [
+        {
+          "id": "navigation-shell",
+          "title": "Annotated application shell",
+          "description": "Label the Appy rail, active context, operation area, search, and settings controls.",
+          "suggested_file": "assets/help/43-navigation-shell.png"
+        },
+        {
+          "id": "operation-feedback",
+          "title": "Operation feedback states",
+          "description": "Show progress, success, warning, failure, and dismissible empty-state examples.",
+          "suggested_file": "assets/help/44-operation-feedback.png"
+        }
+      ]
+    },
+    {
+      "id": "worlds-sync",
+      "title": "Worlds, Sync & Direct Connect",
+      "category": "Worlds",
+      "summary": "Private, connected, declared, and hosted World profiles.",
+      "image": "../assets/help/02-worlds.png",
+      "image_alt": "Placard and horizontal World management views",
+      "intro": "A World profile keeps the correct save, mods, configuration, connection identity, artwork, and character association together.",
+      "sections": [
+        {
+          "title": "World views",
+          "steps": [
+            "Placard and Horizontal are two views of the same profile.",
+            "Declared means a live fingerprint-verified heartbeat reached this WebHost.",
+            "Sync Ready means the endpoint supports Sync, not necessarily that it declared itself."
+          ]
+        },
+        {
+          "title": "Connecting",
+          "body": "Sync verifies identity, compares client-required files, applies the minimum safe update, verifies the final manifest, and only then launches Dragonwilds."
+        },
+        {
+          "title": "Reviews",
+          "body": "Rating stars open the review window even when no reviews exist. Empty and unavailable states remain dismissible."
+        },
+        {
+          "title": "Heartbeat projection",
+          "body": "Stale declarations expire automatically when they leave the host TTL or fingerprint evidence no longer passes."
+        },
+        {
+          "title": "World identity",
+          "body": "Display names are presentation. Stable IDs and verified fingerprints prevent similarly named Worlds from becoming the same destination. A changed or unclaimed fingerprint is a new trust decision."
+        },
+        {
+          "title": "Sync sequence",
+          "steps": [
+            "Resolve the selected World and endpoint.",
+            "Verify the presented endpoint identity.",
+            "Retrieve public-safe requirements and compare manifests.",
+            "Transfer only approved differences into the active profile.",
+            "Verify the final manifest before launch."
+          ]
+        },
+        {
+          "title": "Direct Connect",
+          "body": "Direct Connect uses an explicit private endpoint without requiring a public listing. It does not bypass fingerprints, passwords, profile boundaries, or server-side permissions."
+        }
+      ],
+      "tips": [
+        "Public metadata never includes passwords.",
+        "Duplicate launch clicks are rejected.",
+        "Timeouts return control to the launcher."
+      ],
+      "screenshots": [
+        {
+          "id": "world-layouts",
+          "title": "Placard and horizontal World views",
+          "description": "Show equivalent World states, badges, actions, and review stars in both layouts.",
+          "suggested_file": "assets/help/45-world-layouts.png"
+        },
+        {
+          "id": "sync-comparison",
+          "title": "Pre-Sync comparison",
+          "description": "Show identity, endpoint, required changes, confirmation, and final verification.",
+          "suggested_file": "assets/help/46-sync-comparison.png"
+        }
+      ]
+    },
+    {
+      "id": "characters-rsdw",
+      "title": "Characters & RSDW Toolkit",
+      "category": "Characters",
+      "summary": "Character selection, editors, Avatar preview, and safe writeback.",
+      "image": "../assets/help/04-character-editor.png",
+      "image_alt": "Current three-column Character Editor",
+      "intro": "Profile > Characters uses the selected save as the hydration source for integrated RSDW tools and the Avatar preview.",
+      "sections": [
+        {
+          "title": "Safe editing",
+          "steps": [
+            "Load the exact character through Sync.",
+            "Make bounded Character, Item, Spell, Recipe, or Quest changes.",
+            "Click See changes when you want the 3D preview to refresh.",
+            "Save through Sync so checksum, backup, write, and reparse verification run."
+          ]
+        },
+        {
+          "title": "Character Editor",
+          "body": "Appearance controls and wrapping color swatches live on the left, the stable 3D preview stays centered, and compatible equipped items remain on the right."
+        },
+        {
+          "title": "Preview behavior",
+          "body": "Draft edits do not reset the 3D model automatically. See changes is the explicit preview boundary; camera and pose controls remain preview-only."
+        },
+        {
+          "title": "Item Editor",
+          "body": "Canonical and modded definitions share one identity repository. Right-click menus are constrained to the visible application window."
+        },
+        {
+          "title": "Discovery and associations",
+          "body": "Discovery identifies supported saves and enough metadata to distinguish characters. When names repeat, compare source paths and timestamps before associating a save with a profile."
+        },
+        {
+          "title": "Verified write sequence",
+          "steps": [
+            "Parse the selected save.",
+            "Create and validate a bounded draft.",
+            "Write a recovery backup.",
+            "Replace the target atomically where supported.",
+            "Reparse the saved result and report verification."
+          ]
+        },
+        {
+          "title": "Recovery",
+          "body": "If a write fails verification, preserve the visible error and use the generated backup rather than repeatedly saving over the same target."
+        }
+      ],
+      "tips": [
+        "Undo, Redo, and Revert affect the draft.",
+        "Save Character creates a recovery backup.",
+        "Export uses the portable character package flow."
+      ],
+      "screenshots": [
+        {
+          "id": "character-editor",
+          "title": "Three-column Character Editor",
+          "description": "Show wrapping swatches, stable 3D preview, compatible equipment, and See changes.",
+          "suggested_file": "assets/help/47-character-editor.png"
+        },
+        {
+          "id": "save-verification",
+          "title": "Character save verification",
+          "description": "Show backup creation, write status, reparse result, and recovery access.",
+          "suggested_file": "assets/help/48-character-save.png"
+        }
+      ]
+    },
+    {
+      "id": "server-webhost",
+      "title": "Server & WebHost",
+      "category": "Hosting",
+      "summary": "Dedicated profiles, runtime startup, heartbeats, and remote WebGUI.",
+      "image": "../assets/help/05-server-setup.png",
+      "image_alt": "Dragonwilds dedicated Hosting setup",
+      "intro": "Hosted Worlds own presentation, save/config snapshots, mod state, and Sync settings while sharing the machine-level dedicated runtime.",
+      "sections": [
+        {
+          "title": "Fluid startup sequence",
+          "steps": [
+            "Resolve the selected profile and desired revision.",
+            "Materialize save, configuration, and managed mods.",
+            "Launch and verify the dedicated process.",
+            "Start and verify the World-owned Sync listener.",
+            "Publish only after runtime and Sync evidence pass."
+          ]
+        },
+        {
+          "title": "WebHost",
+          "body": "WebHost projects the public browser, receives authenticated heartbeats, exposes public-safe APIs, and can pair remote administration when enabled."
+        },
+        {
+          "title": "Public safety",
+          "body": "Public surfaces may show identity, artwork, badges, counts, routes, and capability. Credentials and private configuration are never directory fields."
+        },
+        {
+          "title": "Remote administration",
+          "body": "Remote control is separate from discovery and requires an authenticated session plus explicit World-scoped permissions."
+        },
+        {
+          "title": "Runtime ownership",
+          "body": "The application supervises processes it launches and retains enough state to reattach safely. A returned button or toast does not prove the server reached healthy running state."
+        },
+        {
+          "title": "Stopping and cleanup",
+          "body": "Stop targets the owned process tree and verifies cleanup. If verification fails, the unresolved state remains visible instead of being reported as a success."
+        },
+        {
+          "title": "Updates and rollback",
+          "body": "Runtime updates identify the desired revision, verify installed state, and protect recoverable save and configuration data before binaries change."
+        }
+      ],
+      "tips": [
+        "Stop verifies process-tree cleanup.",
+        "Heartbeat declarations have a TTL.",
+        "Website and Remote Access remain independent switches."
+      ],
+      "screenshots": [
+        {
+          "id": "dedicated-profile",
+          "title": "Dedicated server profile",
+          "description": "Show World, runtime, save, mods, ports, publication, and remote access settings.",
+          "suggested_file": "assets/help/49-dedicated-profile.png"
+        },
+        {
+          "id": "runtime-health",
+          "title": "Server startup and health",
+          "description": "Show process, Sync listener, heartbeat, build, and stop verification states.",
+          "suggested_file": "assets/help/50-server-health.png"
+        }
+      ]
+    },
+    {
+      "id": "mods-items",
+      "title": "Mods, Items & Spawner",
+      "category": "Mods & Items",
+      "summary": "Master repository, profile copies, custom items, and spawning.",
+      "image": "../assets/help/37-mod-management.png",
+      "image_alt": "Master mod repository and profile actions",
+      "intro": "Mod placement and item metadata remain profile-aware without turning custom content into global vanilla data.",
+      "sections": [
+        {
+          "title": "Master repository",
+          "steps": [
+            "Edit Master changes only the canonical repository payload.",
+            "Edit Profile changes one deployed copy.",
+            "Publish as Master updates the canonical payload without overwriting profiles.",
+            "Pull Master replaces only the profile you choose."
+          ]
+        },
+        {
+          "title": "Managed editor",
+          "body": "Supported text files use atomic bounded writes. Binary and oversized files stay visible but read-only."
+        },
+        {
+          "title": "Modded items",
+          "body": "PersistenceID, ITEM_NAME, display name, category, equipment slot, stack metadata, description, and icon aliases merge into the shared Item Editor and Spawner repository."
+        },
+        {
+          "title": "Recommended mods",
+          "body": "Each recommendation uses one banner placard, the mod name, and its Nexus Mods or Steam source identity."
+        },
+        {
+          "title": "Spawner",
+          "body": "The server Spawner consumes the same normalized item record and requires an explicit item, count, and target before issuing a bounded command."
+        },
+        {
+          "title": "Inventory safety",
+          "body": "Equipment, action bar, storage, and inventory slots validate category, stack, and equipment compatibility. Right-click menus remain inside the visible application window and reposition near edges."
+        },
+        {
+          "title": "Repository refresh",
+          "body": "After supported mod manifests are added or changed, refresh the canonical item repository so Item Editor and Spawner consume the same normalized definitions and source provenance."
+        },
+        {
+          "title": "Command boundary",
+          "body": "Spawner commands require an exact item, bounded amount, and explicit runtime target. Review the summary before issuing a command."
+        }
+      ],
+      "tips": [
+        "Profile tags and load order remain profile-specific.",
+        "Pull Master is deliberately destructive only to the chosen copy.",
+        "Spawner definitions can come from portable mod manifests."
+      ],
+      "screenshots": [
+        {
+          "id": "master-mods",
+          "title": "Master repository and profile copies",
+          "description": "Show Edit Master, Edit Profile, Publish as Master, and Pull Master in context.",
+          "suggested_file": "assets/help/51-master-mods.png"
+        },
+        {
+          "id": "items-spawner",
+          "title": "Item Editor and modded Spawner",
+          "description": "Show source badges, canonical identity, edge-safe menus, amount, and runtime target.",
+          "suggested_file": "assets/help/52-items-spawner.png"
+        }
+      ]
+    },
+    {
+      "id": "profiles",
+      "title": "Profiles & Associations",
+      "category": "Profiles",
+      "summary": "Keep Worlds, characters, mods, saves, and launch policy in intentional groups.",
+      "intro": "Profiles prevent unrelated play setups from silently sharing mutable files. A profile records what belongs together and gives every Appy the same bounded working context.",
+      "sections": [
+        {
+          "title": "What a profile owns",
+          "body": "A profile may reference a World, character saves, a profile-specific mod deployment, launch settings, artwork, connection details, and hosting metadata. Machine-level runtimes remain shared where duplication would be unsafe."
+        },
+        {
+          "title": "Creating a profile",
+          "steps": [
+            "Choose the intended play mode.",
+            "Select or import the World save.",
+            "Associate the correct characters.",
+            "Choose an empty, detected, or master-derived mod deployment.",
+            "Review the summary before saving."
+          ]
+        },
+        {
+          "title": "Switching profiles",
+          "body": "Switching changes the active context but does not overwrite another profile. File materialization, Pull Master, and migrations remain explicit actions."
+        },
+        {
+          "title": "Portable data",
+          "body": "Supported exports carry bounded metadata and selected content. Credentials, tokens, and machine-specific secrets are not portable profile fields."
+        },
+        {
+          "title": "Removal and recovery",
+          "body": "Deleting application metadata, moving a profile to trash, and deleting an underlying save are different operations. Read the confirmation scope and preserve important saves."
+        }
+      ],
+      "screenshots": [
+        {
+          "id": "profile-editor",
+          "title": "Profile editor",
+          "description": "Show identity, play mode, World, character, and mod association fields.",
+          "suggested_file": "assets/help/53-profile-editor.png"
+        },
+        {
+          "id": "profile-switcher",
+          "title": "Profile switcher and active context",
+          "description": "Show how the active profile is identified before a destructive operation.",
+          "suggested_file": "assets/help/54-profile-switcher.png"
+        }
+      ],
+      "tips": [
+        "Separate incompatible mod sets into profiles.",
+        "Profile removal and save deletion are different.",
+        "Export before large migrations."
+      ]
+    },
+    {
+      "id": "network-remote",
+      "title": "Networking & Remote Access",
+      "category": "Network",
+      "summary": "Separate game, Sync, directory, website, and authenticated remote-control routes.",
+      "intro": "Dragonwilds Sync uses distinct network responsibilities. Keeping them separate makes exposure, permissions, and troubleshooting understandable.",
+      "sections": [
+        {
+          "title": "Route responsibilities",
+          "body": "Game traffic serves players. Sync negotiates identity and managed content. Heartbeats publish public-safe state. Website hosting serves browser pages. Remote administration performs authenticated control."
+        },
+        {
+          "title": "Bindings and ports",
+          "body": "A configured or listening port does not prove public reachability. Local firewall policy, router behavior, tunnels, and provider routing all contribute."
+        },
+        {
+          "title": "Website versus Remote Access",
+          "body": "Website publication and Remote Access are independent switches. Publishing a World page must never silently enable administrative control."
+        },
+        {
+          "title": "Authentication and secrets",
+          "body": "Remote administration requires an authenticated session and explicit World-scoped permissions. Secrets do not belong in public manifests, directory rows, logs, or screenshots."
+        },
+        {
+          "title": "Troubleshooting order",
+          "steps": [
+            "Confirm the intended service runs locally.",
+            "Verify its bound address and port.",
+            "Check local firewall and security software.",
+            "Verify router, tunnel, or provider routing.",
+            "Confirm the client uses the expected endpoint and identity."
+          ]
+        }
+      ],
+      "screenshots": [
+        {
+          "id": "network-map",
+          "title": "Network responsibility map",
+          "description": "Diagram game, Sync, heartbeat, website, and remote-administration routes.",
+          "suggested_file": "assets/help/55-network-map.png"
+        },
+        {
+          "id": "remote-access",
+          "title": "Remote Access configuration",
+          "description": "Show independent website and remote-control switches plus authentication state.",
+          "suggested_file": "assets/help/56-remote-access.png"
+        }
+      ],
+      "tips": [
+        "A listening port is not automatically public.",
+        "Website access does not imply administrative access.",
+        "Never include secrets in screenshots."
+      ]
+    },
+    {
+      "id": "settings",
+      "title": "Settings, Themes & Integrations",
+      "category": "Settings",
+      "summary": "Control appearance, paths, policy, integrations, and durable preferences.",
+      "intro": "Settings owns durable application preferences and identifies whether a change applies immediately, on next navigation, or after restart.",
+      "sections": [
+        {
+          "title": "Dark, White, and Glass",
+          "body": "Dark and White choose the color foundation. Glass is an independent treatment that adds blurred surfaces, stained-glass color, depth, and atmospheric backgrounds while preserving the chosen foundation."
+        },
+        {
+          "title": "Paths and discovery",
+          "body": "Installation, save, runtime, and repository paths are validated before storage. Changing a path does not move data unless an explicit migration is offered."
+        },
+        {
+          "title": "Integrations",
+          "body": "Nexus Mods, Steam, Discord, tunnels, and related services expose separate capabilities and authentication requirements. A saved account label is not proof of a healthy connection."
+        },
+        {
+          "title": "Safety policy",
+          "body": "Automatic updates, backups, publication defaults, experimental features, and remote permissions use explicit controls with visible consequences."
+        },
+        {
+          "title": "Reset and recovery",
+          "body": "Reset distinguishes appearance preferences from paths, profiles, credentials, and application-owned data. Export important configuration before a broad reset."
+        }
+      ],
+      "screenshots": [
+        {
+          "id": "theme-settings",
+          "title": "Dark, White, and Glass controls",
+          "description": "Show color mode and the independent Glass treatment with representative previews.",
+          "suggested_file": "assets/help/57-theme-settings.png"
+        },
+        {
+          "id": "integration-status",
+          "title": "Integration status",
+          "description": "Show service capabilities, connected state, and safe credential actions.",
+          "suggested_file": "assets/help/58-integrations.png"
+        }
+      ],
+      "tips": [
+        "Glass is a treatment, not a replacement theme.",
+        "A path change does not automatically migrate files.",
+        "Export configuration before reset."
+      ]
+    },
+    {
+      "id": "maintenance",
+      "title": "Updates, Diagnostics & Recovery",
+      "category": "Maintenance",
+      "summary": "Understand versions, health checks, logs, backups, trash, and recovery boundaries.",
+      "intro": "Maintenance tools explain what is installed, what the application owns, and how to recover when a staged operation cannot complete.",
+      "sections": [
+        {
+          "title": "Application updates",
+          "body": "Update checks compare channel and installed version against an authoritative release source. Download, verification, installation, and restart are separate stages."
+        },
+        {
+          "title": "Runtime health",
+          "body": "Game, dedicated server, UE4SS, RuneSchema, and helper runtimes can have different authorities. Health reports identify component, desired state, detected state, and recommended action."
+        },
+        {
+          "title": "Logs and diagnostics",
+          "body": "Use the narrowest relevant log first: operation, Sync, server runtime, integration, or application console. Remove credentials and private addresses before sharing."
+        },
+        {
+          "title": "Backups and trash",
+          "body": "Editor backups protect write targets and application trash protects supported records. Neither replaces an external backup of irreplaceable Worlds and characters."
+        },
+        {
+          "title": "Recovery order",
+          "steps": [
+            "Stop repeating the failed operation.",
+            "Record the error and active profile.",
+            "Confirm a backup or trash entry exists.",
+            "Restore the smallest affected component.",
+            "Run discovery or validation before relaunching."
+          ]
+        }
+      ],
+      "screenshots": [
+        {
+          "id": "system-health",
+          "title": "System health and versions",
+          "description": "Show application, game, server, integration, and runtime state.",
+          "suggested_file": "assets/help/59-system-health.png"
+        },
+        {
+          "id": "recovery-tools",
+          "title": "Backups, trash, and recovery",
+          "description": "Show recovery points and a scoped restore confirmation.",
+          "suggested_file": "assets/help/60-recovery.png"
+        }
+      ],
+      "tips": [
+        "Do not share secrets in diagnostics.",
+        "Restore the smallest scope first.",
+        "External backups remain essential."
+      ]
+    },
+    {
+      "id": "website-preview",
+      "title": "Website, World Builder & Preview",
+      "category": "Website",
+      "summary": "Browse Worlds, draft profiles, preview the launcher, download releases, and maintain Helpy.",
+      "intro": "The GitHub Pages site is the public companion to the desktop application. It hosts releases, community destinations, the public World directory, World Builder, Preview Launcher, and the shared Helpy guide.",
+      "sections": [
+        {
+          "title": "Shared Helpy",
+          "body": "The website and desktop application render help/manifest.json from the webpage branch. Editing one JSON source updates both after Pages deployment."
+        },
+        {
+          "title": "World Builder",
+          "body": "The browser builder creates a local World Draft with presentation, rules, mod families, and supported attachments. Desktop performs final validation and adoption."
+        },
+        {
+          "title": "Preview Launcher",
+          "body": "The read-only launcher preview renders representative Appys from assets/launcher-preview.json. It demonstrates navigation and states without local filesystem, account, save, or runtime access."
+        },
+        {
+          "title": "Public Servers and downloads",
+          "body": "The directory uses bounded live data and a baked fallback snapshot. Release downloads resolve from GitHub release metadata and identify their artifact and channel."
+        },
+        {
+          "title": "Adding a screenshot",
+          "steps": [
+            "Place the file under renderer/assets/help on webpage.",
+            "Find its screenshot slot in help/manifest.json.",
+            "Add an image property such as ../assets/help/41-player-setup.png.",
+            "Optionally add concise alt text.",
+            "Push webpage and let the Pages workflow validate and publish."
+          ]
+        }
+      ],
+      "screenshots": [
+        {
+          "id": "website-home",
+          "title": "Website homepage",
+          "description": "Show navigation, releases, World tools, WebGUI, and community destinations.",
+          "suggested_file": "assets/help/61-website-home.png"
+        },
+        {
+          "id": "launcher-preview",
+          "title": "JSON Preview Launcher",
+          "description": "Show the Appy rail, active workspace, representative cards, and read-only notice.",
+          "suggested_file": "assets/help/62-launcher-preview.png"
+        }
+      ],
+      "tips": [
+        "Helpy content is edited once in JSON.",
+        "World Builder exports a draft, not a running server.",
+        "Preview Launcher never performs real operations."
+      ]
+    },
+    {
+      "id": "linux-platforms",
+      "title": "Linux Platforms & Detection",
+      "category": "Linux",
+      "summary": "Rich distro identity, native hosting, Proton/Wine clients, and privacy-safe directory badges.",
+      "image": "../assets/help/39-linux-detection.svg",
+      "image_alt": "Placeholder for the Linux distribution detection workspace in Settings",
+      "intro": "Dragonwilds Sync reads standard os-release metadata to identify Linux hosts without publishing machine-specific or user-specific details.",
+      "sections": [
+        {
+          "title": "Detection sources",
+          "steps": [
+            "Read /etc/os-release first and /usr/lib/os-release as the fallback.",
+            "Normalize ID and ID_LIKE aliases into a canonical distro and broader family.",
+            "Keep friendly name, version, codename, exact/fallback icon, and Ubuntu-baseline support status.",
+            "Fall back to a known ancestor mark or the generic Linux mark when a derivative has no dedicated artwork."
+          ]
+        },
+        {
+          "title": "Recognized distribution families",
+          "body": "The baked catalog covers Ubuntu and Debian derivatives, Fedora/RHEL families, openSUSE/SUSE, Arch and gaming derivatives, plus Gentoo, Void, Alpine, NixOS, Guix, Clear Linux, Solus, Mageia, OpenMandriva, and Slackware."
+        },
+        {
+          "title": "Native server mode",
+          "body": "A native Linux dedicated server uses RSDragonwildsServer.sh and LinuxServer configuration. Native ELF trees do not receive Win64 UE4SS or RuneSchema DLLs."
+        },
+        {
+          "title": "Proton and Wine mode",
+          "body": "The retail game client remains Windows PE x64 under Proton/Wine. That ABI can use the signed Win64 UE4SS and RuneSchema runtime variants with an explicit executable, compatibility prefix, and DLL override policy."
+        },
+        {
+          "title": "World directory privacy",
+          "body": "Heartbeats may publish OS family, friendly distro name, version, family, icon key, and support flags. Kernel strings, machine names, usernames, executable paths, and local directories are intentionally excluded."
+        },
+        {
+          "title": "Unknown derivatives",
+          "body": "An unknown ID is not treated as failure. ID_LIKE ancestry provides family and artwork fallback while distro_known remains false so the UI can honestly show that the match is inherited."
+        }
+      ],
+      "tips": [
+        "Ubuntu is the supported native-server baseline; other distributions remain visible as community paths.",
+        "Host distro and game ABI are separate decisions.",
+        "Use the Settings preview to compare exact, derivative, and family-fallback detections."
+      ]
+    },
+    {
+      "id": "for-modders",
+      "title": "For Modders",
+      "category": "Authoring",
+      "summary": "A line-by-line ID.txt contract and safe ZIP-to-RSDWL packaging guide.",
+      "intro": "Mod authors can give Sync stable identity, runtime, link, tag, custom-item, and icon metadata without executable package instructions.",
+      "sections": [
+        {
+          "title": "Canonical ID.txt",
+          "body": "Place UTF-8 ID.txt at the effective mod root. HOTLOAD = YES is valid as the only line and normalizes to hotload_capable true with runtime_role both and empty optional fields. The parser is case-insensitive, bounded to 512 KiB, accepts colon or equals delimiters, and retains read compatibility for identity.txt and identities.txt."
+        },
+        {
+          "title": "Drop-in ID.txt discovery",
+          "body": "A normal mod folder, ZIP, or manually packed .rsdwl may carry ID.txt at its effective payload root. Sync reads it during staged installation and every inventory scan, including through optional wrapper folders. If HOTLOAD = YES is the only line, hotload_capable becomes true, runtime_role defaults to both, and omitted metadata remains empty or uses inventory/folder presentation fallbacks."
+        },
+        {
+          "title": "Identity fields",
+          "body": "ModId, Name, Version, Revision, Author, RuntimeRole, HotloadCapable, Description, Tags, web links, and repeatable Item records are normalized into safe launcher metadata."
+        },
+        {
+          "title": "Item identity",
+          "body": "Each Item record may declare ITEM Name, PersistenceID, DisplayName, Icon, AssetPath, and ModId. PersistenceID is the cross-source merge key used by Item Editor and Spawner."
+        },
+        {
+          "title": "Icon-bearing mod folders",
+          "body": "Use items/manifest.json, items/icon-manifest.json, and relative items/icons assets. Sync records each generated icon path, SHA-256, and media type and rejects paths escaping the import root."
+        },
+        {
+          "title": "Manual and canonical RSDWL",
+          "body": "A valid mod ZIP may be manually renamed to .rsdwl when it contains a recognizable UE4SS, RuneSchema, or PAK layout and no root manifest.json. Sync labels it compatibility-mod-archive and validated false. Canonical application packages that include a root manifest remain on the strict payload-index, checksum, provenance, and signature validation path."
+        },
+        {
+          "title": "Full field guide",
+          "body": "Open the For Modders tab in the website navigation for copy-ready examples, every accepted field and alias, parser order, folder diagrams, and icon checklist."
+        }
+      ],
+      "tips": [
+        "HOTLOAD = YES works by itself; metadata is declarative and never executed.",
+        "Do not place passwords, tokens, credentials, or local machine paths in ID.txt.",
+        "Manual .rsdwl mod archives remain unvalidated compatibility packages; canonical exports retain signed package validation."
+      ]
+    }
+  ]
+}

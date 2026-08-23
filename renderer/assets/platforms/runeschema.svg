@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">RuneSchema</title>
+  <g fill="none" stroke="#20e5d8" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M256 42 456 208 256 452 56 208Z" stroke-width="30"/>
+    <path d="M180 134 105 207l76 74v95m151-242 75 73-76 74v95M181 281h150M180 134h152" stroke-width="26"/>
+    <path d="m181 134 75 74 76-74m-151 147 75-73 75 73m-75-73v244" stroke-width="22"/>
+  </g>
+</svg>

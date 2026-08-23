@@ -1,0 +1,96 @@
+{
+  "format": "dragonwilds-sync-world-builder-presets",
+  "version": 1,
+  "rulePresets": [
+    {
+      "id": "normal",
+      "label": "Normal",
+      "audience": "general",
+      "description": "General-purpose community rules for a public or friends-and-community World.",
+      "tags": ["General", "Respectful"],
+      "rules": [
+        "Be respectful to other players and staff.",
+        "No griefing, deliberate destruction of other players' builds, or abusive behavior.",
+        "No cheating, exploits, or intentionally disruptive automation.",
+        "Keep names, chat, builds, and shared content within the server's stated community standards.",
+        "Follow moderator instructions and report problems rather than escalating them.",
+        "Have fun and help keep the World welcoming."
+      ]
+    },
+    {
+      "id": "kids",
+      "label": "Kids / Family Friendly",
+      "audience": "kids",
+      "description": "Stricter family-friendly rules intended for communities that want child-appropriate chat and content.",
+      "tags": ["Kids", "Family Friendly", "Strict Chat"],
+      "rules": [
+        "Keep chat, names, signs, builds, and shared content family friendly.",
+        "No profanity, sexual content, graphic content, drug references, or other adult-only material.",
+        "No bullying, harassment, threats, hate speech, or targeted insults.",
+        "Do not ask minors for private contact details, photographs, addresses, or other sensitive personal information.",
+        "No griefing, cheating, scams, or deliberately disruptive play.",
+        "Use public/community channels for support and report inappropriate behavior to moderators."
+      ]
+    },
+    {
+      "id": "adults",
+      "label": "Adults Only",
+      "audience": "adults",
+      "description": "An 18+ community preset that permits mature conversation while retaining clear conduct boundaries.",
+      "tags": ["18+", "Mature Community"],
+      "rules": [
+        "This community is intended for adults aged 18 and over.",
+        "Mature language and themes may be present, but harassment, hate speech, threats, and targeted abuse are not allowed.",
+        "No illegal content, doxxing, scams, malicious links, or attempts to obtain another player's private credentials or personal information.",
+        "Respect other players' boundaries and community moderation decisions.",
+        "No griefing, cheating, exploits, or deliberately disruptive play unless a clearly labeled event/ruleset explicitly allows it.",
+        "Keep all content within applicable platform, game, hosting, and community rules."
+      ]
+    },
+    {
+      "id": "roleplay",
+      "label": "Roleplay",
+      "audience": "general",
+      "description": "A light roleplay preset for Worlds that want in-character community expectations.",
+      "tags": ["Roleplay", "Community"],
+      "rules": [
+        "Respect the World setting and other players' roleplay boundaries.",
+        "Do not force story outcomes, ownership, combat, or character actions on another player without agreement.",
+        "Keep out-of-character disputes out of roleplay channels and resolve them calmly.",
+        "No griefing, cheating, harassment, or using roleplay as an excuse to target another player.",
+        "Follow event and moderator guidance when participating in organized scenes."
+      ]
+    },
+    {
+      "id": "custom",
+      "label": "Custom",
+      "audience": "general",
+      "description": "A fully editable ruleset owned by the World host.",
+      "tags": ["Custom Rules"],
+      "rules": []
+    }
+  ],
+  "modFamilies": [
+    {
+      "id": "ue4ss",
+      "label": "UE4SS",
+      "assetKey": "ue4ss",
+      "asset": "ue4ss.webp",
+      "description": "UE4SS runtime/Lua mods and compatible UE4SS-managed mod content."
+    },
+    {
+      "id": "runeschema",
+      "label": "RuneSchema",
+      "assetKey": "runeschema",
+      "asset": "runeschema.png",
+      "description": "RuneSchema data-driven mods and packages."
+    },
+    {
+      "id": "paks",
+      "label": "PAKs",
+      "assetKey": "paks",
+      "asset": "paks.svg",
+      "description": "Cooked Unreal package content such as PAK/UTOC/UCAS-based mod payloads."
+    }
+  ]
+}

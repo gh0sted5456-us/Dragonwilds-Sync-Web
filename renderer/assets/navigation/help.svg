@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Help">
+  <defs>
+    <linearGradient id="help-gradient" x1="12" y1="8" x2="52" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#e1e7e4"/>
+      <stop offset="1" stop-color="#8f9b96"/>
+    </linearGradient>
+  </defs>
+  <path d="M10 12c8-3 16-2 22 3 6-5 14-6 22-3v39c-8-2-15-1-22 4-7-5-14-6-22-4z" fill="url(#help-gradient)"/>
+  <path d="M32 15v40M17 22h9M17 29h9M38 22h9M38 29h9" fill="none" stroke="#27312d" stroke-width="3" stroke-linecap="round"/>
+  <path d="M29 39c0-4 6-4 6-8 0-2-1-3-3-3-2 0-3 1-4 3" fill="none" stroke="#27312d" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="45" r="2" fill="#27312d"/>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Sync">
+  <defs>
+    <linearGradient id="sync-gradient" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9cf0c5"/>
+      <stop offset="1" stop-color="#3aa477"/>
+    </linearGradient>
+  </defs>
+  <path d="M16 22a21 21 0 0 1 34-5l4-5v16H38l6-6a14 14 0 0 0-22 4z" fill="url(#sync-gradient)"/>
+  <path d="M48 42a21 21 0 0 1-34 5l-4 5V36h16l-6 6a14 14 0 0 0 22-4z" fill="url(#sync-gradient)"/>
+  <circle cx="32" cy="32" r="5" fill="#d9ffea"/>
+</svg>

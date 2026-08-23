@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title">
+  <title id="title">UE4SS</title>
+  <g fill="none" stroke="#ff3b2f" stroke-width="34" stroke-linecap="square" stroke-linejoin="miter">
+    <path d="M86 62v278c0 61 48 110 109 110h122c61 0 109-49 109-110V62h-62v274c0 31-25 56-56 56H204c-31 0-56-25-56-56V62Z"/>
+  </g>
+  <g transform="translate(256 206)">
+    <circle r="69" fill="#090909" stroke="#ff3b2f" stroke-width="18"/>
+    <g fill="#ff3b2f">
+      <rect x="-9" y="-100" width="18" height="27"/>
+      <rect x="-9" y="73" width="18" height="27"/>
+      <rect x="73" y="-9" width="27" height="18"/>
+      <rect x="-100" y="-9" width="27" height="18"/>
+      <rect x="-9" y="-100" width="18" height="27" transform="rotate(45)"/>
+      <rect x="-9" y="73" width="18" height="27" transform="rotate(45)"/>
+      <rect x="-9" y="-100" width="18" height="27" transform="rotate(-45)"/>
+      <rect x="-9" y="73" width="18" height="27" transform="rotate(-45)"/>
+    </g>
+    <text x="0" y="15" text-anchor="middle" font-family="Segoe UI,Arial,sans-serif" font-size="52" font-weight="900" fill="#ff3b2f">404</text>
+  </g>
+</svg>
