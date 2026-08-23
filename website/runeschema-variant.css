@@ -307,3 +307,42 @@ html[data-theme="white"] .runeschema-release button.runeschema-release__button:n
   letter-spacing: .08em;
   text-transform: uppercase;
 }
+
+/* Raw contributor source bundle */
+.runeschema-raw-source {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 1.1rem;
+  padding: 1rem 1.1rem;
+  border: 1px dashed color-mix(in srgb, var(--gold, #d9a63b) 62%, transparent);
+  border-radius: 14px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--panel, #14191a) 92%, #d9792b 8%), color-mix(in srgb, var(--panel, #14191a) 96%, transparent));
+}
+
+.runeschema-raw-source__copy { min-width: 0; }
+
+.runeschema-raw-source__badge {
+  display: inline-flex;
+  padding: 0.3rem 0.55rem;
+  border: 1px solid color-mix(in srgb, #e88a3d 68%, transparent);
+  border-radius: 999px;
+  color: #ffc27a;
+  background: color-mix(in srgb, #b64d18 20%, transparent);
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.runeschema-raw-source h3 { margin: 0.65rem 0 0.35rem; color: var(--text, #f2efe7); }
+.runeschema-raw-source p { margin: 0.35rem 0; }
+.runeschema-raw-source__warning { color: color-mix(in srgb, var(--text, #f2efe7) 82%, #ffc27a 18%); }
+.runeschema-raw-source__hash { display: block; margin-top: 0.7rem; color: var(--muted, #a9afac); font-size: 0.72rem; overflow-wrap: anywhere; }
+.runeschema-raw-source__download { min-width: 13rem; text-align: center; border-color: #e88a3d; background: linear-gradient(135deg, #d9782f, #f0aa52); color: #17110c; }
+
+@media (max-width: 780px) {
+  .runeschema-raw-source { grid-template-columns: 1fr; }
+  .runeschema-raw-source__download { width: 100%; min-width: 0; }
+}
