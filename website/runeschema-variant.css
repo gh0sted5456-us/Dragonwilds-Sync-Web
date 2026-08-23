@@ -371,3 +371,13 @@ html[data-theme="white"] .runeschema-release button.runeschema-release__button:n
   #runeschema-flavors .runeschema-gallery__viewport,
   #runeschema-flavors .runeschema-gallery img { max-height: 180px; }
 }
+.runeschema-release__version-link {
+  display: inline-flex;
+  margin-top: .55rem;
+  color: var(--gold);
+  font-size: .74rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+  text-decoration: none;
+}
+.runeschema-release__version-link:hover { text-decoration: underline; }
