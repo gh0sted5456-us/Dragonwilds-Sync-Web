@@ -220,3 +220,56 @@ html[data-theme="white"] .runeschema-release button.runeschema-release__button:n
 .runeschema-gallery-dialog__stage img { transition: opacity .2s ease; }
 @media(max-width:760px){.runeschema-gallery-dialog__footer{grid-template-columns:repeat(3,auto)}.runeschema-gallery-dialog__status{grid-column:1/-1;grid-row:1;text-align:left}.runeschema-gallery-dialog__status p{text-align:left}}
 @media(prefers-reduced-motion:reduce){.runeschema-gallery-dialog__stage img{transition:none}}
+
+/* Compact scroll gallery and rolled-up JSON example */
+.runeschema-gallery__grid {
+  display: flex;
+  gap: .7rem;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-snap-type: inline mandatory;
+  scrollbar-color: var(--gold) color-mix(in srgb,var(--panel) 85%,transparent);
+  scrollbar-width: thin;
+  padding: .15rem .1rem .75rem;
+}
+.runeschema-gallery__grid::-webkit-scrollbar { height: 8px; }
+.runeschema-gallery__grid::-webkit-scrollbar-track { border-radius: 999px; background: color-mix(in srgb,var(--panel) 85%,transparent); }
+.runeschema-gallery__grid::-webkit-scrollbar-thumb { border-radius: 999px; background: color-mix(in srgb,var(--gold) 72%,var(--panel)); }
+.runeschema-gallery__item,
+.runeschema-gallery__item--wide {
+  flex: 0 0 278px;
+  grid-column: auto;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+.runeschema-gallery__item img { height: 152px; aspect-ratio: auto; object-fit: cover; object-position: top left; }
+.runeschema-gallery__item span { padding: .65rem .75rem; }
+.runeschema-json-rollup {
+  margin: 1.5rem 0;
+  border: 1px solid color-mix(in srgb,var(--gold) 38%,transparent);
+  border-radius: 18px;
+  background: color-mix(in srgb,var(--panel) 88%,transparent);
+  box-shadow: var(--shadow);
+  overflow: clip;
+}
+.runeschema-json-rollup__summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.15rem;
+  color: var(--text);
+  cursor: pointer;
+  list-style: none;
+  background: linear-gradient(135deg,color-mix(in srgb,var(--gold) 9%,var(--panel)),var(--panel));
+}
+.runeschema-json-rollup__summary::-webkit-details-marker { display: none; }
+.runeschema-json-rollup__summary span { display: grid; gap: .2rem; }
+.runeschema-json-rollup__summary small { color: var(--gold); font-size: .68rem; font-style: normal; font-weight: 900; letter-spacing: .13em; }
+.runeschema-json-rollup__summary strong { font-size: 1rem; }
+.runeschema-json-rollup__summary em { color: var(--muted); font-size: .82rem; font-style: normal; font-weight: 400; }
+.runeschema-json-rollup__summary b { display: grid; place-items: center; width: 30px; aspect-ratio: 1; border: 1px solid color-mix(in srgb,var(--gold) 55%,transparent); border-radius: 50%; color: var(--gold); transition: transform .2s ease; }
+.runeschema-json-rollup[open] .runeschema-json-rollup__summary b { transform: rotate(45deg); }
+.runeschema-json-rollup .runeschema-json-practice { margin: 0; padding: clamp(1rem,3vw,1.5rem); border: 0; border-top: 1px solid color-mix(in srgb,var(--gold) 22%,transparent); border-radius: 0; }
+@media(max-width:640px){.runeschema-gallery__item,.runeschema-gallery__item--wide{flex-basis:78vw}.runeschema-gallery__item img{height:140px}.runeschema-json-rollup__summary{padding:.85rem}.runeschema-json-rollup__summary em{display:none}}
+@media(prefers-reduced-motion:reduce){.runeschema-json-rollup__summary b{transition:none}}
