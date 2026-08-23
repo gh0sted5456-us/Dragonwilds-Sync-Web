@@ -1,0 +1,19 @@
+// Shows AI spawn points and persistent world actors.
+// Choose a Type, class and location; Actor entries also need a stable Id.
+[
+  {
+    "Type": "Actor",
+    "Id": "DWS_ResourceTest_IronOre",
+    "Class": "/Game/Gameplay/World/Mining/Ores/Iron/BP_OreNode_Iron_Medium_A1.BP_OreNode_Iron_Medium_A1_C",
+    "Location": {
+      "X": 47327,
+      "Y": 177136,
+      "Z": -3988
+    },
+    "Rotation": {
+      "Pitch": 0.0,
+      "Yaw": 90.0,
+      "Roll": 0.0
+    }
+  }
+]

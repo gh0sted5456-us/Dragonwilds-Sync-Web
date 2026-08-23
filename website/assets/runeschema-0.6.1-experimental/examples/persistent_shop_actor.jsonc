@@ -1,0 +1,12 @@
+// Shows AI spawn points and persistent world actors.
+// Choose a Type, class and location; Actor entries also need a stable Id.
+[
+  {
+    "Type": "Actor",
+    "Id": "DeathsShop",
+    "Class": "/Game/Gameplay/NPCs/Fellhollow_NPCs/BP_NPC_Death.BP_NPC_Death_C",
+    "Location": { "X": 16206, "Y": 185344, "Z": -3149 },
+    "Rotation": { "Pitch": 0.0, "Yaw": 90.0, "Roll": 0.0 }
+  }
+
+]

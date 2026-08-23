@@ -157,7 +157,7 @@ jobs:
           grep -q 'TCP 8422' _site/setup.html
           grep -q 'UDP 7777' _site/setup.html
           grep -q 'CGNAT / DOUBLE NAT' _site/setup.html
-          grep -q 'See the experimental spawn fields in use.' _site/for-modders.html
+          grep -q 'See JSON in action' _site/for-modders.html
           grep -q 'id="windows-download"' _site/downloads.html
           grep -q 'id="linux-download"' _site/downloads.html
           grep -q 'data-windows-quick-download' _site/downloads.html
@@ -185,4 +185,5 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
 

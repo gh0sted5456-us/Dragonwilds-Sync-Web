@@ -1,0 +1,19 @@
+[
+  {
+    "Type": "Actor",
+    "Id": "DWS_ResourceTest_IronOre",
+    "Class": "/Game/Gameplay/World/Mining/Ores/Iron/BP_OreNode_Iron_Medium_A1.BP_OreNode_Iron_Medium_A1_C",
+    "Scale": 4,
+    "DropIncreasePercent": 50,
+    "Location": {
+      "X": 16606,
+      "Y": 185344,
+      "Z": -3300
+    },
+    "Rotation": {
+      "Pitch": 0.0,
+      "Yaw": 90.0,
+      "Roll": 0.0
+    }
+  }
+]

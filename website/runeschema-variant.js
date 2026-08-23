@@ -68,3 +68,35 @@
   galleryDialog?.addEventListener("close", stopRotation);
   reduceMotion.addEventListener?.("change", () => { if (reduceMotion.matches) stopRotation(); });
 })();
+
+(() => {
+  const dialog = document.getElementById("runeschema-json-dialog");
+  if (!dialog) return;
+  const tabs = [...dialog.querySelectorAll("[data-json-tab]")];
+  const panels = [...dialog.querySelectorAll("[data-json-panel]")];
+  const status = dialog.querySelector("[data-json-copy-status]");
+  const activate = (key, focus = false) => {
+    tabs.forEach((tab) => {
+      const active = tab.dataset.jsonTab === key;
+      tab.setAttribute("aria-selected", String(active));
+      tab.tabIndex = active ? 0 : -1;
+      if (active && focus) tab.focus();
+    });
+    panels.forEach((panel) => { panel.hidden = panel.dataset.jsonPanel !== key; });
+    if (status) status.textContent = "";
+  };
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => activate(tab.dataset.jsonTab));
+    tab.addEventListener("keydown", (event) => {
+      if (!['ArrowLeft','ArrowRight','Home','End'].includes(event.key)) return;
+      event.preventDefault();
+      let next = event.key === 'Home' ? 0 : event.key === 'End' ? tabs.length - 1 : (index + (event.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+      activate(tabs[next].dataset.jsonTab, true);
+    });
+  });
+  dialog.querySelector("[data-json-copy]")?.addEventListener("click", async () => {
+    const code = panels.find((panel) => !panel.hidden)?.querySelector("code")?.textContent || "";
+    try { await navigator.clipboard.writeText(code); if (status) status.textContent = "Copied."; }
+    catch { if (status) status.textContent = "Copy was blocked; select the code manually."; }
+  });
+})();

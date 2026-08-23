@@ -1,0 +1,19 @@
+[
+  {
+    "Type": "Actor",
+    "Id": "DWS_ResourceTest_AshTree",
+    "Class": "/Game/Gameplay/World/Trees/BP_Tree_Ash_01.BP_Tree_Ash_01_C",
+    "Scale": 4,
+    "DropIncreasePercent":  50,
+    "Location": {
+      "X": 15806,
+      "Y": 185344,
+      "Z": -3290
+    },
+    "Rotation": {
+      "Pitch": 0.0,
+      "Yaw": 90.0,
+      "Roll": 0.0
+    }
+  }
+]

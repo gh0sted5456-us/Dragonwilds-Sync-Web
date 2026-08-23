@@ -1,0 +1,19 @@
+[
+  {
+    "Type": "Actor",
+    "Id": "DWS_ResourceTest_StoneBoulder",
+    "Class": "/Game/Gameplay/World/Mining/Rocks/BP_OreNode_Stone.BP_OreNode_Stone_C",
+    "Scale": 4,
+    "DropIncreasePercent": 50,
+    "Location": {
+      "X": 16206,
+      "Y": 185344,
+      "Z": -3350
+    },
+    "Rotation": {
+      "Pitch": 0.0,
+      "Yaw": 90.0,
+      "Roll": 0.0
+    }
+  }
+]

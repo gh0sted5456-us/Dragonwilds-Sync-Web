@@ -273,3 +273,21 @@ html[data-theme="white"] .runeschema-release button.runeschema-release__button:n
 .runeschema-json-rollup .runeschema-json-practice { margin: 0; padding: clamp(1rem,3vw,1.5rem); border: 0; border-top: 1px solid color-mix(in srgb,var(--gold) 22%,transparent); border-radius: 0; }
 @media(max-width:640px){.runeschema-gallery__item,.runeschema-gallery__item--wide{flex-basis:78vw}.runeschema-gallery__item img{height:140px}.runeschema-json-rollup__summary{padding:.85rem}.runeschema-json-rollup__summary em{display:none}}
 @media(prefers-reduced-motion:reduce){.runeschema-json-rollup__summary b{transition:none}}
+
+/* Tabbed JSON examples */
+.runeschema-json-dialog { width: min(1080px,calc(100vw - 1rem)); }
+.runeschema-json-tabs { display: flex; gap: .35rem; overflow-x: auto; padding: .65rem .75rem; border-bottom: 1px solid color-mix(in srgb,var(--text) 10%,transparent); scrollbar-width: thin; }
+.runeschema-json-tabs button { appearance: none; flex: 0 0 auto; padding: .55rem .72rem; border: 1px solid color-mix(in srgb,var(--text) 12%,transparent); border-radius: 8px; color: var(--muted); background: color-mix(in srgb,var(--panel) 88%,transparent); cursor: pointer; }
+.runeschema-json-tabs button[aria-selected="true"] { border-color: var(--gold); color: var(--text); background: color-mix(in srgb,var(--gold) 13%,var(--panel)); }
+.runeschema-json-dialog__body { min-height: 420px; }
+.runeschema-json-dialog__body section[hidden] { display: none; }
+.runeschema-json-dialog__body section > header { display: flex; justify-content: space-between; gap: 1rem; align-items: flex-start; margin-bottom: .8rem; }
+.runeschema-json-dialog__body section > header span { color: var(--gold); font-size: .68rem; font-weight: 900; letter-spacing: .12em; }
+.runeschema-json-dialog__body section > header h3 { margin: .2rem 0; color: var(--text); }
+.runeschema-json-dialog__body section > header p { max-width: 720px; margin: 0; color: var(--muted); }
+.runeschema-json-dialog__body section > header a,.runeschema-json-dialog__footer button { flex: 0 0 auto; padding: .58rem .75rem; border: 1px solid color-mix(in srgb,var(--gold) 45%,transparent); border-radius: 8px; color: var(--text); background: var(--panel); text-decoration: none; cursor: pointer; }
+.runeschema-json-dialog__body pre { max-height: 480px; margin: 0; overflow: auto; white-space: pre; }
+.runeschema-json-dialog__footer { display: flex; gap: .75rem; align-items: center; padding: .75rem 1rem; border-top: 1px solid color-mix(in srgb,var(--text) 10%,transparent); }
+.runeschema-json-dialog__footer p { flex: 1; margin: 0; color: var(--muted); }
+.runeschema-json-dialog__footer span { min-width: 4rem; color: var(--gold); font-size: .78rem; }
+@media(max-width:680px){.runeschema-json-dialog__body section > header{display:grid}.runeschema-json-dialog__body section > header a{justify-self:start}.runeschema-json-dialog__footer{flex-wrap:wrap}.runeschema-json-dialog__footer p{flex-basis:100%}}

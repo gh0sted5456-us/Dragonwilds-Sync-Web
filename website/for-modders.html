@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0d0f"><meta name="description" content="A line-by-line Dragonwilds Sync ID.txt and RSDWL packaging guide for mod authors."><title>For Modders | Dragonwilds Sync</title><link rel="icon" href="assets/application-icon.png"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="modders.css?v=7">  <link rel="stylesheet" href="downloads.css?v=2">
-  <link rel="stylesheet" href="runeschema-variant.css?v=7">
+  <link rel="stylesheet" href="runeschema-variant.css?v=8">
 </head><body>
 <header class="site-header" id="top" data-shared-nav="1"><a class="brand" href="index.html#top" aria-label="Dragonwilds Sync home"><img src="assets/application-icon.png" alt="" class="brand-icon"><span class="brand-copy"><strong>Dragonwilds</strong><span>Sync</span></span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span class="sr-only">Toggle navigation</span></button><nav class="main-nav" id="main-nav" data-shared-nav="1"></nav><div class="theme-switcher" role="group" aria-label="Website theme"><button type="button" data-theme-choice="dark" aria-pressed="true"><span class="theme-dot dark-dot"></span><span class="theme-label">Dark</span></button><button type="button" data-theme-choice="white"><span class="theme-dot white-dot"></span><span class="theme-label">White</span></button><button type="button" data-theme-choice="glass"><span class="theme-dot glass-dot"></span><span class="theme-label">Glass</span></button></div></header>
 <main class="modders-page"><section class="modders-hero"><div><span class="eyebrow">CANONICAL AUTHOR METADATA</span><h1>Make your mod <em>understandable.</em></h1><p><code>ID.txt</code> gives Dragonwilds Sync a safe, portable identity for your mod and its custom items. This guide explains every line, exactly how the parser treats it, and how icons travel from a normal mod archive into application-generated <code>.rsdwl</code> packages.</p><div class="hero-actions"><a href="#id-file">Build ID.txt</a><a href="#hotload">HOTLOAD = YES</a><a href="#drop-in">Drop-in reading</a><a href="#packages">Package files</a></div></div><aside><strong>Nothing in ID.txt executes.</strong><p>It is declarative display and registry metadata. Unknown instructions are ignored, secret-like values are stripped, and URLs are shown as links only.</p></aside></section>
@@ -130,6 +130,7 @@ Author: Your Name</code></pre><p>Add RuntimeRole, HotloadCapable, tags, links, a
         <a class="runeschema-release__button runeschema-release__button--primary" href="assets/downloads/RuneSchema-0.6.1-Experimental.zip" download>Download 0.6.1 Experimental</a>
         <button class="runeschema-release__button" type="button" data-runeschema-dialog="runeschema-install-dialog">Read installation guide</button>
         <button class="runeschema-release__button" type="button" data-runeschema-dialog="runeschema-comparison-dialog">Open full comparison</button>
+        <button class="runeschema-release__button" type="button" data-runeschema-dialog="runeschema-json-dialog">See JSON in action</button>
       </div>
     </div>
     <img class="runeschema-release__mark" src="assets/runeschema-logo.png" alt="RuneSchema logo">
@@ -200,76 +201,7 @@ Example Mod B : 0</code></pre>
 
   <p class="runeschema-release__hash"><strong>Variant DLL SHA-256:</strong> 7EA7A84662CAD4B0A0D8039265B65711AF3B0441FAD357EE731F7655DF1FE7FC</p>
 </section>
-<details class="runeschema-json-rollup">
-  <summary class="runeschema-json-rollup__summary">
-    <span><small>JSON IN PRACTICE</small><strong>Open the Scale and DropIncreasePercent example</strong><em>See the exact Actor JSON, field rules, and copy-ready example.</em></span>
-    <b aria-hidden="true">+</b>
-  </summary>
-<section class="runeschema-flavors runeschema-json-practice" id="runeschema-item-size-preview" aria-labelledby="runeschema-json-heading">
-  <header class="downloads-section-heading">
-    <div><div class="eyebrow">JSON IN PRACTICE</div><h2 id="runeschema-json-heading">See the experimental spawn fields in use.</h2></div>
-    <p>Flip the card to inspect a real persistent <code>Actor</code> entry. Official RuneSchema supplies the Actor spawn foundation; 0.6.1 Experimental adds <code>Scale</code> and the separate, explicit <code>DropIncreasePercent</code> option.</p>
-  </header>
-  <article class="rune-flip-card" data-rune-flip>
-    <div class="rune-flip-card__inner">
-      <section class="runeschema-flavor-card rune-flip-face rune-flip-front" aria-label="RuneSchema experimental JSON overview">
-        <div class="runeschema-flavor-card__identity">
-          <span class="runeschema-flavor-card__mark" aria-hidden="true">R</span>
-          <div><span class="linux-kicker">ACTOR SPAWN EXAMPLE</span><h3>Scale and drops, independently.</h3><p>Use a positive scalar or X/Y/Z vector to change the spawned Actor's size. Add a non-negative drop percentage only when supported live-instance drops should change; omitting it leaves drops unchanged regardless of scale.</p></div>
-        </div>
-        <div class="runeschema-flavor-card__facts">
-          <div><span>BASE TYPE</span><strong>Official Actor spawn</strong></div>
-          <div><span>ADDED SIZE FIELD</span><strong>Scale</strong></div>
-          <div><span>OPTIONAL DROP FIELD</span><strong>DropIncreasePercent</strong></div>
-          <div><span>RELATIONSHIP</span><strong>Independent values</strong></div>
-        </div>
-        <div class="runeschema-flavor-card__install">
-          <div><h4>What the example demonstrates</h4><ol><li>Keep the official <code>Type</code>, stable <code>Id</code>, Actor <code>Class</code>, location, and rotation.</li><li>Add <code>Scale: 2.5</code> for a uniformly larger spawned Actor.</li><li>Add <code>DropIncreasePercent: 25</code> for an explicit 25% increase on supported live drop rows.</li><li>Test persistence, collision, harvesting, animation, and loot behavior for the selected game class.</li></ol></div>
-          <div class="runeschema-flavor-card__download">
-            <button class="button button-primary rune-flip-trigger" type="button" data-rune-show-code>See example JSON <span aria-hidden="true">&#8635;</span></button>
-            <a class="button button-secondary" href="assets/downloads/RuneSchema-0.6.1-Experimental.zip" download>Download 0.6.1 Experimental</a>
-            <small>The experimental build is independent and unsupported by the original RuneSchema author.</small>
-          </div>
-        </div>
-        <div class="runeschema-flavor-card__warning"><strong>No automatic size-to-drop multiplier.</strong> <code>Scale</code> changes size only. If <code>DropIncreasePercent</code> is absent, supported drops remain unchanged.</div>
-      </section>
-      <section class="runeschema-flavor-card rune-flip-face rune-flip-back" aria-label="RuneSchema experimental Actor JSON example" aria-hidden="true" inert>
-        <div class="rune-code-heading">
-          <div><span class="linux-kicker">REAL RESOURCE ENTRY</span><h3>Scale an ash tree resource node.</h3><p>The official persistent Actor fields remain intact; only <code>Scale</code> and the explicit drop percentage are added.</p></div>
-          <button class="button button-secondary" type="button" data-rune-show-front>Back to explanation <span aria-hidden="true">&#8635;</span></button>
-        </div>
-        <div class="rune-code-layout">
-          <pre class="rune-json"><code id="runeschema-scale-example">[
-  {
-    "Type": "Actor",
-    "Id": "DWS_ResourceTest_AshTree",
-    "Class": "/Game/Gameplay/World/Trees/BP_Tree_Ash_01.BP_Tree_Ash_01_C",
-    "Scale": 2.5,
-    "DropIncreasePercent": 25,
-    "Location": {
-      "X": 15806,
-      "Y": 185344,
-      "Z": -3290
-    },
-    "Rotation": {
-      "Pitch": 0.0,
-      "Yaw": 90.0,
-      "Roll": 0.0
-    }
-  }
-]</code></pre>
-          <div class="rune-code-notes">
-            <div><span>SCALE</span><strong><code>2.5</code></strong><p>Applies a uniform 250% scale. A scale value or every vector component must be greater than zero.</p></div>
-            <div><span>EXPLICIT DROPS</span><strong><code>25</code></strong><p>Requests a 25% increase on supported <code>ItemsToDrop</code> rows. This is separate from size and requires experimental drop scaling to be enabled.</p></div>
-            <button class="button button-primary" type="button" data-rune-copy-code>Copy example JSON</button>
-            <small data-rune-copy-status aria-live="polite">Use this as a field-placement example, then substitute the real Actor identity and transform for your mod.</small>
-          </div>
-        </div>
-        <div class="runeschema-flavor-card__warning"><strong>Test the target class.</strong> Scale does not imply health, damage, navigation, animation, collision, persistence, or loot compatibility.</div>
-      </section>
-    </div>
-  </article>
-</section></details>
+
 
 <dialog class="runeschema-dialog runeschema-gallery-dialog" id="runeschema-gallery-dialog" aria-labelledby="runeschema-gallery-dialog-title">
   <div class="runeschema-dialog__shell">
@@ -359,8 +291,9 @@ Example Mod B : 0</code></pre>
 </dialog>
 </main>
 <footer class="site-footer"><div class="footer-brand"><img src="assets/application-icon.png" alt=""><div><strong>Dragonwilds Sync</strong><span>For Modders</span></div></div><div class="footer-links"><a href="helpy.html">Read Helpy</a><a href="launcher-preview.html">Preview Launcher</a><a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub</a></div><p>ID.txt is declarative metadata. Dragonwilds Sync never executes package metadata.</p></footer><script src="script.js?v=nav-rune-1"></script><script src="modders.js?v=1"></script><script src="downloads-flavor.js?v=1"></script>
-  <script src="runeschema-variant.js?v=3"></script>
+  <script src="runeschema-variant.js?v=4"></script>
 </body></html>
+
 
 
 
