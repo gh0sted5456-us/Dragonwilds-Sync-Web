@@ -1,0 +1,535 @@
+{
+  "schema": "DragonwildsSync.LauncherPreview.v1",
+  "version": 7,
+  "appys": [
+    {
+      "id": "dragonwilds",
+      "label": "Dragonwilds",
+      "group": "Play & Create",
+      "tone": "worlds",
+      "icon": "assets/navigation/dragonwilds.png",
+      "navDescription": "Singleplayer - Co-Op - Dedicated - connect",
+      "kicker": "Play and manage",
+      "title": "World Management",
+      "description": "Use the application placard treatment for local, connected, and hosted Worlds while preserving active profile context.",
+      "view": "placards",
+      "metrics": [
+        {
+          "label": "Active profile",
+          "value": "Preview Profile"
+        },
+        {
+          "label": "Worlds",
+          "value": "3 available"
+        },
+        {
+          "label": "Game",
+          "value": "Ready"
+        }
+      ],
+      "cards": [
+        {
+          "kicker": "Local World",
+          "title": "Private play",
+          "body": "Save identity, character association, profile mods, and launch state stay together.",
+          "actions": [
+            "Launch",
+            "Game Setup"
+          ]
+        },
+        {
+          "kicker": "Connected World",
+          "title": "Verified destination",
+          "body": "Fingerprint, Sync requirements, reviews, and public-safe metadata share one placard.",
+          "actions": [
+            "Connect",
+            "Details"
+          ]
+        },
+        {
+          "kicker": "Dedicated",
+          "title": "Hosted profile",
+          "body": "Runtime, listener, heartbeat, and process ownership remain visible.",
+          "actions": [
+            "Server stage",
+            "Hosting setup"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "characters",
+      "label": "Characters",
+      "group": "Play & Create",
+      "tone": "characters",
+      "icon": "assets/rsdw-toolkit/character-editor.png",
+      "navDescription": "Saves - identity - appearance",
+      "kicker": "Character workspace",
+      "title": "Character Editor",
+      "description": "Preview the real three-column flow: bounded appearance controls, stable 3D stage, and compatible equipment.",
+      "view": "character",
+      "metrics": [
+        {
+          "label": "Character",
+          "value": "Adventurer"
+        },
+        {
+          "label": "Draft",
+          "value": "No changes"
+        },
+        {
+          "label": "Backup",
+          "value": "Ready"
+        }
+      ],
+      "cards": []
+    },
+    {
+      "id": "mods",
+      "label": "Mods",
+      "group": "Play & Create",
+      "tone": "mods",
+      "icon": "assets/navigation/mods.png",
+      "navDescription": "Repository - editor - load order",
+      "kicker": "Master and profile",
+      "title": "Mod Selector & Breakdown",
+      "description": "Inspect runtime families, payload source, deployment status, and profile overrides without flattening the mod model.",
+      "view": "mods",
+      "metrics": [
+        {
+          "label": "Master",
+          "value": "12 indexed"
+        },
+        {
+          "label": "Profile",
+          "value": "8 active"
+        },
+        {
+          "label": "Conflicts",
+          "value": "0"
+        }
+      ],
+      "cards": [],
+      "modGroups": [
+        {
+          "label": "UE4SS Mods",
+          "icon": "assets/platforms/ue4ss.png",
+          "mods": [
+            {
+              "name": "AgilityProof",
+              "source": "Master",
+              "state": "Active"
+            },
+            {
+              "name": "Loot Menu",
+              "source": "Master",
+              "state": "Active"
+            },
+            {
+              "name": "Hotbar Scroll",
+              "source": "Profile",
+              "state": "Override"
+            }
+          ]
+        },
+        {
+          "label": "RuneSchema Mods",
+          "icon": "assets/platforms/runeschema.png",
+          "mods": [
+            {
+              "name": "Magically Increased Storage",
+              "source": "Master",
+              "state": "Active"
+            },
+            {
+              "name": "Farmer's QoL",
+              "source": "Profile",
+              "state": "Active"
+            },
+            {
+              "name": "Journal Search",
+              "source": "Master",
+              "state": "Available"
+            }
+          ]
+        },
+        {
+          "label": "PAK Mods",
+          "icon": "assets/platforms/paks.svg",
+          "mods": [
+            {
+              "name": "Iron Armor Proof",
+              "source": "Master",
+              "state": "Active"
+            },
+            {
+              "name": "Increased Magic Set",
+              "source": "Profile",
+              "state": "Active"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rsdwl",
+      "label": "RSDW-L",
+      "group": "Play & Create",
+      "tone": "mods",
+      "icon": "assets/navigation/rsdw-l.png",
+      "navDescription": "Editors - map - spawner - console",
+      "kicker": "Integrated toolkit",
+      "title": "RSDW-L Tools",
+      "description": "Open the application toolkit menu for save editors, World inspection, Item Spawner, and bounded runtime tools.",
+      "view": "tools",
+      "metrics": [
+        {
+          "label": "Save",
+          "value": "Hydrated"
+        },
+        {
+          "label": "Tools",
+          "value": "8 available"
+        },
+        {
+          "label": "Writes",
+          "value": "Backup first"
+        }
+      ],
+      "cards": [],
+      "tools": [
+        {
+          "code": "CHR",
+          "title": "Character Editor",
+          "description": "Appearance, equipment, preview, backup, and verified save."
+        },
+        {
+          "code": "ITM",
+          "title": "Item Editor",
+          "description": "Canonical inventory, equipment slots, modded records, and stacks."
+        },
+        {
+          "code": "SPL",
+          "title": "Spell Editor",
+          "description": "Inspect and edit supported spell records with bounded values."
+        },
+        {
+          "code": "RCP",
+          "title": "Recipe Editor",
+          "description": "Review ingredients, outputs, unlocks, and recipe identity."
+        },
+        {
+          "code": "QST",
+          "title": "Quest Editor",
+          "description": "Inspect quest state and supported progression fields."
+        },
+        {
+          "code": "MAP",
+          "title": "Character Map",
+          "description": "Explore locations and supported save-linked map context."
+        },
+        {
+          "code": "SPN",
+          "title": "Item Spawner",
+          "description": "Choose canonical items, amount, destination, and runtime target."
+        },
+        {
+          "code": "CLI",
+          "title": "Console",
+          "description": "Preview advanced commands before explicit execution."
+        }
+      ]
+    },
+    {
+      "id": "sync",
+      "label": "Sync",
+      "group": "Host & Connect",
+      "tone": "sync",
+      "icon": "assets/navigation/sync.svg",
+      "navDescription": "Directory - transfer - remote",
+      "kicker": "Verify before launch",
+      "title": "Connection & Sync",
+      "description": "Resolve identity, compare manifests, transfer approved differences, and verify the final profile.",
+      "view": "cards",
+      "metrics": [
+        {
+          "label": "Endpoint",
+          "value": "Verified"
+        },
+        {
+          "label": "Changes",
+          "value": "3 required"
+        },
+        {
+          "label": "Launch",
+          "value": "Pending"
+        }
+      ],
+      "cards": [
+        {
+          "kicker": "Identity",
+          "title": "Fingerprint trust",
+          "body": "Bind the session to the expected endpoint instead of trusting a display name.",
+          "actions": [
+            "Review identity",
+            "Connection details"
+          ]
+        },
+        {
+          "kicker": "Comparison",
+          "title": "Required changes",
+          "body": "See exact bounded profile differences before accepting transfer.",
+          "actions": [
+            "Review changes",
+            "Begin Sync"
+          ]
+        },
+        {
+          "kicker": "Direct Connect",
+          "title": "Private endpoint",
+          "body": "Use an explicit endpoint without bypassing authentication or identity checks.",
+          "actions": [
+            "Enter endpoint",
+            "Saved connections"
+          ]
+        },
+        {
+          "kicker": "Verification",
+          "title": "Launch boundary",
+          "body": "Launch becomes available after final manifest verification.",
+          "actions": [
+            "Verify",
+            "Diagnostics"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "helpy",
+      "label": "Helpy",
+      "group": "System",
+      "tone": "system",
+      "icon": "assets/navigation/help.svg",
+      "navDescription": "Guides - screenshots - safety",
+      "kicker": "Shared field guide",
+      "title": "Helpy Documentation",
+      "description": "Search the same GitHub-managed system guide used by website and application.",
+      "view": "cards",
+      "metrics": [
+        {
+          "label": "Systems",
+          "value": "11 guides"
+        },
+        {
+          "label": "Source",
+          "value": "JSON"
+        },
+        {
+          "label": "Screenshots",
+          "value": "22 slots"
+        }
+      ],
+      "cards": [
+        {
+          "kicker": "One source",
+          "title": "help/manifest.json",
+          "body": "Update structured content once for web and desktop.",
+          "actions": [
+            "Open Helpy",
+            "View JSON"
+          ]
+        },
+        {
+          "kicker": "Visual references",
+          "title": "Screenshot placeholders",
+          "body": "Named slots become zoomable images when supplied.",
+          "actions": [
+            "Screenshot plan",
+            "Editing guide"
+          ]
+        },
+        {
+          "kicker": "Search",
+          "title": "Find concepts",
+          "body": "Search workflows, safety boundaries, and troubleshooting.",
+          "actions": [
+            "Search demo",
+            "Browse systems"
+          ]
+        },
+        {
+          "kicker": "Offline",
+          "title": "Packaged fallback",
+          "body": "Desktop retains a bounded fallback when the site is unavailable.",
+          "actions": [
+            "Fallback info",
+            "Refresh"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "settings",
+      "label": "Settings",
+      "group": "System",
+      "tone": "system",
+      "icon": "assets/navigation/settings.svg",
+      "navDescription": "Application - network - updates",
+      "kicker": "Policy and appearance",
+      "title": "Application Settings",
+      "description": "Control themes, paths, integrations, update policy, backups, and advanced behavior.",
+      "view": "cards",
+      "metrics": [
+        {
+          "label": "Theme",
+          "value": "Dark + Glass"
+        },
+        {
+          "label": "Updates",
+          "value": "Notify"
+        },
+        {
+          "label": "Health",
+          "value": "Ready"
+        }
+      ],
+      "cards": [
+        {
+          "kicker": "Appearance",
+          "title": "Dark, White, and Glass",
+          "body": "Choose a foundation and apply Glass independently.",
+          "actions": [
+            "Theme preview",
+            "Toggle Glass"
+          ]
+        },
+        {
+          "kicker": "Paths",
+          "title": "Installation and storage",
+          "body": "Validate locations without silently moving content.",
+          "actions": [
+            "Review paths",
+            "Discovery"
+          ]
+        },
+        {
+          "kicker": "Integrations",
+          "title": "Connected services",
+          "body": "Each provider exposes separate capability and status.",
+          "actions": [
+            "Integration status",
+            "Access"
+          ]
+        },
+        {
+          "kicker": "Maintenance",
+          "title": "Updates and recovery",
+          "body": "Review versions, diagnostics, backups, and trash.",
+          "actions": [
+            "System health",
+            "Recovery tools"
+          ]
+        }
+      ]
+    }
+  ],
+  "linuxDetection": {
+    "schema": "DragonwildsSync.LinuxHostPreview.v1",
+    "source": [
+      "/etc/os-release",
+      "/usr/lib/os-release"
+    ],
+    "privacy": "No kernel build, machine name, username, or local path is published.",
+    "catalog_count": 50,
+    "families": [
+      "debian",
+      "fedora",
+      "suse",
+      "arch",
+      "gentoo",
+      "void",
+      "alpine",
+      "nixos",
+      "guix",
+      "clear-linux",
+      "solus",
+      "mageia",
+      "openmandriva",
+      "slackware"
+    ],
+    "detected": {
+      "distro": "ubuntu",
+      "distro_name": "Ubuntu 24.04.3 LTS",
+      "short_name": "Ubuntu",
+      "distro_version": "24.04",
+      "distro_codename": "noble",
+      "distro_family": "debian",
+      "distro_icon": "ubuntu",
+      "distro_known": true,
+      "distro_id_like": [
+        "debian"
+      ],
+      "ubuntu_supported": true
+    },
+    "examples": [
+      {
+        "distro": "ubuntu",
+        "distro_name": "Ubuntu 24.04.3 LTS",
+        "short_name": "Ubuntu",
+        "distro_version": "24.04",
+        "distro_codename": "noble",
+        "distro_family": "debian",
+        "distro_icon": "ubuntu",
+        "distro_known": true,
+        "distro_id_like": [
+          "debian"
+        ],
+        "ubuntu_supported": true
+      },
+      {
+        "distro": "bazzite",
+        "distro_name": "Bazzite 42",
+        "short_name": "Bazzite",
+        "distro_version": "42",
+        "distro_codename": "",
+        "distro_family": "fedora",
+        "distro_icon": "bazzite",
+        "distro_known": true,
+        "distro_id_like": [
+          "fedora"
+        ],
+        "ubuntu_supported": false
+      },
+      {
+        "distro": "zorin",
+        "distro_name": "Zorin OS 18 Pro",
+        "short_name": "Zorin OS",
+        "distro_version": "18",
+        "distro_codename": "noble",
+        "distro_family": "debian",
+        "distro_icon": "zorin",
+        "distro_known": true,
+        "distro_id_like": [
+          "ubuntu",
+          "debian"
+        ],
+        "ubuntu_supported": false
+      },
+      {
+        "distro": "unknown-gaming-os",
+        "distro_name": "Unknown Gaming OS",
+        "short_name": "Family fallback",
+        "distro_version": "rolling",
+        "distro_codename": "",
+        "distro_family": "fedora",
+        "distro_icon": "fedora",
+        "distro_known": false,
+        "distro_id_like": [
+          "fedora",
+          "rhel"
+        ],
+        "ubuntu_supported": false
+      }
+    ]
+  }
+}

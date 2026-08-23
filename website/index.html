@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d0f">
+  <meta name="description" content="Dragonwilds Sync — keep Dragonwilds worlds, clients, servers, and mods in sync.">
+  <meta property="og:title" content="Dragonwilds Sync">
+  <meta property="og:description" content="One focused toolkit for Dragonwilds clients, worlds, mods, servers, and remote management.">
+  <meta property="og:type" content="website">
+  <title>Dragonwilds Sync</title>
+  <link rel="icon" href="assets/application-icon.png">
+  <link rel="stylesheet" href="styles.css?v=ubuntu-download-1">
+  <style>
+    .home-learn-more{padding:14px 0 72px}
+    .home-learn-card{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:22px 24px;border:1px solid var(--line);border-radius:16px;background:var(--panel);backdrop-filter:blur(var(--glass-blur))}
+    .home-learn-card h2{margin:0 0 5px;font-size:18px;letter-spacing:-.025em}.home-learn-card p{margin:0;color:var(--muted);font-size:11px;line-height:1.6;max-width:660px}
+    .passion-liner{display:flex;align-items:center;justify-content:space-between;gap:28px;margin-top:76px;margin-bottom:28px;padding:25px 28px;border:1px solid var(--line-strong);border-radius:16px;background:radial-gradient(circle at 8% 50%,color-mix(in srgb,var(--gold) 13%,transparent),transparent 30rem),var(--panel);box-shadow:var(--shadow)}
+    .passion-liner__copy{display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:center}.passion-liner__mark{display:grid;place-items:center;width:44px;height:44px;border:1px solid var(--line-strong);border-radius:50%;color:var(--gold);font-size:19px}.passion-liner h2{margin:0 0 5px;font-size:17px;letter-spacing:-.025em}.passion-liner p{max-width:780px;margin:0;color:var(--muted);font-size:12px;line-height:1.6}.passion-liner .button{flex:0 0 auto;white-space:nowrap}
+    @media(max-width:720px){.home-learn-card{align-items:flex-start;flex-direction:column}.home-learn-card .button{width:100%;justify-content:center}.passion-liner{display:grid;padding:22px 19px}.passion-liner__copy{align-items:start}.passion-liner .button{justify-content:center;width:100%}}
+  </style>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header" id="top" data-shared-nav="1">
+    <a class="brand" href="index.html" aria-label="Dragonwilds Sync home"><img src="assets/application-icon.png" alt="" class="brand-icon"><span class="brand-copy"><strong>Dragonwilds</strong><span>Sync</span></span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span class="sr-only">Toggle navigation</span></button>
+    <nav class="main-nav" id="main-nav" data-shared-nav="1"></nav>
+    <div class="theme-switcher" role="group" aria-label="Website theme"><button type="button" data-theme-choice="dark" aria-pressed="true"><span class="theme-dot dark-dot"></span><span class="theme-label">Dark</span></button><button type="button" data-theme-choice="white"><span class="theme-dot white-dot"></span><span class="theme-label">White</span></button><button type="button" data-theme-choice="glass"><span class="theme-dot glass-dot"></span><span class="theme-label">Glass</span></button></div>
+  </header>
+
+  <main>
+    <section class="hero section-shell">
+      <div class="hero-art" aria-hidden="true"></div>
+      <div class="hero-grid">
+        <div class="hero-copy reveal">
+          <div class="eyebrow"><span class="status-dot"></span> Community-built Dragonwilds toolkit</div>
+          <h1>Keep every world,<br><span>client, and mod</span> in sync.</h1>
+          <p class="hero-lede">Dragonwilds Sync brings client synchronization, dedicated-server management, mod coordination, updates, profiles, and secure remote administration into one focused launcher.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="downloads.html">Get Dragonwilds Sync <span aria-hidden="true">↓</span></a>
+            <a class="button button-secondary" href="about.html">Learn More <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-meta"><span>Windows &amp; Linux</span><i></i><span>Open source</span><i></i><span>Community project</span></div>
+        </div>
+
+        <div class="product-window reveal delay-1" aria-label="Dragonwilds Sync interface preview">
+          <div class="window-bar">
+            <div class="window-brand"><img src="assets/application-icon.png" alt=""> Dragonwilds Sync</div>
+            <div class="window-controls"><span>—</span><span>□</span><span>×</span></div>
+          </div>
+          <div class="window-body">
+            <aside class="mock-sidebar">
+              <div class="mock-logo"><img src="assets/application-icon.png" alt=""></div>
+              <span class="mock-nav active"></span><span class="mock-nav"></span><span class="mock-nav"></span><span class="mock-nav"></span>
+            </aside>
+            <div class="mock-content">
+              <div class="mock-topline"><span>WORLD MANAGEMENT</span><span class="tiny-pill">CONNECTED</span></div>
+              <div class="mock-world-card mock-world-card-presented">
+                <img class="mock-world-banner" src="assets/demo-world-banner.svg" alt="" aria-hidden="true">
+                <div class="mock-world-copy"><img class="mock-world-icon" src="assets/demo-world-icon.svg" alt="Ashenvale world icon"><div><div class="mock-kicker">DEDICATED WORLD</div><h3>Ashenvale</h3><div class="mock-tags"><span>Modded</span><span>Co-op</span><span class="mock-steam-badge"><img src="assets/platforms/steam.svg" alt="">Steam Server</span><span class="mock-cl-badge" data-current-cl>CL-232224</span></div></div></div>
+                <div class="mock-health"><span></span><b>Online</b><small>12 / 20</small></div>
+              </div>
+              <div class="mock-stats"><div><small>SERVER</small><strong>Healthy</strong></div><div><small>MOD SYNC</small><strong>Current</strong></div><div><small>UPDATE</small><strong>Ready</strong></div></div>
+              <div class="mock-actions"><button>Open World</button><button>Manage</button><button class="mock-primary">Play</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-strip reveal delay-2"><span>CLIENT SYNC</span><span>SERVER CONTROL</span><span>MOD MANAGEMENT</span><span>WEBGUI</span><span>PROFILES</span><span>AUTO UPDATE</span></div>
+    </section>
+
+    <section class="section-shell home-learn-more">
+      <div class="home-learn-card reveal">
+        <div><div class="eyebrow">New here?</div><h2>Learn what Dragonwilds Sync actually does.</h2><p>See how profiles, synchronization, server management, remote administration, updates, and the wider modding ecosystem fit together.</p></div>
+        <a class="button button-secondary" href="about.html">Learn More <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+
+    <aside class="section-shell passion-liner reveal" aria-labelledby="passion-project-heading">
+      <div class="passion-liner__copy"><span class="passion-liner__mark" aria-hidden="true">♥</span><div><h2 id="passion-project-heading">Built entirely as a passion project.</h2><p>Dragonwilds Sync is made for the community with time, care, and a love of the game. It will always remain free to use, but donations are warmly welcomed if you would like to help support its continued development.</p></div></div>
+      <a class="button button-primary" href="https://www.paypal.me/luke0494" target="_blank" rel="noopener noreferrer">Support the project <span aria-hidden="true">↗</span></a>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><img src="assets/application-icon.png" alt=""><div><strong>Dragonwilds Sync</strong><span>Community toolkit for RuneScape: Dragonwilds</span></div></div>
+    <div class="footer-links"><a href="about.html">About</a><a href="experience.html">Experience</a><a href="helpy.html">Help</a><a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub</a></div>
+    <p>Dragonwilds Sync is an independent community project and is not affiliated with, endorsed by, or sponsored by Jagex Ltd.</p>
+  </footer>
+
+  <script src="script.js?v=ubuntu-download-1"></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+/* Clickable Rules / Mods categories shared by directory and World Builder placards. */
+.world-back-detail-list{align-items:flex-start;overflow:visible;max-height:none}
+.world-detail-chip{display:inline-flex;align-items:center;gap:6px;min-height:28px;padding:5px 8px;border:1px solid rgba(212,176,105,.2);border-radius:8px;background:rgba(255,255,255,.045);color:#e4dfd2;cursor:pointer;font:inherit;transition:transform .16s ease,border-color .16s ease,background .16s ease}
+.world-detail-chip:hover,.world-detail-chip:focus-visible{transform:translateY(-1px);border-color:rgba(212,176,105,.45);background:rgba(212,176,105,.08);outline:none}
+.world-detail-chip strong{font-size:9px;letter-spacing:.035em}.world-detail-chip>span:last-child{display:grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:rgba(0,0,0,.24);color:#c4beb0;font-size:8px}
+.world-detail-chip-icon{width:17px;height:17px;object-fit:contain;flex:0 0 17px;filter:none!important;opacity:1!important}
+.world-detail-chip.mod-family-ue4ss{border-color:rgba(255,59,47,.32)}
+.world-detail-chip.mod-family-runeschema{border-color:rgba(32,229,216,.34)}
+.world-detail-chip.mod-family-paks{border-color:rgba(226,189,102,.36)}
+.world-detail-chip.rule-profile-kids{border-color:rgba(84,201,143,.34)}
+.world-detail-chip.rule-profile-adults{border-color:rgba(196,104,174,.34)}
+.world-detail-chip.rule-profile-normal{border-color:rgba(114,160,211,.3)}
+
+.world-detail-dialog{width:min(560px,calc(100% - 28px));padding:0;border:1px solid rgba(212,176,105,.28);border-radius:18px;background:rgba(17,21,22,.97);color:#f2eee3;box-shadow:0 32px 100px rgba(0,0,0,.56);backdrop-filter:blur(22px)}
+.world-detail-dialog::backdrop{background:rgba(4,6,8,.72);backdrop-filter:blur(4px)}
+.world-detail-dialog-shell{padding:20px}.world-detail-dialog-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.08)}
+.world-detail-dialog-title span{display:block;color:#d4b069;font-size:8px;font-weight:850;letter-spacing:.14em;text-transform:uppercase}.world-detail-dialog-title h3{margin:5px 0 0;color:#f2eee3;font-size:23px;letter-spacing:-.025em}.world-detail-dialog-close{width:34px;height:34px;border:1px solid rgba(255,255,255,.1);border-radius:9px;background:rgba(255,255,255,.04);color:#f2eee3;font-size:20px;cursor:pointer}.world-detail-dialog-description{margin:13px 0;color:#aeb6b2;font-size:10px;line-height:1.5}.world-detail-dialog-list{display:grid;gap:8px;max-height:min(55vh,480px);overflow:auto;padding-right:3px}.world-detail-dialog-row{display:grid;grid-template-columns:25px 1fr;gap:9px;align-items:start;padding:10px;border:1px solid rgba(255,255,255,.075);border-radius:10px;background:rgba(255,255,255,.035)}.world-detail-dialog-index{display:grid;place-items:center;width:23px;height:23px;border:1px solid rgba(212,176,105,.25);border-radius:7px;color:#d4b069;font-size:8px;font-weight:900}.world-detail-dialog-row p{margin:2px 0 0;color:#d4d6d1;font-size:10px;line-height:1.5}.world-detail-empty{color:#8f9793;font-size:10px}
+
+@media(max-width:620px){.world-detail-dialog-shell{padding:15px}.world-detail-dialog-row{grid-template-columns:22px 1fr}.world-detail-chip{min-height:30px}}

@@ -1,0 +1,48 @@
+/* Public directory placards intentionally mirror the desktop application's World cards.
+   They remain dark presentation surfaces in every site theme. */
+.world-grid{grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:18px}
+.world-card{min-height:490px;perspective:1200px;cursor:pointer;outline:none}
+.world-card-inner{position:relative;display:block;width:100%;height:100%;min-height:490px;transform-style:preserve-3d;transition:transform .58s cubic-bezier(.2,.7,.2,1)}
+.world-card.flipped .world-card-inner{transform:rotateY(180deg)}
+.world-card-face{position:absolute;inset:0;backface-visibility:hidden;overflow:hidden;isolation:isolate;padding:0;border:1px solid rgba(212,176,105,.18);border-radius:16px;background:linear-gradient(180deg,rgba(27,32,34,.96),rgba(16,20,21,.98));color:#f2eee3;box-shadow:0 20px 50px rgba(0,0,0,.34);backdrop-filter:none}
+.world-card-face::before{display:none!important}
+.world-card-face::after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(180deg,rgba(12,16,16,.20),rgba(12,16,16,.84) 38%,rgba(12,16,16,.96));pointer-events:none}
+.world-card-back{transform:rotateY(180deg)}
+.world-card:focus-visible .world-card-face{outline:2px solid #d4b069;outline-offset:3px}
+
+.world-placard-backdrop{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;opacity:.16;filter:saturate(.75) contrast(.92);animation:placard-breathe 9s ease-in-out infinite alternate;pointer-events:none}
+@keyframes placard-breathe{from{opacity:.11;transform:scale(1.015) translate3d(-.5%,0,0)}to{opacity:.23;transform:scale(1.065) translate3d(.6%,-.5%,0)}}
+
+.world-mode-banner{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;min-height:25px;padding:5px 10px;border-bottom:1px solid rgba(212,176,105,.34);background:linear-gradient(90deg,#242a29,#151918);color:#e8dfca;font-size:9px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.world-mode-banner.coop{background:linear-gradient(90deg,#123324,#17241f);color:#a7efc5}.world-mode-banner.dedicated{background:linear-gradient(90deg,#352817,#201b14);color:#f4cf84}.world-mode-banner.single{background:linear-gradient(90deg,#202629,#171b1d);color:#cbd2d0}
+.world-origin-banner{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;min-height:22px;padding:4px 9px;border-bottom:1px solid rgba(212,176,105,.3);background:rgba(212,176,105,.11);color:#f2eee3;font-size:8px;font-weight:850;letter-spacing:.12em;text-transform:uppercase;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.world-card-media{position:relative;z-index:1;height:128px;overflow:hidden;background:linear-gradient(135deg,#1f2828,#121719 60%,#2b2418)}
+.world-card-banner{display:block;width:100%;height:128px;object-fit:cover;filter:saturate(.86) contrast(1.05);transform:scale(1.01)}
+.world-card-banner-fallback{position:absolute;inset:0;background:linear-gradient(135deg,#1f2828,#121719 60%,#2b2418),url('assets/world-selection-background.png') center 35%/cover}
+.world-card-banner-fallback::after{content:"";position:absolute;inset:0;background:url('assets/world-selection-background.png') center 35%/cover;opacity:.16;mix-blend-mode:screen}
+.world-card-banner-blend{position:absolute;z-index:2;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(12,16,16,0) 28%,rgba(12,16,16,.12) 58%,rgba(12,16,16,.88) 100%)}
+
+.world-card-body{position:relative;z-index:2;padding:18px 17px 16px;color:#f2eee3}
+.world-icon{width:66px;height:66px;border-radius:14px;position:absolute;top:-46px;left:17px;object-fit:cover;background:#121617;border:2px solid rgba(235,223,195,.25);box-shadow:0 10px 30px rgba(0,0,0,.45)}
+.world-icon.fallback{display:grid;place-items:center;color:#d4b069;font-weight:900;font-size:22px;background:linear-gradient(145deg,#332a1d,#161a1b)}
+.card-topline{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;min-height:44px;padding-left:78px}
+.card-title{min-width:0}.card-title h3{margin:0!important;font-size:17px!important;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:#f4efe3;letter-spacing:0!important}.card-title small{display:block;color:#aeb6b2;margin-top:3px;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.status-pill{border:1px solid rgba(255,255,255,.1);border-radius:999px;padding:5px 8px;font-size:10px;font-weight:800;letter-spacing:.03em;white-space:nowrap;color:#c5c9c6;background:rgba(255,255,255,.04)}
+.status-pill.online{color:#b8f1d4;background:rgba(84,201,143,.11);border-color:rgba(84,201,143,.25)}.status-pill.offline,.status-pill.outdated{color:#f2adad;background:rgba(226,108,108,.1);border-color:rgba(226,108,108,.22)}.status-pill.current{color:#b8f1d4;background:rgba(84,201,143,.11);border-color:rgba(84,201,143,.25)}
+.card-description{color:#b5bbb8;font-size:12px;line-height:1.5;height:36px;overflow:hidden;margin:12px 0 10px}
+
+.tags,.badges{display:flex;gap:6px;flex-wrap:wrap}.tag{padding:4px 7px;border-radius:999px;font-size:9px;color:#b9b09c;background:rgba(212,176,105,.08);border:1px solid rgba(212,176,105,.13)}
+.tag.tone-0{color:#f2cb77;background:rgba(185,126,28,.15);border-color:rgba(221,169,60,.38)}.tag.tone-1{color:#9ed7ff;background:rgba(42,113,164,.16);border-color:rgba(78,151,203,.4)}.tag.tone-2{color:#aee8c0;background:rgba(42,132,76,.16);border-color:rgba(74,172,108,.4)}.tag.tone-3{color:#f0b3df;background:rgba(145,55,120,.16);border-color:rgba(190,89,161,.4)}.tag.tone-4{color:#d8b8ff;background:rgba(99,64,156,.17);border-color:rgba(139,94,207,.42)}.tag.tone-5{color:#ffb5a8;background:rgba(157,66,47,.17);border-color:rgba(205,95,72,.42)}.tag.tone-6{color:#a9e1dc;background:rgba(32,127,121,.17);border-color:rgba(55,170,161,.42)}.tag.tone-7{color:#d7dce2;background:rgba(104,113,126,.17);border-color:rgba(147,157,170,.4)}
+.badge,.world-class-pill{padding:4px 7px;border-radius:6px;font-size:9px;font-weight:900;letter-spacing:.04em;border:1px solid rgba(255,255,255,.12);color:#ddd8cb;background:rgba(255,255,255,.04)}
+.badge.community{color:#aeb8ff;background:rgba(88,101,242,.11);border-color:rgba(93,125,255,.35)}.badge.build-current{color:#b8f1d4;background:rgba(84,201,143,.11);border-color:rgba(84,201,143,.25)}.badge.build-outdated{color:#f2adad;background:rgba(226,108,108,.1);border-color:rgba(226,108,108,.22)}
+
+.card-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.055);color:#aeb6b2;font-size:10px}.card-metrics{display:flex;gap:9px;align-items:center;flex-wrap:wrap;min-width:0}.card-metrics>span{display:inline-flex;align-items:center;gap:5px}.card-flip-hint{margin-left:auto;color:#d4b069;font-size:8px;font-weight:800;letter-spacing:.08em;white-space:nowrap}.world-community-badge{display:inline-flex!important;align-items:center;gap:5px;min-height:22px;padding:2px 7px;border:1px solid rgba(93,125,255,.35);border-radius:999px;background:rgba(88,101,242,.11);color:#aeb8ff}.world-community-badge img{width:18px;height:18px;object-fit:contain;filter:invert(78%) sepia(20%) saturate(1200%) hue-rotate(191deg) brightness(106%)}.world-community-badge b{font-size:8px;letter-spacing:.05em}.world-rating{display:inline-flex;align-items:center;gap:5px;white-space:nowrap;color:#e2bd66}.world-rating>span{letter-spacing:-1px;font-size:11px}.world-rating b{font-size:9px}.world-rating small{color:#aeb6b2;font-size:8px}
+
+.world-card-back .world-card-body{padding-top:18px}.world-card-back .card-topline{padding-left:0;min-height:0;margin-bottom:11px}.world-card-back .card-title h3{font-size:19px!important}.world-back-summary{margin:0 0 13px;color:#b5bbb8;font-size:11px;line-height:1.5}.world-back-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:0}.world-back-section{min-width:0;padding:10px;border:1px solid rgba(255,255,255,.075);border-radius:10px;background:rgba(12,16,16,.42)}.world-back-section h4{margin:0 0 8px;color:#d4b069;font-size:9px;letter-spacing:.12em;text-transform:uppercase}.world-back-list{display:flex;flex-wrap:wrap;gap:5px;max-height:78px;overflow:auto}.world-back-list span{font-size:9px;color:#d7d9d5;padding:5px 7px;border-radius:6px;background:#222829;border:1px solid #59615d}.world-connect{margin-top:11px;padding:9px 10px;border:1px solid rgba(212,176,105,.22);border-radius:9px;color:#c5c9c6;background:rgba(212,176,105,.05);font-size:10px}.world-community-card{margin-top:11px;display:flex;align-items:center;gap:8px;color:#aeb8ff;font-size:10px}.world-community-card img{width:20px;height:20px;filter:invert(78%) sepia(20%) saturate(1200%) hue-rotate(191deg) brightness(106%)}
+
+html[data-theme="white"] .world-card-face,html[data-theme="glass"] .world-card-face{background:linear-gradient(180deg,rgba(27,32,34,.96),rgba(16,20,21,.98));color:#f2eee3}
+html[data-theme="white"] .world-card-face *,html[data-theme="glass"] .world-card-face *{--text:#f2eee3;--muted:#aeb6b2}
+
+@media(max-width:760px){.world-grid{grid-template-columns:1fr}.world-card,.world-card-inner{min-height:520px}.world-back-grid{grid-template-columns:1fr}.world-card-back .world-back-list{max-height:54px}}
+@media(prefers-reduced-motion:reduce){.world-placard-backdrop{animation:none}.world-card-inner{transition:none}}

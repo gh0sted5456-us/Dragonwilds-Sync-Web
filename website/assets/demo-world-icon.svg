@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">Ashenfall Demo World</title><desc id="desc">A gold fantasy tower and dragon-wing emblem on a dark shield.</desc>
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f2cf7a"/><stop offset="1" stop-color="#9c6d25"/></linearGradient><radialGradient id="b"><stop stop-color="#27332e"/><stop offset="1" stop-color="#101615"/></radialGradient></defs>
+  <rect width="256" height="256" rx="48" fill="url(#b)"/>
+  <path d="M128 28 204 61v58c0 54-31 91-76 109-45-18-76-55-76-109V61l76-33Z" fill="#141b19" stroke="url(#g)" stroke-width="8"/>
+  <path d="M70 124c21-31 39-43 58-48-8 15-10 28-7 39-17 2-31 5-51 9Zm116 0c-21-31-39-43-58-48 8 15 10 28 7 39 17 2 31 5 51 9Z" fill="url(#g)" opacity=".9"/>
+  <path d="M103 174h50l-7-66h-36l-7 66Zm15-84h20V68h-20v22Zm-8 84h36v15h-36v-15Z" fill="url(#g)"/>
+  <circle cx="128" cy="131" r="8" fill="#f5e2a5"/>
+</svg>

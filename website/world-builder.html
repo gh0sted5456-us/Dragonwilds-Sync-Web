@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d0f">
+  <meta name="description" content="Build a Dragonwilds Sync World profile in the browser, preview its placard, define rules and mod families, attach artwork or a World save, and export a local .rsdwl World Draft.">
+  <meta property="og:title" content="World Builder — Dragonwilds Sync">
+  <meta property="og:description" content="Author a Dragonwilds Sync World Draft locally in your browser, then finish setup in the desktop application before first launch.">
+  <meta property="og:type" content="website">
+  <title>World Builder — Dragonwilds Sync</title>
+  <link rel="icon" href="assets/application-icon.png">
+  <link rel="stylesheet" href="styles.css?v=world-cards-20260823-1">
+  <link rel="stylesheet" href="site-visuals.css?v=visuals-2" data-dws-site-visuals="true">
+  <link rel="stylesheet" href="world-builder-controls.css?v=world-cards-20260823-1">
+  <link rel="stylesheet" href="world-draft-onboarding.css?v=world-cards-20260823-1">
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header" id="top" data-shared-nav="1"><a class="brand" href="index.html#top" aria-label="Dragonwilds Sync home"><img src="assets/application-icon.png" alt="" class="brand-icon"><span class="brand-copy"><strong>Dragonwilds</strong><span>Sync</span></span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span class="sr-only">Toggle navigation</span></button><nav class="main-nav" id="main-nav" data-shared-nav="1"></nav><div class="theme-switcher" role="group" aria-label="Website theme"><button type="button" data-theme-choice="dark" aria-pressed="true"><span class="theme-dot dark-dot"></span><span class="theme-label">Dark</span></button><button type="button" data-theme-choice="white"><span class="theme-dot white-dot"></span><span class="theme-label">White</span></button><button type="button" data-theme-choice="glass"><span class="theme-dot glass-dot"></span><span class="theme-label">Glass</span></button></div></header>
+
+  <main class="world-builder-page-main">
+    <section class="section-shell world-builder-page-hero">
+      <div class="section-heading reveal visible">
+        <div class="eyebrow">Dragonwilds Sync World Builder</div>
+        <h1>Build the World profile<br>in your browser.</h1>
+        <p>Define the World identity, release channel, platforms, community rules, mod families, placard artwork, and optional World-save payload. The preview uses the current application placards, including their front/details flip, badges, rules, mod families, layouts, and artwork treatment.</p>
+        <div class="world-builder-trust"><span>No account required</span><span>Artwork stays local</span><span>World save stays local</span><span>Exports .rsdwl World Draft</span></div>
+      </div>
+    </section>
+
+    <section id="world-builder-demo" class="section-shell" aria-label="World Builder">
+      <div class="main-directory-card reveal visible" id="world-builder-loading">
+        <div class="section-heading">
+          <div class="eyebrow">World Builder</div>
+          <h2>Loading the browser authoring tools…</h2>
+          <p>The dedicated World Builder is starting. If initialization fails, this message will now show the JavaScript error instead of hanging silently.</p>
+        </div>
+      </div>
+      <noscript><p class="section-heading">The World Builder requires JavaScript to create and package a local `.rsdwl` World Draft.</p></noscript>
+    </section>
+
+    <section class="section-shell main-directory-cta">
+      <div class="main-directory-card reveal">
+        <div class="section-heading">
+          <div class="eyebrow">World Draft lifecycle</div>
+          <h2>Build here. Finish setup locally. Launch when ready.</h2>
+          <p>A browser-generated `.rsdwl` imports as a visible World Draft. Dragonwilds Sync validates it, creates fresh local credentials, safely stages any included save, and opens a resumable Finish World Setup wizard when you open, start, or first-launch that World. The server does not run until required setup is complete.</p>
+        </div>
+        <a class="button button-primary" href="setup.html#server">Server Setup Guide <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><img src="assets/application-icon.png" alt=""><div><strong>Dragonwilds Sync</strong><span>Community toolkit for RuneScape: Dragonwilds</span></div></div>
+    <div class="footer-links"><a href="index.html">Home</a><a href="world-builder.html" aria-current="page">World Builder</a><a href="setup.html#server">Server Setup</a><a href="helpy.html">Helpy</a><a href="index.html#webgui">WebGUI</a><a href="https://discord.gg/gQ7uY2cQ3q">RSDW Community</a><a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub</a></div>
+    <p>Dragonwilds Sync is an independent community project and is not affiliated with, endorsed by, or sponsored by Jagex Ltd.</p>
+  </footer>
+
+  <div hidden aria-hidden="true">
+    <span id="release-version"></span><span id="release-date"></span><span id="release-channel"></span><a id="release-link" href="#"></a>
+  </div>
+
+  <!-- Dedicated builder boot order:
+       1. shared site helpers when available
+       2. local runtime guard/fallbacks
+       3. exact ecosystem artwork resolver
+       4. builder authoring UI
+       5. local icon/banner preview guard
+       6. draft onboarding explanation -->
+  <script src="script.js?v=world-cards-20260823-1"></script>
+  <script src="world-builder-runtime.js?v=world-cards-20260823-1"></script>
+  <script src="ecosystem-assets.js?v=world-cards-20260823-1"></script>
+  <script src="home-demo.js?v=world-cards-20260823-1"></script>
+  <script src="world-builder-local-art.js?v=world-cards-20260823-1"></script>
+  <script src="world-draft-onboarding.js?v=world-cards-20260823-1"></script>
+</body>
+</html>

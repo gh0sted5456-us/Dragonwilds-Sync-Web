@@ -1,0 +1,20 @@
+/* Homepage hierarchy cleanup. */
+.hero{padding-top:82px;padding-bottom:18px}
+.hero-copy{max-width:720px}
+.hero-copy h1{max-width:760px}
+.hero-copy .hero-lede{max-width:690px}
+.hero-actions{gap:9px;flex-wrap:wrap}
+.hero-actions .button{min-height:44px}
+.hero-meta{margin-top:18px}
+.hero-strip{margin-top:34px;grid-template-columns:repeat(4,1fr)}
+.home-demo{padding-top:58px!important}
+.home-demo-shell{box-shadow:0 22px 70px rgba(0,0,0,.22)}
+.network-section{padding-top:62px!important}
+.intro{padding-top:68px!important}
+.webgui-section{padding-top:70px!important}
+.downloads{padding-top:74px!important}
+.community-section{margin-top:72px}
+.demo-platform-badge img,.badge img,.world-platform-badge img,.world-community-badge img{filter:none!important;opacity:1!important;mix-blend-mode:normal!important}
+.demo-platform-badge{background:rgba(255,255,255,.055)!important}
+@media(max-width:900px){.hero{padding-top:58px}.home-demo{padding-top:42px!important}.hero-strip{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.hero-actions .button{width:100%;justify-content:center}.hero-strip{grid-template-columns:1fr 1fr}}

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d0f">
+  <meta name="description" content="About Dragonwilds Sync — how client sync, profiles, dedicated servers, mods, public discovery, updates, and remote administration fit together.">
+  <meta property="og:title" content="About Dragonwilds Sync">
+  <meta property="og:description" content="Learn how Dragonwilds Sync brings clients, mods, worlds, servers, updates, and remote management together.">
+  <meta property="og:type" content="website">
+  <title>About — Dragonwilds Sync</title>
+  <link rel="icon" href="assets/application-icon.png">
+  <link rel="stylesheet" href="styles.css?v=about-1">
+  <style>
+    .about-hero{padding-top:88px;padding-bottom:34px}.about-hero .section-heading{max-width:850px}.about-hero h1{margin:10px 0 18px;font-size:clamp(42px,7vw,82px);line-height:.94;letter-spacing:-.055em}.about-hero h1 span{color:var(--gold)}
+    .about-lede{max-width:760px;color:var(--muted);font-size:15px;line-height:1.75}.about-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+    .about-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:24px}.about-card{padding:22px;border:1px solid var(--line);border-radius:16px;background:var(--panel);backdrop-filter:blur(var(--glass-blur))}.about-card span{font-size:9px;font-weight:800;letter-spacing:.12em;color:var(--faint)}.about-card h3{margin:10px 0 8px;font-size:17px}.about-card p{margin:0;color:var(--muted);font-size:11px;line-height:1.65}
+    .about-section{padding-top:56px;padding-bottom:56px}.about-split{display:grid;grid-template-columns:.9fr 1.1fr;gap:36px;align-items:start}.about-points{display:grid;gap:10px}.about-point{padding:16px 18px;border:1px solid var(--line);border-radius:13px;background:var(--panel-soft)}.about-point strong{display:block;margin-bottom:5px;font-size:12px}.about-point p{margin:0;color:var(--muted);font-size:10px;line-height:1.6}
+    .about-flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:22px}.about-flow article{position:relative;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.about-flow article:not(:last-child)::after{content:'→';position:absolute;right:-11px;top:50%;transform:translateY(-50%);z-index:2;color:var(--faint)}.about-flow small{display:block;color:var(--faint);font-size:8px;font-weight:800;letter-spacing:.12em}.about-flow strong{display:block;margin:8px 0 5px;font-size:13px}.about-flow p{margin:0;color:var(--muted);font-size:9px;line-height:1.55}
+    .about-cta{padding:30px;border:1px solid var(--line-strong);border-radius:18px;background:var(--panel);display:flex;align-items:center;justify-content:space-between;gap:24px}.about-cta h2{margin:0 0 8px;font-size:24px}.about-cta p{margin:0;color:var(--muted);font-size:11px;line-height:1.6;max-width:700px}
+    @media(max-width:900px){.about-grid{grid-template-columns:1fr 1fr}.about-split{grid-template-columns:1fr}.about-flow{grid-template-columns:1fr 1fr}.about-flow article::after{display:none}}
+    @media(max-width:620px){.about-grid,.about-flow{grid-template-columns:1fr}.about-hero{padding-top:58px}.about-cta{align-items:flex-start;flex-direction:column}.about-cta .button{width:100%;justify-content:center}}
+  </style>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header" id="top" data-shared-nav="1">
+    <a class="brand" href="index.html" aria-label="Dragonwilds Sync home"><img src="assets/application-icon.png" alt="" class="brand-icon"><span class="brand-copy"><strong>Dragonwilds</strong><span>Sync</span></span></a>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span class="sr-only">Toggle navigation</span></button>
+    <nav class="main-nav" id="main-nav" data-shared-nav="1"></nav>
+    <div class="theme-switcher" role="group" aria-label="Website theme"><button type="button" data-theme-choice="dark" aria-pressed="true"><span class="theme-dot dark-dot"></span><span class="theme-label">Dark</span></button><button type="button" data-theme-choice="white"><span class="theme-dot white-dot"></span><span class="theme-label">White</span></button><button type="button" data-theme-choice="glass"><span class="theme-dot glass-dot"></span><span class="theme-label">Glass</span></button></div>
+  </header>
+
+  <main>
+    <section class="section-shell about-hero">
+      <div class="section-heading reveal">
+        <div class="eyebrow">About Dragonwilds Sync</div>
+        <h1>One toolkit for the<br><span>whole Dragonwilds experience.</span></h1>
+        <p class="about-lede">Dragonwilds Sync is a community-built launcher and management layer for RuneScape: Dragonwilds. It brings profiles, client synchronization, mod coordination, dedicated-server control, public world discovery, updates, and remote administration together without pretending those systems are the same thing.</p>
+        <div class="about-actions"><a class="button button-primary" href="downloads.html">Get Dragonwilds Sync <span aria-hidden="true">↓</span></a><a class="button button-secondary" href="setup.html">Read Setup Instructions <span aria-hidden="true">→</span></a></div>
+      </div>
+    </section>
+
+    <section class="section-shell about-section">
+      <div class="section-heading reveal"><div class="eyebrow">What it brings together</div><h2>A simpler front door for a complicated stack.</h2><p>Dragonwilds modding and hosting can involve several different tools, folders, loaders, runtimes, and server roles. Sync organizes those pieces so the user sees one coherent workflow.</p></div>
+      <div class="about-grid">
+        <article class="about-card reveal"><span>01 / CLIENTS</span><h3>Client synchronization</h3><p>Compare a player installation against the files a world expects, synchronize the required content, and launch from a consistent profile.</p></article>
+        <article class="about-card reveal delay-1"><span>02 / PROFILES</span><h3>Organized environments</h3><p>Profiles are local organizational containers for files and settings. They are not accounts, server identities, or cloud characters.</p></article>
+        <article class="about-card reveal delay-2"><span>03 / MODS</span><h3>Mod coordination</h3><p>Keep supported mod content and loaders aligned with the world you intend to play without making users manually juggle every folder.</p></article>
+        <article class="about-card reveal"><span>04 / SERVERS</span><h3>Dedicated-server control</h3><p>Manage server lifecycle, configuration, updates, verification, broadcasting, and restart behavior from one controller.</p></article>
+        <article class="about-card reveal delay-1"><span>05 / REMOTE</span><h3>WebHost &amp; WebGUI</h3><p>Use authenticated remote administration for supported server actions while keeping administrative access separate from public discovery.</p></article>
+        <article class="about-card reveal delay-2"><span>06 / DISCOVERY</span><h3>Public worlds</h3><p>World owners can opt into sanitized public listings so players can discover servers without exposing private management credentials.</p></article>
+      </div>
+    </section>
+
+    <section class="section-shell about-section">
+      <div class="about-split">
+        <div class="section-heading reveal"><div class="eyebrow">How to think about it</div><h2>Several systems.<br>One experience.</h2><p>The cleanest mental model is to keep identity, synchronization, gameplay connection, and administration separate. Sync coordinates them, but does not blur their security boundaries.</p></div>
+        <div class="about-points reveal delay-1">
+          <div class="about-point"><strong>Profiles organize your computer.</strong><p>A profile groups the files, settings, loaders, and mod state you want associated with a particular way of playing.</p></div>
+          <div class="about-point"><strong>Sync prepares the client.</strong><p>Synchronization makes sure the local installation matches the content expected by the selected world.</p></div>
+          <div class="about-point"><strong>The game still connects to the game server.</strong><p>Dragonwilds Sync helps prepare and launch the client, but normal gameplay traffic remains game traffic.</p></div>
+          <div class="about-point"><strong>Remote administration stays private.</strong><p>WebHost/WebGUI access uses its own authentication and should never be confused with public world broadcasting or heartbeat telemetry.</p></div>
+        </div>
+      </div>
+      <div class="about-flow reveal">
+        <article><small>STEP 1</small><strong>Choose a Profile</strong><p>Select the local environment you want to use.</p></article>
+        <article><small>STEP 2</small><strong>Synchronize</strong><p>Bring required files and mods into alignment.</p></article>
+        <article><small>STEP 3</small><strong>Connect &amp; Play</strong><p>Launch into the intended Dragonwilds world.</p></article>
+        <article><small>OPTIONAL</small><strong>Host &amp; Broadcast</strong><p>Run a server, publish discovery data, or manage it remotely.</p></article>
+      </div>
+    </section>
+
+    <section class="section-shell about-section">
+      <div class="section-heading reveal"><div class="eyebrow">Community &amp; ecosystem</div><h2>Built to sit alongside the wider modding community.</h2><p>Dragonwilds Sync is designed as connective tissue. It does not replace the people, loaders, tools, mods, and community knowledge that make the Dragonwilds modding ecosystem work.</p></div>
+      <div class="about-grid">
+        <article class="about-card reveal"><span>LOADERS</span><h3>Mod-loader aware</h3><p>The default experience is designed around the supported Dragonwilds modding stack, including UE4SS and RuneSchema where appropriate.</p></article>
+        <article class="about-card reveal delay-1"><span>UPDATES</span><h3>Coordinated updates</h3><p>Launcher, server, mod, and runtime state can be handled as one workflow instead of a pile of unrelated manual update steps.</p></article>
+        <article class="about-card reveal delay-2"><span>COMMUNITY</span><h3>Open and community-driven</h3><p>The project is built for the wider RuneScape: Dragonwilds community, with GitHub development and community discussion remaining first-class parts of the project.</p></article>
+      </div>
+    </section>
+
+    <section class="section-shell about-section">
+      <div class="about-cta reveal"><div><h2>Ready to actually use it?</h2><p>The Experience section covers setup, profiles, paths, client/server connection, hosting, broadcasting, remote login, heartbeat telemetry, default mods, and supported mod loaders.</p></div><a class="button button-primary" href="experience.html">Open Experience <span aria-hidden="true">→</span></a></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><img src="assets/application-icon.png" alt=""><div><strong>Dragonwilds Sync</strong><span>Community toolkit for RuneScape: Dragonwilds</span></div></div>
+    <div class="footer-links"><a href="about.html">About</a><a href="setup.html">Setup</a><a href="setup.html#server">Server Setup</a><a href="helpy.html">Help</a><a href="for-modders.html">For Modders</a><a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub</a></div>
+    <p>Dragonwilds Sync is an independent community project and is not affiliated with, endorsed by, or sponsored by Jagex Ltd.</p>
+  </footer>
+
+  <script src="script.js?v=nav-about-1"></script>
+</body>
+</html>

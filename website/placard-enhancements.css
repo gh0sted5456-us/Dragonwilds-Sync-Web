@@ -1,0 +1,57 @@
+/* Smooth GPU-composited placard motion and visible asset-backed badge icons. */
+.world-card{perspective:1450px;perspective-origin:50% 46%;transform:translateZ(0)}
+.world-card-inner{will-change:transform;transform:translate3d(0,0,0) rotateY(0deg);transition:transform .68s cubic-bezier(.22,.61,.36,1)}
+.world-card.flipped .world-card-inner{transform:translate3d(0,0,0) rotateY(180deg)}
+.world-card-face{-webkit-backface-visibility:hidden;backface-visibility:hidden;transform-style:preserve-3d;transition:border-color .22s ease,box-shadow .28s ease}
+.world-card-front{transform:rotateY(0deg) translateZ(.1px)}
+.world-card-back{transform:rotateY(180deg) translateZ(.1px)}
+.world-card:hover .world-card-face{border-color:rgba(212,176,105,.34);box-shadow:0 24px 60px rgba(0,0,0,.42)}
+.world-placard-backdrop{will-change:transform,opacity;transform-origin:50% 50%;animation:placard-breathe-smooth 10s cubic-bezier(.45,.05,.55,.95) infinite alternate}
+@keyframes placard-breathe-smooth{from{opacity:.12;transform:translate3d(-.35%,0,0) scale(1.018)}to{opacity:.22;transform:translate3d(.45%,-.35%,0) scale(1.055)}}
+.world-card-banner{will-change:transform,filter;transition:transform .8s cubic-bezier(.22,.61,.36,1),filter .35s ease}
+.world-card:hover .world-card-banner{transform:scale(1.028);filter:saturate(.9) contrast(1.06)}
+.world-icon{transition:transform .3s cubic-bezier(.22,.61,.36,1),border-color .25s ease,box-shadow .3s ease}
+.world-card:hover .world-icon{transform:translateY(-1px);border-color:rgba(235,223,195,.38);box-shadow:0 12px 34px rgba(0,0,0,.5)}
+
+.badge,.world-back-list .back-badge{display:inline-flex;align-items:center;gap:6px;min-height:24px;transition:transform .16s ease,border-color .16s ease,background-color .16s ease}
+.badge:hover,.world-back-list .back-badge:hover{transform:translateY(-1px);border-color:rgba(212,176,105,.34)}
+.badge-icon{display:block;flex:0 0 16px;width:16px;height:16px;color:currentColor;object-fit:contain;object-position:center}
+.badge-icon-asset{filter:none!important;opacity:1!important}
+.badge-icon-age{width:18px;height:18px;flex-basis:18px}
+.badge-icon-brand{width:15px;height:15px;flex-basis:15px}
+.badge-icon-app{width:17px;height:17px;flex-basis:17px}
+.badge-icon-fallback{width:13px;height:13px;flex-basis:13px;opacity:.88}
+.world-back-list .back-badge[data-icon-asset]{padding-left:6px}
+
+.metric-icon{display:block;flex:0 0 14px;width:14px;height:14px;color:#aeb6b2;object-fit:contain;filter:none!important;opacity:1}
+.country-flag{width:18px;height:13px;flex-basis:18px;border-radius:2px;object-fit:cover}
+.world-platform-badge{display:inline-flex!important;align-items:center;gap:5px}
+.world-community-badge,.world-platform-badge{transition:transform .16s ease,border-color .16s ease}
+.world-community-badge:hover,.world-platform-badge:hover{transform:translateY(-1px)}
+.world-community-badge img,.world-community-card img{filter:none!important;opacity:1!important}
+
+/* Dedicated server-directory page shell. */
+.directory-page-main{padding-top:28px}
+.directory-page-hero{padding-top:54px;padding-bottom:26px}
+.directory-page-hero .section-heading{max-width:780px}
+.directory-page-hero .section-heading h1{margin:8px 0 12px;font-size:clamp(2.3rem,5vw,4.7rem);line-height:.95;letter-spacing:-.045em}
+.directory-page-hero .section-heading p{max-width:720px}
+.directory-page-main .worlds-section{padding-top:10px}
+.directory-page-main .network-section{margin-top:0}
+.main-directory-cta{padding:34px 0 74px}
+.main-directory-card{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:28px 30px;border:1px solid var(--line);border-radius:18px;background:var(--panel-soft);box-shadow:var(--shadow)}
+.main-directory-card .section-heading{margin:0;max-width:680px}
+.main-directory-card .section-heading h2{margin-bottom:8px}
+.main-directory-card .button{flex:0 0 auto}
+.main-nav a[aria-current="page"]{color:var(--gold);border-color:color-mix(in srgb,var(--gold) 42%,transparent)}
+
+@media(max-width:760px){
+  .main-directory-card{align-items:flex-start;flex-direction:column;padding:24px}
+  .main-directory-card .button{width:100%;justify-content:center}
+  .directory-page-hero{padding-top:36px}
+}
+@media(prefers-reduced-motion:reduce){
+  .world-card,.world-card-inner,.world-card-face,.world-placard-backdrop,.world-card-banner,.world-icon,.badge,.world-back-list .back-badge,.world-community-badge,.world-platform-badge{animation:none!important;transition:none!important;transform:none!important;will-change:auto!important}
+  .world-card-back{transform:rotateY(180deg)!important}
+  .world-card.flipped .world-card-inner{transform:rotateY(180deg)!important}
+}

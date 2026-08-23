@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">Ashenfall Demo World banner</title><desc id="desc">A stylized fantasy valley with distant castle towers beneath a gold dusk sky.</desc>
+  <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#4a3b24"/><stop offset=".48" stop-color="#26332f"/><stop offset="1" stop-color="#111817"/></linearGradient><linearGradient id="gold" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#f2cf7a"/><stop offset="1" stop-color="#9a6a26"/></linearGradient></defs>
+  <rect width="1200" height="360" fill="url(#sky)"/>
+  <circle cx="910" cy="92" r="58" fill="#e9c66f" opacity=".28"/>
+  <path d="M0 250 170 150 282 220 430 116 592 226 738 145 870 222 1025 128 1200 238V360H0Z" fill="#1c2723"/>
+  <path d="M0 290 160 220 310 274 470 205 642 286 810 220 970 278 1200 214V360H0Z" fill="#111917"/>
+  <g fill="#0d1412" stroke="url(#gold)" stroke-width="4" opacity=".92">
+    <path d="M482 258V140h48v118Zm12-118V108h24v32Z"/><path d="M548 258V166h42v92Zm10-92v-30h22v30Z"/><path d="M458 160h92l-46-40Z"/><path d="M532 182h74l-37-32Z"/>
+  </g>
+  <path d="M0 315c210-45 380-30 578 6 210 38 386 29 622-13v52H0Z" fill="#0a100f"/>
+  <path d="M62 58h330" stroke="#e3bd64" stroke-opacity=".22" stroke-width="2"/><text x="62" y="96" font-family="Segoe UI,Arial,sans-serif" font-size="40" font-weight="700" fill="#f0e8d6">ASHENFALL</text><text x="62" y="126" font-family="Segoe UI,Arial,sans-serif" font-size="16" letter-spacing="6" fill="#d8b76b">DEMO WORLD</text>
+</svg>

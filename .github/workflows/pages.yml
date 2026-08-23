@@ -1,0 +1,187 @@
+name: Deploy Dragonwilds Sync website
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'website/**'
+      - 'help/**'
+      - 'resources/world-builder-presets.json'
+      - 'resources/platform-registry.json'
+      - 'renderer/assets/application-icon.png'
+      - 'renderer/assets/singleplayer-banner.png'
+      - 'renderer/assets/world-selection-background.png'
+      - 'renderer/assets/flags/**'
+      - 'renderer/assets/platforms/**'
+      - 'renderer/assets/help/**'
+      - 'renderer/assets/navigation/**'
+      - 'renderer/assets/rsdw-toolkit/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: github.ref_name == 'webpage'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Assemble static site
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site/assets/placards _site/assets/platforms
+
+          cp -R website/. _site/
+          cp -R help _site/help
+          cp -R renderer/assets/help _site/assets/help
+          cp -R renderer/assets/navigation _site/assets/navigation
+          cp -R renderer/assets/rsdw-toolkit _site/assets/rsdw-toolkit
+          cp renderer/assets/application-icon.png _site/assets/application-icon.png
+          cp renderer/assets/singleplayer-banner.png _site/assets/hero-banner.png
+          cp renderer/assets/world-selection-background.png _site/assets/world-selection-background.png
+          cp resources/world-builder-presets.json _site/assets/world-builder-presets.json
+          cp resources/platform-registry.json _site/assets/platform-registry.json
+          cp -R renderer/assets/flags _site/assets/flags
+          cp -R renderer/assets/platforms/. _site/assets/platforms/
+
+          # Current-build decoration is optional presentation data, not a
+          # website dependency. Keep a stable local fallback and never block a
+          # deploy on an external server-directory or telemetry request.
+          printf '%s\n' '{"available":false,"appid":"4019830","branch":"public","buildid":"","source":"Website static fallback"}' > _site/assets/server-build.json
+
+          # Exact baked placard artwork from the application.
+          curl --fail --silent --show-error --location --retry 3 -H 'Accept: application/vnd.github.raw+json' -H 'Authorization: Bearer ${{ github.token }}' 'https://api.github.com/repos/gh0sted5456-us/Dragonwilds-Sync/git/blobs/498243def697d1832e5ef76b16d0f481c3e971a9' -o _site/assets/placards/1.png
+          curl --fail --silent --show-error --location --retry 3 -H 'Accept: application/vnd.github.raw+json' -H 'Authorization: Bearer ${{ github.token }}' 'https://api.github.com/repos/gh0sted5456-us/Dragonwilds-Sync/git/blobs/e9b14c092045c501b2c5337956460699c04bd6d5' -o _site/assets/placards/2.png
+          curl --fail --silent --show-error --location --retry 3 -H 'Accept: application/vnd.github.raw+json' -H 'Authorization: Bearer ${{ github.token }}' 'https://api.github.com/repos/gh0sted5456-us/Dragonwilds-Sync/git/blobs/5a515286435834c673f532c2ae1db012cc22bd1d' -o _site/assets/placards/3.png
+          curl --fail --silent --show-error --location --retry 3 -H 'Accept: application/vnd.github.raw+json' -H 'Authorization: Bearer ${{ github.token }}' 'https://api.github.com/repos/gh0sted5456-us/Dragonwilds-Sync/git/blobs/63743edf52312e65c75d36826d2fc159ab861870' -o _site/assets/placards/4.png
+
+          printf '\n\n/* App placard parity layer */\n' >> _site/styles.css
+          cat website/placards.css >> _site/styles.css
+          printf '\n\n/* Interactive placard Rules / Mods details */\n' >> _site/styles.css
+          cat website/placard-detail-popovers.css >> _site/styles.css
+          printf '\n\n/* Placard icon + motion enhancements */\n' >> _site/styles.css
+          cat website/placard-enhancements.css >> _site/styles.css
+          printf '\n\n/* World Builder */\n' >> _site/styles.css
+          cat website/home-demo.css >> _site/styles.css
+          printf '\n\n/* Flippable release download surface */\n' >> _site/styles.css
+          cat website/download-flip.css >> _site/styles.css
+          printf '\n\n/* Homepage information hierarchy */\n' >> _site/styles.css
+          cat website/top-flow.css >> _site/styles.css
+
+          printf '\n\n/* App placard parity layer */\n' >> _site/script.js
+          cat website/placards.js >> _site/script.js
+          printf '\n\n/* Placard icon enhancements */\n' >> _site/script.js
+          cat website/placard-enhancements.js >> _site/script.js
+          printf '\n\n/* Canonical baked platform assets */\n' >> _site/script.js
+          cat website/platform-assets.js >> _site/script.js
+          printf '\n\n/* Steam dedicated-server build decoration */\n' >> _site/script.js
+          cat website/server-build.js >> _site/script.js
+          printf '\n\n/* Flippable release download surface */\n' >> _site/script.js
+          cat website/download-flip.js >> _site/script.js
+          printf '\n\n/* Homepage information hierarchy */\n' >> _site/script.js
+          cat website/top-flow.js >> _site/script.js
+
+          touch _site/.nojekyll
+
+      - name: Validate core website
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          required_pages=(
+            index.html
+            about.html
+            experience.html
+            setup.html
+            world-builder.html
+            launcher-preview.html
+            downloads.html
+            helpy.html
+            for-modders.html
+          )
+          for page in "${required_pages[@]}"; do
+            test -s "_site/$page" || { echo "Missing required page: $page" >&2; exit 1; }
+          done
+
+          node --check _site/script.js
+          node --check _site/home-demo.js
+          node --check _site/world-draft-onboarding.js
+          node --check _site/helpy.js
+          node --check _site/launcher-preview.js
+          node --check _site/downloads-linux.js
+          node --check _site/downloads-flavor.js
+          node --check _site/download-flip.js
+
+          # The website is intentionally not a public server browser anymore.
+          test ! -e _site/servers.html || { echo 'servers.html must not be deployed' >&2; exit 1; }
+          test ! -e _site/public-directory-view.js || { echo 'Public directory runtime must not be deployed' >&2; exit 1; }
+          test ! -e _site/public-directory-fetch-fallback.js || { echo 'Public directory fallback must not be deployed' >&2; exit 1; }
+          test ! -e _site/assets/public-worlds-fallback.json || { echo 'Public world snapshot must not be deployed' >&2; exit 1; }
+          ! grep -q 'href="servers.html"' _site/index.html
+          ! grep -R -q 'href="servers.html"' _site --include='*.html'
+          ! grep -q 'href="servers.html"' _site/script.js
+          ! grep -q 'dragonwilds-sync-directory.dragonwilds.workers.dev' _site/script.js
+
+          grep -q 'styles.css?v=ubuntu-download-1' _site/index.html
+          grep -q 'script.js?v=ubuntu-download-1' _site/index.html
+          grep -q 'downloads.html' _site/index.html
+          grep -q 'about.html' _site/index.html
+          grep -q 'Experience' _site/script.js
+          grep -q 'Learn More' _site/script.js
+          grep -q '>Modding<' _site/script.js
+          grep -q 'For Modders' _site/script.js
+          grep -q 'Connection &amp; Ports' _site/script.js
+          grep -q 'TCP 27051' _site/setup.html
+          grep -q 'TCP 27080' _site/setup.html
+          grep -q 'TCP 8422' _site/setup.html
+          grep -q 'UDP 7777' _site/setup.html
+          grep -q 'CGNAT / DOUBLE NAT' _site/setup.html
+          grep -q 'RuneSchema Item Size' _site/for-modders.html
+          grep -q 'id="windows-download"' _site/downloads.html
+          grep -q 'id="linux-download"' _site/downloads.html
+          grep -q 'data-windows-quick-download' _site/downloads.html
+          grep -q 'data-linux-quick-download' _site/downloads.html
+          ! grep -q 'v2.0.1' _site/download-flip.js
+          grep -q 'DropIncreasePercent' _site/for-modders.html
+          grep -q 'world-cards-20260823-1' _site/world-builder.html
+          test -s _site/assets/downloads/RuneSchema_ItemSize.zip
+          unzip -tqq _site/assets/downloads/RuneSchema_ItemSize.zip
+
+          python3 - <<'PY'
+          import json
+          presets = json.load(open('_site/assets/world-builder-presets.json', encoding='utf-8'))
+          assert presets.get('format') == 'dragonwilds-sync-world-builder-presets'
+          assert int(presets.get('version') or 0) == 1
+          platforms = json.load(open('_site/assets/platform-registry.json', encoding='utf-8'))
+          assert platforms.get('format') == 'dragonwilds-sync-platform-registry'
+          PY
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+

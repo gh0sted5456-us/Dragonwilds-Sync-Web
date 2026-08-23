@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d0f">
+  <meta name="description" content="Dragonwilds Sync setup instructions for Windows and Linux, Profiles, file paths, client synchronization, server hosting, public broadcasting, WebHost, heartbeat telemetry, and mod loaders.">
+  <meta property="og:title" content="Setup Instructions — Dragonwilds Sync">
+  <meta property="og:description" content="Learn how Dragonwilds Sync organizes Profiles, clients, servers, mods, synchronization, broadcasting, remote management, and telemetry.">
+  <meta property="og:type" content="website">
+  <title>Setup Instructions — Dragonwilds Sync</title>
+  <link rel="icon" href="assets/application-icon.png">
+  <link rel="stylesheet" href="styles.css?v=setup-1">
+  <style>
+    .setup-main{padding:82px 0 115px}.setup-hero{max-width:900px}.setup-hero h1{font-size:clamp(46px,6vw,76px)}.setup-hero>p{color:var(--muted);font-size:18px;line-height:1.72;max-width:820px}.setup-layout{display:grid;grid-template-columns:240px minmax(0,1fr);gap:34px;margin-top:58px;align-items:start}.setup-toc{position:sticky;top:112px;padding:16px;border:1px solid var(--line);border-radius:15px;background:var(--panel)}.setup-toc strong{display:block;margin:2px 8px 10px;color:var(--gold);font-size:9px;letter-spacing:.15em}.setup-toc a{display:block;padding:8px;border-radius:8px;color:var(--muted);font-size:11px;font-weight:650}.setup-toc a:hover{background:var(--panel-soft);color:var(--text)}.setup-content{display:grid;gap:18px}.setup-section{scroll-margin-top:120px;padding:28px;border:1px solid var(--line);border-radius:18px;background:var(--panel)}.setup-section h2{margin:8px 0 10px;font-size:32px;letter-spacing:-.045em}.setup-section h3{margin:24px 0 8px;font-size:17px}.setup-section p,.setup-section li{color:var(--muted);font-size:13px;line-height:1.72}.setup-section ul,.setup-section ol{padding-left:20px}.setup-section code{padding:2px 6px;border:1px solid var(--line);border-radius:6px;background:var(--surface-3);color:var(--text);font-size:.92em}.setup-callout{margin:18px 0 0;padding:15px 17px;border-left:2px solid var(--gold);background:color-mix(in srgb,var(--gold) 5%,transparent);color:var(--muted);font-size:12px;line-height:1.65}.setup-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}.setup-card{padding:17px;border:1px solid var(--line);border-radius:12px;background:var(--surface-3)}.setup-card span{color:var(--gold);font-size:8px;font-weight:800;letter-spacing:.13em}.setup-card strong{display:block;margin:6px 0 5px;font-size:13px}.setup-card p{margin:0;font-size:11px}.setup-table{width:100%;border-collapse:collapse;margin-top:16px;font-size:12px}.setup-table th,.setup-table td{text-align:left;vertical-align:top;padding:12px;border-bottom:1px solid var(--line)}.setup-table th{color:var(--text);font-size:9px;letter-spacing:.1em}.setup-table td{color:var(--muted);line-height:1.55}.setup-steps{counter-reset:setupstep;list-style:none;padding:0!important;display:grid;gap:10px}.setup-steps li{position:relative;padding:15px 16px 15px 52px;border:1px solid var(--line);border-radius:11px;background:var(--surface-3)}.setup-steps li::before{counter-increment:setupstep;content:counter(setupstep,decimal-leading-zero);position:absolute;left:16px;top:16px;color:var(--gold);font-size:9px;font-weight:800;letter-spacing:.08em}.setup-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}@media(max-width:900px){.setup-layout{grid-template-columns:1fr}.setup-toc{position:static;display:grid;grid-template-columns:1fr 1fr}.setup-toc strong{grid-column:1/-1}.setup-grid{grid-template-columns:1fr}}@media(max-width:560px){.setup-main{padding-top:52px}.setup-toc{grid-template-columns:1fr}.setup-section{padding:21px}.setup-table{display:block;overflow-x:auto}}
+  </style>
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div><div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header" id="top" data-shared-nav="1"><a class="brand" href="index.html#top" aria-label="Dragonwilds Sync home"><img src="assets/application-icon.png" alt="" class="brand-icon"><span class="brand-copy"><strong>Dragonwilds</strong><span>Sync</span></span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span class="sr-only">Toggle navigation</span></button><nav class="main-nav" id="main-nav" data-shared-nav="1"></nav><div class="theme-switcher" role="group" aria-label="Website theme"><button type="button" data-theme-choice="dark" aria-pressed="true"><span class="theme-dot dark-dot"></span><span class="theme-label">Dark</span></button><button type="button" data-theme-choice="white"><span class="theme-dot white-dot"></span><span class="theme-label">White</span></button><button type="button" data-theme-choice="glass"><span class="theme-dot glass-dot"></span><span class="theme-label">Glass</span></button></div></header>
+
+  <main class="setup-main">
+    <section class="section-shell setup-hero">
+      <div class="eyebrow">Experience · Setup Instructions</div>
+      <h1>Get the files right.<br><span>The rest gets easier.</span></h1>
+      <p>Dragonwilds Sync does several jobs, but the setup is much simpler once you know what belongs to your computer, what belongs to a World, and which network features are optional. This guide starts with the plain-language model, then walks through Windows, Linux, Profiles, connecting, hosting, broadcasting, remote management, heartbeat telemetry, and mod loaders.</p>
+      <div class="setup-actions"><a class="button button-primary" href="downloads.html">Download Dragonwilds Sync <span aria-hidden="true">↓</span></a><a class="button button-secondary" href="experience.html">Back to Experience</a></div>
+    </section>
+
+    <div class="section-shell setup-layout">
+      <nav class="setup-toc" aria-label="Setup guide sections">
+        <strong>IN THIS GUIDE</strong>
+        <a href="#mental-model">The mental model</a><a href="#windows">Windows setup</a><a href="#linux">Linux setup</a><a href="#paths">Finding file paths</a><a href="#profiles">What Profiles are</a><a href="#connect">Connecting to servers</a><a href="#server">Setting up a server</a><a href="#networking">Connection & port forwarding</a><a href="#broadcast">Broadcasting</a><a href="#remote">Remote login & WebHost</a><a href="#heartbeat">Heartbeat telemetry</a><a href="#mods">Default mods & loaders</a><a href="#troubleshooting">Troubleshooting</a>
+      </nav>
+
+      <article class="setup-content">
+        <section class="setup-section" id="mental-model">
+          <div class="eyebrow">01 · Start here</div><h2>The mental model</h2>
+          <p>Think of Dragonwilds Sync as an organizer and traffic controller around Dragonwilds. It does not replace the game. It prepares the correct local files, remembers which World uses which configuration, performs synchronization, can expose a separate discovery endpoint, and can optionally host a remote-management interface.</p>
+          <div class="setup-grid">
+            <div class="setup-card"><span>PROFILE</span><strong>Local organization</strong><p>A Profile is simply a computer-side container for a World’s files, settings, mods, save snapshot, and associations.</p></div>
+            <div class="setup-card"><span>SYNC</span><strong>File agreement</strong><p>Sync compares what your Profile has with what the target World requires, then repairs or updates the managed pieces.</p></div>
+            <div class="setup-card"><span>GAME</span><strong>Actual play connection</strong><p>Dragonwilds itself still owns the live game session, lobby, and game-server connection.</p></div>
+            <div class="setup-card"><span>NETWORK EXTRAS</span><strong>Discovery and administration</strong><p>Broadcasting, heartbeat telemetry, and WebHost are separate opt-in services, not one giant exposed port.</p></div>
+          </div>
+          <div class="setup-callout"><strong>The big distinction:</strong> “I can see a World,” “I can synchronize with a World,” “I can join the Dragonwilds session,” and “I can remotely administer the server” are four different permissions/capabilities.</div>
+        </section>
+
+        <section class="setup-section" id="windows">
+          <div class="eyebrow">02 · Windows</div><h2>Initial setup on Windows</h2>
+          <ol class="setup-steps">
+            <li>Download the current Windows portable release from the Downloads page or GitHub Releases.</li>
+            <li>Run Dragonwilds Sync and complete the Player Guided Setup.</li>
+            <li>Select your RuneScape: Dragonwilds installation when prompted. Sync validates the layout rather than trusting a typed path blindly.</li>
+            <li>Allow Player Setup to install or repair the shared client baseline when required. The normal client baseline is UE4SS plus RuneSchema.</li>
+            <li>Let Sync discover local characters and saves, then enter the launcher and create or link the Profiles you actually use.</li>
+          </ol>
+          <div class="setup-callout"><strong>Client safety:</strong> the dedicated-server-only <code>version.dll</code> does not belong in the normal player runtime. Server deployment keeps server-only bootstrap files on the server side.</div>
+        </section>
+
+        <section class="setup-section" id="linux">
+          <div class="eyebrow">03 · Linux</div><h2>Initial setup on Linux</h2>
+          <p>The website publishes an Ubuntu Linux AppImage. Gear Lever is the recommended convenience layer because it can organize the AppImage and add a desktop entry, but Dragonwilds Sync remains portable and the AppImage can be run directly.</p>
+          <ol class="setup-steps">
+            <li>Download the Linux AppImage from the Downloads page.</li>
+            <li>Either import it into Gear Lever or mark the AppImage executable and run it directly.</li>
+            <li>Point Sync to the real Steam library/game location used by that machine. If the Dragonwilds client runs through Proton/Wine, keep the Linux host path and the compatibility-prefix path conceptually separate.</li>
+            <li>Let Sync identify the host/distro and validate the selected game or dedicated-server layout before enabling Profiles.</li>
+          </ol>
+          <p>Linux distributions and Steam packaging vary. A native Steam install, Flatpak Steam install, secondary library, or dedicated server can all place files in different roots, so use Steam’s own “Browse local files”/storage view when possible instead of guessing.</p>
+        </section>
+
+        <section class="setup-section" id="paths">
+          <div class="eyebrow">04 · File locations</div><h2>Finding the right file paths</h2>
+          <p>The safest path is the one the platform already knows. In Steam, open the game’s Properties/Installed Files area and use the option to browse the installation. For a dedicated server installed with SteamCMD or another tool, use the install directory you explicitly chose and let Sync validate it.</p>
+          <table class="setup-table"><thead><tr><th>WHAT</th><th>COMMON LOCATION</th><th>BEST PRACTICE</th></tr></thead><tbody>
+            <tr><td>Windows Steam game</td><td><code>...\Steam\steamapps\common\...</code></td><td>Use Steam’s Browse Installed Files button.</td></tr>
+            <tr><td>Linux Steam game</td><td><code>~/.local/share/Steam/steamapps/common/</code> or another configured library</td><td>Check Steam Storage; secondary libraries may live on another disk.</td></tr>
+            <tr><td>Flatpak Steam</td><td><code>~/.var/app/com.valvesoftware.Steam/.local/share/Steam/...</code></td><td>Do not assume the native-Steam path.</td></tr>
+            <tr><td>Proton prefix</td><td><code>steamapps/compatdata/&lt;app-id&gt;/pfx/</code></td><td>Use only when a Windows-style per-game path is actually needed; the game install itself remains in the Steam library.</td></tr>
+            <tr><td>Dedicated server</td><td>Your chosen SteamCMD/server install directory</td><td>Adopt that directory in Sync and let it inventory existing UE4SS, RuneSchema, PAK, and server files before changes.</td></tr>
+            <tr><td>Saves / characters</td><td>Platform/user-data dependent</td><td>Prefer Sync’s discovery and Open Folder actions instead of memorizing a fragile path.</td></tr>
+          </tbody></table>
+        </section>
+
+        <section class="setup-section" id="profiles">
+          <div class="eyebrow">05 · Profiles</div><h2>What a Profile is — and is not</h2>
+          <p>A Dragonwilds Sync Profile is not a website account, not a Steam account, not a public-server registration, and not a Dragonwilds lobby. It is the computer’s way of keeping one setup organized so the correct files can be activated together.</p>
+          <p>A Private World/Profile can remember things such as a save snapshot, enabled mods and configs, a preferred character, runtime associations, and the World it belongs to. That makes it practical to keep “Main World,” “Vanilla Test,” “Mod Testing,” and “Building Sandbox” side by side without manually shuffling folders.</p>
+          <h3>Creating a Profile</h3>
+          <ol class="setup-steps"><li>Create a new Private World/Profile or import/link an existing World.</li><li>Name it for the setup it represents, not for your login identity.</li><li>Associate the game/server path and preferred character where applicable.</li><li>Choose the mods/configs that belong to that Profile.</li><li>Launch or synchronize through the Profile so Sync can activate the correct managed state.</li></ol>
+          <div class="setup-callout"><strong>There is also a User Profile UI.</strong> That is presentation information such as your display name, picture, banner, and links. It is separate from the World/Profile containers that organize runtime files.</div>
+        </section>
+
+        <section class="setup-section" id="connect">
+          <div class="eyebrow">06 · Join a World</div><h2>Connecting to servers</h2>
+          <p>The public Worlds view can show ordinary public Dragonwilds servers as well as richer Dragonwilds Sync Worlds. A Sync-compatible World can provide the extra launcher fingerprint/metadata needed for synchronization, but the public directory itself does not grant admin access or magically join the game.</p>
+          <ol class="setup-steps"><li>Select the World you want to use.</li><li>Enter any private connection or synchronization information that the owner chose not to publish.</li><li>Run synchronization. Sync refreshes the manifest, resolves the character, compares runtime/mod/config state, and repairs required managed files.</li><li>When preflight is clean, Sync prepares the appropriate game connection/Direct IP route and launches Dragonwilds.</li></ol>
+          <h3>Information to get from the host</h3>
+          <table class="setup-table"><thead><tr><th>DETAIL</th><th>WHY YOU NEED IT</th></tr></thead><tbody>
+            <tr><td>World name and, when shown, Sync fingerprint</td><td>Confirms that you selected the intended World rather than a similarly named listing.</td></tr>
+            <tr><td>Public hostname or IP address</td><td>The route used from outside the host's home network. A private address such as <code>192.168.x.x</code> works only on that LAN.</td></tr>
+            <tr><td>Game port</td><td>The Dragonwilds gameplay route. The default first-instance value is <code>UDP 7777</code>, but always use the value published by the host.</td></tr>
+            <tr><td>Sync port, if profile synchronization is offered</td><td>The launcher metadata/file-preflight route. The default first-instance value is <code>TCP 27051</code>.</td></tr>
+            <tr><td>World password or private access key, if required</td><td>Enter secrets only in Dragonwilds or Dragonwilds Sync. Do not paste administrator credentials into a public directory or website form.</td></tr>
+          </tbody></table>
+          <h3>Connection order</h3>
+          <ol class="setup-steps"><li>Open the published World card or create a direct connection using the host and game port supplied by the owner.</li><li>If the World is Sync-capable, verify its fingerprint and run Sync before launching. A successful directory listing alone does not prove that either network listener is reachable.</li><li>Resolve every preflight mismatch before joining; do not bypass a required runtime or mod mismatch just because the game server responds.</li><li>Launch Dragonwilds and join through the prepared route. If Sync succeeds but gameplay fails, troubleshoot the UDP game route rather than reinstalling mods.</li></ol>
+          <h3>Co-op is slightly different</h3>
+          <p>When hosting a normal co-op game, Dragonwilds still creates the actual lobby/session. Sync can expose a separate synchronization endpoint so friends can discover and prepare the matching Profile before joining, but Sync does not replace the Dragonwilds lobby service.</p>
+        </section>
+
+        <section class="setup-section" id="server">
+          <div class="eyebrow">07 · Host</div><h2>Setting up a dedicated server</h2>
+          <ol class="setup-steps"><li>Create a Server Profile or adopt an existing dedicated-server installation.</li><li>Select the dedicated-server directory and let Sync inventory the current runtime before it copies, repairs, or manages anything.</li><li>Confirm the server baseline and any existing UE4SS, RuneSchema, PAK, or profile-scoped mods that should belong to this World.</li><li>Configure the Dragonwilds game port, the separate Sync endpoint as needed, and optional WebHost/public-directory features.</li><li>Review firewall/router requirements explicitly. Sync can manage supported host firewall rules, but router publishing is never silently assumed.</li><li>Start the server through the World/Profile so lifecycle, update, verification, synchronization metadata, and broadcast state stay coordinated.</li></ol>
+          <h3>Before publishing the server</h3>
+          <ul><li>Start locally first and confirm the server remains healthy before changing router rules.</li><li>Give the host machine a DHCP reservation or stable LAN address so forwards do not silently point at a different device later.</li><li>Use a unique game and Sync port pair for every simultaneous instance. Dragonwilds Sync normally increments from the configured base ports.</li><li>Set strong, different World and administrator passwords. Never publish the administrator password in a World card, manifest, screenshot, or support log.</li><li>Back up the World/Profile and verify the restore path before enabling automatic updates or experimental runtime flavors.</li></ul>
+          <div class="setup-callout"><strong>Server-only loader placement:</strong> the dedicated-server <code>version.dll</code> belongs only on servers and should live with the server bootstrap/runtime component such as <code>dwampi.dll</code>. It should not be copied into the player-client runtime.</div>
+        </section>
+
+        <section class="setup-section" id="networking">
+          <div class="eyebrow">08 · Network</div><h2>Connections, firewalls, and port forwarding</h2>
+          <p>Three services may exist, and they are deliberately separate. Forward only the services you actually enable. A Windows/Linux host firewall rule allows traffic into the computer; a router/NAT rule sends internet traffic to that computer. For direct public hosting, both layers must agree.</p>
+          <table class="setup-table"><thead><tr><th>SERVICE</th><th>DEFAULT</th><th>PROTOCOL</th><th>WHEN TO EXPOSE IT</th></tr></thead><tbody>
+            <tr><td>Dragonwilds gameplay</td><td><code>7777</code> for instance 1</td><td>UDP</td><td>Required for a directly hosted public dedicated server. Later instances normally use <code>7778</code>, <code>7779</code>, and so on.</td></tr>
+            <tr><td>World Sync</td><td><code>27051</code> for instance 1</td><td>TCP</td><td>Only when remote clients connect directly to the World's Sync/fingerprint service. Each simultaneous instance needs its own assigned port.</td></tr>
+            <tr><td>World Finder</td><td><code>8422</code></td><td>TCP</td><td>Required when directly hosting the World Finder/discovery listener. It is separate from gameplay, World Sync, and WebHost.</td></tr>
+            <tr><td>WebHost / remote management</td><td><code>27080</code></td><td>TCP</td><td>Only when direct remote administration is enabled. Do not forward it when WebHost is private/disabled or when an outbound HTTPS tunnel is used.</td></tr>
+          </tbody></table>
+          <div class="setup-callout"><strong>Ports shown here are defaults, not promises.</strong> The World/Profile settings are authoritative. If you changed a port, forward and test that configured value instead.</div>
+          <h3>Manual router-forwarding checklist</h3>
+          <ol class="setup-steps"><li>Reserve a stable LAN address for the server computer in the router's DHCP settings, then note that address.</li><li>In the host firewall, allow the configured game port as UDP and the configured Sync, World Finder, or WebHost ports as TCP. Do not create broad “all ports” rules.</li><li>In the router's Port Forwarding/NAT page, send each required external port to the same internal port on the server's reserved LAN address. Include <code>TCP 8422</code> only when you host World Finder directly.</li><li>Start the corresponding service and confirm it listens locally. A router rule cannot make a stopped listener reachable.</li><li>Test from another device on the LAN, then test from cellular data or another external network. Many routers cannot test their own public address from inside the LAN because NAT hairpin/loopback is unsupported.</li><li>Publish the external route only after the external test succeeds. Re-test after router replacement, ISP changes, or moving the server to another computer.</li></ol>
+          <h3>UPnP, tunnels, and difficult networks</h3>
+          <div class="setup-grid"><div class="setup-card"><span>MANUAL</span><strong>Most predictable</strong><p>You own every firewall and router rule. Prefer this for stable dedicated hosts and remove rules when the service is retired.</p></div><div class="setup-card"><span>UPNP</span><strong>Convenient, router-dependent</strong><p>Use only on a trusted network. Confirm the mapping in Dragonwilds Sync and do not assume a successful request proves internet reachability.</p></div><div class="setup-card"><span>HTTPS TUNNEL</span><strong>Best for WebHost behind NAT</strong><p>An outbound tunnel can publish WebHost without forwarding TCP 27080. It does not replace the UDP route required by Dragonwilds gameplay.</p></div><div class="setup-card"><span>CGNAT / DOUBLE NAT</span><strong>Direct forwarding may fail</strong><p>If the router's WAN address differs from the public address, contact the ISP for a public address or use an appropriate tunnel/VPN solution. Never solve this by exposing the router's administration panel.</p></div></div>
+          <h3>Security rules that should not be optional</h3>
+          <ul><li>Prefer HTTPS for any WebHost route crossing the internet.</li><li>Use explicit authentication and least-privilege permissions; public discovery is never proof of administrative identity.</li><li>Forward only required ports to one reserved host. Never use DMZ mode as a shortcut.</li><li>Keep operating system, router, Dragonwilds Sync, and runtime components updated, and review logs after failed external login attempts.</li><li>Disable or remove mappings when a World, Sync endpoint, or WebHost is no longer being hosted.</li></ul>
+        </section>
+
+        <section class="setup-section" id="broadcast">
+          <div class="eyebrow">09 · Discovery</div><h2>Broadcasting a World</h2>
+          <p>Broadcasting is the discoverability layer. When you opt in, Dragonwilds Sync can advertise sanitized World information and a launcher fingerprint/Sync endpoint so compatible clients know that richer synchronization is available.</p>
+          <p>Public data can include the World name, status, build/version, region, public tags, rules, mods/badges, player counts, and explicitly published connection details. It must not expose WebHost administrator credentials or turn the public directory into a control plane.</p>
+          <table class="setup-table"><thead><tr><th>CHANNEL</th><th>PURPOSE</th><th>DOES IT GRANT ADMIN?</th></tr></thead><tbody>
+            <tr><td>Game connection</td><td>Actual Dragonwilds gameplay traffic.</td><td>No — it is gameplay.</td></tr>
+            <tr><td>Sync endpoint</td><td>Fingerprint, manifest, compatibility, and client-required file synchronization.</td><td>No.</td></tr>
+            <tr><td>Public directory</td><td>Sanitized discovery data for people browsing Worlds.</td><td>No.</td></tr>
+            <tr><td>WebHost</td><td>Authenticated remote management when enabled.</td><td>Only after explicit login and permission checks.</td></tr>
+          </tbody></table>
+        </section>
+
+        <section class="setup-section" id="remote">
+          <div class="eyebrow">09 · Remote administration</div><h2>Remote login and WebHost</h2>
+          <p>WebHost is the optional remote-management surface. It does not become a second independent server manager; supported actions route back through the same authoritative runtime/controller used by the desktop application.</p>
+          <p>For remote use, publish only the address that administrators need to reach, prefer HTTPS, and require explicit login. Remote actions remain permission-scoped, CSRF-protected, and auditable. The public directory and the main Dragonwilds Sync website never need your administrator password.</p>
+          <div class="setup-callout"><strong>Keep the boundaries clean:</strong> public World discovery can be open while WebHost stays private, authenticated, or disabled entirely.</div>
+        </section>
+
+        <section class="setup-section" id="heartbeat">
+          <div class="eyebrow">10 · Telemetry</div><h2>Heartbeat and public status</h2>
+          <p>A broadcasting Sync World periodically sends a signed heartbeat to the Dragonwilds Sync directory service. The Worker validates and stores the sanitized status, then the public website/application reads the normalized public API. The GitHub Pages frontend is read-only and does not receive server heartbeats directly.</p>
+          <p>A running World can reuse one runtime-start identifier for the lifetime of that server process, allowing the directory to count starts without counting every heartbeat as a new start. When heartbeats stop, the World transitions out of the active set; offline Sync Worlds can remain visible for a limited retention window before disappearing from the public directory.</p>
+          <p>Heartbeat telemetry is for status/discovery. It is not remote login, not file synchronization authority, and not a substitute for the game connection.</p>
+        </section>
+
+        <section class="setup-section" id="mods">
+          <div class="eyebrow">11 · Mod baseline</div><h2>What mods and mod loaders are in the default experience?</h2>
+          <h3>Built-in/default loader baseline</h3>
+          <p>Player Guided Setup can install or repair the shared client <strong>UE4SS + RuneSchema</strong> baseline when required. Dragonwilds Sync also understands UE4SS, RuneSchema, and PAK content as managed mod types. PAK is a content type, not another mod loader.</p>
+          <h3>Default gameplay mods</h3>
+          <p>Dragonwilds Sync does not need to force a gameplay-changing “mod pack” just to function. The default experience is the launcher/runtime baseline plus whichever mods a selected Profile or synchronized World actually requires. Profile enablement, tags, and load order remain profile-specific.</p>
+          <p>Optional integrations stay optional. For example, live player-position tracking can use the RSDWTools UE4SS module from RSDWDevKit when a user installs it, but Dragonwilds Sync does not bundle, install, update, or modify RSDWTools as part of the normal baseline.</p>
+          <h3>Shared mod library</h3>
+          <p>Mod Management keeps a shared library across Private Worlds and Server Profiles. A mod can be published to that shared library and propagated to Profiles already linked to it, while each Profile still controls whether the mod is enabled and where it sits in load order.</p>
+          <div class="setup-callout"><strong>Simple rule:</strong> loaders make modding possible; Profiles decide which managed mods belong to a World; synchronization makes a client match the World it is joining.</div>
+        </section>
+
+        <section class="setup-section" id="troubleshooting">
+          <div class="eyebrow">12 · When something is off</div><h2>Troubleshooting the first setup</h2>
+          <ul>
+            <li><strong>Wrong game path:</strong> open the game through Steam and use Browse Installed Files instead of guessing the directory.</li>
+            <li><strong>Linux path confusion:</strong> confirm whether Steam is native, Flatpak, or using a secondary library. Do not treat the Proton prefix as the same thing as the Steam game install.</li>
+            <li><strong>Client suddenly has server files:</strong> verify that server-only <code>version.dll</code> was not placed in the player runtime.</li>
+            <li><strong>Can see a World but cannot sync:</strong> public discovery and the private Sync endpoint/credentials are separate.</li>
+            <li><strong>Can sync but cannot join:</strong> synchronization may be healthy while the Dragonwilds game port/session is unavailable.</li>
+            <li><strong>Remote manager does not open:</strong> verify the WebHost address/port, HTTPS/reverse-proxy configuration, firewall, and that WebHost is actually enabled.</li>
+            <li><strong>Public status looks stale:</strong> check heartbeat/broadcast configuration and outbound HTTPS before changing the website.</li>
+          </ul>
+          <div class="setup-actions"><a class="button button-primary" href="helpy.html">Open Help <span aria-hidden="true">→</span></a><a class="button button-secondary" href="#connect">Connection Guide</a><a class="button button-secondary" href="world-builder.html">Open World Builder</a></div>
+        </section>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="footer-brand"><img src="assets/application-icon.png" alt=""><div><strong>Dragonwilds Sync</strong><span>Community toolkit for RuneScape: Dragonwilds</span></div></div><div class="footer-links"><a href="index.html">Home</a><a href="experience.html">Experience</a><a href="setup.html" aria-current="page">Setup Instructions</a><a href="downloads.html">Downloads</a><a href="helpy.html">Help</a><a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub</a></div><p>Dragonwilds Sync is an independent community project and is not affiliated with, endorsed by, or sponsored by Jagex Ltd.</p></footer>
+  <div hidden aria-hidden="true"><span id="release-version"></span><span id="release-date"></span><span id="release-channel"></span><a id="release-link" href="#"></a></div>
+  <script src="script.js?v=experience-nav-1"></script>
+</body>
+</html>
