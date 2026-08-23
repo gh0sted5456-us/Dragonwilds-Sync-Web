@@ -54,7 +54,7 @@ function sharedNavMarkup(page) {
       </div>
       <div class="nav-group-menu" role="menu">
         <a role="menuitem" href="for-modders.html"${active('for-modders.html')}>For Modders</a>
-        <a role="menuitem" href="for-modders.html#runeschema-flavors">RuneSchema Flavors</a>
+        <a role="menuitem" href="for-modders.html#runeschema-flavors">RuneSchema v0.6.1</a>
       </div>
     </div>
     <a class="nav-github" href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub <span aria-hidden="true">↗</span></a>
@@ -294,3 +294,4 @@ async function loadLatestRelease() {
 }
 
 loadLatestRelease();
+

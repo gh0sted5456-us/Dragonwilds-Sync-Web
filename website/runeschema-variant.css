@@ -1,0 +1,65 @@
+.runeschema-release {
+  margin: 2rem 0;
+  padding: clamp(1.25rem, 3vw, 2.5rem);
+  border: 1px solid rgba(220, 171, 68, .42);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 88% 8%, rgba(220, 171, 68, .16), transparent 34%),
+    linear-gradient(145deg, rgba(19, 24, 23, .96), rgba(10, 14, 14, .92));
+  box-shadow: 0 24px 70px rgba(0, 0, 0, .28);
+}
+.runeschema-release__eyebrow,
+.runeschema-release h3 { color: #e1b655; }
+.runeschema-release__eyebrow {
+  margin: 0 0 .55rem;
+  font-size: .73rem;
+  font-weight: 800;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+.runeschema-release__hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.5rem;
+  align-items: center;
+}
+.runeschema-release h2 { margin: 0; font-size: clamp(2rem, 5vw, 4.25rem); }
+.runeschema-release__lede { max-width: 760px; color: var(--muted, #adb5b2); font-size: 1.06rem; line-height: 1.7; }
+.runeschema-release__mark {
+  width: 116px;
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, .35));
+}
+.runeschema-release__actions { display: flex; flex-wrap: wrap; gap: .7rem; margin: 1.2rem 0; }
+.runeschema-release__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: .72rem 1rem;
+  border: 1px solid rgba(220, 171, 68, .42);
+  border-radius: 10px;
+  color: inherit;
+  text-decoration: none;
+  font-weight: 800;
+}
+.runeschema-release__button--primary { background: linear-gradient(135deg, #f0c665, #b87c22); color: #171109; }
+.runeschema-release__notice { padding: .9rem 1rem; border-left: 3px solid #e1b655; background: rgba(225, 182, 85, .07); color: var(--muted, #adb5b2); }
+.runeschema-release__grid,
+.runeschema-release__steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .85rem; margin-top: 1.25rem; }
+.runeschema-release__card,
+.runeschema-release__step { padding: 1rem; border: 1px solid rgba(255,255,255,.1); border-radius: 14px; background: rgba(5, 9, 9, .4); }
+.runeschema-release__card h3,
+.runeschema-release__step h3 { margin: 0 0 .45rem; font-size: 1rem; }
+.runeschema-release__card p,
+.runeschema-release__step p { margin: 0; color: var(--muted, #adb5b2); line-height: 1.55; }
+.runeschema-release__number { display: block; margin-bottom: .5rem; color: #e1b655; font-weight: 900; }
+.runeschema-release pre { overflow-x: auto; padding: 1rem; border-radius: 12px; background: #080b0b; border: 1px solid rgba(220,171,68,.22); }
+.runeschema-release__hash { overflow-wrap: anywhere; font-family: monospace; font-size: .82rem; color: var(--muted, #adb5b2); }
+@media (max-width: 800px) {
+  .runeschema-release__hero { grid-template-columns: 1fr; }
+  .runeschema-release__mark { width: 82px; order: -1; }
+  .runeschema-release__grid,
+  .runeschema-release__steps { grid-template-columns: 1fr; }
+}
