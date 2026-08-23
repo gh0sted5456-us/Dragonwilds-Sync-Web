@@ -203,6 +203,141 @@ Example Mod B : 0</code></pre>
 </section>
 
 
+<dialog class="runeschema-dialog runeschema-dialog--wide runeschema-json-dialog" id="runeschema-json-dialog" aria-labelledby="runeschema-json-dialog-title">
+  <div class="runeschema-dialog__shell">
+    <header class="runeschema-dialog__header">
+      <div><p class="runeschema-release__eyebrow">Sizing Sneasel examples</p><h2 id="runeschema-json-dialog-title">See JSON in action</h2></div>
+      <button class="runeschema-dialog__close" type="button" data-runeschema-close aria-label="Close JSON examples">Close</button>
+    </header>
+    <div class="runeschema-json-tabs" role="tablist" aria-label="RuneSchema JSON examples"><button type="button" role="tab" aria-selected="true" data-json-tab="ash">Ash Tree</button>
+<button type="button" role="tab" aria-selected="false" data-json-tab="iron">Iron Ore</button>
+<button type="button" role="tab" aria-selected="false" data-json-tab="stone">Stone</button>
+<button type="button" role="tab" aria-selected="false" data-json-tab="boss">Boss AI</button>
+<button type="button" role="tab" aria-selected="false" data-json-tab="resource">Persistent Resource</button>
+<button type="button" role="tab" aria-selected="false" data-json-tab="shop">Persistent Shop</button>
+    </div>
+    <div class="runeschema-dialog__body runeschema-json-dialog__body"><section data-json-panel="ash"><header><div><span>EXPERIMENTAL FIELDS</span><h3>Scaled Ash Tree with explicit drops</h3><p>Scale changes size. DropIncreasePercent separately requests a supported drop increase.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/AshTree_1.json" download>Download JSON</a></header><pre><code>[
+  {
+    &quot;Type&quot;: &quot;Actor&quot;,
+    &quot;Id&quot;: &quot;DWS_ResourceTest_AshTree&quot;,
+    &quot;Class&quot;: &quot;/Game/Gameplay/World/Trees/BP_Tree_Ash_01.BP_Tree_Ash_01_C&quot;,
+    &quot;Scale&quot;: 4,
+    &quot;DropIncreasePercent&quot;:  50,
+    &quot;Location&quot;: {
+      &quot;X&quot;: 15806,
+      &quot;Y&quot;: 185344,
+      &quot;Z&quot;: -3290
+    },
+    &quot;Rotation&quot;: {
+      &quot;Pitch&quot;: 0.0,
+      &quot;Yaw&quot;: 90.0,
+      &quot;Roll&quot;: 0.0
+    }
+  }
+]</code></pre></section>
+<section data-json-panel="iron" hidden><header><div><span>EXPERIMENTAL FIELDS</span><h3>Scaled Iron Ore with explicit drops</h3><p>The persistent Actor identity remains stable while size and supported drops are configured independently.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/IronOre_Med_1.json" download>Download JSON</a></header><pre><code>[
+  {
+    &quot;Type&quot;: &quot;Actor&quot;,
+    &quot;Id&quot;: &quot;DWS_ResourceTest_IronOre&quot;,
+    &quot;Class&quot;: &quot;/Game/Gameplay/World/Mining/Ores/Iron/BP_OreNode_Iron_Medium_A1.BP_OreNode_Iron_Medium_A1_C&quot;,
+    &quot;Scale&quot;: 4,
+    &quot;DropIncreasePercent&quot;: 50,
+    &quot;Location&quot;: {
+      &quot;X&quot;: 16606,
+      &quot;Y&quot;: 185344,
+      &quot;Z&quot;: -3300
+    },
+    &quot;Rotation&quot;: {
+      &quot;Pitch&quot;: 0.0,
+      &quot;Yaw&quot;: 90.0,
+      &quot;Roll&quot;: 0.0
+    }
+  }
+]</code></pre></section>
+<section data-json-panel="stone" hidden><header><div><span>EXPERIMENTAL FIELDS</span><h3>Scaled Stone Boulder with explicit drops</h3><p>The same separate size and drop controls applied to a different persistent resource class.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/Stone_1.json" download>Download JSON</a></header><pre><code>[
+  {
+    &quot;Type&quot;: &quot;Actor&quot;,
+    &quot;Id&quot;: &quot;DWS_ResourceTest_StoneBoulder&quot;,
+    &quot;Class&quot;: &quot;/Game/Gameplay/World/Mining/Rocks/BP_OreNode_Stone.BP_OreNode_Stone_C&quot;,
+    &quot;Scale&quot;: 4,
+    &quot;DropIncreasePercent&quot;: 50,
+    &quot;Location&quot;: {
+      &quot;X&quot;: 16206,
+      &quot;Y&quot;: 185344,
+      &quot;Z&quot;: -3350
+    },
+    &quot;Rotation&quot;: {
+      &quot;Pitch&quot;: 0.0,
+      &quot;Yaw&quot;: 90.0,
+      &quot;Roll&quot;: 0.0
+    }
+  }
+]</code></pre></section>
+<section data-json-panel="boss" hidden><header><div><span>OFFICIAL SPAWN FOUNDATION</span><h3>Boss AI spawn point</h3><p>AISpawnPoint power, respawn, roaming, sentry, navigation, distance, and despawn controls.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/boss_spawns.jsonc" download>Download JSONC</a></header><pre><code>// Shows AI spawn points and persistent world actors.
+// Choose a Type, class and location; Actor entries also need a stable Id.
+[
+  {
+    &quot;Type&quot;: &quot;AISpawnPoint&quot;,
+    &quot;AIClass&quot;: &quot;/FutureMajorVersion/Gameplay/AI/ZombieFaction/Zogre/BP_AI_Zogre_Character.BP_AI_Zogre_Character_C&quot;,
+    &quot;Location&quot;: { &quot;X&quot;: 47327, &quot;Y&quot;: 177136, &quot;Z&quot;: -3988 },
+    &quot;Rotation&quot;: { &quot;Pitch&quot;: 0.0, &quot;Yaw&quot;: 0.0, &quot;Roll&quot;: 0.0 },
+
+    &quot;PowerLevel&quot;: 10,
+    &quot;Mandatory&quot;: true,
+    &quot;Respawn&quot;: true,
+    &quot;RespawnDuration&quot;: { &quot;Days&quot;: 0, &quot;Hours&quot;: 4, &quot;Minutes&quot;: 1, &quot;Seconds&quot;: 0 },
+
+    &quot;AmbientBehaviour&quot;: &quot;Roam&quot;,
+    &quot;RoamRadius&quot;: 200.0,
+    &quot;RoamMaxZTolerance&quot;: 100.0,
+    &quot;RoamGoalQueryType&quot;: &quot;Simple&quot;,
+    &quot;SentryRadius&quot;: 400.0,
+
+    &quot;RequiresActivation&quot;: false,
+    &quot;IgnoreNavmeshRequirement&quot;: true,
+    &quot;MinSpawnDistance&quot;: 0.0,
+    &quot;MaxSpawnDistance&quot;: 2000.0,
+    &quot;DespawnBehaviour&quot;: &quot;Default&quot;
+  }
+]
+</code></pre></section>
+<section data-json-panel="resource" hidden><header><div><span>OFFICIAL PERSISTENT ACTOR</span><h3>Persistent Iron Ore resource</h3><p>A stable Actor Id, class, location, and rotation without experimental size or drop fields.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/persistent_resource_actor.jsonc" download>Download JSONC</a></header><pre><code>// Shows AI spawn points and persistent world actors.
+// Choose a Type, class and location; Actor entries also need a stable Id.
+[
+  {
+    &quot;Type&quot;: &quot;Actor&quot;,
+    &quot;Id&quot;: &quot;DWS_ResourceTest_IronOre&quot;,
+    &quot;Class&quot;: &quot;/Game/Gameplay/World/Mining/Ores/Iron/BP_OreNode_Iron_Medium_A1.BP_OreNode_Iron_Medium_A1_C&quot;,
+    &quot;Location&quot;: {
+      &quot;X&quot;: 47327,
+      &quot;Y&quot;: 177136,
+      &quot;Z&quot;: -3988
+    },
+    &quot;Rotation&quot;: {
+      &quot;Pitch&quot;: 0.0,
+      &quot;Yaw&quot;: 90.0,
+      &quot;Roll&quot;: 0.0
+    }
+  }
+]
+</code></pre></section>
+<section data-json-panel="shop" hidden><header><div><span>OFFICIAL PERSISTENT ACTOR</span><h3>Persistent shop Actor</h3><p>The persistent Actor contract can place a shop NPC when its class supports the required persistence behavior.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/persistent_shop_actor.jsonc" download>Download JSONC</a></header><pre><code>// Shows AI spawn points and persistent world actors.
+// Choose a Type, class and location; Actor entries also need a stable Id.
+[
+  {
+    &quot;Type&quot;: &quot;Actor&quot;,
+    &quot;Id&quot;: &quot;DeathsShop&quot;,
+    &quot;Class&quot;: &quot;/Game/Gameplay/NPCs/Fellhollow_NPCs/BP_NPC_Death.BP_NPC_Death_C&quot;,
+    &quot;Location&quot;: { &quot;X&quot;: 16206, &quot;Y&quot;: 185344, &quot;Z&quot;: -3149 },
+    &quot;Rotation&quot;: { &quot;Pitch&quot;: 0.0, &quot;Yaw&quot;: 90.0, &quot;Roll&quot;: 0.0 }
+  }
+
+]
+</code></pre></section>
+    </div>
+    <footer class="runeschema-json-dialog__footer"><p><strong>Scale and drops are independent.</strong> Omitting <code>DropIncreasePercent</code> leaves drops unchanged.</p><button type="button" data-json-copy>Copy active example</button><span data-json-copy-status aria-live="polite"></span></footer>
+  </div>
+</dialog>
 <dialog class="runeschema-dialog runeschema-gallery-dialog" id="runeschema-gallery-dialog" aria-labelledby="runeschema-gallery-dialog-title">
   <div class="runeschema-dialog__shell">
     <header class="runeschema-dialog__header"><div><p class="runeschema-release__eyebrow">Sizing Sneasel interface</p><h2 id="runeschema-gallery-dialog-title">Overview</h2></div><button class="runeschema-dialog__close" type="button" data-runeschema-close aria-label="Close image preview">Close</button></header>
@@ -293,6 +428,7 @@ Example Mod B : 0</code></pre>
 <footer class="site-footer"><div class="footer-brand"><img src="assets/application-icon.png" alt=""><div><strong>Dragonwilds Sync</strong><span>For Modders</span></div></div><div class="footer-links"><a href="helpy.html">Read Helpy</a><a href="launcher-preview.html">Preview Launcher</a><a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub</a></div><p>ID.txt is declarative metadata. Dragonwilds Sync never executes package metadata.</p></footer><script src="script.js?v=nav-rune-1"></script><script src="modders.js?v=1"></script><script src="downloads-flavor.js?v=1"></script>
   <script src="runeschema-variant.js?v=4"></script>
 </body></html>
+
 
 
 
