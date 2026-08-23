@@ -123,3 +123,52 @@
   .runeschema-dialog { width: calc(100vw - 1rem); max-height: calc(100vh - 1rem); }
   .runeschema-dialog__header, .runeschema-dialog__body { padding: .9rem; }
 }
+
+/* Theme-safe controls and RSDWL documentation */
+.runeschema-release,
+.runeschema-dialog {
+  color: var(--text);
+}
+.runeschema-release {
+  background:
+    radial-gradient(circle at 88% 8%, color-mix(in srgb, var(--gold) 16%, transparent), transparent 34%),
+    linear-gradient(145deg, color-mix(in srgb, var(--panel) 96%, var(--bg)), color-mix(in srgb, var(--bg-2) 94%, var(--panel)));
+}
+.runeschema-release button.runeschema-release__button:not(.runeschema-release__button--primary) {
+  appearance: none;
+  -webkit-appearance: none;
+  color: var(--text);
+  background: color-mix(in srgb, var(--panel) 88%, var(--text) 6%);
+  box-shadow: inset 0 1px rgba(255,255,255,.05);
+}
+.runeschema-release button.runeschema-release__button:hover,
+.runeschema-release button.runeschema-release__button:focus-visible {
+  border-color: var(--gold);
+  background: color-mix(in srgb, var(--gold) 13%, var(--panel));
+  outline: none;
+}
+.runeschema-dialog {
+  color-scheme: dark;
+  background: color-mix(in srgb, var(--panel) 96%, var(--bg));
+}
+.runeschema-dialog__header {
+  background: linear-gradient(135deg, color-mix(in srgb, var(--gold) 12%, var(--panel)), color-mix(in srgb, var(--bg) 92%, var(--panel)));
+}
+html[data-theme="white"] .runeschema-dialog { color-scheme: light; }
+html[data-theme="white"] .runeschema-dialog__close,
+html[data-theme="white"] .runeschema-release button.runeschema-release__button:not(.runeschema-release__button--primary) {
+  box-shadow: 0 4px 16px rgba(49,42,27,.08);
+}
+.package-checklist { display: grid; gap: .55rem; margin: 1rem 0; padding-left: 1.25rem; }
+.package-checklist li::marker { color: var(--gold); font-weight: 900; }
+.manual-compatible--current { border-color: color-mix(in srgb, var(--gold) 50%, transparent); }
+.rsdwl-profile-note {
+  margin-top: 1rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 24%, transparent);
+  border-radius: 14px;
+  color: var(--text);
+  background: color-mix(in srgb, var(--panel) 86%, transparent);
+}
+.rsdwl-profile-note h3 { margin: .2rem 0 .45rem; }
+.rsdwl-profile-note p { margin: 0; color: var(--muted); line-height: 1.65; }

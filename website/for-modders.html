@@ -70,21 +70,49 @@ Item: {"ITEM Name":"ITEM_ExampleSword","PersistenceID":"/Game/Mods/Example/ITEM_
 
 <section class="modders-section read-flow"><div class="section-heading"><span class="eyebrow">HOW SYNC READS IT</span><h2>From disk to placard and Spawner</h2></div><ol><li><b>Discover.</b><span>The launcher searches the effective mod root case-insensitively for <code>ID.txt</code>, then legacy <code>identity.txt</code> and <code>identities.txt</code>.</span></li><li><b>Bound.</b><span>Files above 512 KiB are rejected. Text is read as UTF-8 with invalid bytes replaced rather than executed.</span></li><li><b>Parse.</b><span>Blank lines, comments, and section headers are skipped. Both <code>Key: Value</code> and <code>Key=Value</code> work.</span></li><li><b>Normalize.</b><span>Aliases become canonical fields; booleans, runtime roles, links, and tags are bounded and deduplicated.</span></li><li><b>Sanitize.</b><span>Keys resembling passwords, secrets, tokens, credentials, sessions, or server/admin keys are removed. <code>dws-secret://</code> values become blank.</span></li><li><b>Merge items.</b><span>Item Editor, Spawner, profile bundles, and WebGUI converge on <code>PersistenceID</code>; item-name and display-name searches remain available.</span></li><li><b>Present.</b><span>The mod receives name/version/author/link metadata, tags, runtime badges, and normalized custom-item/icon records. No line is run as a command.</span></li></ol></section>
 
-<section id="packages" class="modders-section package-guide"><div class="section-heading"><span class="eyebrow">ZIP AND RSDWL</span><h2>Two supported .rsdwl paths</h2><p>Dragonwilds Sync accepts both canonical application packages and manually packed mod archives. The inspector keeps them separate so manual compatibility never weakens signed-package validation.</p></div><div class="package-columns"><article><span>MANUAL COMPATIBILITY</span><h3>Mod ZIP or renamed <code>.rsdwl</code></h3><pre><code>ExampleMod.zip
-└── ExampleMod/
-    ├── ID.txt
-    ├── mod payload...
-    └── items/
-        ├── manifest.json
-        ├── icon-manifest.json
-        └── icons/*.png</code></pre><p>Install it as a normal ZIP, or give the same valid ZIP a <code>.rsdwl</code> extension. Sync accepts the manual form when the payload classifies as UE4SS, RuneSchema, or PAK and the archive does not claim a root application <code>manifest.json</code>.</p></article><article class="gold"><span>APPLICATION EXPORTS</span><h3>Validated <code>.rsdwl</code></h3><pre><code>Package.rsdwl
-├── ID.txt
-├── manifest.json
-├── ModInfo/.../ID.txt
-├── PackageManifest/
-│   └── item-registry.json
-└── package-type payloads
-    └── item/icon assets*</code></pre><p>The exporter creates the package ID, payload index, sizes, media types, SHA-256 hashes, provenance, and signature. Icon assets are carried by package types that include custom-item payloads.</p></article></div><div class="manual-compatible"><strong>Manually packed files are supported.</strong><p>A valid mod ZIP renamed to <code>.rsdwl</code> is returned as <code>compatibility-mod-archive</code> with its detected <code>archive_kind</code> and <code>compatibility: renamed-zip</code>. It remains marked <code>validated: false</code>. If a root <code>manifest.json</code> exists, compatibility mode does not apply: the file is claiming to be an application package and must pass its normal manifest, payload-index, checksum, provenance, and signature checks.</p></div></section>
+<section id="packages" class="modders-section package-guide">
+  <div class="section-heading">
+    <span class="eyebrow">ZIP AND RSDWL</span>
+    <h2>One clear mod package format</h2>
+    <p>A mod-author <code>.rsdwl</code> is a ZIP-readable archive with one recognizable mod folder. It uses the same effective-root rules as a normal mod ZIP, so the package shown on the left is now the format to follow everywhere.</p>
+  </div>
+  <div class="package-columns">
+    <article class="gold">
+      <span>AUTHOR PACKAGE</span>
+      <h3>Recommended <code>.rsdwl</code> layout</h3>
+      <pre><code>ExampleMod.rsdwl
+`-- ExampleMod/
+    |-- ID.txt
+    |-- mod payload...
+    `-- items/
+        |-- manifest.json
+        |-- icon-manifest.json
+        `-- icons/*.png</code></pre>
+      <p>Build a normal ZIP with this layout, then use the <code>.rsdwl</code> extension. The payload may be UE4SS, RuneSchema, or PAK content. Keep <code>ID.txt</code> beside the effective payload root and keep item icons under package-relative paths.</p>
+    </article>
+    <article>
+      <span>WHAT SYNC DOES</span>
+      <h3>Inspect, identify, and install</h3>
+      <ol class="package-checklist">
+        <li>Opens the archive in a safe staging area.</li>
+        <li>Unwraps a single outer download folder when present.</li>
+        <li>Finds <code>ID.txt</code> case-insensitively at the effective mod root.</li>
+        <li>Classifies the real UE4SS, RuneSchema, or PAK payload.</li>
+        <li>Imports declared custom items and package-relative icons.</li>
+      </ol>
+      <p>No application export manifest is required for an author-packed mod. The mod folder and its payload remain the source of truth.</p>
+    </article>
+  </div>
+  <div class="manual-compatible manual-compatible--current">
+    <strong>ZIP and .rsdwl now share the same authoring model.</strong>
+    <p>Use <code>.zip</code> while testing or publish the same ZIP-readable structure as <code>.rsdwl</code>. Do not add the older <code>PackageManifest/</code> or <code>ModInfo/</code> wrapper shown in previous guidance.</p>
+  </div>
+  <div class="rsdwl-profile-note">
+    <span class="eyebrow">SEPARATE LAUNCHER EXPORT</span>
+    <h3>Profile packages are application-owned</h3>
+    <p>When Dragonwilds Sync exports a profile package, the launcher creates its own signed and checksummed root <code>manifest.json</code> with <code>profile/</code>, <code>worlds/</code>, and <code>items/</code> payloads. That profile bundle is generated by Sync and is not the format mod authors should hand-pack. Connected-world passwords and administrative credentials are always excluded.</p>
+  </div>
+</section>
 
 <section class="modders-section icon-guide"><div class="section-heading"><span class="eyebrow">ICON CHECKLIST</span><h2>Icons that survive another machine</h2></div><div class="check-grid"><div><b>01</b><p>Use PNG, JPEG, WebP, or GIF. Keep a custom item icon at or below 2 MiB.</p></div><div><b>02</b><p>Store it under your mod, preferably <code>items/icons/</code>.</p></div><div><b>03</b><p>Reference it with a forward-slash relative path; never <code>C:\...</code> or <code>/home/...</code>.</p></div><div><b>04</b><p>Let Sync generate <code>icon-manifest.json</code>; it records path, SHA-256, and media type.</p></div><div><b>05</b><p>Keep each icon inside the import root. Paths containing escape traversal are rejected.</p></div><div><b>06</b><p>Export through Sync so package checksums and icon payload records are generated together.</p></div></div></section>
 
@@ -237,5 +265,6 @@ Example Mod B : 0</code></pre>
 <footer class="site-footer"><div class="footer-brand"><img src="assets/application-icon.png" alt=""><div><strong>Dragonwilds Sync</strong><span>For Modders</span></div></div><div class="footer-links"><a href="helpy.html">Read Helpy</a><a href="launcher-preview.html">Preview Launcher</a><a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub</a></div><p>ID.txt is declarative metadata. Dragonwilds Sync never executes package metadata.</p></footer><script src="script.js?v=nav-rune-1"></script><script src="modders.js?v=1"></script><script src="downloads-flavor.js?v=1"></script>
   <script src="runeschema-variant.js?v=1"></script>
 </body></html>
+
 
 
