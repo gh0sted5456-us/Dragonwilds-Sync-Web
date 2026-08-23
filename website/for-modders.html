@@ -1,5 +1,5 @@
 <!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#0b0d0f"><meta name="description" content="A line-by-line Dragonwilds Sync ID.txt and RSDWL packaging guide for mod authors."><title>For Modders | Dragonwilds Sync</title><link rel="icon" href="assets/application-icon.png"><link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="modders.css?v=7">  <link rel="stylesheet" href="downloads.css?v=2">
-  <link rel="stylesheet" href="runeschema-variant.css?v=8">
+  <link rel="stylesheet" href="runeschema-variant.css?v=9">
 </head><body>
 <header class="site-header" id="top" data-shared-nav="1"><a class="brand" href="index.html#top" aria-label="Dragonwilds Sync home"><img src="assets/application-icon.png" alt="" class="brand-icon"><span class="brand-copy"><strong>Dragonwilds</strong><span>Sync</span></span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span class="sr-only">Toggle navigation</span></button><nav class="main-nav" id="main-nav" data-shared-nav="1"></nav><div class="theme-switcher" role="group" aria-label="Website theme"><button type="button" data-theme-choice="dark" aria-pressed="true"><span class="theme-dot dark-dot"></span><span class="theme-label">Dark</span></button><button type="button" data-theme-choice="white"><span class="theme-dot white-dot"></span><span class="theme-label">White</span></button><button type="button" data-theme-choice="glass"><span class="theme-dot glass-dot"></span><span class="theme-label">Glass</span></button></div></header>
 <main class="modders-page"><section class="modders-hero"><div><span class="eyebrow">CANONICAL AUTHOR METADATA</span><h1>Make your mod <em>understandable.</em></h1><p><code>ID.txt</code> gives Dragonwilds Sync a safe, portable identity for your mod and its custom items. This guide explains every line, exactly how the parser treats it, and how icons travel from a normal mod archive into application-generated <code>.rsdwl</code> packages.</p><div class="hero-actions"><a href="#id-file">Build ID.txt</a><a href="#hotload">HOTLOAD = YES</a><a href="#drop-in">Drop-in reading</a><a href="#packages">Package files</a></div></div><aside><strong>Nothing in ID.txt executes.</strong><p>It is declarative display and registry metadata. Unknown instructions are ignored, secret-like values are stripped, and URLs are shown as links only.</p></aside></section>
@@ -123,8 +123,8 @@ Version: 1.0.0
 Author: Your Name</code></pre><p>Add RuntimeRole, HotloadCapable, tags, links, and Item rows only when you know their correct values.</p></section><section class="runeschema-release" id="runeschema-flavors" aria-labelledby="runeschema-variant-title">
   <div class="runeschema-release__hero">
     <div>
-      <p class="runeschema-release__eyebrow">Featured community build</p>
-      <h2 id="runeschema-variant-title">RuneSchema 0.6.1 Experimental</h2>
+      <p class="runeschema-release__eyebrow">Experimental codename: Sizing Sneasel</p>
+      <h2 id="runeschema-variant-title">RuneSchema 0.6.1 Experimental <span class="runeschema-codename">Sizing Sneasel</span></h2>
       <p class="runeschema-release__lede">A community experiment built on official RuneSchema 0.6.0. It preserves the official loaders and spawn foundation, then adds a five-page UE4SS management interface, deterministic mod ordering, collision reports, authoring tools, spawn scale, and optional explicit drop multiplication.</p>
       <div class="runeschema-release__actions">
         <a class="runeschema-release__button runeschema-release__button--primary" href="assets/downloads/RuneSchema-0.6.1-Experimental.zip" download>Download 0.6.1 Experimental</a>
@@ -205,7 +205,7 @@ Example Mod B : 0</code></pre>
 
 <dialog class="runeschema-dialog runeschema-gallery-dialog" id="runeschema-gallery-dialog" aria-labelledby="runeschema-gallery-dialog-title">
   <div class="runeschema-dialog__shell">
-    <header class="runeschema-dialog__header"><div><p class="runeschema-release__eyebrow">0.6.1 Experimental interface</p><h2 id="runeschema-gallery-dialog-title">Overview</h2></div><button class="runeschema-dialog__close" type="button" data-runeschema-close aria-label="Close image preview">Close</button></header>
+    <header class="runeschema-dialog__header"><div><p class="runeschema-release__eyebrow">Sizing Sneasel interface</p><h2 id="runeschema-gallery-dialog-title">Overview</h2></div><button class="runeschema-dialog__close" type="button" data-runeschema-close aria-label="Close image preview">Close</button></header>
     <div class="runeschema-gallery-dialog__stage"><img src="assets/runeschema-experimental-v8/overview.png" alt="Experimental RuneSchema Overview page" data-gallery-preview></div>
     <footer class="runeschema-gallery-dialog__footer"><button type="button" data-gallery-previous>Previous</button><div class="runeschema-gallery-dialog__status"><p data-gallery-caption>Runtime status, detected mods, tooling state, and active paths.</p><span data-gallery-position aria-live="polite">1 of 5</span></div><button type="button" data-gallery-play aria-pressed="true">Pause slideshow</button><button type="button" data-gallery-next>Next</button></footer>
   </div>
@@ -254,7 +254,7 @@ Example Mod B : 0</code></pre>
 <dialog class="runeschema-dialog runeschema-dialog--wide" id="runeschema-comparison-dialog" aria-labelledby="runeschema-comparison-title">
   <div class="runeschema-dialog__shell">
     <header class="runeschema-dialog__header">
-      <div><p class="runeschema-release__eyebrow">Official 0.6.0 vs 0.6.1 Experimental</p><h2 id="runeschema-comparison-title">Feature-by-feature comparison</h2></div>
+      <div><p class="runeschema-release__eyebrow">Official 0.6.0 vs 0.6.1 Experimental | Sizing Sneasel</p><h2 id="runeschema-comparison-title">Feature-by-feature comparison</h2></div>
       <button class="runeschema-dialog__close" type="button" data-runeschema-close aria-label="Close version comparison">Close</button>
     </header>
     <div class="runeschema-dialog__body">
@@ -293,6 +293,8 @@ Example Mod B : 0</code></pre>
 <footer class="site-footer"><div class="footer-brand"><img src="assets/application-icon.png" alt=""><div><strong>Dragonwilds Sync</strong><span>For Modders</span></div></div><div class="footer-links"><a href="helpy.html">Read Helpy</a><a href="launcher-preview.html">Preview Launcher</a><a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub</a></div><p>ID.txt is declarative metadata. Dragonwilds Sync never executes package metadata.</p></footer><script src="script.js?v=nav-rune-1"></script><script src="modders.js?v=1"></script><script src="downloads-flavor.js?v=1"></script>
   <script src="runeschema-variant.js?v=4"></script>
 </body></html>
+
+
 
 
 

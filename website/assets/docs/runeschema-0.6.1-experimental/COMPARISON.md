@@ -1,5 +1,7 @@
 # RuneSchema: Official 0.6.0 vs. 0.6.1 Experimental
 
+> Informal experimental build codename: **Sizing Sneasel**. The formal release identity remains `RuneSchema 0.6.1 Experimental`; this codename does not indicate an official or upstream RuneSchema branch.
+
 ## What is being compared
 
 This document compares the official RuneSchema `0.6.0` release with `RuneSchema 0.6.1 Experimental`. It contains the user-confirmed v8 behavior under its release identity, but remains a community variant rather than an official upstream RuneSchema release.
@@ -245,3 +247,4 @@ This document describes `RuneSchema-0.6.1-Experimental.zip`.
 - FModel numeric-suffix normalization tests: passed
 - Shipping DLL compilation: passed
 - Runtime behavior inherited from v8: user-confirmed
+

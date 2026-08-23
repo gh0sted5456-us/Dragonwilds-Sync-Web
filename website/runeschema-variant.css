@@ -291,3 +291,19 @@ html[data-theme="white"] .runeschema-release button.runeschema-release__button:n
 .runeschema-json-dialog__footer p { flex: 1; margin: 0; color: var(--muted); }
 .runeschema-json-dialog__footer span { min-width: 4rem; color: var(--gold); font-size: .78rem; }
 @media(max-width:680px){.runeschema-json-dialog__body section > header{display:grid}.runeschema-json-dialog__body section > header a{justify-self:start}.runeschema-json-dialog__footer{flex-wrap:wrap}.runeschema-json-dialog__footer p{flex-basis:100%}}
+
+.runeschema-codename {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-left: .35rem;
+  padding: .28rem .5rem;
+  border: 1px solid color-mix(in srgb,var(--gold) 55%,transparent);
+  border-radius: 999px;
+  color: var(--gold);
+  background: color-mix(in srgb,var(--gold) 9%,var(--panel));
+  font-family: inherit;
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
