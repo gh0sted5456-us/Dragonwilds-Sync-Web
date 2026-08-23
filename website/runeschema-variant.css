@@ -346,3 +346,28 @@ html[data-theme="white"] .runeschema-release button.runeschema-release__button:n
   .runeschema-raw-source { grid-template-columns: 1fr; }
   .runeschema-raw-source__download { width: 100%; min-width: 0; }
 }
+/* Compact experimental RuneSchema presentation */
+#runeschema-flavors { padding-block: clamp(1.25rem, 2.5vw, 2.25rem); }
+#runeschema-flavors .section-heading { margin-bottom: .9rem; }
+#runeschema-flavors .runeschema-release { gap: clamp(1rem, 2vw, 1.5rem); padding: clamp(1rem, 2vw, 1.5rem); }
+#runeschema-flavors .runeschema-release__content h2 { margin-block: .25rem .45rem; }
+#runeschema-flavors .runeschema-release__content > p { margin-block: .35rem; }
+#runeschema-flavors .runeschema-release__actions { gap: .55rem; margin-top: .8rem; }
+#runeschema-flavors .runeschema-release__button { min-height: 2.65rem; padding: .65rem .85rem; }
+#runeschema-flavors .runeschema-release__notice { margin-block: .75rem 0; padding: .7rem .85rem; }
+#runeschema-flavors .runeschema-raw-source { gap: .8rem; margin-top: .75rem; padding: .75rem .85rem; }
+#runeschema-flavors .runeschema-raw-source h3 { margin-top: .4rem; font-size: 1rem; }
+#runeschema-flavors .runeschema-raw-source p { font-size: .82rem; line-height: 1.45; }
+#runeschema-flavors .runeschema-raw-source__hash { margin-top: .4rem; font-size: .64rem; }
+#runeschema-flavors .runeschema-gallery { margin-top: 1rem; }
+#runeschema-flavors .runeschema-gallery__viewport,
+#runeschema-flavors .runeschema-gallery img { max-height: 220px; }
+#runeschema-flavors .runeschema-feature-grid,
+#runeschema-flavors .runeschema-comparison-grid { gap: .65rem; }
+#runeschema-flavors .runeschema-feature-grid > *,
+#runeschema-flavors .runeschema-comparison-grid > * { padding: .8rem; }
+
+@media (max-width: 780px) {
+  #runeschema-flavors .runeschema-gallery__viewport,
+  #runeschema-flavors .runeschema-gallery img { max-height: 180px; }
+}
