@@ -1,24 +1,21 @@
-// Shows AI spawn points and persistent world actors.
-// Choose a Type, class and location; Actor entries also need a stable Id.
+// Shows an AI spawn point with the experimental scale and drop fields.
 [
   {
     "Type": "AISpawnPoint",
     "AIClass": "/FutureMajorVersion/Gameplay/AI/ZombieFaction/Zogre/BP_AI_Zogre_Character.BP_AI_Zogre_Character_C",
-    \
+    "Scale": 2.0,
+    "DropIncreasePercent": 50,
     "Location": { "X": 47327, "Y": 177136, "Z": -3988 },
     "Rotation": { "Pitch": 0.0, "Yaw": 0.0, "Roll": 0.0 },
-
     "PowerLevel": 10,
     "Mandatory": true,
     "Respawn": true,
     "RespawnDuration": { "Days": 0, "Hours": 4, "Minutes": 1, "Seconds": 0 },
-
     "AmbientBehaviour": "Roam",
     "RoamRadius": 200.0,
     "RoamMaxZTolerance": 100.0,
     "RoamGoalQueryType": "Simple",
     "SentryRadius": 400.0,
-
     "RequiresActivation": false,
     "IgnoreNavmeshRequirement": true,
     "MinSpawnDistance": 0.0,
@@ -26,4 +23,3 @@
     "DespawnBehaviour": "Default"
   }
 ]
-

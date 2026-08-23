@@ -1,11 +1,11 @@
-// Shows AI spawn points and persistent world actors.
-// Choose a Type, class and location; Actor entries also need a stable Id.
+// Persistent resource Actor with independent experimental size and drop fields.
 [
   {
     "Type": "Actor",
     "Id": "DWS_ResourceTest_IronOre",
     "Class": "/Game/Gameplay/World/Mining/Ores/Iron/BP_OreNode_Iron_Medium_A1.BP_OreNode_Iron_Medium_A1_C",
-    \
+    "Scale": 4,
+    "DropIncreasePercent": 50,
     "Location": {
       "X": 47327,
       "Y": 177136,
@@ -18,4 +18,3 @@
     }
   }
 ]
-

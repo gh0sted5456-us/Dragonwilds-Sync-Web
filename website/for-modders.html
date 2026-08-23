@@ -273,27 +273,24 @@ Example Mod B : 0</code></pre>
     }
   }
 ]</code></pre></section>
-<section data-json-panel="boss" hidden><header><div><span>OFFICIAL SPAWN + EXPERIMENTAL FIELDS</span><h3>Scaled boss AI with explicit drops</h3><p>The official AISpawnPoint controls remain intact while Scale 2.0 and DropIncreasePercent 50 are added independently.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/boss_spawns.jsonc" download>Download JSONC</a></header><pre><code>// Shows AI spawn points and persistent world actors.
-// Choose a Type, class and location; Actor entries also need a stable Id.
+<section data-json-panel="boss" hidden><header><div><span>OFFICIAL SPAWN + EXPERIMENTAL FIELDS</span><h3>Scaled boss AI with explicit drops</h3><p>The official AISpawnPoint controls remain intact while Scale 2.0 and DropIncreasePercent 50 are added independently.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/boss_spawns.jsonc" download>Download JSONC</a></header><pre><code>// Shows an AI spawn point with the experimental scale and drop fields.
 [
   {
     &quot;Type&quot;: &quot;AISpawnPoint&quot;,
     &quot;AIClass&quot;: &quot;/FutureMajorVersion/Gameplay/AI/ZombieFaction/Zogre/BP_AI_Zogre_Character.BP_AI_Zogre_Character_C&quot;,
-    \
+    &quot;Scale&quot;: 2.0,
+    &quot;DropIncreasePercent&quot;: 50,
     &quot;Location&quot;: { &quot;X&quot;: 47327, &quot;Y&quot;: 177136, &quot;Z&quot;: -3988 },
     &quot;Rotation&quot;: { &quot;Pitch&quot;: 0.0, &quot;Yaw&quot;: 0.0, &quot;Roll&quot;: 0.0 },
-
     &quot;PowerLevel&quot;: 10,
     &quot;Mandatory&quot;: true,
     &quot;Respawn&quot;: true,
     &quot;RespawnDuration&quot;: { &quot;Days&quot;: 0, &quot;Hours&quot;: 4, &quot;Minutes&quot;: 1, &quot;Seconds&quot;: 0 },
-
     &quot;AmbientBehaviour&quot;: &quot;Roam&quot;,
     &quot;RoamRadius&quot;: 200.0,
     &quot;RoamMaxZTolerance&quot;: 100.0,
     &quot;RoamGoalQueryType&quot;: &quot;Simple&quot;,
     &quot;SentryRadius&quot;: 400.0,
-
     &quot;RequiresActivation&quot;: false,
     &quot;IgnoreNavmeshRequirement&quot;: true,
     &quot;MinSpawnDistance&quot;: 0.0,
@@ -301,16 +298,15 @@ Example Mod B : 0</code></pre>
     &quot;DespawnBehaviour&quot;: &quot;Default&quot;
   }
 ]
-
 </code></pre></section>
-<section data-json-panel="resource" hidden><header><div><span>OFFICIAL ACTOR + EXPERIMENTAL FIELDS</span><h3>Scaled persistent Iron Ore resource</h3><p>The stable Actor contract now includes Scale 4 and a separate explicit 50% supported-drop request.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/persistent_resource_actor.jsonc" download>Download JSONC</a></header><pre><code>// Shows AI spawn points and persistent world actors.
-// Choose a Type, class and location; Actor entries also need a stable Id.
+<section data-json-panel="resource" hidden><header><div><span>OFFICIAL ACTOR + EXPERIMENTAL FIELDS</span><h3>Scaled persistent Iron Ore resource</h3><p>The stable Actor contract now includes Scale 4 and a separate explicit 50% supported-drop request.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/persistent_resource_actor.jsonc" download>Download JSONC</a></header><pre><code>// Persistent resource Actor with independent experimental size and drop fields.
 [
   {
     &quot;Type&quot;: &quot;Actor&quot;,
     &quot;Id&quot;: &quot;DWS_ResourceTest_IronOre&quot;,
     &quot;Class&quot;: &quot;/Game/Gameplay/World/Mining/Ores/Iron/BP_OreNode_Iron_Medium_A1.BP_OreNode_Iron_Medium_A1_C&quot;,
-    \
+    &quot;Scale&quot;: 4,
+    &quot;DropIncreasePercent&quot;: 50,
     &quot;Location&quot;: {
       &quot;X&quot;: 47327,
       &quot;Y&quot;: 177136,
@@ -323,22 +319,19 @@ Example Mod B : 0</code></pre>
     }
   }
 ]
-
 </code></pre></section>
-<section data-json-panel="shop" hidden><header><div><span>OFFICIAL ACTOR + EXPERIMENTAL FIELDS</span><h3>Scaled persistent shop Actor</h3><p>Scale 1.25 changes size while DropIncreasePercent 0 explicitly keeps normal drops; unsupported shop classes simply have no drop rows to adjust.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/persistent_shop_actor.jsonc" download>Download JSONC</a></header><pre><code>// Shows AI spawn points and persistent world actors.
-// Choose a Type, class and location; Actor entries also need a stable Id.
+<section data-json-panel="shop" hidden><header><div><span>OFFICIAL ACTOR + EXPERIMENTAL FIELDS</span><h3>Scaled persistent shop Actor</h3><p>Scale 1.25 changes size while DropIncreasePercent 0 explicitly keeps normal drops; unsupported shop classes simply have no drop rows to adjust.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/persistent_shop_actor.jsonc" download>Download JSONC</a></header><pre><code>// Persistent shop Actor scaled without increasing drops.
 [
   {
     &quot;Type&quot;: &quot;Actor&quot;,
     &quot;Id&quot;: &quot;DeathsShop&quot;,
     &quot;Class&quot;: &quot;/Game/Gameplay/NPCs/Fellhollow_NPCs/BP_NPC_Death.BP_NPC_Death_C&quot;,
-    \
+    &quot;Scale&quot;: 1.25,
+    &quot;DropIncreasePercent&quot;: 0,
     &quot;Location&quot;: { &quot;X&quot;: 16206, &quot;Y&quot;: 185344, &quot;Z&quot;: -3149 },
     &quot;Rotation&quot;: { &quot;Pitch&quot;: 0.0, &quot;Yaw&quot;: 90.0, &quot;Roll&quot;: 0.0 }
   }
-
 ]
-
 </code></pre></section>
     </div>
     <footer class="runeschema-json-dialog__footer"><p><strong>Scale and drops are independent.</strong> Omitting <code>DropIncreasePercent</code> leaves drops unchanged; <code>0</code> explicitly retains normal drops.</p><button type="button" data-json-copy>Copy active example</button><span data-json-copy-status aria-live="polite"></span></footer>
@@ -434,6 +427,7 @@ Example Mod B : 0</code></pre>
 <footer class="site-footer"><div class="footer-brand"><img src="assets/application-icon.png" alt=""><div><strong>Dragonwilds Sync</strong><span>For Modders</span></div></div><div class="footer-links"><a href="helpy.html">Read Helpy</a><a href="launcher-preview.html">Preview Launcher</a><a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub</a></div><p>ID.txt is declarative metadata. Dragonwilds Sync never executes package metadata.</p></footer><script src="script.js?v=nav-rune-1"></script><script src="modders.js?v=1"></script><script src="downloads-flavor.js?v=1"></script>
   <script src="runeschema-variant.js?v=4"></script>
 </body></html>
+
 
 
 
