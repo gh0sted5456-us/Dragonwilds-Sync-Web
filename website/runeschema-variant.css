@@ -211,3 +211,12 @@ html[data-theme="white"] .runeschema-release button.runeschema-release__button:n
 .runeschema-gallery-dialog__footer p { margin: 0; color: var(--muted); text-align: center; }
 .runeschema-gallery-dialog__footer button { appearance: none; padding: .55rem .75rem; border: 1px solid color-mix(in srgb,var(--gold) 45%,transparent); border-radius: 8px; color: var(--text); background: var(--panel); cursor: pointer; }
 @media(max-width:760px){.runeschema-versus__columns{grid-template-columns:1fr}.runeschema-versus__bridge{min-height:38px}.runeschema-versus__column--official{border-radius:16px 16px 0 0}.runeschema-versus__column--experimental{border-radius:0 0 16px 16px}.runeschema-gallery__grid{grid-template-columns:1fr}.runeschema-gallery__item--wide{grid-column:auto}.runeschema-gallery-dialog__footer{grid-template-columns:1fr 1fr}.runeschema-gallery-dialog__footer p{grid-column:1/-1;grid-row:1;text-align:left}}
+
+/* Rotating screenshot gallery controls */
+.runeschema-gallery-dialog__footer { grid-template-columns: auto minmax(0,1fr) auto auto; }
+.runeschema-gallery-dialog__status { display: grid; gap: .2rem; min-width: 0; text-align: center; }
+.runeschema-gallery-dialog__status p { margin: 0; color: var(--muted); }
+.runeschema-gallery-dialog__status span { color: var(--gold); font-size: .72rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+.runeschema-gallery-dialog__stage img { transition: opacity .2s ease; }
+@media(max-width:760px){.runeschema-gallery-dialog__footer{grid-template-columns:repeat(3,auto)}.runeschema-gallery-dialog__status{grid-column:1/-1;grid-row:1;text-align:left}.runeschema-gallery-dialog__status p{text-align:left}}
+@media(prefers-reduced-motion:reduce){.runeschema-gallery-dialog__stage img{transition:none}}
