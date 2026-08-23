@@ -4,6 +4,7 @@
   {
     "Type": "AISpawnPoint",
     "AIClass": "/FutureMajorVersion/Gameplay/AI/ZombieFaction/Zogre/BP_AI_Zogre_Character.BP_AI_Zogre_Character_C",
+    \
     "Location": { "X": 47327, "Y": 177136, "Z": -3988 },
     "Rotation": { "Pitch": 0.0, "Yaw": 0.0, "Roll": 0.0 },
 
@@ -25,3 +26,4 @@
     "DespawnBehaviour": "Default"
   }
 ]
+
