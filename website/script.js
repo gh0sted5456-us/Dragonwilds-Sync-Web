@@ -10,7 +10,7 @@ function sharedNavMarkup(page) {
   const active = (...names) => names.includes(page) ? ' aria-current="page"' : '';
   const experienceActive = ['experience.html', 'setup.html', 'world-builder.html', 'launcher-preview.html'].includes(page);
   const learnMoreActive = ['about.html', 'helpy.html'].includes(page);
-  const moddingActive = page === 'for-modders.html';
+  const moddingActive = ['modding.html', 'mod-packaging.html', 'runeschema.html', 'for-modders.html'].includes(page);
   const chevron = '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
   return `
@@ -49,12 +49,13 @@ function sharedNavMarkup(page) {
     </div>
     <div class="nav-group nav-modding" data-nav-group>
       <div class="nav-group-main">
-        <a class="nav-group-link" href="for-modders.html"${moddingActive ? ' aria-current="page"' : ''}>Modding</a>
+        <a class="nav-group-link" href="modding.html"${moddingActive ? ' aria-current="page"' : ''}>Modding</a>
         <button class="nav-disclosure" type="button" aria-expanded="false" aria-label="Open Modding menu">${chevron}</button>
       </div>
       <div class="nav-group-menu" role="menu">
-        <a role="menuitem" href="for-modders.html"${active('for-modders.html')}>For Modders</a>
-        <a role="menuitem" href="for-modders.html#runeschema-flavors">RuneSchema 0.6.1 Experimental</a>
+        <a role="menuitem" href="modding.html"${active('modding.html')}>Modding Hub</a>
+        <a role="menuitem" href="mod-packaging.html"${active('mod-packaging.html')}>Mod Packaging</a>
+        <a role="menuitem" href="runeschema.html#runeschema-flavors"${active('runeschema.html')}>RuneSchema Lab</a>
       </div>
     </div>
     <a class="nav-github" href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub <span aria-hidden="true">↗</span></a>
