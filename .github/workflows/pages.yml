@@ -134,6 +134,7 @@ jobs:
           node --check _site/runeschema-variant.js
 
           # The website is intentionally not a public server browser anymore.
+          grep -q 'runeschema.html' _site/for-modders.html
           test ! -e _site/servers.html || { echo 'servers.html must not be deployed' >&2; exit 1; }
           test ! -e _site/public-directory-view.js || { echo 'Public directory runtime must not be deployed' >&2; exit 1; }
           test ! -e _site/public-directory-fetch-fallback.js || { echo 'Public directory fallback must not be deployed' >&2; exit 1; }
@@ -150,43 +151,47 @@ jobs:
           grep -q 'Experience' _site/script.js
           grep -q 'Learn More' _site/script.js
           grep -q '>Modding<' _site/script.js
-          grep -q 'For Modders' _site/script.js
+          grep -q 'Modding Hub' _site/script.js
+          grep -q 'Mod Packaging' _site/script.js
+          grep -q 'RuneSchema Lab' _site/script.js
           grep -q 'Connection &amp; Ports' _site/script.js
           grep -q 'TCP 27051' _site/setup.html
           grep -q 'TCP 27080' _site/setup.html
           grep -q 'TCP 8422' _site/setup.html
           grep -q 'UDP 7777' _site/setup.html
           grep -q 'CGNAT / DOUBLE NAT' _site/setup.html
-          grep -q 'See JSON in action' _site/for-modders.html
+          grep -q 'Choose what you are' _site/modding.html
+          grep -q 'A complete <code>ID.txt</code>' _site/mod-packaging.html
+          grep -q 'See JSON in action' _site/runeschema.html
           grep -q 'id="windows-download"' _site/downloads.html
           grep -q 'id="linux-download"' _site/downloads.html
           grep -q 'data-windows-quick-download' _site/downloads.html
           grep -q 'data-linux-quick-download' _site/downloads.html
           ! grep -q 'v2.0.1' _site/download-flip.js
-          grep -q 'DropIncreasePercent' _site/for-modders.html
-          grep -q '0.6.3-experimental.1' _site/for-modders.html
-          grep -q 'data-runeschema-version' _site/for-modders.html
-          grep -q 'Current prerelease: v0.6.3-experimental.1' _site/for-modders.html
-          grep -q 'data-runeschema-title' _site/for-modders.html
-          grep -q 'data-runeschema-comparison-version' _site/for-modders.html
-          grep -q 'data-runeschema-comparison-version>0.6.3</span> EXPERIMENTAL' _site/for-modders.html
+          grep -q 'DropIncreasePercent' _site/runeschema.html
+          grep -q '0.6.3-experimental.1' _site/runeschema.html
+          grep -q 'data-runeschema-version' _site/runeschema.html
+          grep -q 'Current prerelease: v0.6.3-experimental.1' _site/runeschema.html
+          grep -q 'data-runeschema-title' _site/runeschema.html
+          grep -q 'data-runeschema-comparison-version' _site/runeschema.html
+          grep -q 'data-runeschema-comparison-version>0.6.3</span> EXPERIMENTAL' _site/runeschema.html
           grep -q 'Official 0.6.0 vs. 0.6.3 Experimental' _site/assets/docs/runeschema-0.6.1-experimental/COMPARISON.md
           grep -q 'api.github.com/repos/gh0sted5456-us/RuneSchema/releases' _site/runeschema-variant.js
           grep -Fq '^RuneSchema-.*Experimental\.zip$' _site/runeschema-variant.js
-          grep -q 'data-json-tab="journal"' _site/for-modders.html
-          grep -q 'GTV063STAFF001' _site/for-modders.html
-          grep -q 'GTV063RECIPE01' _site/for-modders.html
+          grep -q 'data-json-tab="journal"' _site/runeschema.html
+          grep -q 'GTV063STAFF001' _site/runeschema.html
+          grep -q 'GTV063RECIPE01' _site/runeschema.html
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff.json >/dev/null
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff_recipe.json >/dev/null
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/journal_identity.json >/dev/null
-          grep -q 'FA4E8062D7AFF4D9A8C61BAF6E87219302A24AEA7C3389464BD7AD21D93F391D' _site/for-modders.html
-          grep -q 'RSDW Modding Community contributed testing, research, and community support' _site/for-modders.html
-          grep -q 'assets, blueprints, buildings, courses, enums, journal, raw, recipes, spawns, and strings' _site/for-modders.html
-          grep -q '10C8B7350177B28AAD5E6371BECE2347D501DD1B58F9949C512AE6AEE0E0B3A8' _site/for-modders.html
-          grep -q 'UE4SS_v3.0.1-941-g0bfec09e.zip' _site/for-modders.html
-          test "$(grep -o 'data-runeschema-ue4ss-download' _site/for-modders.html | wc -l)" -eq 1
-          grep -q 'This is the only UE4SS download intended for this RuneSchema build' _site/for-modders.html
-          ! grep -q 'RuneSchema-0.6.1-Experimental-Source-and-Package.zip' _site/for-modders.html
+          grep -q 'FA4E8062D7AFF4D9A8C61BAF6E87219302A24AEA7C3389464BD7AD21D93F391D' _site/runeschema.html
+          grep -q 'RSDW Modding Community contributed testing, research, and community support' _site/runeschema.html
+          grep -q 'assets, blueprints, buildings, courses, enums, journal, raw, recipes, spawns, and strings' _site/runeschema.html
+          grep -q '10C8B7350177B28AAD5E6371BECE2347D501DD1B58F9949C512AE6AEE0E0B3A8' _site/runeschema.html
+          grep -q 'UE4SS_v3.0.1-941-g0bfec09e.zip' _site/runeschema.html
+          test "$(grep -o 'data-runeschema-ue4ss-download' _site/runeschema.html | wc -l)" -eq 1
+          grep -q 'This is the only UE4SS download intended for this RuneSchema build' _site/runeschema.html
+          ! grep -q 'RuneSchema-0.6.1-Experimental-Source-and-Package.zip' _site/runeschema.html
           grep -q 'world-cards-20260823-1' _site/world-builder.html
           test -s _site/assets/downloads/RuneSchema-0.6.3-Experimental.zip
           unzip -tqq _site/assets/downloads/RuneSchema-0.6.3-Experimental.zip
