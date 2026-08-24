@@ -183,6 +183,8 @@ jobs:
           grep -q 'Okaetsu created PalSchema, Snorkles created RuneSchema, and Jonesing4Space created the additional experimental features' _site/for-modders.html
           grep -q '10C8B7350177B28AAD5E6371BECE2347D501DD1B58F9949C512AE6AEE0E0B3A8' _site/for-modders.html
           grep -q 'UE4SS_v3.0.1-941-g0bfec09e.zip' _site/for-modders.html
+          test "$(grep -o 'data-runeschema-ue4ss-download' _site/for-modders.html | wc -l)" -eq 1
+          grep -q 'This is the only UE4SS download intended for this RuneSchema build' _site/for-modders.html
           ! grep -q 'RuneSchema-0.6.1-Experimental-Source-and-Package.zip' _site/for-modders.html
           grep -q 'world-cards-20260823-1' _site/world-builder.html
           test -s _site/assets/downloads/RuneSchema-0.6.3-Experimental.zip

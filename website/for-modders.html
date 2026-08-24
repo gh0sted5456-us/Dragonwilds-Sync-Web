@@ -129,8 +129,8 @@ Author: Your Name</code></pre><p>Add RuntimeRole, HotloadCapable, tags, links, a
       <p class="runeschema-release__eyebrow" data-runeschema-codename>Experimental codename: Registry Identity</p>
       <h2 id="runeschema-variant-title" data-runeschema-title>RuneSchema 0.6.3 Experimental <span class="runeschema-codename">Registry Identity</span></h2>
       <p class="runeschema-release__lede">A community experiment built on official RuneSchema 0.6.0. It preserves the official loaders and spawn foundation, then adds a five-page UE4SS management interface, deterministic mod ordering, collision reports, authoring tools, spawn scale, explicit drop multiplication, and registry-safe identity overrides.</p><div class="runeschema-runtime-baseline" aria-label="UE4SS build baseline">
-        <div><span>UE4SS BUILD BASELINE</span><strong>v3.0.1-941-g0bfec09e</strong><p>The exact OG binary, now packaged with the confirmed UE 5.6 override and early scan required by the current Dragonwilds build.</p></div>
-        <a data-runeschema-ue4ss-download href="https://github.com/gh0sted5456-us/RuneSchema/releases/download/0.6.3-experimental.1/UE4SS_v3.0.1-941-g0bfec09e.zip" target="_blank" rel="noopener">Download matching UE4SS</a>
+        <div><span>REQUIRED UE4SS PACKAGE</span><strong>v3.0.1-941-g0bfec09e</strong><p>This is the only UE4SS download intended for this RuneSchema build. It preserves the original compatible binary and includes <code>DoEarlyScan = 1</code>, the Unreal Engine 5.6 override, disabled hot reload, and the stable UObject-array cache setting.</p></div>
+        <a data-runeschema-ue4ss-download href="https://github.com/gh0sted5456-us/RuneSchema/releases/download/0.6.3-experimental.1/UE4SS_v3.0.1-941-g0bfec09e.zip" target="_blank" rel="noopener">Download required UE4SS with override</a>
       </div>
       <a class="runeschema-release__version-link" data-runeschema-version href="https://github.com/gh0sted5456-us/RuneSchema/releases/tag/0.6.3-experimental.1" target="_blank" rel="noopener" aria-live="polite">Current prerelease: v0.6.3-experimental.1</a><div class="runeschema-release__actions">
         <a class="runeschema-release__button runeschema-release__button--primary" data-runeschema-download href="https://github.com/gh0sted5456-us/RuneSchema/releases/download/0.6.3-experimental.1/RuneSchema-0.6.3-Experimental.zip" target="_blank" rel="noopener">Download v0.6.3-experimental.1</a>
@@ -206,10 +206,7 @@ Author: Your Name</code></pre><p>Add RuntimeRole, HotloadCapable, tags, links, a
   <h3>Optional content ordering</h3>
   <pre><code>Example Mod A : 1
 Example Mod B : 0</code></pre>
-  <p class="runeschema-release__lede"><code>1</code> enables a RuneSchema content mod and <code>0</code> disables it without deleting its folder. This does not replace UE4SS's root mod activation file.</p><div class="runeschema-runtime-baseline" aria-label="UE4SS build baseline">
-        <div><span>UE4SS BUILD BASELINE</span><strong>v3.0.1-941-g0bfec09e</strong><p>The exact OG binary, now packaged with <code>DoEarlyScan = 1</code> and an Unreal Engine 5.6 override so RuneSchema does not initialize before required UE4SS functions are available.</p></div>
-        <a data-runeschema-ue4ss-download href="https://github.com/gh0sted5456-us/RuneSchema/releases/download/0.6.3-experimental.1/UE4SS_v3.0.1-941-g0bfec09e.zip" target="_blank" rel="noopener">Download matching UE4SS</a>
-      </div>
+  <p class="runeschema-release__lede"><code>1</code> enables a RuneSchema content mod and <code>0</code> disables it without deleting its folder. This does not replace UE4SS's root mod activation file.</p>
 
   <p class="runeschema-release__hash"><strong>Variant DLL SHA-256:</strong> D08F755C7A68E7864D631B034251113DDDEBF3232FECECF5BC4E5A7B27AC68AD</p>
 </section>
