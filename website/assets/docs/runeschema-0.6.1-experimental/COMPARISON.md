@@ -1,10 +1,10 @@
-# RuneSchema: Official 0.6.0 vs. 0.6.1 Experimental
+# RuneSchema: Official 0.6.0 vs. 0.6.2 Experimental
 
-> Informal experimental build codename: **Sizing Sneasel**. The formal release identity remains `RuneSchema 0.6.1 Experimental`; this codename does not indicate an official or upstream RuneSchema branch.
+> Experimental release codename: **Sizing Snickers**. The published release identity is `RuneSchema 0.6.2 Experimental`; this codename does not indicate an official or upstream RuneSchema branch.
 
 ## What is being compared
 
-This document compares the official RuneSchema `0.6.0` release with `RuneSchema 0.6.1 Experimental`. It contains the user-confirmed v8 behavior under its release identity, but remains a community variant rather than an official upstream RuneSchema release.
+This document compares the official RuneSchema `0.6.0` release with `RuneSchema 0.6.2 Experimental`. It contains the user-confirmed v8 behavior under its current published release identity, but remains a community variant rather than an official upstream RuneSchema release. The current Git tag, package filename, and DLL identity retain `0.6.1`; those identifiers are recorded in Build verification below.
 
 The baseline is official tag `0.6.0`, commit `c36d894b02eb006fafc079325035b924ac49f28d`, released by UnskippableCutscene on August 16, 2026.
 
@@ -18,11 +18,11 @@ The experimental build keeps the official content loaders and mod formats, then 
 
 The existing persistent `Actor` spawn system is inherited from official 0.6.0. This build does not claim to have invented that system. It extends those spawn entries with `Scale` and extends AI spawn points so the spawned AI can also receive the configured scale.
 
-RuneSchema 0.6.1 Experimental provides optional spawn drop multiplication as an explicitly experimental feature. Size and drops are independent: `Scale` never changes drops, while an explicit `DropIncreasePercent` changes supported live-instance drop rows. The feature can be disabled without disabling spawn scale.
+RuneSchema 0.6.2 Experimental provides optional spawn drop multiplication as an explicitly experimental feature. Size and drops are independent: `Scale` never changes drops, while an explicit `DropIncreasePercent` changes supported live-instance drop rows. The feature can be disabled without disabling spawn scale.
 
 ## At a glance
 
-| Area | Official 0.6.0 | 0.6.1 Experimental |
+| Area | Official 0.6.0 | 0.6.2 Experimental |
 |---|---|---|
 | Core loaders | Assets, Blueprints, raw tables, recipes, spawns, strings, journals, courses, buildings, and enums | Preserved |
 | Existing mod JSON | Official 0.6.0 formats | Intended to remain compatible |
@@ -254,11 +254,12 @@ The existing spawn loader still uses its official streamed-world and engine-call
 
 ## Build verification
 
-This document describes `RuneSchema-0.6.1-Experimental.zip`.
+This document describes the published `RuneSchema 0.6.2 Experimental — Sizing Snickers` release. Its downloadable package remains named `RuneSchema-0.6.1-Experimental.zip`.
 
 - Shipping target: `Game__Shipping__Win64`
 - Source commit: `d4dbd45199864d1e2c8d7f03a4f5780fc7120809`
-- Prerelease: `0.6.1-experimental.2`
+- Published release: `RuneSchema 0.6.2 Experimental — Sizing Snickers`
+- Prerelease tag: `0.6.1-experimental.2`
 - DLL size: `2,295,296` bytes
 - DLL SHA-256: `404127BA26971B1B39F7D19873B8C25B8AA5C803EF06DFBB096260517FEB5AEB`
 - Package SHA-256: `4F5B3F197BB10A78EF05B3212309B6E3C3EA3ACD0F58EBDAA7B3FE6E594408D4`

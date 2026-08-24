@@ -36,7 +36,7 @@
       const displayVersion = versionNumber ? `v${versionNumber}` : (/^v/i.test(tag) ? tag : `v${tag}`);
       const codename = releaseName.split(/\s+[—–-]\s+/).slice(1).join(" - ").trim();
       const packageAsset = (release.assets || []).find((asset) =>
-        /RuneSchema-0\.6\.1-Experimental\.zip$/i.test(String(asset?.name || "")) &&
+        /^RuneSchema-.*Experimental\.zip$/i.test(String(asset?.name || "")) &&
         asset?.browser_download_url
       );
 
@@ -61,6 +61,19 @@
         }
       }
       if (codenameLabel && codename) codenameLabel.textContent = `Experimental codename: ${codename}`;
+      if (versionNumber) {
+        document.querySelectorAll("[data-runeschema-comparison-version]").forEach((label) => {
+          label.textContent = versionNumber;
+        });
+        document.querySelectorAll("[data-runeschema-comparison]").forEach((comparison) => {
+          comparison.setAttribute("aria-label", `Official RuneSchema and ${versionNumber} Experimental feature comparison`);
+        });
+      }
+      if (codename) {
+        document.querySelectorAll("[data-runeschema-comparison-codename]").forEach((label) => {
+          label.textContent = codename;
+        });
+      }
     } catch (_) {
       // Keep the known-good links and version baked into the placard.
     }
@@ -80,11 +93,11 @@
   });
 
   const gallery = [
-    {title:"Overview", src:"assets/runeschema-experimental-v8/overview.png", alt:"RuneSchema 0.6.1 Experimental Overview page", caption:"Runtime status, detected mods, tooling state, and active paths."},
-    {title:"Settings", src:"assets/runeschema-experimental-v8/settings.png", alt:"RuneSchema 0.6.1 Experimental Settings page", caption:"Core options, experimental drop scaling, tooling controls, and mods.txt behavior."},
-    {title:"Generators", src:"assets/runeschema-experimental-v8/generators.png", alt:"RuneSchema 0.6.1 Experimental Generators page", caption:"On-demand JSON schemas and optional sanitized FModel draft snippets."},
-    {title:"Load Order", src:"assets/runeschema-experimental-v8/load-order.png", alt:"RuneSchema 0.6.1 Experimental Load Order page", caption:"Enable, disable, reorder, reconcile, refresh, and save the visible mods.txt contract."},
-    {title:"Compatibility", src:"assets/runeschema-experimental-v8/compatibility.png", alt:"RuneSchema 0.6.1 Experimental Compatibility page", caption:"Configure and run advisory collision reports only when requested."}
+    {title:"Overview", src:"assets/runeschema-experimental-v8/overview.png", alt:"Experimental RuneSchema Overview page", caption:"Runtime status, detected mods, tooling state, and active paths."},
+    {title:"Settings", src:"assets/runeschema-experimental-v8/settings.png", alt:"Experimental RuneSchema Settings page", caption:"Core options, experimental drop scaling, tooling controls, and mods.txt behavior."},
+    {title:"Generators", src:"assets/runeschema-experimental-v8/generators.png", alt:"Experimental RuneSchema Generators page", caption:"On-demand JSON schemas and optional sanitized FModel draft snippets."},
+    {title:"Load Order", src:"assets/runeschema-experimental-v8/load-order.png", alt:"Experimental RuneSchema Load Order page", caption:"Enable, disable, reorder, reconcile, refresh, and save the visible mods.txt contract."},
+    {title:"Compatibility", src:"assets/runeschema-experimental-v8/compatibility.png", alt:"Experimental RuneSchema Compatibility page", caption:"Configure and run advisory collision reports only when requested."}
   ];
   const galleryDialog = document.getElementById("runeschema-gallery-dialog");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
