@@ -241,13 +241,14 @@ This document describes the published `RuneSchema 0.6.2 Experimental — Sizing 
 
 - Shipping target: `Game__Shipping__Win64`
 - Clean source baseline: official `0.6.0` commit `c36d894b02eb006fafc079325035b924ac49f28d`
-- Consolidated targeted source head: `4044b9da0b9ecc2ddd0cdb0ef5883c80914e136c`
+- Consolidated targeted source head: `b79ba5f6a3f7b71da7d241e239382cbd0ffb2c88`
 - Published release: `RuneSchema 0.6.2 Experimental — Sizing Snickers`
 - Prerelease tag: `0.6.2-experimental.1`
 - DLL size: `2,307,072` bytes
-- UE4SS source/build commit: `a1e7f571c789f63f3de6773d056be6f778c14dc8` (`3.0.1-1088-ga1e7f571`)
-- DLL SHA-256: `941FBD7EB39E9552BA59D2993F9006DB1E4F778404EA6B27C9F0C65A969B97BE`
-- Package SHA-256: `EB3CD2F2D8C36B5C5C6FEF9CBE2C90ABCA3AA0A3446ABB83D0CFD806AE0214FD`
+- UE4SS source/build commit: `0bfec09ee30b7c4cda8aa151e2fdb15cbe6c10c9` (`3.0.1-941-g0bfec09e`), matching the official RuneSchema 0.6.0 source pin
+- DLL SHA-256: `9747A4A9FA7C4BE1197C8D3AB79A968617ED541CF4CA8BA3B70BDF7D3E06BB19`
+- RuneSchema package SHA-256: `F2204120B0952B1DDC8686ADD34C61164135A2548927978AD01820CE89B90575`
+- Matching UE4SS package SHA-256: `35352FE295F54FF289C20175D634522A5D1A97D80935BA6A31A00B3AE7971940`
 - `mods.txt` creation, ordering, enable-state, comment-preservation, and UI round-trip tests: passed
 - FModel numeric-suffix normalization tests: passed
 - Shipping DLL compilation: passed
