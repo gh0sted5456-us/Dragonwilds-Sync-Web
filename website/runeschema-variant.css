@@ -381,3 +381,20 @@ html[data-theme="white"] .runeschema-release button.runeschema-release__button:n
   text-decoration: none;
 }
 .runeschema-release__version-link:hover { text-decoration: underline; }
+.runeschema-runtime-baseline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: .75rem;
+  padding: .75rem .85rem;
+  border: 1px solid color-mix(in srgb, #55a9df 45%, var(--line));
+  border-radius: 12px;
+  background: color-mix(in srgb, #2176aa 10%, var(--panel));
+}
+.runeschema-runtime-baseline > div { display: grid; gap: .18rem; }
+.runeschema-runtime-baseline span { color: #78c8fa; font-size: .65rem; font-weight: 900; letter-spacing: .11em; }
+.runeschema-runtime-baseline strong { color: var(--text); }
+.runeschema-runtime-baseline p { margin: 0; color: var(--muted); font-size: .78rem; }
+.runeschema-runtime-baseline a { flex: 0 0 auto; padding: .6rem .75rem; border: 1px solid #55a9df; border-radius: 8px; color: var(--text); background: color-mix(in srgb, #2176aa 20%, var(--panel)); text-decoration: none; font-weight: 800; }
+@media(max-width:720px){.runeschema-runtime-baseline{align-items:stretch;flex-direction:column}.runeschema-runtime-baseline a{text-align:center}}

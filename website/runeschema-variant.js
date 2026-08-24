@@ -1,6 +1,7 @@
 (() => {
   const versionLink = document.querySelector("[data-runeschema-version]");
   const downloadLink = document.querySelector("[data-runeschema-download]");
+  const ue4ssDownloadLink = document.querySelector("[data-runeschema-ue4ss-download]");
   const releaseTitle = document.querySelector("[data-runeschema-title]");
   const codenameLabel = document.querySelector("[data-runeschema-codename]");
   if (!versionLink && !downloadLink) return;
@@ -33,8 +34,9 @@
       if (!tag) throw new Error("The RuneSchema prerelease has no tag");
       const releaseName = String(release.name || "").trim();
       const versionNumber = releaseName.match(/\b\d+\.\d+\.\d+\b/)?.[0] || tag.match(/\b\d+\.\d+\.\d+\b/)?.[0];
-      const displayVersion = versionNumber ? `v${versionNumber}` : (/^v/i.test(tag) ? tag : `v${tag}`);
+      const displayVersion = /^v/i.test(tag) ? tag : `v${tag}`;
       const codename = releaseName.split(/\s+[—–-]\s+/).slice(1).join(" - ").trim();
+      const ue4ssAsset = (release.assets || []).find((asset) => /^UE4SS.*\.zip$/i.test(String(asset?.name || "")) && asset?.browser_download_url);
       const packageAsset = (release.assets || []).find((asset) =>
         /^RuneSchema-.*Experimental\.zip$/i.test(String(asset?.name || "")) &&
         asset?.browser_download_url
@@ -51,7 +53,10 @@
         downloadLink.href = packageAsset?.browser_download_url || release.html_url || releaseHistory;
         downloadLink.dataset.releaseSource = "github";
       }
-      if (releaseTitle && versionNumber) {
+      if (ue4ssDownloadLink) {
+        ue4ssDownloadLink.href = ue4ssAsset?.browser_download_url || release.html_url || releaseHistory;
+        ue4ssDownloadLink.dataset.releaseSource = "github";
+      }      if (releaseTitle && versionNumber) {
         releaseTitle.replaceChildren(document.createTextNode(`RuneSchema ${versionNumber} Experimental `));
         if (codename) {
           const codenameBadge = document.createElement("span");
