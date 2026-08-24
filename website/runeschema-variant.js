@@ -1,6 +1,8 @@
 (() => {
   const versionLink = document.querySelector("[data-runeschema-version]");
   const downloadLink = document.querySelector("[data-runeschema-download]");
+  const releaseTitle = document.querySelector("[data-runeschema-title]");
+  const codenameLabel = document.querySelector("[data-runeschema-codename]");
   if (!versionLink && !downloadLink) return;
 
   const releasesApi = "https://api.github.com/repos/gh0sted5456-us/RuneSchema/releases?per_page=20";
@@ -13,33 +15,52 @@
       if (!response.ok) throw new Error("RuneSchema release metadata is unavailable");
 
       const releases = await response.json();
-      const release = releases.find((candidate) =>
-        candidate &&
-        !candidate.draft &&
-        candidate.prerelease &&
-        /experimental/i.test(String(candidate.tag_name || ""))
-      );
+      const release = releases
+        .filter((candidate) =>
+          candidate &&
+          !candidate.draft &&
+          candidate.prerelease &&
+          /experimental/i.test(`${candidate.name || ""} ${candidate.tag_name || ""}`)
+        )
+        .sort((left, right) => {
+          const leftDate = Date.parse(left.published_at || left.created_at || 0) || 0;
+          const rightDate = Date.parse(right.published_at || right.created_at || 0) || 0;
+          return rightDate - leftDate;
+        })[0];
       if (!release) throw new Error("No experimental RuneSchema prerelease was found");
 
       const tag = String(release.tag_name || "").trim();
       if (!tag) throw new Error("The RuneSchema prerelease has no tag");
-      const displayTag = /^v/i.test(tag) ? tag : `v${tag}`;
+      const releaseName = String(release.name || "").trim();
+      const versionNumber = releaseName.match(/\b\d+\.\d+\.\d+\b/)?.[0] || tag.match(/\b\d+\.\d+\.\d+\b/)?.[0];
+      const displayVersion = versionNumber ? `v${versionNumber}` : (/^v/i.test(tag) ? tag : `v${tag}`);
+      const codename = releaseName.split(/\s+[—–-]\s+/).slice(1).join(" - ").trim();
       const packageAsset = (release.assets || []).find((asset) =>
         /RuneSchema-0\.6\.1-Experimental\.zip$/i.test(String(asset?.name || "")) &&
         asset?.browser_download_url
       );
 
       if (versionLink) {
-        versionLink.textContent = `Current prerelease: ${displayTag}`;
+        versionLink.textContent = `Current prerelease: ${displayVersion}`;
         versionLink.href = release.html_url || releaseHistory;
         versionLink.dataset.releaseSource = "github";
         versionLink.title = "Version automatically resolved from GitHub Releases";
       }
       if (downloadLink) {
-        downloadLink.textContent = `Download ${displayTag}`;
+        downloadLink.textContent = `Download ${displayVersion}`;
         downloadLink.href = packageAsset?.browser_download_url || release.html_url || releaseHistory;
         downloadLink.dataset.releaseSource = "github";
       }
+      if (releaseTitle && versionNumber) {
+        releaseTitle.replaceChildren(document.createTextNode(`RuneSchema ${versionNumber} Experimental `));
+        if (codename) {
+          const codenameBadge = document.createElement("span");
+          codenameBadge.className = "runeschema-codename";
+          codenameBadge.textContent = codename;
+          releaseTitle.append(codenameBadge);
+        }
+      }
+      if (codenameLabel && codename) codenameLabel.textContent = `Experimental codename: ${codename}`;
     } catch (_) {
       // Keep the known-good links and version baked into the placard.
     }

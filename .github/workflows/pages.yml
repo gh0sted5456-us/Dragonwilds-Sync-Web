@@ -166,6 +166,8 @@ jobs:
           grep -q 'DropIncreasePercent' _site/for-modders.html
           grep -q '0.6.1-experimental.2' _site/for-modders.html
           grep -q 'data-runeschema-version' _site/for-modders.html
+          grep -q 'Current prerelease: v0.6.2' _site/for-modders.html
+          grep -q 'data-runeschema-title' _site/for-modders.html
           grep -q 'api.github.com/repos/gh0sted5456-us/RuneSchema/releases' _site/runeschema-variant.js
           grep -q 'PersistenceID' _site/for-modders.html
           grep -q 'InternalName' _site/for-modders.html
