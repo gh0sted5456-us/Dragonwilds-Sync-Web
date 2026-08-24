@@ -260,12 +260,12 @@ The existing spawn loader still uses its official streamed-world and engine-call
 This document describes the published `RuneSchema 0.6.2 Experimental — Recipe Identity Add-on` release and `RuneSchema-0.6.2-Experimental.zip` package.
 
 - Shipping target: `Game__Shipping__Win64`
-- Source commit: `2cf7297f7a20a2c3e5cd06d83cefc7a5828f7c53`
+- Source commit: `fcd18cc4dd0061a540ad2f9ac21b1af105d943d2`
 - Published release: `RuneSchema 0.6.2 Experimental — Recipe Identity Add-on`
 - Prerelease tag: `0.6.2-experimental.1`
 - DLL size: `2,307,072` bytes
-- DLL SHA-256: `33453262324644A3585ED095A5DEE7C2F24AE76A2540444CCA135C54E7864430`
-- Package SHA-256: `B37571A54E77F9F5B1B9C56D5DE90D975A1FC446D48FCB250558077B21954551`
+- DLL SHA-256: `DAB9376DE1EE6EB7E9A29D5B4538A62CD765699CA4575D396E11A4E14C6ED082`
+- Package SHA-256: `289B94B146E61F7F31361B522FAF66956D17D3FE09CCBEA9484A7E6D73A1CBA2`
 - `mods.txt` creation, ordering, enable-state, comment-preservation, and UI round-trip tests: passed
 - FModel numeric-suffix normalization tests: passed
 - Shipping DLL compilation: passed
