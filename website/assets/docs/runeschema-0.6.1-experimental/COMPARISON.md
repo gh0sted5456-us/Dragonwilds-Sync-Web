@@ -8,6 +8,8 @@ This document compares the official RuneSchema `0.6.0` release with `RuneSchema 
 
 The baseline is official tag `0.6.0`, commit `c36d894b02eb006fafc079325035b924ac49f28d`, released by UnskippableCutscene on August 16, 2026.
 
+Credits are preserved in the compiled mod metadata: Okaetsu created PalSchema, Snorkles created RuneSchema, and Jonesing4Space created the additional experimental features.
+
 - Official source: https://github.com/UnskippableCutscene/RuneSchema/tree/0.6.0
 - Official release: https://github.com/UnskippableCutscene/RuneSchema/releases/tag/0.6.0
 - Official documentation: https://unskippablecutscene.github.io/RuneSchema-Docs/
@@ -241,13 +243,13 @@ This document describes the published `RuneSchema 0.6.2 Experimental — Sizing 
 
 - Shipping target: `Game__Shipping__Win64`
 - Clean source baseline: official `0.6.0` commit `c36d894b02eb006fafc079325035b924ac49f28d`
-- Consolidated targeted source head: `b79ba5f6a3f7b71da7d241e239382cbd0ffb2c88`
+- Consolidated targeted source head: `5f370f18a12fc2e20070f14199b58b94796eb920`
 - Published release: `RuneSchema 0.6.2 Experimental — Sizing Snickers`
 - Prerelease tag: `0.6.2-experimental.1`
 - DLL size: `2,307,072` bytes
 - UE4SS source/build commit: `0bfec09ee30b7c4cda8aa151e2fdb15cbe6c10c9` (`3.0.1-941-g0bfec09e`), matching the official RuneSchema 0.6.0 source pin
-- DLL SHA-256: `9747A4A9FA7C4BE1197C8D3AB79A968617ED541CF4CA8BA3B70BDF7D3E06BB19`
-- RuneSchema package SHA-256: `F2204120B0952B1DDC8686ADD34C61164135A2548927978AD01820CE89B90575`
+- DLL SHA-256: `4A35E80D573FEAF53269E42C16647D812C3286D81574679450ABD8CFB7788F9B`
+- RuneSchema package SHA-256: `81E67B68583D4A01160AF344322D4807F087DC50D1A0798AA28D262AE193440B`
 - Matching UE4SS package SHA-256: `35352FE295F54FF289C20175D634522A5D1A97D80935BA6A31A00B3AE7971940`
 - `mods.txt` creation, ordering, enable-state, comment-preservation, and UI round-trip tests: passed
 - FModel numeric-suffix normalization tests: passed
