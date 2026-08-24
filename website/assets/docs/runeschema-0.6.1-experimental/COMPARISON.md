@@ -258,9 +258,10 @@ This document describes the published `RuneSchema 0.6.3 Experimental — Registr
 - Prerelease tag: `0.6.3-experimental.1`
 - DLL size: `2,320,384` bytes
 - UE4SS source/build commit: `0bfec09ee30b7c4cda8aa151e2fdb15cbe6c10c9` (`3.0.1-941-g0bfec09e`), matching the official RuneSchema 0.6.0 source pin
+- Matching UE4SS archive settings for the current Dragonwilds UE 5.6 build: `DoEarlyScan = 1`, `MajorVersion = 5`, `MinorVersion = 6`, and `DebugBuild = false`
 - DLL SHA-256: `D08F755C7A68E7864D631B034251113DDDEBF3232FECECF5BC4E5A7B27AC68AD`
 - RuneSchema package SHA-256: `577DD6750E6ABF9B9889AD4752AB84065482F4FFFE34A43DDD257770D8D79317`
-- Matching UE4SS package SHA-256: `35352FE295F54FF289C20175D634522A5D1A97D80935BA6A31A00B3AE7971940`
+- Matching UE4SS package SHA-256: `10C8B7350177B28AAD5E6371BECE2347D501DD1B58F9949C512AE6AEE0E0B3A8`
 - `mods.txt` creation, ordering, enable-state, comment-preservation, and UI round-trip tests: passed
 - FModel numeric-suffix normalization tests: passed
 - Shipping DLL compilation: passed

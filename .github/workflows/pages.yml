@@ -181,7 +181,7 @@ jobs:
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/journal_identity.json >/dev/null
           grep -q '577DD6750E6ABF9B9889AD4752AB84065482F4FFFE34A43DDD257770D8D79317' _site/for-modders.html
           grep -q 'Okaetsu created PalSchema, Snorkles created RuneSchema, and Jonesing4Space created the additional experimental features' _site/for-modders.html
-          grep -q '35352FE295F54FF289C20175D634522A5D1A97D80935BA6A31A00B3AE7971940' _site/for-modders.html
+          grep -q '10C8B7350177B28AAD5E6371BECE2347D501DD1B58F9949C512AE6AEE0E0B3A8' _site/for-modders.html
           grep -q 'UE4SS_v3.0.1-941-g0bfec09e.zip' _site/for-modders.html
           ! grep -q 'RuneSchema-0.6.1-Experimental-Source-and-Package.zip' _site/for-modders.html
           grep -q 'world-cards-20260823-1' _site/world-builder.html
