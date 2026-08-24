@@ -164,6 +164,11 @@ jobs:
           grep -q 'data-linux-quick-download' _site/downloads.html
           ! grep -q 'v2.0.1' _site/download-flip.js
           grep -q 'DropIncreasePercent' _site/for-modders.html
+          grep -q '0.6.1-experimental.2' _site/for-modders.html
+          grep -q 'PersistenceID' _site/for-modders.html
+          grep -q 'InternalName' _site/for-modders.html
+          grep -q '4F5B3F197BB10A78EF05B3212309B6E3C3EA3ACD0F58EBDAA7B3FE6E594408D4' _site/for-modders.html
+          ! grep -q 'RuneSchema-0.6.1-Experimental-Source-and-Package.zip' _site/for-modders.html
           grep -q 'world-cards-20260823-1' _site/world-builder.html
           test -s _site/assets/downloads/RuneSchema-0.6.1-Experimental.zip
           unzip -tqq _site/assets/downloads/RuneSchema-0.6.1-Experimental.zip
