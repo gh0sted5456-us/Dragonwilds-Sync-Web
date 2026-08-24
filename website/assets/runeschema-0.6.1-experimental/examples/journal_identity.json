@@ -1,0 +1,11 @@
+{
+  "JOURNAL_Gravetide": {
+    "PersistenceID": "GTV063JOURNAL1",
+    "InternalName": "mod_journal_gravetide",
+    "Type": "Lore",
+    "AddTo": {
+      "SubCategory": "/Game/Example/Journal/DA_SubCategory.DA_SubCategory",
+      "Key": "JOURNAL_Gravetide"
+    }
+  }
+}

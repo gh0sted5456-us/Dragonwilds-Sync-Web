@@ -1,5 +1,7 @@
 {
   "/Game/Mods/GravetideStaff/Gameplay/ITEM_Staff_Gravetide.ITEM_Staff_Gravetide": {
+    "PersistenceID": "GTV063STAFF001",
+    "InternalName": "mod_staff_gravetide",
     "Name": "Gravetide Staff",
     "FlavourText": "A prison of whispering souls bound around a heart of black glass.",
     "DamageMultiplier": 16.2,

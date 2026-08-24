@@ -1,10 +1,10 @@
-# RuneSchema: Official 0.6.0 vs. 0.6.2 Experimental
+# RuneSchema: Official 0.6.0 vs. 0.6.3 Experimental
 
-> Experimental release codename: **Sizing Snickers**. The published release identity remains `RuneSchema 0.6.2 Experimental`; this label does not indicate an official or upstream RuneSchema branch.
+> Experimental release codename: **Registry Identity**. The published release identity remains `RuneSchema 0.6.3 Experimental`; this label does not indicate an official or upstream RuneSchema branch.
 
 ## What is being compared
 
-This document compares the official RuneSchema `0.6.0` release with `RuneSchema 0.6.2 Experimental`. It contains the user-confirmed v8 behavior, but remains a community variant rather than an official upstream RuneSchema release.
+This document compares the official RuneSchema `0.6.0` release with `RuneSchema 0.6.3 Experimental`. It contains the user-confirmed v8 behavior, but remains a community variant rather than an official upstream RuneSchema release.
 
 The baseline is official tag `0.6.0`, commit `c36d894b02eb006fafc079325035b924ac49f28d`, released by UnskippableCutscene on August 16, 2026.
 
@@ -16,15 +16,15 @@ Credits are preserved in the compiled mod metadata: Okaetsu created PalSchema, S
 
 ## Short version
 
-The experimental build keeps the official content loaders and mod formats, then adds management and authoring tools around them. Its largest user-facing additions are an expanded UE4SS RuneSchema tab, deterministic RuneSchema mod ordering through `mods.txt`, compatibility reports, broader schema generation, FModel path cleanup, and spawn scaling.
+The experimental build keeps the official content loaders and mod formats, then adds management and authoring tools around them. Its largest user-facing additions are an expanded UE4SS RuneSchema tab, deterministic RuneSchema mod ordering through `mods.txt`, compatibility reports, broader schema generation, FModel path cleanup, spawn scaling, and registry-aware identity overrides.
 
 The existing persistent `Actor` spawn system is inherited from official 0.6.0. This build does not claim to have invented that system. It extends those spawn entries with `Scale` and extends AI spawn points so the spawned AI can also receive the configured scale.
 
-RuneSchema 0.6.2 Experimental provides optional spawn drop multiplication as an explicitly experimental feature. Size and drops are independent: `Scale` never changes drops, while an explicit `DropIncreasePercent` changes supported live-instance drop rows. The feature can be disabled without disabling spawn scale.
+RuneSchema 0.6.3 Experimental provides optional spawn drop multiplication as an explicitly experimental feature. Size and drops are independent: `Scale` never changes drops, while an explicit `DropIncreasePercent` changes supported live-instance drop rows. The feature can be disabled without disabling spawn scale.
 
 ## At a glance
 
-| Area | Official 0.6.0 | 0.6.2 Experimental |
+| Area | Official 0.6.0 | 0.6.3 Experimental |
 |---|---|---|
 | Core loaders | Assets, Blueprints, raw tables, recipes, spawns, strings, journals, courses, buildings, and enums | Preserved |
 | Existing mod JSON | Official 0.6.0 formats | Intended to remain compatible |
@@ -34,7 +34,7 @@ RuneSchema 0.6.2 Experimental provides optional spawn drop multiplication as an 
 | Visual load-order editor | Not available | Checkboxes plus Up/Down controls; saves to `mods.txt` |
 | Configuration | Three core settings | Core settings plus optional tooling controls; no visible config version field |
 | Compatibility analysis | Not available | Optional one-time collision report |
-| Generated schemas | Utility, enums, and raw data tables | Also loaded asset and Blueprint class schemas |
+| Generated schemas | Utility, enums, and raw data tables | Also loaded asset, Blueprint class, recipe, and journal schemas |
 | FModel `.0` paths | Not consistently normalized at every entry point | Centralized normalization for asset targets and object references |
 | FModel conversion helper | Not available | Optional sanitized draft-snippet generator |
 | Persistent `Actor` spawns | Supported | Preserved |
@@ -42,6 +42,7 @@ RuneSchema 0.6.2 Experimental provides optional spawn drop multiplication as an 
 | AI spawn settings and respawn timer | Supported | Preserved |
 | Spawn `Scale` | Not available | Added to `Actor` and `AISpawnPoint` entries |
 | Spawn drop increases | Not available | Optional explicit `DropIncreasePercent`; independent of `Scale` |
+| `PersistenceID` / `InternalName` authoring | Not exposed as a targeted extension | Optional for asset, recipe, and journal entries; collisions rejected and live lookup maps synchronized |
 
 ## What remains unchanged
 
@@ -148,7 +149,7 @@ The report is advisory. It does not reorder, merge, disable, or rewrite content 
 
 The manual generator retains the official schema outputs and adds loaded asset and Blueprint class schemas. The additional files improve editor autocomplete for existing reflected properties, especially when generation is run after entering a world and more game data is loaded.
 
-Generated suggestions omit identity and runtime-bookkeeping fields such as persistence identifiers, internal names, GUID-like properties, root components, graph frames, and runtime-created component arrays. This filtering reduces dangerous suggestions; it is not a promise that every remaining Unreal property is safe to edit.
+Generated suggestions continue to omit GUID-like and runtime-bookkeeping properties such as root components, graph frames, and runtime-created component arrays. `PersistenceID` and `InternalName` are exposed only in the supported asset, recipe, and journal authoring contexts. This filtering reduces dangerous suggestions; it is not a promise that every remaining Unreal property is safe to edit.
 
 ## FModel support
 
@@ -162,9 +163,17 @@ The experimental build treats common FModel spellings such as these as the same 
 
 A numeric export suffix is normalized to the asset name. Explicit nonnumeric object suffixes and subobject paths are retained. The shared normalization is used for top-level asset targets and supported hard, soft, and class-reference paths.
 
-The optional snippet generator reads exported JSON from `RuneSchema/config/fmodel-input/` and writes reviewable drafts to `RuneSchema/config/fmodel-snippets/`. Asset and Blueprint drafts filter identity and runtime-bookkeeping fields.
+The optional snippet generator reads exported JSON from `RuneSchema/config/fmodel-input/` and writes reviewable drafts to `RuneSchema/config/fmodel-snippets/`. Top-level asset drafts may retain supported identity fields; nested and Blueprint drafts continue to filter them with the other runtime-bookkeeping fields.
 
 These drafts are authoring aids, not installed mods. Runtime reflection remains authoritative, and every generated snippet still requires review.
+
+## Registry-aware identity overrides
+
+Version 0.6.3 allows optional `PersistenceID` and `InternalName` values in supported `assets`, `recipes`, and singular `journal` loader files. Recipe identity may be top-level or inside `Properties`; a top-level value wins when both are present.
+
+Omitting a field—or setting it to `null`, an empty string, or whitespace—preserves the loaded value for an existing object or the RuneSchema-generated default for a new entry. Explicit values must be strings, unique across both identity namespaces, and stable once saves depend on them.
+
+This implementation treats identity as a registry operation rather than an ordinary reflected-property write. It checks loaded objects and live registry maps for collisions, rejects conflicting changes, then updates the object and both persistence/internal-name lookup maps together. It performs this work during normal mod loading and adds no polling or per-frame tick.
 
 ## Spawn scaling
 
@@ -233,26 +242,28 @@ The existing spawn loader still uses its official streamed-world and engine-call
 - The compatibility report finds structural overlap, not every gameplay conflict.
 - FModel conversion produces drafts and cannot prove runtime edit safety.
 - Generated schemas expose reflected fields conservatively but cannot guarantee gameplay-safe values.
+- Identity collision checks protect the live registries, but changing an ID already stored in a save can still break that save's reference; use stable values and test on a backup.
 - `Scale` does not imply stat scaling.
 - Drop multiplication remains experimental and only affects supported `ItemsToDrop` layouts. It does not guarantee that every enemy or resource class stores drops in one of those locations.
 - `RemoveActor` retains the official safety behavior and does not indiscriminately delete every level-placed actor.
 
 ## Build verification
 
-This document describes the published `RuneSchema 0.6.2 Experimental — Sizing Snickers` release and `RuneSchema-0.6.2-Experimental.zip` package.
+This document describes the published `RuneSchema 0.6.3 Experimental — Registry Identity` release and `RuneSchema-0.6.3-Experimental.zip` package.
 
 - Shipping target: `Game__Shipping__Win64`
 - Clean source baseline: official `0.6.0` commit `c36d894b02eb006fafc079325035b924ac49f28d`
-- Consolidated targeted source head: `5f370f18a12fc2e20070f14199b58b94796eb920`
-- Published release: `RuneSchema 0.6.2 Experimental — Sizing Snickers`
-- Prerelease tag: `0.6.2-experimental.1`
-- DLL size: `2,307,072` bytes
+- Consolidated targeted source head: `bfe982c9ee961702990638317fe69a4e9949b44f`
+- Published release: `RuneSchema 0.6.3 Experimental — Registry Identity`
+- Prerelease tag: `0.6.3-experimental.1`
+- DLL size: `2,320,384` bytes
 - UE4SS source/build commit: `0bfec09ee30b7c4cda8aa151e2fdb15cbe6c10c9` (`3.0.1-941-g0bfec09e`), matching the official RuneSchema 0.6.0 source pin
-- DLL SHA-256: `4A35E80D573FEAF53269E42C16647D812C3286D81574679450ABD8CFB7788F9B`
-- RuneSchema package SHA-256: `81E67B68583D4A01160AF344322D4807F087DC50D1A0798AA28D262AE193440B`
+- DLL SHA-256: `D08F755C7A68E7864D631B034251113DDDEBF3232FECECF5BC4E5A7B27AC68AD`
+- RuneSchema package SHA-256: `577DD6750E6ABF9B9889AD4752AB84065482F4FFFE34A43DDD257770D8D79317`
 - Matching UE4SS package SHA-256: `35352FE295F54FF289C20175D634522A5D1A97D80935BA6A31A00B3AE7971940`
 - `mods.txt` creation, ordering, enable-state, comment-preservation, and UI round-trip tests: passed
 - FModel numeric-suffix normalization tests: passed
 - Shipping DLL compilation: passed
-- Runtime behavior inherited from v8: user-confirmed
+- Runtime spawn behavior inherited from v8: user-confirmed
+- Registry-aware identity implementation: shipping compilation passed; in-game validation remains required before treating it as stable
 

@@ -1,5 +1,7 @@
 {
   "RECIPE_Gravetide_Staff": {
+    "PersistenceID": "GTV063RECIPE01",
+    "InternalName": "mod_recipe_gravetide_staff",
     "Properties": {
       "SkillXPAwardedOnCraft": 25
     }
