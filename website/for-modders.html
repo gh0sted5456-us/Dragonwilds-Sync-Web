@@ -126,11 +126,11 @@ Version: 1.0.0
 Author: Your Name</code></pre><p>Add RuntimeRole, HotloadCapable, tags, links, and Item rows only when you know their correct values.</p></section><section class="runeschema-release" id="runeschema-flavors" aria-labelledby="runeschema-variant-title">
   <div class="runeschema-release__hero">
     <div>
-      <p class="runeschema-release__eyebrow" data-runeschema-codename>Experimental codename: Sizing Snickers</p>
-      <h2 id="runeschema-variant-title" data-runeschema-title>RuneSchema 0.6.2 Experimental <span class="runeschema-codename">Sizing Snickers</span></h2>
-      <p class="runeschema-release__lede">A community experiment built on official RuneSchema 0.6.0. It preserves the official loaders and spawn foundation, then adds a five-page UE4SS management interface, deterministic mod ordering, collision reports, authoring tools, optional asset identity fields, spawn scale, and optional explicit drop multiplication.</p>
-      <a class="runeschema-release__version-link" data-runeschema-version href="https://github.com/gh0sted5456-us/RuneSchema/releases/tag/0.6.1-experimental.2" target="_blank" rel="noopener" aria-live="polite">Current prerelease: v0.6.2</a><div class="runeschema-release__actions">
-        <a class="runeschema-release__button runeschema-release__button--primary" data-runeschema-download href="https://github.com/gh0sted5456-us/RuneSchema/releases/download/0.6.1-experimental.2/RuneSchema-0.6.1-Experimental.zip" target="_blank" rel="noopener">Download v0.6.2</a>
+      <p class="runeschema-release__eyebrow" data-runeschema-codename>Experimental codename: Recipe Identity</p>
+      <h2 id="runeschema-variant-title" data-runeschema-title>RuneSchema 0.6.3 Experimental <span class="runeschema-codename">Recipe Identity</span></h2>
+      <p class="runeschema-release__lede">A community experiment built on official RuneSchema 0.6.0. It preserves the official loaders and spawn foundation, then adds a five-page UE4SS management interface, deterministic mod ordering, collision reports, authoring tools, optional asset and recipe identity fields, spawn scale, and optional explicit drop multiplication.</p>
+      <a class="runeschema-release__version-link" data-runeschema-version href="https://github.com/gh0sted5456-us/RuneSchema/releases/tag/0.6.3-experimental.1" target="_blank" rel="noopener" aria-live="polite">Current prerelease: v0.6.3</a><div class="runeschema-release__actions">
+        <a class="runeschema-release__button runeschema-release__button--primary" data-runeschema-download href="https://github.com/gh0sted5456-us/RuneSchema/releases/download/0.6.3-experimental.1/RuneSchema-0.6.3-Experimental.zip" target="_blank" rel="noopener">Download v0.6.3</a>
         <button class="runeschema-release__button" type="button" data-runeschema-dialog="runeschema-install-dialog">Read installation guide</button>
         <button class="runeschema-release__button" type="button" data-runeschema-dialog="runeschema-comparison-dialog">Open full comparison</button>
         <button class="runeschema-release__button" type="button" data-runeschema-dialog="runeschema-json-dialog">See JSON in action</button>
@@ -142,7 +142,7 @@ Author: Your Name</code></pre><p>Add RuntimeRole, HotloadCapable, tags, links, a
   <p class="runeschema-release__notice"><strong>Source is maintained on GitHub:</strong> review the current <a href="https://github.com/gh0sted5456-us/RuneSchema/tree/main">community source</a>, the isolated <a href="https://github.com/gh0sted5456-us/RuneSchema/tree/experimental/0.6.1">experimental branch</a>, or the <a href="https://github.com/UnskippableCutscene/RuneSchema/pull/1">draft upstream pull request</a>. The prerelease download contains only the installable RuneSchema mod.</p>
             <p class="runeschema-release__notice runeschema-release__notice--unsupported"><strong>Independent and unsupported by the original author:</strong> this community variant is based on RuneSchema 0.6.0 by UnskippableCutscene, but it is not authored, endorsed, maintained, or supported by the original RuneSchema author. Please direct variant questions and bug reports to the <a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync/issues">Dragonwilds Sync issue tracker</a>, not upstream RuneSchema. Original attribution remains intact: <a href="https://github.com/UnskippableCutscene/RuneSchema/tree/0.6.0">official 0.6.0 source</a> and <a href="https://unskippablecutscene.github.io/RuneSchema-Docs/">official documentation</a>.</p>
 
-  <div class="runeschema-versus" data-runeschema-comparison aria-label="Official RuneSchema and 0.6.2 Experimental feature comparison">
+  <div class="runeschema-versus" data-runeschema-comparison aria-label="Official RuneSchema and 0.6.3 Experimental feature comparison">
   <div class="runeschema-versus__heading">
     <p class="runeschema-release__eyebrow">Feature map</p>
     <h3>Official foundation. Experimental control layer.</h3>
@@ -163,14 +163,14 @@ Author: Your Name</code></pre><p>Add RuntimeRole, HotloadCapable, tags, links, a
     </article>
     <div class="runeschema-versus__bridge" aria-hidden="true"><span>+</span></div>
     <article class="runeschema-versus__column runeschema-versus__column--experimental">
-      <span class="runeschema-versus__badge"><span data-runeschema-comparison-version>0.6.2</span> EXPERIMENTAL</span>
+      <span class="runeschema-versus__badge"><span data-runeschema-comparison-version>0.6.3</span> EXPERIMENTAL</span>
       <h3>Management and authoring layer</h3>
       <ul>
         <li><strong>Formats preserved</strong><span>Existing official loaders and mod JSON remain the compatibility target.</span></li>
         <li><strong>Five-page interface</strong><span>Overview, Settings, Generators, Load Order, and Compatibility.</span></li>
         <li><strong>Deterministic order</strong><span><code>mods.txt</code> enable switches, Up/Down controls, comments, and saved order.</span></li>
         <li><strong>Collision reports</strong><span>Optional scans for shared targets, properties, and full-array replacement.</span></li>
-        <li><strong>Authoring tools</strong><span>Asset/Blueprint schemas, FModel path normalization, optional draft snippets, and optional asset identity fields.</span></li>
+        <li><strong>Authoring tools</strong><span>Asset/Blueprint/recipe schemas, FModel path normalization, optional drafts, and optional asset or recipe identity fields.</span></li>
         <li><strong>Explicit spawn extensions</strong><span>Actor and AI Scale plus opt-in <code>DropIncreasePercent</code>, independent of size.</span></li>
       </ul>
     </article>
@@ -179,7 +179,7 @@ Author: Your Name</code></pre><p>Add RuntimeRole, HotloadCapable, tags, links, a
 <div class="runeschema-gallery" aria-labelledby="runeschema-gallery-title">
   <div class="runeschema-versus__heading">
     <p class="runeschema-release__eyebrow">Interface gallery</p>
-    <h3 id="runeschema-gallery-title">See <span data-runeschema-comparison-version>0.6.2</span> experimental in UE4SS</h3>
+    <h3 id="runeschema-gallery-title">See <span data-runeschema-comparison-version>0.6.3</span> experimental in UE4SS</h3>
     <p>Scroll through the compact previews, then select any view for the full-size rotating gallery.</p>
   </div>
   <div class="runeschema-gallery__grid">
@@ -203,14 +203,14 @@ Author: Your Name</code></pre><p>Add RuntimeRole, HotloadCapable, tags, links, a
 Example Mod B : 0</code></pre>
   <p class="runeschema-release__lede"><code>1</code> enables a RuneSchema content mod and <code>0</code> disables it without deleting its folder. This does not replace UE4SS's root mod activation file.</p>
 
-  <p class="runeschema-release__hash"><strong>Variant DLL SHA-256:</strong> 404127BA26971B1B39F7D19873B8C25B8AA5C803EF06DFBB096260517FEB5AEB</p>
+  <p class="runeschema-release__hash"><strong>Variant DLL SHA-256:</strong> 374CB1F598848AEB0DFB35A8506F131D6A3A78AF7A29C0F75324017DA18854F7</p>
 </section>
 
 
 <dialog class="runeschema-dialog runeschema-dialog--wide runeschema-json-dialog" id="runeschema-json-dialog" aria-labelledby="runeschema-json-dialog-title">
   <div class="runeschema-dialog__shell">
     <header class="runeschema-dialog__header">
-      <div><p class="runeschema-release__eyebrow"><span data-runeschema-comparison-codename>Sizing Snickers</span> examples</p><h2 id="runeschema-json-dialog-title">See JSON in action</h2></div>
+      <div><p class="runeschema-release__eyebrow"><span data-runeschema-comparison-codename>Recipe Identity</span> examples</p><h2 id="runeschema-json-dialog-title">See JSON in action</h2></div>
       <button class="runeschema-dialog__close" type="button" data-runeschema-close aria-label="Close JSON examples">Close</button>
     </header>
     <div class="runeschema-json-tabs" role="tablist" aria-label="RuneSchema JSON examples"><button type="button" role="tab" aria-selected="true" data-json-tab="ash">Ash Tree</button>
@@ -221,6 +221,7 @@ Example Mod B : 0</code></pre>
 <button type="button" role="tab" aria-selected="false" data-json-tab="shop">Persistent Shop</button>
 <button type="button" role="tab" aria-selected="false" data-json-tab="identity">Asset Identity</button>
 <button type="button" role="tab" aria-selected="false" data-json-tab="gravetide">Gravetide Staff</button>
+<button type="button" role="tab" aria-selected="false" data-json-tab="recipe-identity">Recipe Identity</button>
     </div>
     <div class="runeschema-dialog__body runeschema-json-dialog__body"><section data-json-panel="ash"><header><div><span>EXPERIMENTAL FIELDS</span><h3>Scaled Ash Tree with explicit drops</h3><p>Scale 4 changes size. DropIncreasePercent 50 separately requests a supported drop increase.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/AshTree_1.json" download>Download JSON</a></header><pre><code>[
   {
@@ -365,13 +366,23 @@ Example Mod B : 0</code></pre>
   }
 }
 </code></pre></section>
+<section data-json-panel="recipe-identity" hidden><header><div><span>OPTIONAL RECIPE FIELDS</span><h3>Gravetide recipe using identity defaults</h3><p>Blank PersistenceID and InternalName fields use the recipe key for a new recipe. Existing recipes preserve their loaded values. Either field may instead contain a unique, stable explicit value.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/gravetide_staff_recipe_identity.json" download>Download JSON</a></header><pre><code>{
+  &quot;RECIPE_Gravetide_Staff&quot;: {
+    &quot;PersistenceID&quot;: &quot;&quot;,
+    &quot;InternalName&quot;: &quot;&quot;,
+    &quot;Properties&quot;: {
+      &quot;SkillXPAwardedOnCraft&quot;: 25
+    }
+  }
+}
+</code></pre></section>
     </div>
-    <footer class="runeschema-json-dialog__footer"><p><strong>Optional means preserve.</strong> Omitting <code>DropIncreasePercent</code>, <code>PersistenceID</code>, or <code>InternalName</code> leaves the corresponding loaded behavior or value unchanged.</p><button type="button" data-json-copy>Copy active example</button><span data-json-copy-status aria-live="polite"></span></footer>
+    <footer class="runeschema-json-dialog__footer"><p><strong>Optional means preserve or default.</strong> Omitted asset identities preserve loaded values. Missing or blank recipe identities use the recipe key for new recipes and preserve loaded values for existing recipes.</p><button type="button" data-json-copy>Copy active example</button><span data-json-copy-status aria-live="polite"></span></footer>
   </div>
 </dialog>
 <dialog class="runeschema-dialog runeschema-gallery-dialog" id="runeschema-gallery-dialog" aria-labelledby="runeschema-gallery-dialog-title">
   <div class="runeschema-dialog__shell">
-    <header class="runeschema-dialog__header"><div><p class="runeschema-release__eyebrow"><span data-runeschema-comparison-codename>Sizing Snickers</span> interface</p><h2 id="runeschema-gallery-dialog-title">Overview</h2></div><button class="runeschema-dialog__close" type="button" data-runeschema-close aria-label="Close image preview">Close</button></header>
+    <header class="runeschema-dialog__header"><div><p class="runeschema-release__eyebrow"><span data-runeschema-comparison-codename>Recipe Identity</span> interface</p><h2 id="runeschema-gallery-dialog-title">Overview</h2></div><button class="runeschema-dialog__close" type="button" data-runeschema-close aria-label="Close image preview">Close</button></header>
     <div class="runeschema-gallery-dialog__stage"><img src="assets/runeschema-experimental-v8/overview.png" alt="Experimental RuneSchema Overview page" data-gallery-preview></div>
     <footer class="runeschema-gallery-dialog__footer"><button type="button" data-gallery-previous>Previous</button><div class="runeschema-gallery-dialog__status"><p data-gallery-caption>Runtime status, detected mods, tooling state, and active paths.</p><span data-gallery-position aria-live="polite">1 of 5</span></div><button type="button" data-gallery-play aria-pressed="true">Pause slideshow</button><button type="button" data-gallery-next>Next</button></footer>
   </div>
@@ -379,13 +390,13 @@ Example Mod B : 0</code></pre>
 <dialog class="runeschema-dialog" id="runeschema-install-dialog" aria-labelledby="runeschema-install-title">
   <div class="runeschema-dialog__shell">
     <header class="runeschema-dialog__header">
-      <div><p class="runeschema-release__eyebrow">RuneSchema <span data-runeschema-comparison-version>0.6.2</span> Experimental</p><h2 id="runeschema-install-title">Installation guide</h2></div>
+      <div><p class="runeschema-release__eyebrow">RuneSchema <span data-runeschema-comparison-version>0.6.3</span> Experimental</p><h2 id="runeschema-install-title">Installation guide</h2></div>
       <button class="runeschema-dialog__close" type="button" data-runeschema-close aria-label="Close installation guide">Close</button>
     </header>
     <div class="runeschema-dialog__body">
       <p class="runeschema-dialog__lead">Install the included folder directly inside UE4SS Mods. Do not rename the singular <code>config</code> directory.</p>
       <ol class="runeschema-dialog__timeline">
-        <li><strong>Download the package.</strong><span>Select <em>Download <span data-runeschema-comparison-version>0.6.2</span> Experimental</em> on the Modding page and extract the ZIP.</span></li>
+        <li><strong>Download the package.</strong><span>Select <em>Download <span data-runeschema-comparison-version>0.6.3</span> Experimental</em> on the Modding page and extract the ZIP.</span></li>
         <li><strong>Find the included RuneSchema folder.</strong><span>The package contains only the installable mod folder; source and technical documentation remain on GitHub.</span></li>
         <li><strong>Copy RuneSchema into UE4SS Mods.</strong><span>Use the exact destination below. Merge or replace an older RuneSchema folder only after backing up any custom configuration.</span></li>
         <li><strong>Launch Dragonwilds.</strong><span>RuneSchema can reconcile discovered content folders into <code>mods.txt</code> when the included tooling options remain enabled.</span></li>
@@ -420,20 +431,21 @@ Example Mod B : 0</code></pre>
 <dialog class="runeschema-dialog runeschema-dialog--wide" id="runeschema-comparison-dialog" aria-labelledby="runeschema-comparison-title">
   <div class="runeschema-dialog__shell">
     <header class="runeschema-dialog__header">
-      <div><p class="runeschema-release__eyebrow">Official 0.6.0 vs <span data-runeschema-comparison-version>0.6.2</span> Experimental | <span data-runeschema-comparison-codename>Sizing Snickers</span></p><h2 id="runeschema-comparison-title">Feature-by-feature comparison</h2></div>
+      <div><p class="runeschema-release__eyebrow">Official 0.6.0 vs <span data-runeschema-comparison-version>0.6.3</span> Experimental | <span data-runeschema-comparison-codename>Recipe Identity</span></p><h2 id="runeschema-comparison-title">Feature-by-feature comparison</h2></div>
       <button class="runeschema-dialog__close" type="button" data-runeschema-close aria-label="Close version comparison">Close</button>
     </header>
     <div class="runeschema-dialog__body">
-      <p class="runeschema-dialog__lead"><span data-runeschema-comparison-version>0.6.2</span> Experimental keeps the official loaders and normal folder-based content-mod structure, then adds an optional management and authoring layer around them.</p>
-      <div class="runeschema-dialog__callout"><strong>Independent community experiment:</strong> the baseline is official RuneSchema <code>0.6.0</code>, commit <code>c36d894b02eb006fafc079325035b924ac49f28d</code>, by UnskippableCutscene. The published release is <span data-runeschema-comparison-version>0.6.2</span> Experimental; its current tag, package filename, and DLL identity retain <code>0.6.1</code>. It is not authored, endorsed, maintained, or supported by the original author. Direct support to the <a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync/issues">Dragonwilds Sync issue tracker</a>.</div>
+      <p class="runeschema-dialog__lead"><span data-runeschema-comparison-version>0.6.3</span> Experimental keeps the official loaders and normal folder-based content-mod structure, then adds an optional management and authoring layer around them.</p>
+      <div class="runeschema-dialog__callout"><strong>Independent community experiment:</strong> the baseline is official RuneSchema <code>0.6.0</code>, commit <code>c36d894b02eb006fafc079325035b924ac49f28d</code>, by UnskippableCutscene. The current release, tag, package, and DLL identify as <span data-runeschema-comparison-version>0.6.3</span> Experimental. It is not authored, endorsed, maintained, or supported by the original author. Direct support to the <a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync/issues">Dragonwilds Sync issue tracker</a>.</div>
       <div class="runeschema-comparison-table" role="table" aria-label="Official and experimental RuneSchema comparison">
-        <div class="runeschema-comparison-table__row runeschema-comparison-table__head" role="row"><span>Feature</span><span>Official 0.6.0</span><span><span data-runeschema-comparison-version>0.6.2</span> Experimental</span></div>
+        <div class="runeschema-comparison-table__row runeschema-comparison-table__head" role="row"><span>Feature</span><span>Official 0.6.0</span><span><span data-runeschema-comparison-version>0.6.3</span> Experimental</span></div>
         <div class="runeschema-comparison-table__row" role="row"><strong>Core loaders</strong><span>Full official loader set.</span><span>Preserved; existing 0.6.0 JSON is intended to remain compatible.</span></div>
         <div class="runeschema-comparison-table__row" role="row"><strong>RuneSchema tab</strong><span>Schema-generation control.</span><span>Overview, Settings, Generators, Load Order, and Compatibility pages.</span></div>
         <div class="runeschema-comparison-table__row" role="row"><strong>Content order</strong><span>Directory discovery order.</span><span>Deterministic <code>mods.txt</code> order with visual enable and Up/Down controls.</span></div>
         <div class="runeschema-comparison-table__row" role="row"><strong>Compatibility</strong><span>No built-in report.</span><span>Optional bounded scan for matching targets, properties, and full arrays.</span></div>
-        <div class="runeschema-comparison-table__row" role="row"><strong>Schemas</strong><span>Utility, enums, and raw tables.</span><span>Adds loaded asset and Blueprint class schemas with conservative field filtering.</span></div>
+        <div class="runeschema-comparison-table__row" role="row"><strong>Schemas</strong><span>Utility, enums, and raw tables.</span><span>Adds loaded asset, Blueprint class, and recipe schemas with conservative field filtering.</span></div>
         <div class="runeschema-comparison-table__row" role="row"><strong>Asset identity</strong><span>Reflected properties are editable but identity fields are not suggested by the official schemas.</span><span>Asset schemas and FModel asset drafts expose optional top-level <code>PersistenceID</code> and <code>InternalName</code>; Blueprint and nested suggestions still filter them.</span></div>
+        <div class="runeschema-comparison-table__row" role="row"><strong>Recipe identity</strong><span>Recipe identities follow loaded data or the recipe key.</span><span>Generated recipe schemas expose optional <code>PersistenceID</code> and <code>InternalName</code>. Blank fields use defaults; explicit changes and collisions warn.</span></div>
         <div class="runeschema-comparison-table__row" role="row"><strong>FModel</strong><span>No conversion helper.</span><span>Normalized numeric suffixes and optional sanitized draft-snippet generation.</span></div>
         <div class="runeschema-comparison-table__row" role="row"><strong>Actor and AI spawns</strong><span>Persistent Actor, AISpawnPoint, RemoveActor, and respawn are official features.</span><span>Preserves the official system and adds positive uniform or X/Y/Z Scale.</span></div>
         <div class="runeschema-comparison-table__row" role="row"><strong>Drop multiplier</strong><span>Not available.</span><span>Optional explicit <code>DropIncreasePercent</code>; omitted means unchanged, regardless of Scale.</span></div>
@@ -445,13 +457,14 @@ Example Mod B : 0</code></pre>
         <li>The compatibility report is advisory and cannot identify every semantic gameplay conflict.</li>
         <li>Generated schemas and FModel snippets remain drafts that require author review.</li>
         <li>Explicit asset identity values must belong to that exact asset, remain unique, and stay stable once saves reference the content. Omitting them preserves the loaded values.</li>
+        <li>Missing or blank recipe identity fields use defaults: new recipes use their recipe key, while existing recipes preserve loaded values.</li>
         <li>Load-order changes apply on the next RuneSchema load or restart.</li>
       </ul>
       <h3>Verified supplied build</h3>
       <ul>
         <li>Shipping target: <code>Game__Shipping__Win64</code></li>
-        <li>DLL SHA-256: <code>404127BA26971B1B39F7D19873B8C25B8AA5C803EF06DFBB096260517FEB5AEB</code></li>
-        <li>Download SHA-256: <code>4F5B3F197BB10A78EF05B3212309B6E3C3EA3ACD0F58EBDAA7B3FE6E594408D4</code></li>
+        <li>DLL SHA-256: <code>374CB1F598848AEB0DFB35A8506F131D6A3A78AF7A29C0F75324017DA18854F7</code></li>
+        <li>Download SHA-256: <code>AE731F18AD1348F1FCF77E266573419CE1550E8B0C18F930AF7D96AA5FF9706D</code></li>
       </ul>
       <p><a href="assets/docs/runeschema-0.6.1-experimental/COMPARISON.md">Download the complete technical comparison</a> | <a href="https://github.com/UnskippableCutscene/RuneSchema/tree/0.6.0">Official 0.6.0 source</a></p>
     </div>

@@ -1,0 +1,9 @@
+{
+  "RECIPE_Gravetide_Staff": {
+    "PersistenceID": "",
+    "InternalName": "",
+    "Properties": {
+      "SkillXPAwardedOnCraft": 25
+    }
+  }
+}

@@ -1,10 +1,10 @@
-# RuneSchema: Official 0.6.0 vs. 0.6.2 Experimental
+# RuneSchema: Official 0.6.0 vs. 0.6.3 Experimental
 
-> Experimental release codename: **Sizing Snickers**. The published release identity is `RuneSchema 0.6.2 Experimental`; this codename does not indicate an official or upstream RuneSchema branch.
+> Experimental release focus: **Recipe Identity**. The published release identity is `RuneSchema 0.6.3 Experimental`; this label does not indicate an official or upstream RuneSchema branch.
 
 ## What is being compared
 
-This document compares the official RuneSchema `0.6.0` release with `RuneSchema 0.6.2 Experimental`. It contains the user-confirmed v8 behavior under its current published release identity, but remains a community variant rather than an official upstream RuneSchema release. The current Git tag, package filename, and DLL identity retain `0.6.1`; those identifiers are recorded in Build verification below.
+This document compares the official RuneSchema `0.6.0` release with `RuneSchema 0.6.3 Experimental`. It contains the user-confirmed v8 behavior plus optional recipe identity fields, but remains a community variant rather than an official upstream RuneSchema release.
 
 The baseline is official tag `0.6.0`, commit `c36d894b02eb006fafc079325035b924ac49f28d`, released by UnskippableCutscene on August 16, 2026.
 
@@ -18,11 +18,11 @@ The experimental build keeps the official content loaders and mod formats, then 
 
 The existing persistent `Actor` spawn system is inherited from official 0.6.0. This build does not claim to have invented that system. It extends those spawn entries with `Scale` and extends AI spawn points so the spawned AI can also receive the configured scale.
 
-RuneSchema 0.6.2 Experimental provides optional spawn drop multiplication as an explicitly experimental feature. Size and drops are independent: `Scale` never changes drops, while an explicit `DropIncreasePercent` changes supported live-instance drop rows. The feature can be disabled without disabling spawn scale.
+RuneSchema 0.6.3 Experimental provides optional spawn drop multiplication as an explicitly experimental feature. Size and drops are independent: `Scale` never changes drops, while an explicit `DropIncreasePercent` changes supported live-instance drop rows. The feature can be disabled without disabling spawn scale.
 
 ## At a glance
 
-| Area | Official 0.6.0 | 0.6.2 Experimental |
+| Area | Official 0.6.0 | 0.6.3 Experimental |
 |---|---|---|
 | Core loaders | Assets, Blueprints, raw tables, recipes, spawns, strings, journals, courses, buildings, and enums | Preserved |
 | Existing mod JSON | Official 0.6.0 formats | Intended to remain compatible |
@@ -34,6 +34,7 @@ RuneSchema 0.6.2 Experimental provides optional spawn drop multiplication as an 
 | Compatibility analysis | Not available | Optional one-time collision report |
 | Generated schemas | Utility, enums, and raw data tables | Also loaded asset and Blueprint class schemas |
 | Asset identity suggestions | Not exposed by generated schemas | Optional top-level `PersistenceID` and `InternalName` in asset schemas and FModel asset drafts |
+| Recipe identity suggestions | Not exposed as a recipe-specific generated schema | Optional `PersistenceID` and `InternalName` in generated `recipes.schema.json`; blank values use defaults |
 | FModel `.0` paths | Not consistently normalized at every entry point | Centralized normalization for asset targets and object references |
 | FModel conversion helper | Not available | Optional sanitized draft-snippet generator |
 | Persistent `Actor` spawns | Supported | Preserved |
@@ -248,21 +249,23 @@ The existing spawn loader still uses its official streamed-world and engine-call
 - FModel conversion produces drafts and cannot prove runtime edit safety.
 - Generated schemas expose reflected fields conservatively but cannot guarantee gameplay-safe values.
 - Explicit `PersistenceID` and `InternalName` changes can break saved references or registry lookup when values are duplicated or changed later; omit them unless the asset's correct stable identity is known.
+- Recipe identity fields may be direct peers or live inside `Properties`. Missing, `null`, empty, and whitespace-only values use defaults: the recipe key for a new recipe or the loaded identity for an existing recipe.
+- Explicit recipe identity changes and collisions produce warnings when recipes are applied. Blueprint identity suggestions remain filtered, and courses continue deriving both identities from `Id`.
 - `Scale` does not imply stat scaling.
 - Drop multiplication remains experimental and only affects supported `ItemsToDrop` layouts. It does not guarantee that every enemy or resource class stores drops in one of those locations.
 - `RemoveActor` retains the official safety behavior and does not indiscriminately delete every level-placed actor.
 
 ## Build verification
 
-This document describes the published `RuneSchema 0.6.2 Experimental — Sizing Snickers` release. Its downloadable package remains named `RuneSchema-0.6.1-Experimental.zip`.
+This document describes the published `RuneSchema 0.6.3 Experimental — Recipe Identity` release and `RuneSchema-0.6.3-Experimental.zip` package.
 
 - Shipping target: `Game__Shipping__Win64`
-- Source commit: `d4dbd45199864d1e2c8d7f03a4f5780fc7120809`
-- Published release: `RuneSchema 0.6.2 Experimental — Sizing Snickers`
-- Prerelease tag: `0.6.1-experimental.2`
-- DLL size: `2,295,296` bytes
-- DLL SHA-256: `404127BA26971B1B39F7D19873B8C25B8AA5C803EF06DFBB096260517FEB5AEB`
-- Package SHA-256: `4F5B3F197BB10A78EF05B3212309B6E3C3EA3ACD0F58EBDAA7B3FE6E594408D4`
+- Source commit: `588cba3f080675b1926434e3017293ce1aa1c13c`
+- Published release: `RuneSchema 0.6.3 Experimental — Recipe Identity`
+- Prerelease tag: `0.6.3-experimental.1`
+- DLL size: `2,307,072` bytes
+- DLL SHA-256: `374CB1F598848AEB0DFB35A8506F131D6A3A78AF7A29C0F75324017DA18854F7`
+- Package SHA-256: `AE731F18AD1348F1FCF77E266573419CE1550E8B0C18F930AF7D96AA5FF9706D`
 - `mods.txt` creation, ordering, enable-state, comment-preservation, and UI round-trip tests: passed
 - FModel numeric-suffix normalization tests: passed
 - Shipping DLL compilation: passed
