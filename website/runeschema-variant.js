@@ -99,7 +99,7 @@
 
   const gallery = [
     {title:"Overview", src:"assets/runeschema-experimental-v8/overview.png", alt:"Experimental RuneSchema Overview page", caption:"0.6.3 runtime status, detected mods, active paths, contributor credits, and tooling state."},
-    {title:"Settings", src:"assets/runeschema-experimental-v8/settings.png", alt:"Experimental RuneSchema Settings page", caption:"Spawn safety limits, independent drop scaling, identity overrides, authoring tools, and mods.txt behavior."},
+    {title:"Settings", src:"assets/runeschema-experimental-v8/settings.png?v=2", alt:"Experimental RuneSchema Settings page", caption:"Spawn safety limits, independent drop scaling, identity overrides, authoring tools, and mods.txt behavior."},
     {title:"Generators", src:"assets/runeschema-experimental-v8/generators.png", alt:"Experimental RuneSchema Generators page", caption:"On-demand JSON schemas and optional sanitized FModel draft snippets."},
     {title:"Load Order", src:"assets/runeschema-experimental-v8/load-order.png", alt:"Experimental RuneSchema Load Order page", caption:"Enable, disable, reorder, reconcile, refresh, and save the visible mods.txt contract."},
     {title:"Compatibility", src:"assets/runeschema-experimental-v8/compatibility.png", alt:"Experimental RuneSchema Compatibility page", caption:"Configure and run advisory collision reports only when requested."}
