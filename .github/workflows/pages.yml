@@ -164,13 +164,13 @@ jobs:
           grep -q 'data-linux-quick-download' _site/downloads.html
           ! grep -q 'v2.0.1' _site/download-flip.js
           grep -q 'DropIncreasePercent' _site/for-modders.html
-          grep -q '0.6.3-experimental.1' _site/for-modders.html
+          grep -q '0.6.2-experimental.1' _site/for-modders.html
           grep -q 'data-runeschema-version' _site/for-modders.html
-          grep -q 'Current prerelease: v0.6.3' _site/for-modders.html
+          grep -q 'Current prerelease: v0.6.2' _site/for-modders.html
           grep -q 'data-runeschema-title' _site/for-modders.html
           grep -q 'data-runeschema-comparison-version' _site/for-modders.html
-          grep -q 'data-runeschema-comparison-version>0.6.3</span> EXPERIMENTAL' _site/for-modders.html
-          grep -q 'Official 0.6.0 vs. 0.6.3 Experimental' _site/assets/docs/runeschema-0.6.1-experimental/COMPARISON.md
+          grep -q 'data-runeschema-comparison-version>0.6.2</span> EXPERIMENTAL' _site/for-modders.html
+          grep -q 'Official 0.6.0 vs. 0.6.2 Experimental' _site/assets/docs/runeschema-0.6.1-experimental/COMPARISON.md
           grep -q 'api.github.com/repos/gh0sted5456-us/RuneSchema/releases' _site/runeschema-variant.js
           grep -Fq '^RuneSchema-.*Experimental\.zip$' _site/runeschema-variant.js
           grep -q 'PersistenceID' _site/for-modders.html
@@ -178,11 +178,11 @@ jobs:
           grep -q 'GTStaff7A2K9QX' _site/for-modders.html
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff_identity.json >/dev/null
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff_recipe_identity.json >/dev/null
-          grep -q 'AE731F18AD1348F1FCF77E266573419CE1550E8B0C18F930AF7D96AA5FF9706D' _site/for-modders.html
+          grep -q 'B37571A54E77F9F5B1B9C56D5DE90D975A1FC446D48FCB250558077B21954551' _site/for-modders.html
           ! grep -q 'RuneSchema-0.6.1-Experimental-Source-and-Package.zip' _site/for-modders.html
           grep -q 'world-cards-20260823-1' _site/world-builder.html
-          test -s _site/assets/downloads/RuneSchema-0.6.3-Experimental.zip
-          unzip -tqq _site/assets/downloads/RuneSchema-0.6.3-Experimental.zip
+          test -s _site/assets/downloads/RuneSchema-0.6.2-Experimental.zip
+          unzip -tqq _site/assets/downloads/RuneSchema-0.6.2-Experimental.zip
 
           python3 - <<'PY'
           import json

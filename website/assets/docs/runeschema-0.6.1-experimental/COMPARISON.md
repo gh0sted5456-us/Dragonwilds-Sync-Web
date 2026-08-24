@@ -1,10 +1,10 @@
-# RuneSchema: Official 0.6.0 vs. 0.6.3 Experimental
+# RuneSchema: Official 0.6.0 vs. 0.6.2 Experimental
 
-> Experimental release focus: **Recipe Identity**. The published release identity is `RuneSchema 0.6.3 Experimental`; this label does not indicate an official or upstream RuneSchema branch.
+> Experimental release addition: **Recipe Identity**. The published release identity remains `RuneSchema 0.6.2 Experimental`; this label does not indicate an official or upstream RuneSchema branch.
 
 ## What is being compared
 
-This document compares the official RuneSchema `0.6.0` release with `RuneSchema 0.6.3 Experimental`. It contains the user-confirmed v8 behavior plus optional recipe identity fields, but remains a community variant rather than an official upstream RuneSchema release.
+This document compares the official RuneSchema `0.6.0` release with `RuneSchema 0.6.2 Experimental`. It contains the user-confirmed v8 behavior plus optional recipe identity fields, but remains a community variant rather than an official upstream RuneSchema release.
 
 The baseline is official tag `0.6.0`, commit `c36d894b02eb006fafc079325035b924ac49f28d`, released by UnskippableCutscene on August 16, 2026.
 
@@ -18,11 +18,11 @@ The experimental build keeps the official content loaders and mod formats, then 
 
 The existing persistent `Actor` spawn system is inherited from official 0.6.0. This build does not claim to have invented that system. It extends those spawn entries with `Scale` and extends AI spawn points so the spawned AI can also receive the configured scale.
 
-RuneSchema 0.6.3 Experimental provides optional spawn drop multiplication as an explicitly experimental feature. Size and drops are independent: `Scale` never changes drops, while an explicit `DropIncreasePercent` changes supported live-instance drop rows. The feature can be disabled without disabling spawn scale.
+RuneSchema 0.6.2 Experimental provides optional spawn drop multiplication as an explicitly experimental feature. Size and drops are independent: `Scale` never changes drops, while an explicit `DropIncreasePercent` changes supported live-instance drop rows. The feature can be disabled without disabling spawn scale.
 
 ## At a glance
 
-| Area | Official 0.6.0 | 0.6.3 Experimental |
+| Area | Official 0.6.0 | 0.6.2 Experimental |
 |---|---|---|
 | Core loaders | Assets, Blueprints, raw tables, recipes, spawns, strings, journals, courses, buildings, and enums | Preserved |
 | Existing mod JSON | Official 0.6.0 formats | Intended to remain compatible |
@@ -257,15 +257,15 @@ The existing spawn loader still uses its official streamed-world and engine-call
 
 ## Build verification
 
-This document describes the published `RuneSchema 0.6.3 Experimental — Recipe Identity` release and `RuneSchema-0.6.3-Experimental.zip` package.
+This document describes the published `RuneSchema 0.6.2 Experimental — Recipe Identity Add-on` release and `RuneSchema-0.6.2-Experimental.zip` package.
 
 - Shipping target: `Game__Shipping__Win64`
-- Source commit: `588cba3f080675b1926434e3017293ce1aa1c13c`
-- Published release: `RuneSchema 0.6.3 Experimental — Recipe Identity`
-- Prerelease tag: `0.6.3-experimental.1`
+- Source commit: `2cf7297f7a20a2c3e5cd06d83cefc7a5828f7c53`
+- Published release: `RuneSchema 0.6.2 Experimental — Recipe Identity Add-on`
+- Prerelease tag: `0.6.2-experimental.1`
 - DLL size: `2,307,072` bytes
-- DLL SHA-256: `374CB1F598848AEB0DFB35A8506F131D6A3A78AF7A29C0F75324017DA18854F7`
-- Package SHA-256: `AE731F18AD1348F1FCF77E266573419CE1550E8B0C18F930AF7D96AA5FF9706D`
+- DLL SHA-256: `33453262324644A3585ED095A5DEE7C2F24AE76A2540444CCA135C54E7864430`
+- Package SHA-256: `B37571A54E77F9F5B1B9C56D5DE90D975A1FC446D48FCB250558077B21954551`
 - `mods.txt` creation, ordering, enable-state, comment-preservation, and UI round-trip tests: passed
 - FModel numeric-suffix normalization tests: passed
 - Shipping DLL compilation: passed
