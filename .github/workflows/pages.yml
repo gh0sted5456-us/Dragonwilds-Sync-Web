@@ -178,7 +178,7 @@ jobs:
           grep -q 'GTStaff7A2K9QX' _site/for-modders.html
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff_identity.json >/dev/null
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff_recipe_identity.json >/dev/null
-          grep -q 'E5471BFE4F62936909886A4478CBF7F4269445C15322ED4075EDA7D61EFA7330' _site/for-modders.html
+          grep -q '84E269D4DF13945880F8106293099725F94BB4584104E7AAF82AB872901DD524' _site/for-modders.html
           ! grep -q 'RuneSchema-0.6.1-Experimental-Source-and-Package.zip' _site/for-modders.html
           grep -q 'world-cards-20260823-1' _site/world-builder.html
           test -s _site/assets/downloads/RuneSchema-0.6.2-Experimental.zip

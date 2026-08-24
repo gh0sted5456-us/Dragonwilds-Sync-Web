@@ -261,12 +261,13 @@ This document describes the published `RuneSchema 0.6.2 Experimental — Recipe 
 
 - Shipping target: `Game__Shipping__Win64`
 - Clean source baseline: official `0.6.0` commit `c36d894b02eb006fafc079325035b924ac49f28d`
-- Consolidated targeted source commit: `ba37eff8e084453d3e5ece511f4b404e499eb670`
+- Consolidated targeted source commit: `186805adc26e77ffaffcc9905b09a272644f8a53`
 - Published release: `RuneSchema 0.6.2 Experimental — Recipe Identity Add-on`
 - Prerelease tag: `0.6.2-experimental.1`
 - DLL size: `2,307,072` bytes
-- DLL SHA-256: `F68B121A596BB81342495D66243AFC2BDC55CFCAA78164FF18431EF8C8691305`
-- Package SHA-256: `E5471BFE4F62936909886A4478CBF7F4269445C15322ED4075EDA7D61EFA7330`
+- UE4SS source/build commit: `a1e7f571c789f63f3de6773d056be6f778c14dc8` (`3.0.1-1088-ga1e7f571`)
+- DLL SHA-256: `F772D096457FCD5DF7865D33F3A8978DAD28AEA80416409CE0613ACAAA31C1EE`
+- Package SHA-256: `84E269D4DF13945880F8106293099725F94BB4584104E7AAF82AB872901DD524`
 - `mods.txt` creation, ordering, enable-state, comment-preservation, and UI round-trip tests: passed
 - FModel numeric-suffix normalization tests: passed
 - Shipping DLL compilation: passed
