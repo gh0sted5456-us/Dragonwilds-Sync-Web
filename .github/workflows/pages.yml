@@ -179,8 +179,9 @@ jobs:
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff.json >/dev/null
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff_recipe.json >/dev/null
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/journal_identity.json >/dev/null
-          grep -q '577DD6750E6ABF9B9889AD4752AB84065482F4FFFE34A43DDD257770D8D79317' _site/for-modders.html
-          grep -q 'Okaetsu created PalSchema, Snorkles created RuneSchema, and Jonesing4Space created the additional experimental features' _site/for-modders.html
+          grep -q 'FA4E8062D7AFF4D9A8C61BAF6E87219302A24AEA7C3389464BD7AD21D93F391D' _site/for-modders.html
+          grep -q 'RSDW Modding Community contributed testing, research, and community support' _site/for-modders.html
+          grep -q 'assets, blueprints, buildings, courses, enums, journal, raw, recipes, spawns, and strings' _site/for-modders.html
           grep -q '10C8B7350177B28AAD5E6371BECE2347D501DD1B58F9949C512AE6AEE0E0B3A8' _site/for-modders.html
           grep -q 'UE4SS_v3.0.1-941-g0bfec09e.zip' _site/for-modders.html
           test "$(grep -o 'data-runeschema-ue4ss-download' _site/for-modders.html | wc -l)" -eq 1

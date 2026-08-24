@@ -1,6 +1,6 @@
 # RuneSchema: Official 0.6.0 vs. 0.6.3 Experimental
 
-> Experimental release codename: **Registry Identity**. The published release identity remains `RuneSchema 0.6.3 Experimental`; this label does not indicate an official or upstream RuneSchema branch.
+> Experimental release codename: **Complete Authoring Tools**. The published release identity remains `RuneSchema 0.6.3 Experimental`; this label does not indicate an official or upstream RuneSchema branch.
 
 ## What is being compared
 
@@ -8,7 +8,7 @@ This document compares the official RuneSchema `0.6.0` release with `RuneSchema 
 
 The baseline is official tag `0.6.0`, commit `c36d894b02eb006fafc079325035b924ac49f28d`, released by UnskippableCutscene on August 16, 2026.
 
-Credits are preserved in the compiled mod metadata: Okaetsu created PalSchema, Snorkles created RuneSchema, and Jonesing4Space created the additional experimental features.
+Credits are preserved in the compiled mod metadata and Overview page: Okaetsu created PalSchema, Snorkles created RuneSchema, Jonesing4Space created the additional experimental features, and the RSDW Modding Community contributed testing, research, and community support.
 
 - Official source: https://github.com/UnskippableCutscene/RuneSchema/tree/0.6.0
 - Official release: https://github.com/UnskippableCutscene/RuneSchema/releases/tag/0.6.0
@@ -34,7 +34,7 @@ RuneSchema 0.6.3 Experimental provides optional spawn drop multiplication as an 
 | Visual load-order editor | Not available | Checkboxes plus Up/Down controls; saves to `mods.txt` |
 | Configuration | Three core settings | Core settings plus optional tooling controls; no visible config version field |
 | Compatibility analysis | Not available | Optional one-time collision report |
-| Generated schemas | Utility, enums, and raw data tables | Also loaded asset, Blueprint class, recipe, and journal schemas |
+| Generated schemas | Utility, enums, and raw data tables | Selectable Utility plus every JSON loader: assets, blueprints, buildings, courses, enums, journal, raw, recipes, spawns, and strings |
 | FModel `.0` paths | Not consistently normalized at every entry point | Centralized normalization for asset targets and object references |
 | FModel conversion helper | Not available | Optional sanitized draft-snippet generator |
 | Persistent `Actor` spawns | Supported | Preserved |
@@ -109,6 +109,18 @@ The experimental build retains them and adds optional tooling controls:
   "enableAutoReload": false,
   "enableDebugLogging": false,
   "enableExperimentalDropScaling": true,
+  "identityOverrides": {
+    "enabled": true,
+    "assets": true,
+    "recipes": true,
+    "journals": true,
+    "dryRun": false,
+    "logChanges": true
+  },
+  "spawnSafety": {
+    "maxScale": 10.0,
+    "maxDropIncreasePercent": 500.0
+  },
   "tooling": {
     "enabled": true,
     "modsTxt": {
@@ -126,7 +138,20 @@ The experimental build retains them and adds optional tooling controls:
       "warnArrayReplacement": true
     },
     "enableSchemaGeneration": true,
-    "enableFModelSnippetGenerator": false
+    "enableFModelSnippetGenerator": false,
+    "schemaTypes": {
+      "utility": true,
+      "assets": true,
+      "blueprints": true,
+      "buildings": true,
+      "courses": true,
+      "enums": true,
+      "journal": true,
+      "raw": true,
+      "recipes": true,
+      "spawns": true,
+      "strings": true
+    }
   }
 }
 ```
@@ -147,7 +172,9 @@ The report is advisory. It does not reorder, merge, disable, or rewrite content 
 
 ## Schema generation
 
-The manual generator retains the official schema outputs and adds loaded asset and Blueprint class schemas. The additional files improve editor autocomplete for existing reflected properties, especially when generation is run after entering a world and more game data is loaded.
+The manual generator now exposes a category for its shared Utility output and every RuneSchema JSON loader folder: `assets`, `blueprints`, `buildings`, `courses`, `enums`, singular `journal`, `raw`, `recipes`, `spawns`, and `strings`. Buildings, Courses, Spawns, and Strings have loader-aware static contracts; asset, Blueprint, enum, and raw output also incorporates currently loaded Unreal data. Generate after entering a world for the fullest reflected coverage.
+
+The canonical configuration names mirror the loader folders. Older `journals` and `tables` keys remain accepted as aliases and migrate to `journal` and `raw` when settings are saved. A generation switch controls output only; it does not disable the corresponding runtime loader.
 
 Generated suggestions continue to omit GUID-like and runtime-bookkeeping properties such as root components, graph frames, and runtime-created component arrays. `PersistenceID` and `InternalName` are exposed only in the supported asset, recipe, and journal authoring contexts. This filtering reduces dangerous suggestions; it is not a promise that every remaining Unreal property is safe to edit.
 
@@ -249,18 +276,18 @@ The existing spawn loader still uses its official streamed-world and engine-call
 
 ## Build verification
 
-This document describes the published `RuneSchema 0.6.3 Experimental — Registry Identity` release and `RuneSchema-0.6.3-Experimental.zip` package.
+This document describes the published `RuneSchema 0.6.3 Experimental — Complete Authoring Tools` release and `RuneSchema-0.6.3-Experimental.zip` package.
 
 - Shipping target: `Game__Shipping__Win64`
 - Clean source baseline: official `0.6.0` commit `c36d894b02eb006fafc079325035b924ac49f28d`
 - Consolidated targeted source head: `bfe982c9ee961702990638317fe69a4e9949b44f`
-- Published release: `RuneSchema 0.6.3 Experimental — Registry Identity`
+- Published release: `RuneSchema 0.6.3 Experimental — Complete Authoring Tools`
 - Prerelease tag: `0.6.3-experimental.1`
 - DLL size: `2,320,384` bytes
 - UE4SS source/build commit: `0bfec09ee30b7c4cda8aa151e2fdb15cbe6c10c9` (`3.0.1-941-g0bfec09e`), matching the official RuneSchema 0.6.0 source pin
 - Matching UE4SS archive settings for the current Dragonwilds UE 5.6 build: `DoEarlyScan = 1`, `MajorVersion = 5`, `MinorVersion = 6`, and `DebugBuild = false`
-- DLL SHA-256: `D08F755C7A68E7864D631B034251113DDDEBF3232FECECF5BC4E5A7B27AC68AD`
-- RuneSchema package SHA-256: `577DD6750E6ABF9B9889AD4752AB84065482F4FFFE34A43DDD257770D8D79317`
+- DLL SHA-256: `6820E79E282A757EC5587FA39F1FD98A87AFCFA57C525FF6498F81544FFD9142`
+- RuneSchema package SHA-256: `FA4E8062D7AFF4D9A8C61BAF6E87219302A24AEA7C3389464BD7AD21D93F391D`
 - Matching UE4SS package SHA-256: `10C8B7350177B28AAD5E6371BECE2347D501DD1B58F9949C512AE6AEE0E0B3A8`
 - `mods.txt` creation, ordering, enable-state, comment-preservation, and UI round-trip tests: passed
 - FModel numeric-suffix normalization tests: passed
