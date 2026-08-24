@@ -1,8 +1,0 @@
-// RuneSchema assets file. Use identity values exported for this exact asset.
-// Never copy another item's PersistenceID or InternalName.
-{
-  "/Game/Mods/Capes/Gameplay/Character/Player/Equipment/Cape/ITEM_Cape_Magic.0": {
-    "PersistenceID": "MA-cekR96jMiFVqZ4b-eAA",
-    "InternalName": "mod_cape_magic"
-  }
-}

@@ -173,12 +173,11 @@ jobs:
           grep -q 'Official 0.6.0 vs. 0.6.2 Experimental' _site/assets/docs/runeschema-0.6.1-experimental/COMPARISON.md
           grep -q 'api.github.com/repos/gh0sted5456-us/RuneSchema/releases' _site/runeschema-variant.js
           grep -Fq '^RuneSchema-.*Experimental\.zip$' _site/runeschema-variant.js
-          grep -q 'PersistenceID' _site/for-modders.html
-          grep -q 'InternalName' _site/for-modders.html
-          grep -q 'GTStaff7A2K9QX' _site/for-modders.html
-          python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff_identity.json >/dev/null
-          python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff_recipe_identity.json >/dev/null
-          grep -q '84E269D4DF13945880F8106293099725F94BB4584104E7AAF82AB872901DD524' _site/for-modders.html
+          ! grep -q 'data-json-tab="identity"' _site/for-modders.html
+          ! grep -q 'data-json-tab="recipe-identity"' _site/for-modders.html
+          python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff.json >/dev/null
+          python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff_recipe.json >/dev/null
+          grep -q 'EB3CD2F2D8C36B5C5C6FEF9CBE2C90ABCA3AA0A3446ABB83D0CFD806AE0214FD' _site/for-modders.html
           ! grep -q 'RuneSchema-0.6.1-Experimental-Source-and-Package.zip' _site/for-modders.html
           grep -q 'world-cards-20260823-1' _site/world-builder.html
           test -s _site/assets/downloads/RuneSchema-0.6.2-Experimental.zip

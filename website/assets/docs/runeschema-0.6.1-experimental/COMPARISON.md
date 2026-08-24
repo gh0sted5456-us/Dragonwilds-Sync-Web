@@ -1,10 +1,10 @@
 # RuneSchema: Official 0.6.0 vs. 0.6.2 Experimental
 
-> Experimental release addition: **Recipe Identity**. The published release identity remains `RuneSchema 0.6.2 Experimental`; this label does not indicate an official or upstream RuneSchema branch.
+> Experimental release codename: **Sizing Snickers**. The published release identity remains `RuneSchema 0.6.2 Experimental`; this label does not indicate an official or upstream RuneSchema branch.
 
 ## What is being compared
 
-This document compares the official RuneSchema `0.6.0` release with `RuneSchema 0.6.2 Experimental`. It contains the user-confirmed v8 behavior plus optional recipe identity fields, but remains a community variant rather than an official upstream RuneSchema release.
+This document compares the official RuneSchema `0.6.0` release with `RuneSchema 0.6.2 Experimental`. It contains the user-confirmed v8 behavior, but remains a community variant rather than an official upstream RuneSchema release.
 
 The baseline is official tag `0.6.0`, commit `c36d894b02eb006fafc079325035b924ac49f28d`, released by UnskippableCutscene on August 16, 2026.
 
@@ -33,8 +33,6 @@ RuneSchema 0.6.2 Experimental provides optional spawn drop multiplication as an 
 | Configuration | Three core settings | Core settings plus optional tooling controls; no visible config version field |
 | Compatibility analysis | Not available | Optional one-time collision report |
 | Generated schemas | Utility, enums, and raw data tables | Also loaded asset and Blueprint class schemas |
-| Asset identity suggestions | Not exposed by generated schemas | Optional top-level `PersistenceID` and `InternalName` in asset schemas and FModel asset drafts |
-| Recipe identity suggestions | Not exposed as a recipe-specific generated schema | Optional `PersistenceID` and `InternalName` in generated `recipes.schema.json`; blank values use defaults |
 | FModel `.0` paths | Not consistently normalized at every entry point | Centralized normalization for asset targets and object references |
 | FModel conversion helper | Not available | Optional sanitized draft-snippet generator |
 | Persistent `Actor` spawns | Supported | Preserved |
@@ -148,9 +146,7 @@ The report is advisory. It does not reorder, merge, disable, or rewrite content 
 
 The manual generator retains the official schema outputs and adds loaded asset and Blueprint class schemas. The additional files improve editor autocomplete for existing reflected properties, especially when generation is run after entering a world and more game data is loaded.
 
-For `assets` files, reflected `PersistenceID` and `InternalName` string properties are exposed as optional peer properties directly beneath the asset target. They are not wrapped in a `Properties` object. Omitting either field preserves the loaded value. Explicit values must belong to that exact asset, remain unique, and stay stable once saved data references the content.
-
-Blueprint schemas, nested structures, and other generated suggestions continue to omit identity and runtime-bookkeeping fields such as persistence identifiers, internal names, GUID-like properties, root components, graph frames, and runtime-created component arrays. This context-sensitive filtering reduces dangerous suggestions; it is not a promise that every remaining Unreal property is safe to edit.
+Generated suggestions omit identity and runtime-bookkeeping fields such as persistence identifiers, internal names, GUID-like properties, root components, graph frames, and runtime-created component arrays. This filtering reduces dangerous suggestions; it is not a promise that every remaining Unreal property is safe to edit.
 
 ## FModel support
 
@@ -164,20 +160,7 @@ The experimental build treats common FModel spellings such as these as the same 
 
 A numeric export suffix is normalized to the asset name. Explicit nonnumeric object suffixes and subobject paths are retained. The shared normalization is used for top-level asset targets and supported hard, soft, and class-reference paths.
 
-The optional snippet generator reads exported JSON from `RuneSchema/config/fmodel-input/` and writes reviewable drafts to `RuneSchema/config/fmodel-snippets/`. Top-level asset drafts retain `PersistenceID` and `InternalName` when FModel exported them, while Blueprint and nested drafts continue filtering those identity fields.
-
-An asset override therefore uses this shape:
-
-```json
-{
-  "/Game/Mods/Capes/Gameplay/Character/Player/Equipment/Cape/ITEM_Cape_Magic.0": {
-    "PersistenceID": "MA-cekR96jMiFVqZ4b-eAA",
-    "InternalName": "mod_cape_magic"
-  }
-}
-```
-
-Those values identify that exact Magic Cape asset and must not be reused for another item.
+The optional snippet generator reads exported JSON from `RuneSchema/config/fmodel-input/` and writes reviewable drafts to `RuneSchema/config/fmodel-snippets/`. Asset and Blueprint drafts filter identity and runtime-bookkeeping fields.
 
 These drafts are authoring aids, not installed mods. Runtime reflection remains authoritative, and every generated snippet still requires review.
 
@@ -248,26 +231,23 @@ The existing spawn loader still uses its official streamed-world and engine-call
 - The compatibility report finds structural overlap, not every gameplay conflict.
 - FModel conversion produces drafts and cannot prove runtime edit safety.
 - Generated schemas expose reflected fields conservatively but cannot guarantee gameplay-safe values.
-- Explicit `PersistenceID` and `InternalName` changes can break saved references or registry lookup when values are duplicated or changed later; omit them unless the asset's correct stable identity is known.
-- Recipe identity fields may be direct peers or live inside `Properties`. Missing, `null`, empty, and whitespace-only values use defaults: the recipe key for a new recipe or the loaded identity for an existing recipe.
-- Explicit recipe identity changes and collisions produce warnings when recipes are applied. Blueprint identity suggestions remain filtered, and courses continue deriving both identities from `Id`.
 - `Scale` does not imply stat scaling.
 - Drop multiplication remains experimental and only affects supported `ItemsToDrop` layouts. It does not guarantee that every enemy or resource class stores drops in one of those locations.
 - `RemoveActor` retains the official safety behavior and does not indiscriminately delete every level-placed actor.
 
 ## Build verification
 
-This document describes the published `RuneSchema 0.6.2 Experimental — Recipe Identity Add-on` release and `RuneSchema-0.6.2-Experimental.zip` package.
+This document describes the published `RuneSchema 0.6.2 Experimental — Sizing Snickers` release and `RuneSchema-0.6.2-Experimental.zip` package.
 
 - Shipping target: `Game__Shipping__Win64`
 - Clean source baseline: official `0.6.0` commit `c36d894b02eb006fafc079325035b924ac49f28d`
-- Consolidated targeted source commit: `186805adc26e77ffaffcc9905b09a272644f8a53`
-- Published release: `RuneSchema 0.6.2 Experimental — Recipe Identity Add-on`
+- Consolidated targeted source head: `4044b9da0b9ecc2ddd0cdb0ef5883c80914e136c`
+- Published release: `RuneSchema 0.6.2 Experimental — Sizing Snickers`
 - Prerelease tag: `0.6.2-experimental.1`
 - DLL size: `2,307,072` bytes
 - UE4SS source/build commit: `a1e7f571c789f63f3de6773d056be6f778c14dc8` (`3.0.1-1088-ga1e7f571`)
-- DLL SHA-256: `F772D096457FCD5DF7865D33F3A8978DAD28AEA80416409CE0613ACAAA31C1EE`
-- Package SHA-256: `84E269D4DF13945880F8106293099725F94BB4584104E7AAF82AB872901DD524`
+- DLL SHA-256: `941FBD7EB39E9552BA59D2993F9006DB1E4F778404EA6B27C9F0C65A969B97BE`
+- Package SHA-256: `EB3CD2F2D8C36B5C5C6FEF9CBE2C90ABCA3AA0A3446ABB83D0CFD806AE0214FD`
 - `mods.txt` creation, ordering, enable-state, comment-preservation, and UI round-trip tests: passed
 - FModel numeric-suffix normalization tests: passed
 - Shipping DLL compilation: passed

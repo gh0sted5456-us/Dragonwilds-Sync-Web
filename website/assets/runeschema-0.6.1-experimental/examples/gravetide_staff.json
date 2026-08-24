@@ -6,8 +6,6 @@
     "PowerLevel": 12,
     "BaseDurability": 2800,
     "Weight": 15.0,
-    "PersistenceID": "GTStaff7A2K9QX",
-    "InternalName": "gravetide_staff_mod",
     "AnimationPoseType": "EAnimationPoseType::Default",
     "AnimationPosesSequence": {
       "ObjectName": "AnimSequence'A_PlayerM_Idle_Staff_Poses'",
