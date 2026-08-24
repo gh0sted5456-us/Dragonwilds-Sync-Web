@@ -1,4 +1,54 @@
 (() => {
+  const versionLink = document.querySelector("[data-runeschema-version]");
+  const downloadLink = document.querySelector("[data-runeschema-download]");
+  if (!versionLink && !downloadLink) return;
+
+  const releasesApi = "https://api.github.com/repos/gh0sted5456-us/RuneSchema/releases?per_page=20";
+  const releaseHistory = "https://github.com/gh0sted5456-us/RuneSchema/releases";
+  const loadCurrentExperimentalRelease = async () => {
+    try {
+      const response = await fetch(releasesApi, {
+        headers: { Accept: "application/vnd.github+json" }
+      });
+      if (!response.ok) throw new Error("RuneSchema release metadata is unavailable");
+
+      const releases = await response.json();
+      const release = releases.find((candidate) =>
+        candidate &&
+        !candidate.draft &&
+        candidate.prerelease &&
+        /experimental/i.test(String(candidate.tag_name || ""))
+      );
+      if (!release) throw new Error("No experimental RuneSchema prerelease was found");
+
+      const tag = String(release.tag_name || "").trim();
+      if (!tag) throw new Error("The RuneSchema prerelease has no tag");
+      const displayTag = /^v/i.test(tag) ? tag : `v${tag}`;
+      const packageAsset = (release.assets || []).find((asset) =>
+        /RuneSchema-0\.6\.1-Experimental\.zip$/i.test(String(asset?.name || "")) &&
+        asset?.browser_download_url
+      );
+
+      if (versionLink) {
+        versionLink.textContent = `Current prerelease: ${displayTag}`;
+        versionLink.href = release.html_url || releaseHistory;
+        versionLink.dataset.releaseSource = "github";
+        versionLink.title = "Version automatically resolved from GitHub Releases";
+      }
+      if (downloadLink) {
+        downloadLink.textContent = `Download ${displayTag}`;
+        downloadLink.href = packageAsset?.browser_download_url || release.html_url || releaseHistory;
+        downloadLink.dataset.releaseSource = "github";
+      }
+    } catch (_) {
+      // Keep the known-good links and version baked into the placard.
+    }
+  };
+
+  loadCurrentExperimentalRelease();
+})();
+
+(() => {
   const dialogs = document.querySelectorAll(".runeschema-dialog");
   document.querySelectorAll("[data-runeschema-dialog]").forEach((trigger) => {
     trigger.addEventListener("click", () => document.getElementById(trigger.dataset.runeschemaDialog)?.showModal());

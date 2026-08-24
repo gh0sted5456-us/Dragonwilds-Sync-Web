@@ -1,0 +1,17 @@
+{
+  "/Game/Mods/GravetideStaff/Gameplay/ITEM_Staff_Gravetide.ITEM_Staff_Gravetide": {
+    "Name": "Gravetide Staff",
+    "FlavourText": "A prison of whispering souls bound around a heart of black glass.",
+    "DamageMultiplier": 16.2,
+    "PowerLevel": 12,
+    "BaseDurability": 2800,
+    "Weight": 15.0,
+    "PersistenceID": "GTStaff7A2K9QX",
+    "InternalName": "gravetide_staff_mod",
+    "AnimationPoseType": "EAnimationPoseType::Default",
+    "AnimationPosesSequence": {
+      "ObjectName": "AnimSequence'A_PlayerM_Idle_Staff_Poses'",
+      "ObjectPath": "/Game/Art/Animation/PlayerM/Staff/A_PlayerM_Idle_Staff_Poses.0"
+    }
+  }
+}

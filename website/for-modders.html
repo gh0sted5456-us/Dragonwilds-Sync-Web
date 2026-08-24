@@ -129,8 +129,8 @@ Author: Your Name</code></pre><p>Add RuntimeRole, HotloadCapable, tags, links, a
       <p class="runeschema-release__eyebrow">Experimental codename: Sizing Sneasel</p>
       <h2 id="runeschema-variant-title">RuneSchema 0.6.1 Experimental <span class="runeschema-codename">Sizing Sneasel</span></h2>
       <p class="runeschema-release__lede">A community experiment built on official RuneSchema 0.6.0. It preserves the official loaders and spawn foundation, then adds a five-page UE4SS management interface, deterministic mod ordering, collision reports, authoring tools, optional asset identity fields, spawn scale, and optional explicit drop multiplication.</p>
-      <a class="runeschema-release__version-link" href="https://github.com/gh0sted5456-us/RuneSchema/releases/tag/0.6.1-experimental.2" target="_blank" rel="noopener">Current prerelease: v0.6.1-experimental.2</a><div class="runeschema-release__actions">
-        <a class="runeschema-release__button runeschema-release__button--primary" href="https://github.com/gh0sted5456-us/RuneSchema/releases/download/0.6.1-experimental.2/RuneSchema-0.6.1-Experimental.zip" target="_blank" rel="noopener">Download v0.6.1-experimental.2</a>
+      <a class="runeschema-release__version-link" data-runeschema-version href="https://github.com/gh0sted5456-us/RuneSchema/releases/tag/0.6.1-experimental.2" target="_blank" rel="noopener" aria-live="polite">Current prerelease: v0.6.1-experimental.2</a><div class="runeschema-release__actions">
+        <a class="runeschema-release__button runeschema-release__button--primary" data-runeschema-download href="https://github.com/gh0sted5456-us/RuneSchema/releases/download/0.6.1-experimental.2/RuneSchema-0.6.1-Experimental.zip" target="_blank" rel="noopener">Download v0.6.1-experimental.2</a>
         <button class="runeschema-release__button" type="button" data-runeschema-dialog="runeschema-install-dialog">Read installation guide</button>
         <button class="runeschema-release__button" type="button" data-runeschema-dialog="runeschema-comparison-dialog">Open full comparison</button>
         <button class="runeschema-release__button" type="button" data-runeschema-dialog="runeschema-json-dialog">See JSON in action</button>
@@ -220,6 +220,7 @@ Example Mod B : 0</code></pre>
 <button type="button" role="tab" aria-selected="false" data-json-tab="resource">Persistent Resource</button>
 <button type="button" role="tab" aria-selected="false" data-json-tab="shop">Persistent Shop</button>
 <button type="button" role="tab" aria-selected="false" data-json-tab="identity">Asset Identity</button>
+<button type="button" role="tab" aria-selected="false" data-json-tab="gravetide">Gravetide Staff</button>
     </div>
     <div class="runeschema-dialog__body runeschema-json-dialog__body"><section data-json-panel="ash"><header><div><span>EXPERIMENTAL FIELDS</span><h3>Scaled Ash Tree with explicit drops</h3><p>Scale 4 changes size. DropIncreasePercent 50 separately requests a supported drop increase.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/AshTree_1.json" download>Download JSON</a></header><pre><code>[
   {
@@ -346,6 +347,24 @@ Example Mod B : 0</code></pre>
   }
 }
 </code></pre></section>
+<section data-json-panel="gravetide" hidden><header><div><span>OPTIONAL ASSET FIELDS</span><h3>Gravetide Staff with a compact custom identity</h3><p>This valid JSON keeps the item overrides together and uses the 14-character alphanumeric PersistenceID <code>GTStaff7A2K9QX</code>. Choose a unique value for every custom item.</p></div><a href="assets/runeschema-0.6.1-experimental/examples/gravetide_staff_identity.json" download>Download JSON</a></header><pre><code>{
+  &quot;/Game/Mods/GravetideStaff/Gameplay/ITEM_Staff_Gravetide.ITEM_Staff_Gravetide&quot;: {
+    &quot;Name&quot;: &quot;Gravetide Staff&quot;,
+    &quot;FlavourText&quot;: &quot;A prison of whispering souls bound around a heart of black glass.&quot;,
+    &quot;DamageMultiplier&quot;: 16.2,
+    &quot;PowerLevel&quot;: 12,
+    &quot;BaseDurability&quot;: 2800,
+    &quot;Weight&quot;: 15.0,
+    &quot;PersistenceID&quot;: &quot;GTStaff7A2K9QX&quot;,
+    &quot;InternalName&quot;: &quot;gravetide_staff_mod&quot;,
+    &quot;AnimationPoseType&quot;: &quot;EAnimationPoseType::Default&quot;,
+    &quot;AnimationPosesSequence&quot;: {
+      &quot;ObjectName&quot;: &quot;AnimSequence'A_PlayerM_Idle_Staff_Poses'&quot;,
+      &quot;ObjectPath&quot;: &quot;/Game/Art/Animation/PlayerM/Staff/A_PlayerM_Idle_Staff_Poses.0&quot;
+    }
+  }
+}
+</code></pre></section>
     </div>
     <footer class="runeschema-json-dialog__footer"><p><strong>Optional means preserve.</strong> Omitting <code>DropIncreasePercent</code>, <code>PersistenceID</code>, or <code>InternalName</code> leaves the corresponding loaded behavior or value unchanged.</p><button type="button" data-json-copy>Copy active example</button><span data-json-copy-status aria-live="polite"></span></footer>
   </div>
@@ -440,7 +459,7 @@ Example Mod B : 0</code></pre>
 </dialog>
 </main>
 <footer class="site-footer"><div class="footer-brand"><img src="assets/application-icon.png" alt=""><div><strong>Dragonwilds Sync</strong><span>For Modders</span></div></div><div class="footer-links"><a href="helpy.html">Read Helpy</a><a href="launcher-preview.html">Preview Launcher</a><a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub</a></div><p>ID.txt is declarative metadata. Dragonwilds Sync never executes package metadata.</p></footer><script src="script.js?v=nav-rune-1"></script><script src="modders.js?v=1"></script><script src="downloads-flavor.js?v=1"></script>
-  <script src="runeschema-variant.js?v=4"></script>
+  <script src="runeschema-variant.js?v=5"></script>
 </body></html>
 
 
