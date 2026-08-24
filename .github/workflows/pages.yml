@@ -169,7 +169,7 @@ jobs:
           grep -q 'Current prerelease: v0.6.2' _site/for-modders.html
           grep -q 'data-runeschema-title' _site/for-modders.html
           grep -q 'data-runeschema-comparison-version' _site/for-modders.html
-          grep -q '0.6.2 EXPERIMENTAL' _site/for-modders.html
+          grep -q 'data-runeschema-comparison-version>0.6.2</span> EXPERIMENTAL' _site/for-modders.html
           grep -q 'Official 0.6.0 vs. 0.6.2 Experimental' _site/assets/docs/runeschema-0.6.1-experimental/COMPARISON.md
           grep -q 'api.github.com/repos/gh0sted5456-us/RuneSchema/releases' _site/runeschema-variant.js
           grep -Fq '^RuneSchema-.*Experimental\.zip$' _site/runeschema-variant.js
