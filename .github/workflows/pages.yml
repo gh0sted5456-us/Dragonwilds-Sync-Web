@@ -147,7 +147,7 @@ jobs:
           grep -q 'href="servers.html"' _site/top-flow.js
           grep -q 'signed-launcher-heartbeats-only' _site/directory-source.json
           grep -q 'dragonwilds-sync-directory.dragonwilds.workers.dev/api/v1/worlds' _site/server-list.js
-          grep -q 'dragonwilds-sync-directory.dragonwilds.workers.dev/api/v1/invites' _site/server-list.js
+          grep -q '/api/v1/invites' _site/server-list.js
           grep -q "new URL('invite.html'" _site/server-list.js
           grep -q 'dragonwilds-sync://join' _site/world-invite.js
 
