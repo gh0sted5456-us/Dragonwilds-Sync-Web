@@ -31,3 +31,9 @@ The public browser may show World name, description, artwork, badges, tags, play
 ## Remote administration
 
 Remote management is separate from public discovery and uses an authenticated paired session plus explicit permissions for actions such as start, stop, config editing, Spawner, and console access.
+
+## Server notices
+
+Dragonwilds Sync currently sends restart, update, maintenance, and status notices through the launcher and authenticated WebGUI. They are non-intrusive, dismissible application notifications; V3 does not inject messages into game chat, simulate input, or reuse Dragonwilds' sleep screen.
+
+Native in-game delivery is a future feature under investigation. Until a versioned game bridge can confirm support and report delivery, application notifications remain the authoritative channel.

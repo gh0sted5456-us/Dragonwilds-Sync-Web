@@ -41,6 +41,7 @@ Dragonwilds Sync keeps one persistent navigation shell. Moving between Appys pre
 - Open **Sync** for the directory, manifests, transfer, Website, and Remote Access surfaces.
 - A join verifies the World fingerprint before applying required files.
 - The final verification must pass before Dragonwilds launches; a failed or timed-out operation leaves the launcher available for retry.
+- Server notices appear as non-intrusive launcher or authenticated WebGUI notifications. V3 does not inject notices into game chat.
 
 ![Sync networking workspace](../renderer/assets/help/09-networking.png) "Gameplay UDP, Sync TCP, directory publication, and remote access remain separate and explicit."
 

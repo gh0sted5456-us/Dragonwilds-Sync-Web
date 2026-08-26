@@ -1,9 +1,9 @@
 {
   "schema": "DragonwildsSync.Help.v1",
-  "version": 10,
+  "version": 11,
   "title": "Dragonwilds Sync Helpy",
   "subtitle": "A living, system-by-system field guide shared by the website and desktop application.",
-  "updated_at": "2026-08-23",
+  "updated_at": "2026-08-26",
   "pages": [
     {
       "id": "getting-started",
@@ -94,7 +94,7 @@
         },
         {
           "title": "Sync",
-          "body": "Verify fingerprints, compare manifests, transfer only required files, and expose Website or Remote Access separately."
+          "body": "Verify fingerprints, compare manifests, transfer only required files, and expose Website or Remote Access separately. Server notices remain non-intrusive launcher or authenticated WebGUI notifications in V3."
         },
         {
           "title": "Helpy and Settings",
@@ -176,6 +176,10 @@
         {
           "title": "Direct Connect",
           "body": "Direct Connect uses an explicit private endpoint without requiring a public listing. It does not bypass fingerprints, passwords, profile boundaries, or server-side permissions."
+        },
+        {
+          "title": "Notification boundary",
+          "body": "Heartbeat and World broadcast make a server discoverable; they do not inject text into Dragonwilds. V3 delivers restart, update, maintenance, and connection notices through the launcher and authenticated WebGUI. Native game-chat delivery remains a future feature."
         }
       ],
       "tips": [
@@ -301,6 +305,10 @@
           "body": "Remote control is separate from discovery and requires an authenticated session plus explicit World-scoped permissions."
         },
         {
+          "title": "Server notices",
+          "body": "Restart, update, maintenance, and status notices use dismissible launcher and authenticated WebGUI notifications. V3 does not inject game chat, simulate input, or reuse the Dragonwilds sleep screen; native delivery remains future work."
+        },
+        {
           "title": "Runtime ownership",
           "body": "The application supervises processes it launches and retains enough state to reattach safely. A returned button or toast does not prove the server reached healthy running state."
         },
@@ -316,7 +324,8 @@
       "tips": [
         "Stop verifies process-tree cleanup.",
         "Heartbeat declarations have a TTL.",
-        "Website and Remote Access remain independent switches."
+        "Website and Remote Access remain independent switches.",
+        "Application notifications are the authoritative V3 announcement channel."
       ],
       "screenshots": [
         {

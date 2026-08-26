@@ -19,3 +19,7 @@ For **Sync & Play**, the launcher verifies identity, compares only client-requir
 ## Heartbeat projection
 
 A server configured to publish heartbeats to a WebHost appears in **Declared** while its heartbeat remains inside the host TTL and its Sync fingerprint probe succeeds. Stale declarations expire automatically.
+
+## Notifications are not gameplay broadcast
+
+World discovery and heartbeat broadcast make a World reachable; they do not inject text into Dragonwilds. V3 delivers scheduled restart, update, maintenance, and connection notices through Sync's launcher and authenticated WebGUI only. Native game-chat delivery remains a future feature.
