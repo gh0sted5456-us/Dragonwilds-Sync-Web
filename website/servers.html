@@ -74,6 +74,25 @@
           </div>
         </div>
 
+        <details class="advanced-world-filters" id="advanced-world-filters">
+          <summary><span>Advanced filters</span><small>Player count, OS, runtimes, password, and individual mods</small></summary>
+          <div class="advanced-filter-grid">
+            <label><span>Minimum players</span><input id="filter-min-players" type="number" min="0" max="10000" value="0" inputmode="numeric"></label>
+            <label><span>Server OS</span><select id="filter-server-os"><option value="">Any OS</option></select></label>
+            <label><span>UE4SS channel</span><select id="filter-ue4ss-channel"><option value="">Any channel</option><option value="baseline">Baseline</option><option value="stable">Stable</option><option value="experimental">Experimental</option></select></label>
+            <label><span>RuneSchema channel</span><select id="filter-runeschema-channel"><option value="">Any channel</option><option value="baseline">Baseline</option><option value="stable">Stable</option><option value="experimental">Experimental</option></select></label>
+            <label><span>World Password</span><select id="filter-password"><option value="">Any</option><option value="open">No password</option><option value="protected">Password required</option></select></label>
+            <label class="advanced-check"><input id="filter-open-slots" type="checkbox"><span>Has open player slots</span></label>
+            <label class="advanced-check"><input id="filter-client-required" type="checkbox"><span>Has client-required mods</span></label>
+          </div>
+          <div class="advanced-mod-filter">
+            <div><strong>Required or installed mods</strong><small>Select one or more; matching Worlds must include every selection.</small></div>
+            <input id="filter-mod-search" type="search" placeholder="Find a mod in this directory…" autocomplete="off">
+            <div class="advanced-mod-options" id="advanced-mod-options"><span class="advanced-empty">Mod choices appear when Worlds publish their manifests.</span></div>
+          </div>
+          <footer><span id="advanced-result-count">0 Worlds match</span><button type="button" id="reset-advanced-filters">Reset advanced filters</button></footer>
+        </details>
+
         <div class="world-grid" id="world-grid" aria-live="polite">
           <!-- PUBLIC_SERVER_SNAPSHOT_START -->
           <div class="directory-placeholder"><span class="loading-ring" aria-hidden="true"></span><strong>Sync World snapshot is being prepared</strong><p>The Pages deployment replaces this placeholder with participating Sync Worlds before publishing.</p></div>
@@ -106,6 +125,6 @@
   </div>
 
   <script src="script.js?v=ubuntu-download-1"></script>
-  <script src="server-list.js?v=sync-broadcasts-2"></script>
+  <script src="server-list.js?v=sync-broadcasts-3"></script>
 </body>
 </html>
