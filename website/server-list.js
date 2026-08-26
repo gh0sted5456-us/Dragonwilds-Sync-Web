@@ -8,6 +8,7 @@
   if (!grid) return;
 
   let worlds = [];
+  let renderedSignature = '';
   let filter = 'all';
   let page = 1;
   let view = localStorage.getItem('dragonwilds-sync-public-directory-view') === 'horizontal' ? 'horizontal' : 'placards';
@@ -51,7 +52,7 @@
       <div class="world-card-face world-card-front"><div class="world-card-top"><span class="world-status ${online(world) ? 'online' : ''}">${escapeHtml(world.status)}</span><span class="world-id">${escapeHtml(world.id)}</span></div>
       <h3>${escapeHtml(world.name)}</h3><p class="world-description">${escapeHtml(world.description)}</p>
       <div class="world-metrics"><div class="world-metric"><span>REGION</span><strong>${escapeHtml(world.region)}</strong></div><div class="world-metric"><span>PLAYERS</span><strong>${world.current} / ${world.max || '—'}</strong></div><div class="world-metric"><span>BUILD</span><strong>${escapeHtml(world.version)}</strong></div></div>
-      <div class="world-card-tags">${(world.tags.length ? world.tags.slice(0, 5) : ['Sync broadcast']).map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div><div class="world-card-footer"><span>Last seen ${time(world.lastSeen)}</span><b>DETAILS ↻</b></div></div>
+      <div class="world-card-tags">${(world.tags.length ? world.tags.slice(0, 5) : ['Sync broadcast']).map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div><div class="world-card-footer"><span data-last-seen="${world.lastSeen}">Last seen ${time(world.lastSeen)}</span><b>DETAILS ↻</b></div></div>
       <div class="world-card-face world-card-back"><div class="world-card-top"><span class="world-status">SYNC DETAILS</span><span class="world-id">${escapeHtml(world.id)}</span></div><div class="world-back-grid">${chipSection('Mods', world.mods)}${chipSection('Rules', world.rules)}${chipSection('Badges', world.badges)}${chipSection('Tags', world.tags)}</div>${connect ? `<div class="world-connect">Public connect: ${escapeHtml(connect)}</div>` : ''}<div class="world-card-footer"><span>Signed launcher heartbeat</span><b>FRONT ↻</b></div></div>
     </div>`;
     const flip = () => article.classList.toggle('flipped');
@@ -84,24 +85,48 @@
     }
   }
 
+  function materialSignature(rows) {
+    return JSON.stringify(rows.map(({ lastSeen, ...world }) => world));
+  }
+
+  function refreshRelativeTimes() {
+    document.querySelectorAll('[data-last-seen]').forEach((node) => {
+      node.textContent = `Last seen ${time(Number(node.dataset.lastSeen || 0))}`;
+    });
+  }
+
+  function setDirectoryState(state, markup) {
+    if (!state || state.dataset.directoryMarkup === markup) return;
+    state.dataset.directoryMarkup = markup;
+    state.innerHTML = markup;
+  }
+
   async function refresh() {
     const state = document.querySelector('#directory-state');
     try {
       const response = await fetch(API, { headers: { Accept: 'application/json' }, cache: 'no-store' });
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const payload = await response.json();
-      worlds = (Array.isArray(payload.worlds) ? payload.worlds : [])
+      const nextWorlds = (Array.isArray(payload.worlds) ? payload.worlds : [])
         .filter((world) => world?.is_sync_world === true && world?.directory_source === 'dragonwilds-sync').map(normalize);
-      if (state) state.innerHTML = `<span class="directory-dot"></span><div><strong>Sync directory online</strong><small>${worlds.length} signed launcher broadcast${worlds.length === 1 ? '' : 's'} received.</small></div>`;
+      const nextSignature = materialSignature(nextWorlds);
+      const changed = nextSignature !== renderedSignature;
+      worlds = nextWorlds;
+      setDirectoryState(state, `<span class="directory-dot"></span><div><strong>Sync directory online</strong><small>${worlds.length} signed launcher broadcast${worlds.length === 1 ? '' : 's'} received.</small></div>`);
       const active = worlds.filter(online);
       document.querySelector('#stat-worlds').textContent = String(active.length);
       document.querySelector('#stat-players').textContent = String(active.reduce((sum, world) => sum + world.current, 0));
       document.querySelector('#stat-users').textContent = '—'; document.querySelector('#stat-build').textContent = text(active[0]?.version, '—');
       const starts = Number(payload?.directory?.total_sync_world_starts); document.querySelector('#stat-total-sync-starts').textContent = Number.isFinite(starts) ? starts.toLocaleString() : '—';
       document.querySelector('#network-message').textContent = 'Live signed heartbeats from Dragonwilds Sync launchers.';
-      render();
+      if (changed) {
+        renderedSignature = nextSignature;
+        render();
+      } else {
+        refreshRelativeTimes();
+      }
     } catch (error) {
-      if (state) state.innerHTML = `<span class="directory-dot"></span><div><strong>Directory unavailable</strong><small>${escapeHtml(error.message || error)}</small></div>`;
+      setDirectoryState(state, `<span class="directory-dot"></span><div><strong>Directory unavailable</strong><small>${escapeHtml(error.message || error)}</small></div>`);
       if (!worlds.length) grid.innerHTML = '<div class="directory-placeholder"><strong>The Sync directory is temporarily unavailable.</strong><p>No third-party server data will be substituted.</p></div>';
     }
   }
