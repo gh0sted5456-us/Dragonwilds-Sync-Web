@@ -111,3 +111,5 @@
   .world-grid.directory-horizontal .world-card-front .card-description{max-height:40px;margin:5px 0 7px}
   .world-grid.directory-horizontal .world-card-front .card-footer{margin-top:7px;padding-top:7px}
 }
+.world-join-button{display:flex;align-items:center;justify-content:center;min-height:38px;margin:10px 0 2px;padding:8px 12px;border:1px solid var(--gold);border-radius:9px;background:linear-gradient(135deg,color-mix(in srgb,var(--gold) 78%,#5b3510),color-mix(in srgb,var(--gold) 58%,#20170b));color:#100c05;font-size:9px;font-weight:900;letter-spacing:.06em;text-decoration:none;text-transform:uppercase}.world-join-button:hover,.world-join-button:focus-visible{filter:brightness(1.12);transform:translateY(-1px)}
+.embedded-directory .site-header,.embedded-directory .directory-page-hero,.embedded-directory .site-footer,.embedded-directory .main-directory-cta{display:none!important}.embedded-directory .directory-page-main{padding-top:0}.embedded-directory .network-section{padding-top:18px}.embedded-directory .worlds-section{padding-bottom:24px}

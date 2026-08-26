@@ -1,6 +1,8 @@
 /* Live, Sync-only World directory. No game-lobby or third-party observations. */
 (() => {
+  if (new URLSearchParams(location.search).get('embed') === 'launcher') document.documentElement.classList.add('embedded-directory');
   const API = 'https://dragonwilds-sync-directory.dragonwilds.workers.dev/api/v1/worlds';
+  const DIRECTORY = 'https://dragonwilds-sync-directory.dragonwilds.workers.dev';
   const PAGE_URL = 'https://gh0sted5456-us.github.io/Dragonwilds-Sync-Web/servers.html';
   const PAGE_SIZE = 10;
   const grid = document.querySelector('#world-grid');
@@ -40,6 +42,8 @@
       modSummary: Array.isArray(raw?.mod_summary) ? raw.mod_summary.filter((row) => row && typeof row === 'object') : [],
       runtimeChannels: raw?.runtime_channels && typeof raw.runtime_channels === 'object' ? raw.runtime_channels : {},
       serverCurrent: raw?.server_current === true,
+      platforms: list(raw?.declared_platforms).map((value) => value.toLowerCase()),
+      platformCompatibility: raw?.platform_compatibility && typeof raw.platform_compatibility === 'object' ? raw.platform_compatibility : { pc: true },
     };
   }
 
@@ -56,15 +60,25 @@
     const connect = world.connect?.host ? `${text(world.connect.host, '')}${world.connect.port ? `:${world.connect.port}` : ''}` : '';
     const runtimes = [`UE4SS · ${text(world.runtimeChannels.ue4ss, 'Unknown')}`, `RuneSchema · ${text(world.runtimeChannels.runeschema, 'Unknown')}`];
     const hostDetails = [world.hostOsLabel || world.hostOs || 'OS not published', world.passwordRequired ? 'Password required' : 'No World Password'];
+    const platforms = world.platforms.length ? world.platforms.map((value) => value.replace(/(^|[-_])\w/g, (match) => match.replace(/[-_]/, ' ').toUpperCase())) : ['PC'];
+    const publishedMods = world.modSummary.length ? world.modSummary.map((mod) => {
+      const name = text(mod.name || mod.key, 'Unnamed mod');
+      const loader = text(mod.loader || mod.section || mod.kind, '').toUpperCase();
+      const audience = mod.client_required === true ? 'CLIENT REQUIRED' : 'SERVER RETAINED';
+      const version = text(mod.version, '');
+      return [name, loader, audience, version].filter(Boolean).join(' · ');
+    }) : world.mods;
+    const joinUrl = `dragonwilds-sync://join?directory=${encodeURIComponent(DIRECTORY)}&world_id=${encodeURIComponent(world.id)}`;
     article.innerHTML = `<div class="world-card-inner">
       <div class="world-card-face world-card-front"><div class="world-card-top"><span class="world-status ${online(world) ? 'online' : ''}">${escapeHtml(world.status)}</span><span class="world-id">${escapeHtml(world.id)}</span></div>
       <h3>${escapeHtml(world.name)}</h3><p class="world-description">${escapeHtml(world.description)}</p>
       <div class="world-metrics"><div class="world-metric"><span>REGION</span><strong>${escapeHtml(world.region)}</strong></div><div class="world-metric"><span>PLAYERS</span><strong>${world.current} / ${world.max || '—'}</strong></div><div class="world-metric"><span>BUILD</span><strong>${escapeHtml(world.version)}</strong></div></div>
       <div class="world-card-tags">${(world.tags.length ? world.tags.slice(0, 5) : ['Sync broadcast']).map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div><div class="world-card-footer"><span data-last-seen="${world.lastSeen}">Last seen ${time(world.lastSeen)}</span><b>DETAILS ↻</b></div></div>
-      <div class="world-card-face world-card-back"><div class="world-card-top"><span class="world-status">SYNC DETAILS</span><span class="world-id">${escapeHtml(world.id)}</span></div><div class="world-back-grid">${chipSection('Mods', world.mods)}${chipSection('Runtimes', runtimes)}${chipSection('Host', hostDetails)}${chipSection('Rules', world.rules)}${chipSection('Badges', world.badges)}${chipSection('Tags', world.tags)}</div>${connect ? `<div class="world-connect">Public connect: ${escapeHtml(connect)}</div>` : ''}<div class="world-card-footer"><span>Signed launcher heartbeat</span><b>FRONT ↻</b></div></div>
+      <div class="world-card-face world-card-back"><div class="world-card-top"><span class="world-status">SYNC DETAILS</span><span class="world-id">${escapeHtml(world.id)}</span></div><div class="world-back-grid">${chipSection('Mods', publishedMods)}${chipSection('Runtimes', runtimes)}${chipSection('Platforms', platforms)}${chipSection('Host', hostDetails)}${chipSection('Rules', world.rules)}${chipSection('Badges', world.badges)}${chipSection('Tags', world.tags)}</div>${connect ? `<div class="world-connect">Public connect: ${escapeHtml(connect)}</div>` : ''}<a class="world-join-button" href="${escapeHtml(joinUrl)}" data-world-join="1">Join in Dragonwilds Sync</a><div class="world-card-footer"><span>Signed launcher heartbeat</span><b>FRONT ↻</b></div></div>
     </div>`;
     const flip = () => article.classList.toggle('flipped');
     article.addEventListener('click', flip);
+    article.querySelector('[data-world-join]')?.addEventListener('click', (event) => event.stopPropagation());
     article.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); flip(); } });
     return article;
   }
@@ -77,6 +91,7 @@
       if (world.current < Number(advanced.minPlayers || 0)) return false;
       if (advanced.openSlots && world.max > 0 && world.current >= world.max) return false;
       if (advanced.hostOs && world.hostOs !== advanced.hostOs) return false;
+      if (advanced.platform && !world.platforms.includes(advanced.platform)) return false;
       if (advanced.ue4ss && text(world.runtimeChannels.ue4ss, 'unknown').toLowerCase() !== advanced.ue4ss) return false;
       if (advanced.runeschema && text(world.runtimeChannels.runeschema, 'unknown').toLowerCase() !== advanced.runeschema) return false;
       if (advanced.password === 'open' && world.passwordRequired) return false;
@@ -112,6 +127,13 @@
     if (osSelect) {
       osSelect.innerHTML = '<option value="">Any OS</option>' + osRows.map(([value, label]) => `<option value="${escapeHtml(value)}">${escapeHtml(label)}</option>`).join('');
       osSelect.value = osRows.some(([value]) => value === selectedOs) ? selectedOs : '';
+    }
+    const platformSelect = document.querySelector('#filter-platform');
+    const selectedPlatform = platformSelect?.value || '';
+    const platformRows = [...new Set(worlds.flatMap((world) => world.platforms))].filter(Boolean).sort();
+    if (platformSelect) {
+      platformSelect.innerHTML = '<option value="">Any declared platform</option>' + platformRows.map((value) => `<option value="${escapeHtml(value)}">${escapeHtml(value.toUpperCase())}</option>`).join('');
+      platformSelect.value = platformRows.includes(selectedPlatform) ? selectedPlatform : '';
     }
     const modNames = [...new Set(worlds.flatMap((world) => [...world.mods, ...world.modSummary.map((mod) => mod.name || mod.key || '')]).map((name) => text(name, '')).filter(Boolean))].sort((a, b) => a.localeCompare(b));
     const query = (document.querySelector('#filter-mod-search')?.value || '').trim().toLowerCase();
@@ -175,7 +197,7 @@
   document.querySelector('#world-search')?.addEventListener('input', () => { page = 1; render(); });
   const advancedBindings = [
     ['#filter-min-players', 'minPlayers', (value) => Math.max(0, Number(value || 0))],
-    ['#filter-server-os', 'hostOs'], ['#filter-ue4ss-channel', 'ue4ss'], ['#filter-runeschema-channel', 'runeschema'], ['#filter-password', 'password'],
+    ['#filter-server-os', 'hostOs'], ['#filter-platform', 'platform'], ['#filter-ue4ss-channel', 'ue4ss'], ['#filter-runeschema-channel', 'runeschema'], ['#filter-password', 'password'],
     ['#filter-open-slots', 'openSlots', (_value, node) => node.checked], ['#filter-client-required', 'clientRequired', (_value, node) => node.checked],
   ];
   advancedBindings.forEach(([selector, key, convert]) => document.querySelector(selector)?.addEventListener('input', (event) => {
