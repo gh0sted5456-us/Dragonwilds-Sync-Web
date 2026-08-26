@@ -74,11 +74,30 @@
       <h3>${escapeHtml(world.name)}</h3><p class="world-description">${escapeHtml(world.description)}</p>
       <div class="world-metrics"><div class="world-metric"><span>REGION</span><strong>${escapeHtml(world.region)}</strong></div><div class="world-metric"><span>PLAYERS</span><strong>${world.current} / ${world.max || '—'}</strong></div><div class="world-metric"><span>BUILD</span><strong>${escapeHtml(world.version)}</strong></div></div>
       <div class="world-card-tags">${(world.tags.length ? world.tags.slice(0, 5) : ['Sync broadcast']).map((tag) => `<span>${escapeHtml(tag)}</span>`).join('')}</div><div class="world-card-footer"><span data-last-seen="${world.lastSeen}">Last seen ${time(world.lastSeen)}</span><b>DETAILS ↻</b></div></div>
-      <div class="world-card-face world-card-back"><div class="world-card-top"><span class="world-status">SYNC DETAILS</span><span class="world-id">${escapeHtml(world.id)}</span></div><div class="world-back-grid">${chipSection('Mods', publishedMods)}${chipSection('Runtimes', runtimes)}${chipSection('Platforms', platforms)}${chipSection('Host', hostDetails)}${chipSection('Rules', world.rules)}${chipSection('Badges', world.badges)}${chipSection('Tags', world.tags)}</div>${connect ? `<div class="world-connect">Public connect: ${escapeHtml(connect)}</div>` : ''}<a class="world-join-button" href="${escapeHtml(joinUrl)}" data-world-join="1">Join in Dragonwilds Sync</a><div class="world-card-footer"><span>Signed launcher heartbeat</span><b>FRONT ↻</b></div></div>
+      <div class="world-card-face world-card-back"><div class="world-card-top"><span class="world-status">SYNC DETAILS</span><span class="world-id">${escapeHtml(world.id)}</span></div><div class="world-back-grid">${chipSection('Mods', publishedMods)}${chipSection('Runtimes', runtimes)}${chipSection('Platforms', platforms)}${chipSection('Host', hostDetails)}${chipSection('Rules', world.rules)}${chipSection('Badges', world.badges)}${chipSection('Tags', world.tags)}</div>${connect ? `<div class="world-connect">Public connect: ${escapeHtml(connect)}</div>` : ''}<div class="world-invite-actions"><a class="world-join-button" href="${escapeHtml(joinUrl)}" data-world-join="1">Join in Dragonwilds Sync</a><button class="world-share-button" type="button" data-world-share="1">Share World Invite</button></div><small class="world-share-status" aria-live="polite"></small><div class="world-card-footer"><span>Signed launcher heartbeat</span><b>FRONT ↻</b></div></div>
     </div>`;
     const flip = () => article.classList.toggle('flipped');
     article.addEventListener('click', flip);
     article.querySelector('[data-world-join]')?.addEventListener('click', (event) => event.stopPropagation());
+    article.querySelector('[data-world-share]')?.addEventListener('click', async (event) => {
+      event.stopPropagation();
+      const button = event.currentTarget;
+      const status = article.querySelector('.world-share-status');
+      button.disabled = true; if (status) status.textContent = 'Creating an expiring invite…';
+      try {
+        const response = await fetch(`${DIRECTORY}/api/v1/invites`, { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify({ world_id: world.id, expires_in_seconds: 86400 }) });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(payload.error === 'world_offline' ? 'This World must be online before it can be shared.' : payload.error || `Invite request failed (${response.status}).`);
+        const inviteUrl = new URL('invite.html', PAGE_URL); inviteUrl.searchParams.set('invite', payload.token);
+        if (navigator.share) {
+          try { await navigator.share({ title: `${world.name} · Dragonwilds Sync`, text: `Join ${world.name} through Dragonwilds Sync.`, url: inviteUrl.href }); if (status) status.textContent = 'World invite shared.'; }
+          catch (shareError) { if (shareError?.name !== 'AbortError') throw shareError; if (status) status.textContent = 'Sharing cancelled.'; }
+        } else {
+          await navigator.clipboard.writeText(inviteUrl.href); if (status) status.textContent = 'Invite copied. Paste it into Discord.';
+        }
+      } catch (error) { if (status) status.textContent = error.message || String(error); }
+      finally { button.disabled = false; }
+    });
     article.addEventListener('keydown', (event) => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); flip(); } });
     return article;
   }

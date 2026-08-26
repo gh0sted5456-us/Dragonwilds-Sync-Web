@@ -118,6 +118,7 @@ jobs:
             downloads.html
             helpy.html
             servers.html
+            invite.html
             for-modders.html
           )
           for page in "${required_pages[@]}"; do
@@ -134,6 +135,7 @@ jobs:
           node --check _site/download-flip.js
           node --check _site/runeschema-variant.js
           node --check _site/server-list.js
+          node --check _site/world-invite.js
 
           # The directory is intentionally limited to signed launcher broadcasts.
           grep -q 'runeschema.html' _site/for-modders.html
@@ -145,6 +147,9 @@ jobs:
           grep -q 'href="servers.html"' _site/top-flow.js
           grep -q 'signed-launcher-heartbeats-only' _site/directory-source.json
           grep -q 'dragonwilds-sync-directory.dragonwilds.workers.dev/api/v1/worlds' _site/server-list.js
+          grep -q 'dragonwilds-sync-directory.dragonwilds.workers.dev/api/v1/invites' _site/server-list.js
+          grep -q "new URL('invite.html'" _site/server-list.js
+          grep -q 'dragonwilds-sync://join' _site/world-invite.js
 
           grep -q 'styles.css?v=ubuntu-download-1' _site/index.html
           grep -q 'script.js?v=ubuntu-download-1' _site/index.html
