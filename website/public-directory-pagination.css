@@ -1,0 +1,12 @@
+/* Public Server Directory pagination + five-card network metric layout. */
+.directory-page-main .network-stats{grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.directory-pagination{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px;padding:13px 14px;border:1px solid var(--line);border-radius:13px;background:var(--panel);backdrop-filter:blur(var(--glass-blur))}
+.directory-pagination[hidden]{display:none}
+.directory-page-status{color:var(--muted);font-size:10px;font-weight:700;white-space:nowrap}
+.directory-page-controls{display:flex;align-items:center;justify-content:flex-end;gap:6px;flex-wrap:wrap}
+.directory-page-controls button{min-width:34px;min-height:34px;padding:0 9px;border:1px solid var(--line);border-radius:8px;background:var(--panel-soft);color:var(--muted);font-size:9px;font-weight:800;cursor:pointer}
+.directory-page-controls button:hover:not(:disabled){border-color:var(--line-strong);color:var(--text)}
+.directory-page-controls button[aria-current="page"]{border-color:var(--line-strong);background:color-mix(in srgb,var(--gold) 12%,var(--panel-soft));color:var(--text)}
+.directory-page-controls button:disabled{opacity:.38;cursor:not-allowed}
+.directory-page-gap{min-width:18px;color:var(--faint);text-align:center;font-size:10px}
+@media(max-width:720px){.directory-pagination{align-items:stretch;flex-direction:column}.directory-page-status{white-space:normal}.directory-page-controls{justify-content:flex-start}}

@@ -1,0 +1,101 @@
+/* Public Server Directory view-mode controls.
+   Placards remain the canonical rich view; Horizontal is a compact presentation
+   of the exact same normalized/deduplicated World records. */
+.directory-view-toggle{display:flex;align-items:center;gap:5px;padding:3px;border:1px solid var(--line);border-radius:11px;background:var(--panel-soft)}
+.directory-view-toggle button{min-height:34px;padding:0 10px;border:0;border-radius:8px;background:transparent;color:var(--muted);font-size:10px;font-weight:800;cursor:pointer}
+.directory-view-toggle button[aria-pressed="true"]{background:var(--surface-2);color:var(--text);box-shadow:0 3px 12px rgba(0,0,0,.12)}
+.directory-app-link{display:flex;align-items:center;gap:8px;margin-left:auto;min-width:0}
+.directory-app-link span{color:var(--faint);font-size:9px;white-space:nowrap}
+.directory-app-link button{min-height:34px;padding:0 10px;border:1px solid var(--line);border-radius:9px;background:var(--panel-soft);color:var(--text);font-size:9px;font-weight:800;cursor:pointer}
+.directory-app-link button:hover{border-color:var(--line-strong)}
+
+/* Deployment-baked fallback roster. These records exist in HTML before any
+   client-side fetch. script.js replaces them with the richer placards as soon
+   as live/fallback JSON is available. */
+.directory-static-summary{grid-column:1/-1;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 15px;border:1px solid var(--line);border-radius:12px;background:var(--panel-soft);color:var(--muted);font-size:10px}
+.directory-static-summary strong{color:var(--text);font-size:11px}
+.directory-static-world{min-width:0;display:grid;grid-template-columns:minmax(0,1fr);gap:13px;padding:16px;border:1px solid var(--line);border-radius:15px;background:var(--panel);box-shadow:0 8px 28px rgba(0,0,0,.12)}
+.directory-static-title{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
+.directory-static-title h3{margin:0;color:var(--text);font-size:16px;line-height:1.2;overflow-wrap:anywhere}
+.directory-static-kind{flex:0 0 auto;border:1px solid var(--line);border-radius:999px;padding:5px 7px;color:var(--muted);font-size:8px;font-weight:900;letter-spacing:.05em}
+.directory-static-kind.sync{border-color:rgba(72,196,129,.42);color:#71d99f}
+.directory-static-kind.public{border-color:rgba(109,156,255,.34);color:#8cafef}
+.directory-static-main p{min-height:32px;margin:8px 0 10px;color:var(--muted);font-size:10px;line-height:1.5}
+.directory-static-tags{display:flex;flex-wrap:wrap;gap:5px}
+.directory-static-tags span{padding:4px 6px;border:1px solid var(--line);border-radius:7px;background:var(--panel-soft);color:var(--faint);font-size:8px;font-weight:800}
+.directory-static-metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px}
+.directory-static-metrics>span{min-width:0;padding:8px;border:1px solid var(--line);border-radius:9px;background:var(--panel-soft);color:var(--muted);font-size:9px;overflow:hidden}
+.directory-static-metrics small{display:block;margin-bottom:2px;color:var(--faint);font-size:7px;text-transform:uppercase;letter-spacing:.08em}
+.directory-static-metrics b{display:block;color:var(--text);font-size:9px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.directory-static-status{display:flex!important;align-items:center;justify-content:center;font-weight:900!important;letter-spacing:.05em}
+.directory-static-status.online{color:#6bdc9b!important}
+.directory-static-status.offline{color:var(--faint)!important}
+.directory-static-source{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:9px;border-top:1px solid var(--line);color:var(--faint);font-size:8px}
+.directory-static-source strong{min-width:0;color:var(--muted);font-size:8px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.world-grid.directory-horizontal{grid-template-columns:1fr;gap:10px}
+/* Horizontal mode is a lightweight directory row, not a stretched placard.
+   Removing the 3D scene and off-screen animated face keeps long lists smooth. */
+.world-grid.directory-horizontal .world-card{min-height:218px;perspective:none;transform:none!important;content-visibility:auto;contain-intrinsic-size:auto 218px}
+.world-grid.directory-horizontal .world-card-inner{height:auto;min-height:218px;transform:none!important;transform-style:flat;transition:none;will-change:auto}
+.world-grid.directory-horizontal .world-card-face{position:relative;inset:auto;min-height:218px;transform:none!important;transform-style:flat;backface-visibility:visible;contain:layout paint;box-shadow:0 10px 28px rgba(0,0,0,.25)}
+.world-grid.directory-horizontal .world-card-front{display:grid;grid-template-columns:228px minmax(0,1fr);overflow:hidden}
+.world-grid.directory-horizontal .world-card-back{display:none;min-height:218px;transform:none}
+.world-grid.directory-horizontal .world-card.flipped .world-card-front{display:none}
+.world-grid.directory-horizontal .world-card.flipped .world-card-back{display:block}
+.world-grid.directory-horizontal .world-placard-backdrop{animation:none;transform:none;will-change:auto;opacity:.08}
+.world-grid.directory-horizontal .world-card-front>.world-mode-banner,
+.world-grid.directory-horizontal .world-card-front>.world-origin-banner{position:absolute;left:12px;width:max-content;max-width:200px;min-height:0;border:1px solid rgba(225,194,125,.35);border-radius:999px;padding:5px 8px;background:rgba(14,18,18,.86);box-shadow:0 5px 16px rgba(0,0,0,.28);font-size:7px;line-height:1;letter-spacing:.1em;backdrop-filter:none}
+.world-grid.directory-horizontal .world-card-front>.world-mode-banner{top:12px}
+.world-grid.directory-horizontal .world-card-front>.world-origin-banner{top:39px;color:#d5d9d5}
+.world-grid.directory-horizontal .world-card-front>.world-card-media{grid-column:1;height:218px!important;min-height:218px;margin:0!important}
+.world-grid.directory-horizontal .world-card-front .world-card-banner{height:218px!important;min-height:218px;transform:none!important;transition:none;will-change:auto;-webkit-mask-image:none;mask-image:none}
+.world-grid.directory-horizontal .world-card-front .world-card-banner-blend{background:linear-gradient(90deg,rgba(12,16,16,.02) 28%,rgba(12,16,16,.22) 66%,rgba(12,16,16,.98) 100%)!important}
+.world-grid.directory-horizontal .world-card-front>.world-card-body{grid-column:2;align-self:stretch;min-width:0;margin:0!important;padding:16px 18px 13px!important}
+.world-grid.directory-horizontal .world-card-front .world-icon{top:15px!important;left:18px;width:54px;height:54px}
+.world-grid.directory-horizontal .world-card-front .card-topline{min-height:50px;padding-left:68px}
+.world-grid.directory-horizontal .world-card-front .card-description{height:auto;min-height:30px;max-height:46px;margin:6px 0 8px;line-height:1.45}
+.world-grid.directory-horizontal .world-card-front .card-footer{margin-top:8px;padding-top:8px}
+.world-grid.directory-horizontal .world-card-back>.world-mode-banner{position:absolute;top:14px;right:14px;width:max-content;min-height:0;border:1px solid rgba(212,176,105,.25);border-radius:999px;padding:5px 8px;background:rgba(212,176,105,.08);font-size:7px;line-height:1}
+.world-grid.directory-horizontal .world-card-back .world-card-body{margin:0!important;padding:15px 16px!important}
+.world-grid.directory-horizontal .world-card-back .card-topline{padding-right:105px}
+.world-grid.directory-horizontal .world-card-back .world-back-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.world-grid.directory-horizontal .world-card-back .world-back-list{max-height:62px}
+.world-grid.directory-horizontal .directory-static-world{grid-template-columns:minmax(280px,1.6fr) minmax(360px,1fr) minmax(150px,.55fr);align-items:center;padding:12px 14px}
+.world-grid.directory-horizontal .directory-static-main p{min-height:0;margin:5px 0 7px}
+.world-grid.directory-horizontal .directory-static-source{display:block;padding:0 0 0 12px;border-top:0;border-left:1px solid var(--line)}
+.world-grid.directory-horizontal .directory-static-source strong{display:block;margin-top:4px;text-align:left}
+
+@media(max-width:900px){
+  .directory-app-link span{display:none}
+  .world-grid.directory-horizontal .world-card-front{grid-template-columns:190px minmax(0,1fr)}
+  .world-grid.directory-horizontal .world-card-front>.world-mode-banner,
+  .world-grid.directory-horizontal .world-card-front>.world-origin-banner{max-width:166px}
+  .world-grid.directory-horizontal .world-card-back .world-back-grid{grid-template-columns:1fr 1fr}
+  .world-grid.directory-horizontal .directory-static-world{grid-template-columns:1fr}
+  .world-grid.directory-horizontal .directory-static-source{padding:9px 0 0;border-left:0;border-top:1px solid var(--line)}
+}
+@media(max-width:700px){
+  .world-toolbar{align-items:stretch}
+  .directory-view-toggle{order:3}
+  .directory-app-link{order:4;margin-left:0}
+  .directory-static-summary{align-items:flex-start;flex-direction:column;gap:3px}
+  .directory-static-metrics{grid-template-columns:1fr 1fr}
+  .world-grid.directory-horizontal .world-card,
+  .world-grid.directory-horizontal .world-card-inner,
+  .world-grid.directory-horizontal .world-card-face{min-height:204px}
+  .world-grid.directory-horizontal .world-card{contain-intrinsic-size:auto 204px}
+  .world-grid.directory-horizontal .world-card-front{display:grid;grid-template-columns:104px minmax(0,1fr)}
+  .world-grid.directory-horizontal .world-card.flipped .world-card-front{display:none}
+  .world-grid.directory-horizontal .world-card-front>.world-card-media,
+  .world-grid.directory-horizontal .world-card-front .world-card-banner{height:204px!important;min-height:204px}
+  .world-grid.directory-horizontal .world-card-front>.world-mode-banner,
+  .world-grid.directory-horizontal .world-card-front>.world-origin-banner{left:7px;max-width:90px;padding:4px 6px;font-size:6px}
+  .world-grid.directory-horizontal .world-card-front>.world-mode-banner{top:8px}
+  .world-grid.directory-horizontal .world-card-front>.world-origin-banner{top:31px}
+  .world-grid.directory-horizontal .world-card-front>.world-card-body{padding:12px 11px 10px!important}
+  .world-grid.directory-horizontal .world-card-front .world-icon{top:11px!important;left:11px;width:42px;height:42px;border-radius:10px}
+  .world-grid.directory-horizontal .world-card-front .card-topline{min-height:42px;padding-left:50px}
+  .world-grid.directory-horizontal .world-card-front .card-description{max-height:40px;margin:5px 0 7px}
+  .world-grid.directory-horizontal .world-card-front .card-footer{margin-top:7px;padding-top:7px}
+}

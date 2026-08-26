@@ -1,0 +1,36 @@
+{
+  "format": "dragonwilds-sync-public-directory-link",
+  "version": 1,
+  "name": "Dragonwilds Sync Public Server Directory",
+  "page_url": "https://gh0sted5456-us.github.io/Dragonwilds-Sync-Web/servers.html",
+  "api_base": "https://dragonwilds-sync-directory.dragonwilds.workers.dev",
+  "worlds_url": "https://dragonwilds-sync-directory.dragonwilds.workers.dev/api/v1/worlds",
+  "sources_url": "https://dragonwilds-sync-directory.dragonwilds.workers.dev/api/v1/sources",
+  "compatible_aliases": [
+    "https://dragonwilds-sync-directory.dragonwilds.workers.dev/worlds",
+    "https://dragonwilds-sync-directory.dragonwilds.workers.dev/api/worlds",
+    "https://dragonwilds-sync-directory.dragonwilds.workers.dev/manifest"
+  ],
+  "collection": {
+    "mode": "signed-launcher-heartbeats-only",
+    "scheduled_refresh_minutes": 1,
+    "progressive": false,
+    "sync_offline_retention_seconds": 2592000
+  },
+  "presentation": {
+    "preferred_label": "Public Server List",
+    "supports_placards": true,
+    "supports_horizontal": true,
+    "page_size": 10,
+    "sync_first": true,
+    "offline_sync_category": true
+  },
+  "metrics": {
+    "total_sync_world_starts": "directory.total_sync_world_starts"
+  },
+  "security": {
+    "read_only": true,
+    "contains_admin_credentials": false,
+    "contains_world_passwords": false
+  }
+}

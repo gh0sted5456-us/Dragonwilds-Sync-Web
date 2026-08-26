@@ -117,6 +117,7 @@ jobs:
             launcher-preview.html
             downloads.html
             helpy.html
+            servers.html
             for-modders.html
           )
           for page in "${required_pages[@]}"; do
@@ -132,17 +133,18 @@ jobs:
           node --check _site/downloads-flavor.js
           node --check _site/download-flip.js
           node --check _site/runeschema-variant.js
+          node --check _site/server-list.js
 
-          # The website is intentionally not a public server browser anymore.
+          # The directory is intentionally limited to signed launcher broadcasts.
           grep -q 'runeschema.html' _site/for-modders.html
-          test ! -e _site/servers.html || { echo 'servers.html must not be deployed' >&2; exit 1; }
+          test -s _site/servers.html
+          test -s _site/server-list.js
           test ! -e _site/public-directory-view.js || { echo 'Public directory runtime must not be deployed' >&2; exit 1; }
           test ! -e _site/public-directory-fetch-fallback.js || { echo 'Public directory fallback must not be deployed' >&2; exit 1; }
           test ! -e _site/assets/public-worlds-fallback.json || { echo 'Public world snapshot must not be deployed' >&2; exit 1; }
-          ! grep -q 'href="servers.html"' _site/index.html
-          ! grep -R -q 'href="servers.html"' _site --include='*.html'
-          ! grep -q 'href="servers.html"' _site/script.js
-          ! grep -q 'dragonwilds-sync-directory.dragonwilds.workers.dev' _site/script.js
+          grep -q 'href="servers.html"' _site/top-flow.js
+          grep -q 'signed-launcher-heartbeats-only' _site/directory-source.json
+          grep -q 'dragonwilds-sync-directory.dragonwilds.workers.dev/api/v1/worlds' _site/server-list.js
 
           grep -q 'styles.css?v=ubuntu-download-1' _site/index.html
           grep -q 'script.js?v=ubuntu-download-1' _site/index.html

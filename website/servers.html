@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b0d0f">
+  <meta name="description" content="Browse public Dragonwilds Sync Worlds that are actively broadcasting through Dragonwilds Sync.">
+  <meta property="og:title" content="Sync Worlds — Dragonwilds Sync">
+  <meta property="og:description" content="A public directory of Dragonwilds Sync-enabled Worlds with heartbeat status, build information, mods, rules, tags, and connection details.">
+  <meta property="og:type" content="website">
+  <title>Sync Worlds — Dragonwilds Sync</title>
+  <link rel="icon" href="assets/application-icon.png">
+  <link rel="dragonwilds-sync-directory" type="application/json" href="directory-source.json">
+  <link rel="stylesheet" href="styles.css?v=public-directory-6">
+  <link rel="stylesheet" href="public-directory-view.css?v=public-directory-7">
+  <link rel="stylesheet" href="public-directory-pagination.css?v=public-directory-6">
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header" id="top" data-shared-nav="1"><a class="brand" href="index.html#top" aria-label="Dragonwilds Sync home"><img src="assets/application-icon.png" alt="" class="brand-icon"><span class="brand-copy"><strong>Dragonwilds</strong><span>Sync</span></span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span class="sr-only">Toggle navigation</span></button><nav class="main-nav" id="main-nav" data-shared-nav="1"></nav><div class="theme-switcher" role="group" aria-label="Website theme"><button type="button" data-theme-choice="dark" aria-pressed="true"><span class="theme-dot dark-dot"></span><span class="theme-label">Dark</span></button><button type="button" data-theme-choice="white"><span class="theme-dot white-dot"></span><span class="theme-label">White</span></button><button type="button" data-theme-choice="glass"><span class="theme-dot glass-dot"></span><span class="theme-label">Glass</span></button></div></header>
+
+  <main class="directory-page-main">
+    <section class="section-shell directory-page-hero">
+      <div class="section-heading reveal visible">
+        <div class="eyebrow"><span class="pulse-heart" aria-hidden="true">♥</span> Dragonwilds Sync Network</div>
+        <h1>Public Sync Worlds.</h1>
+        <p>This directory only shows Worlds whose launcher broadcast was accepted by the Dragonwilds Sync network. Ordinary public Dragonwilds servers and third-party observations are excluded. A registration is removed after 30 consecutive offline days, or immediately when its host deletes the Server profile.</p>
+      </div>
+    </section>
+
+    <section class="network-section section-shell" id="network">
+      <div class="network-heading reveal">
+        <div><div class="eyebrow"><span class="network-live-dot" id="network-live-dot"></span> Sync Network Status</div><h2>See which Sync Worlds are online now.</h2></div>
+        <p id="network-message">Connecting to the Dragonwilds Sync World directory…</p>
+      </div>
+      <div class="network-stats reveal delay-1" aria-live="polite">
+        <article><span>ACTIVE USERS</span><strong id="stat-users">—</strong><small>anonymous active installations</small></article>
+        <article><span>SYNC WORLDS ONLINE</span><strong id="stat-worlds">—</strong><small>broadcasting through Dragonwilds Sync</small></article>
+        <article><span>PLAYERS LISTED</span><strong id="stat-players">—</strong><small>across visible Sync Worlds</small></article>
+        <article><span>TOTAL WORLDS STARTED WITH SYNC</span><strong id="stat-total-sync-starts">—</strong><small>cumulative Sync world starts</small></article>
+        <article><span>CURRENT BUILD</span><strong id="stat-build">—</strong><small>checking Steam dedicated-server build</small></article>
+      </div>
+    </section>
+
+    <section class="worlds-section" id="servers">
+      <div class="section-shell">
+        <div class="worlds-header reveal">
+          <div class="section-heading">
+            <div class="eyebrow">Sync World List</div>
+            <h2>Find your next Sync World.</h2>
+            <p>Search participating Dragonwilds Sync Worlds ten at a time. Only Worlds broadcasting through Sync are eligible to appear here.</p>
+          </div>
+          <div class="directory-state" id="directory-state"><span class="directory-dot"></span><div><strong>Sync World list ready</strong><small>Baked Sync snapshot loads before live refresh.</small></div></div>
+        </div>
+
+        <div class="world-toolbar reveal delay-1">
+          <div class="filter-group" role="group" aria-label="Sync World directory filter">
+            <button class="filter-button active" type="button" data-world-filter="all">All Sync Worlds</button>
+            <button class="filter-button" type="button" data-world-filter="online">Online</button>
+            <button class="filter-button" type="button" data-world-filter="offline-sync">Offline</button>
+            <button class="filter-button" type="button" data-world-filter="modded">Modded</button>
+            <button class="filter-button" type="button" data-world-filter="current">Current build</button>
+          </div>
+          <label class="world-search"><span class="sr-only">Search Sync Worlds</span><input id="world-search" type="search" placeholder="Search Sync Worlds, regions, tags…" autocomplete="off"></label>
+          <div class="directory-view-toggle" role="group" aria-label="Sync World list view">
+            <button type="button" data-directory-view="placards" aria-pressed="true" title="Placards">▦ Placards</button>
+            <button type="button" data-directory-view="horizontal" aria-pressed="false" title="Horizontal">☰ Horizontal</button>
+          </div>
+          <div class="directory-app-link">
+            <span id="copy-app-directory-status">Use this webpage link in Dragonwilds Sync.</span>
+            <button type="button" id="copy-app-directory-link">Copy App Link</button>
+          </div>
+        </div>
+
+        <div class="world-grid" id="world-grid" aria-live="polite">
+          <!-- PUBLIC_SERVER_SNAPSHOT_START -->
+          <div class="directory-placeholder"><span class="loading-ring" aria-hidden="true"></span><strong>Sync World snapshot is being prepared</strong><p>The Pages deployment replaces this placeholder with participating Sync Worlds before publishing.</p></div>
+          <!-- PUBLIC_SERVER_SNAPSHOT_END -->
+        </div>
+        <nav class="directory-pagination" id="world-pagination" aria-label="Sync World list pages" hidden></nav>
+      </div>
+    </section>
+
+    <section class="section-shell main-directory-cta">
+      <div class="main-directory-card reveal">
+        <div class="section-heading">
+          <div class="eyebrow">Public by design</div>
+          <h2>Broadcasting is not administration.</h2>
+          <p>The directory only displays public Sync discovery metadata. Remote management, passwords, WebGUI sessions, Sync secrets, and administrator authority remain separate from this public list.</p>
+        </div>
+        <a class="button button-secondary" href="about.html">Learn about Dragonwilds Sync <span aria-hidden="true">→</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-brand"><img src="assets/application-icon.png" alt=""><div><strong>Dragonwilds Sync</strong><span>Community toolkit for RuneScape: Dragonwilds</span></div></div>
+    <div class="footer-links"><a href="index.html">Home</a><a href="experience.html">Experience</a><a href="about.html">About</a><a href="servers.html" aria-current="page">Servers</a><a href="helpy.html">Help</a><a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub</a></div>
+    <p>Dragonwilds Sync is an independent community project and is not affiliated with, endorsed by, or sponsored by Jagex Ltd.</p>
+  </footer>
+
+  <div hidden aria-hidden="true">
+    <span id="release-version"></span><span id="release-date"></span><span id="release-channel"></span><a id="release-link" href="#"></a>
+  </div>
+
+  <script src="script.js?v=ubuntu-download-1"></script>
+  <script src="server-list.js?v=sync-broadcasts-1"></script>
+</body>
+</html>
