@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b0d0f">
+  <meta name="description" content="Dragonwilds Sync technology overview: current features, architecture, limitations, release verification, and planned progress.">
+  <meta property="og:title" content="Tech & Roadmap — Dragonwilds Sync">
+  <meta property="og:description" content="What Dragonwilds Sync ships today, where its boundaries are, and what the project may explore next.">
+  <meta property="og:type" content="website">
+  <title>Tech &amp; Roadmap | Dragonwilds Sync</title>
+  <link rel="icon" href="assets/application-icon.png">
+  <link rel="stylesheet" href="styles.css?v=tech-page-1">
+  <link rel="stylesheet" href="tech.css?v=1">
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div><div class="ambient ambient-two" aria-hidden="true"></div>
+  <header class="site-header" id="top" data-shared-nav="1"><a class="brand" href="index.html" aria-label="Dragonwilds Sync home"><img src="assets/application-icon.png" alt="" class="brand-icon"><span class="brand-copy"><strong>Dragonwilds</strong><span>Sync</span></span></a><button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav"><span></span><span></span><span class="sr-only">Toggle navigation</span></button><nav class="main-nav" id="main-nav" data-shared-nav="1"></nav><div class="theme-switcher" role="group" aria-label="Website theme"><button type="button" data-theme-choice="dark" aria-pressed="true"><span class="theme-dot dark-dot"></span><span class="theme-label">Dark</span></button><button type="button" data-theme-choice="white"><span class="theme-dot white-dot"></span><span class="theme-label">White</span></button><button type="button" data-theme-choice="glass"><span class="theme-dot glass-dot"></span><span class="theme-label">Glass</span></button></div></header>
+
+  <main class="tech-main">
+    <section class="section-shell tech-hero">
+      <div class="tech-hero__copy reveal visible"><div class="eyebrow">TECH · v3.0.4 STABLE</div><h1>The systems behind<br><span>the Sync experience.</span></h1><p>Dragonwilds Sync is a desktop launcher, World-management suite, synchronization service, dedicated-runtime controller, mod coordinator, and optional remote-management layer. This page separates what exists today from what still needs real-world proof and what remains planned.</p><div class="tech-actions"><a class="button button-primary" href="#capabilities">Explore capabilities <span aria-hidden="true">↓</span></a><a class="button button-secondary" href="#roadmap">View planned progress <span aria-hidden="true">→</span></a></div></div>
+      <aside class="tech-release reveal visible"><span>CURRENT RELEASE</span><strong>3.0.4</strong><h2>Connected Profile &amp;<br>Network Reliability</h2><dl><div><dt>Source</dt><dd>main</dd></div><div><dt>Verification</dt><dd>testing-branch</dd></div><div><dt>Packages</dt><dd>Windows + Ubuntu</dd></div></dl><a href="downloads.html#release-changelog">Read the release changelog <span aria-hidden="true">→</span></a></aside>
+    </section>
+
+    <nav class="section-shell tech-jump" aria-label="Tech page sections"><a href="#architecture">Architecture</a><a href="#capabilities">Capabilities</a><a href="#limitations">Limitations</a><a href="#roadmap">Planned progress</a><a href="#verification">Verification</a></nav>
+
+    <section class="section-shell tech-section" id="architecture">
+      <header class="tech-heading"><div><span>01 · ARCHITECTURE</span><h2>One experience,<br>with hard boundaries.</h2></div><p>The launcher coordinates several systems without treating local profiles, public discovery, gameplay traffic, synchronization, and remote administration as interchangeable.</p></header>
+      <div class="architecture-flow">
+        <article><span>LOCAL</span><h3>Electron interface</h3><p>Full and Quick modes share one backend authority. The renderer has no unrestricted Node access; mutable work crosses bounded preload and JSON-RPC bridges.</p></article>
+        <article><span>CORE</span><h3>Profile authority</h3><p>Python owns Worlds, saves, settings, credentials, imports, backups, manifests, network configuration, and durable application state.</p></article>
+        <article><span>RUNTIME</span><h3>Supervised workers</h3><p>Verified World Runtime Workers own dedicated processes, logs, file sharing, watchdog behavior, publication, and orderly stop/update transitions.</p></article>
+        <article><span>OPTIONAL SERVICES</span><h3>Directory &amp; WebHost</h3><p>Signed public World presence remains separate from direct reachability and separately authenticated remote administration.</p></article>
+      </div>
+    </section>
+
+    <section class="section-shell tech-section" id="capabilities">
+      <header class="tech-heading"><div><span>02 · AVAILABLE NOW</span><h2>Current capabilities.</h2></div><p>These are implemented source-level capabilities in v3.0.4. Platform- or environment-dependent claims remain subject to the verification boundaries below.</p></header>
+      <div class="capability-grid">
+        <article><span>WORLDS &amp; PROFILES</span><h3>Save-backed environments</h3><ul><li>Singleplayer, Co-Op, Dedicated, and Connected World organization</li><li>Create, detect, adopt, activate, archive, backup, restore, convert, import/export, delete, and Trash recovery</li><li>Dedicated connected-snapshot namespace that protects real local profiles and saves</li></ul></article>
+        <article><span>SYNC &amp; CONNECT</span><h3>Verified client preparation</h3><ul><li>Authenticated manifests with aggregate and per-component SHA-256 fingerprints</li><li>Changed-file staging, hash verification, role-correct materialization, parity proof, and launch handoff</li><li>Stable Connected World identity and Direct Connect routing across sync, activation, reconnect, and Play</li></ul></article>
+        <article><span>DEDICATED RUNTIME</span><h3>Server lifecycle control</h3><ul><li>Desired-state validation, launch, verification, stop, restart, update, watchdogs, and bounded logs</li><li>Publication only after the real game process and Sync share are verified</li><li>SteamCMD limited to dedicated-server ownership while retail Dragonwilds stays Steam-owned</li></ul></article>
+        <article><span>MODS &amp; RUNTIMES</span><h3>Coordinated content</h3><ul><li>UE4SS, RuneSchema, and PAK discovery, classification, load order, tags, hotload metadata, and profile assignment</li><li>Role-aware client/server deployment and managed runtime updates</li><li>Deterministic mod hashes and bounded text editing with JSON validation where applicable</li></ul></article>
+        <article><span>NETWORK &amp; DIRECTORY</span><h3>Local and external routes</h3><ul><li>LAN discovery, IP-first Direct Connect, Sync transfer, connection tests, public-IP detection, firewall/UPnP helpers, and network health tools</li><li>Signed public heartbeats with sanitized World, route, mod, platform, and classification metadata</li><li>Publisher ownership required for invite creation and deregistration</li></ul></article>
+        <article><span>WEBHOST &amp; REMOTE ADMIN</span><h3>Separate security surface</h3><ul><li>Opt-in WebHost on its own listener and port</li><li>Scoped users, CSRF protection, rate limiting, permissions, and audit history</li><li>Public directory results never receive Remote Admin authority</li></ul></article>
+        <article><span>CHARACTERS &amp; RSDW-L</span><h3>Character and data tools</h3><ul><li>Character discovery, profiles, clone, import/export, previews, starter sharing, and backup-first edits</li><li>Direct handoff from an exact discovered save to the Character Editor</li><li>Item registry, toolkit data, spawner, console, map/overlays, and optional live bridge surfaces</li></ul></article>
+        <article><span>DESKTOP &amp; PACKAGING</span><h3>Two package shapes</h3><ul><li>Windows Portable as the primary desktop package</li><li>Ubuntu AppImage plus standalone headless server artifacts</li><li>Full mode, profile-focused Quick mode, tray/background behavior, safe-graphics recovery, themes, Help, and Settings</li></ul></article>
+      </div>
+    </section>
+
+    <section class="section-shell tech-section" id="limitations">
+      <header class="tech-heading"><div><span>03 · CURRENT BOUNDARIES</span><h2>Honest limitations.</h2></div><p>Automated checks prove contracts and packaged smoke paths. They cannot certify every game, network, operating-system, or external-service behavior.</p></header>
+      <div class="boundary-grid">
+        <article><h3>Responsiveness &amp; cancellation</h3><p>The Core stdio dispatcher handles one request at a time. UI deadlines are bounded, but they do not yet cooperatively cancel a Python operation; long-handler calibration and queue-pressure hardening continue.</p></article>
+        <article><h3>Multiple hosted Worlds</h3><p>The worker model supports one owner per active World, but simultaneous real-game isolation across config, save, and runtime roots is not yet a certified promise.</p></article>
+        <article><h3>Real networks</h3><p>Router forwarding, UPnP, NAT loopback, CGNAT, VPN routing, firewall products, DNS, and WAN reachability depend on the host environment. VPN testing supports v3.0.4's external route fix but does not cover every topology.</p></article>
+        <article><h3>Linux &amp; Proton</h3><p>The Ubuntu AppImage builds and passes automated smoke tests. A real Dragonwilds dedicated process under Proton/Wine, process-tree containment, and Windows-specific RSDW live bridges still require physical acceptance.</p></article>
+        <article><h3>Live game integrations</h3><p>CI cannot prove real Dragonwilds process behavior, Steam/SteamCMD updates, live telemetry, console/spawner bridges, cross-machine joining, or exact map-coordinate calibration.</p></article>
+        <article><h3>Packaging &amp; updates</h3><p>Clean-machine acceptance remains required. Installer-style Windows deployment is not the primary package contract, and self-update with active workers still needs explicit recovery and reattachment acceptance.</p></article>
+      </div>
+    </section>
+
+    <section class="section-shell tech-section" id="roadmap">
+      <header class="tech-heading"><div><span>04 · PLANNED DIRECTION</span><h2>Progress without<br>premature promises.</h2></div><p>These items describe intended investigation and hardening. They are not shipped capabilities, release dates, or guaranteed platform commitments.</p></header>
+      <div class="roadmap-list">
+        <article><span class="roadmap-state">INVESTIGATE</span><div><h3>Steam Deck and handheld interface layer</h3><p>Explore a controller-first, touch-friendly GUI or presentation layer for Steam Deck, SteamOS, and similar handheld PCs. The likely direction is a focused shell over the existing backend rather than a second source of profile or runtime truth.</p></div><ul><li>Gamepad navigation and focus behavior</li><li>Handheld-scale layouts and readable status surfaces</li><li>On-screen keyboard and touch workflows</li><li>Proton path discovery and launch handoff</li></ul></article>
+        <article><span class="roadmap-state">HARDEN</span><div><h3>Cooperative cancellation and queue pressure</h3><p>Carry cancellation into Core operations, make long-running work report bounded progress, and prove that timeout, close, and recovery leave no locks, listeners, or child processes behind.</p></div></article>
+        <article><span class="roadmap-state">PROVE</span><div><h3>Physical Linux, Proton, and multi-machine acceptance</h3><p>Expand clean-host testing across real Dragonwilds installs, dedicated runtime behavior, external network paths, and supported Linux distributions before widening platform claims.</p></div></article>
+        <article><span class="roadmap-state">VALIDATE</span><div><h3>Multi-World runtime isolation</h3><p>Exercise simultaneous hosted Worlds against real save, configuration, port, process, and recovery behavior before exposing it as a certified operational mode.</p></div></article>
+        <article><span class="roadmap-state">REFINE</span><div><h3>Recovery, update, and observability</h3><p>Continue improving worker recovery, self-update reattachment, actionable crash presentation, diagnostics, telemetry isolation, and operator-facing release evidence.</p></div></article>
+      </div>
+    </section>
+
+    <section class="section-shell tech-section" id="verification">
+      <header class="tech-heading"><div><span>05 · RELEASE DISCIPLINE</span><h2>How changes reach main.</h2></div><p>The project uses staged verification instead of treating a source check as release certification.</p></header>
+      <ol class="verification-flow"><li><span>1</span><div><h3>Stage</h3><p>Candidate changes land on <code>testing-branch</code>.</p></div></li><li><span>2</span><div><h3>Automate</h3><p>Source contracts, backend regressions, authorization checks, and package workflows run against the exact commit.</p></div></li><li><span>3</span><div><h3>Exercise</h3><p>Applicable packaged and physical workflows—including real network paths—are checked without converting unrun gates into passes.</p></div></li><li><span>4</span><div><h3>Promote</h3><p>The verified commit and coherent release metadata move to stable <code>main</code>.</p></div></li></ol>
+      <div class="tech-cta"><div><span>READ THE CURRENT RECORD</span><h2>v3.0.4 is focused on profile safety and route reliability.</h2><p>See the singular release changelog or inspect the source-level capability and limitation documents on GitHub.</p></div><div><a class="button button-primary" href="downloads.html#release-changelog">Release changelog <span aria-hidden="true">→</span></a><a class="button button-secondary" href="https://github.com/gh0sted5456-us/Dragonwilds-Sync/tree/main/docs">Technical docs <span aria-hidden="true">↗</span></a></div></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="footer-brand"><img src="assets/application-icon.png" alt=""><div><strong>Dragonwilds Sync</strong><span>Technology, boundaries, and planned progress</span></div></div><div class="footer-links"><a href="index.html">Home</a><a href="downloads.html">Downloads</a><a href="about.html">About</a><a href="helpy.html">Help</a><a href="https://github.com/gh0sted5456-us/Dragonwilds-Sync">GitHub</a></div><p>Dragonwilds Sync is an independent community project and is not affiliated with, endorsed by, or sponsored by Jagex Ltd.</p></footer>
+  <div hidden aria-hidden="true"><span id="release-version"></span><span id="release-date"></span><span id="release-channel"></span><a id="release-link" href="#"></a></div>
+  <script src="script.js?v=tech-page-1"></script>
+</body>
+</html>

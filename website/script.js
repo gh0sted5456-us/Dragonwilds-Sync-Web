@@ -1,13 +1,14 @@
 const RELEASE_API = 'https://api.github.com/repos/gh0sted5456-us/Dragonwilds-Sync/releases/latest';
 const THEME_KEY = 'dragonwilds-sync-theme';
 const CURRENT_CL_FALLBACK = 'CL-232224';
-const SHARED_NAV_VERSION = 'nav-unified-20260823-7';
+const SHARED_NAV_VERSION = 'nav-unified-20260827-9';
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
 function sharedNavMarkup(page) {
   const active = (...names) => names.includes(page) ? ' aria-current="page"' : '';
+  const homeActive = ['index.html', 'downloads.html', 'tech.html', 'testers.html'].includes(page);
   const experienceActive = ['experience.html', 'setup.html', 'world-builder.html', 'launcher-preview.html'].includes(page);
   const learnMoreActive = ['about.html', 'helpy.html'].includes(page);
   const moddingActive = ['modding.html', 'mod-packaging.html', 'runeschema.html', 'for-modders.html'].includes(page);
@@ -16,11 +17,13 @@ function sharedNavMarkup(page) {
   return `
     <div class="nav-group nav-home" data-nav-group>
       <div class="nav-group-main">
-        <a class="nav-group-link" href="index.html"${active('index.html')}>Home</a>
+        <a class="nav-group-link" href="index.html"${homeActive ? ' aria-current="page"' : ''}>Home</a>
         <button class="nav-disclosure" type="button" aria-expanded="false" aria-label="Open Home menu">${chevron}</button>
       </div>
       <div class="nav-group-menu" role="menu">
         <a role="menuitem" href="downloads.html"${active('downloads.html')}>Downloads</a>
+        <a role="menuitem" href="tech.html"${active('tech.html')}>Tech &amp; Roadmap</a>
+        <a role="menuitem" href="testers.html"${active('testers.html')}>Testers</a>
         <a role="menuitem" href="downloads.html#windows-download">Windows</a>
         <a role="menuitem" href="downloads.html#linux-download">Linux</a>
       </div>
@@ -296,6 +299,4 @@ async function loadLatestRelease() {
 }
 
 loadLatestRelease();
-
-
 

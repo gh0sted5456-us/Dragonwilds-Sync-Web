@@ -116,6 +116,8 @@ jobs:
             world-builder.html
             launcher-preview.html
             downloads.html
+            tech.html
+            testers.html
             helpy.html
             servers.html
             invite.html
@@ -133,6 +135,7 @@ jobs:
           node --check _site/downloads-linux.js
           node --check _site/downloads-flavor.js
           node --check _site/download-flip.js
+          node --check _site/release-changelog.js
           node --check _site/runeschema-variant.js
           node --check _site/server-list.js
           node --check _site/world-invite.js
@@ -154,8 +157,12 @@ jobs:
           grep -q 'styles.css?v=ubuntu-download-1' _site/index.html
           grep -q 'script.js?v=ubuntu-download-1' _site/index.html
           grep -q 'downloads.html' _site/index.html
+          grep -q 'tech.html' _site/index.html
+          grep -q 'testers.html' _site/index.html
           grep -q 'about.html' _site/index.html
           grep -q 'Experience' _site/script.js
+          grep -q 'Tech &amp; Roadmap' _site/script.js
+          grep -q '>Testers<' _site/script.js
           grep -q 'Learn More' _site/script.js
           grep -q '>Modding<' _site/script.js
           grep -q 'Modding Hub' _site/script.js
@@ -174,6 +181,11 @@ jobs:
           grep -q 'id="linux-download"' _site/downloads.html
           grep -q 'data-windows-quick-download' _site/downloads.html
           grep -q 'data-linux-quick-download' _site/downloads.html
+          grep -q 'v3.0.4 · Connected Profile' _site/downloads.html
+          grep -q 'Connected World snapshots use a dedicated profile namespace' _site/assets/release-changelog.json
+          grep -q 'Steam Deck' _site/tech.html
+          grep -q 'PLANNED DIRECTION' _site/tech.html
+          grep -q 'Flukz' _site/testers.html
           ! grep -q 'v2.0.1' _site/download-flip.js
           grep -q 'DropIncreasePercent' _site/runeschema.html
           grep -q '0.6.3-experimental.1' _site/runeschema.html
@@ -220,5 +232,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-
