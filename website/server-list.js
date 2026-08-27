@@ -38,6 +38,21 @@
     }
     return fallback;
   };
+  function confirmAppJoin(world, joinUrl, status) {
+    document.querySelector('#app-join-dialog')?.remove();
+    const dialog = document.createElement('dialog');
+    dialog.id = 'app-join-dialog'; dialog.className = 'app-join-dialog';
+    dialog.innerHTML = `<form method="dialog"><div class="app-join-kicker">Open Dragonwilds Sync</div><h2>Join ${escapeHtml(world.name)}?</h2><p>The desktop application will verify this World through the official directory, then show its login and synchronization dialog. No password is included in this website link.</p><div class="app-join-dialog-actions"><button value="cancel" type="submit">Cancel</button><button value="open" class="primary" type="submit">Open Dragonwilds Sync</button></div></form>`;
+    dialog.addEventListener('close', () => {
+      if (dialog.returnValue === 'open') {
+        if (status) status.textContent = 'Opening this World in Dragonwilds Sync…';
+        window.location.assign(joinUrl);
+      }
+      dialog.remove();
+    });
+    document.body.appendChild(dialog);
+    dialog.showModal();
+  }
   const time = (seconds) => {
     const age = Math.max(0, Math.floor(Date.now() / 1000) - Number(seconds || 0));
     if (age < 60) return `${age}s ago`;
@@ -107,10 +122,11 @@
     const flip = () => article.classList.toggle('flipped');
     article.addEventListener('click', flip);
     article.querySelector('[data-world-join]')?.addEventListener('click', (event) => {
+      event.preventDefault();
       event.stopPropagation();
       const status = article.querySelector('.world-share-status');
-      if (status) status.textContent = 'Opening this World in Dragonwilds Sync…';
-      window.location.assign(joinUrl);
+      if (!online(world)) { if (status) status.textContent = 'This World is not currently ready to join.'; return; }
+      confirmAppJoin(world, joinUrl, status);
     });
     article.querySelector('[data-world-share]')?.addEventListener('click', async (event) => {
       event.stopPropagation();

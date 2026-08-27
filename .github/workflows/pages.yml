@@ -144,6 +144,7 @@ jobs:
           grep -q 'runeschema.html' _site/for-modders.html
           test -s _site/servers.html
           test -s _site/server-list.js
+          test -s _site/app-join-dialog.css
           test ! -e _site/public-directory-view.js || { echo 'Public directory runtime must not be deployed' >&2; exit 1; }
           test ! -e _site/public-directory-fetch-fallback.js || { echo 'Public directory fallback must not be deployed' >&2; exit 1; }
           test ! -e _site/assets/public-worlds-fallback.json || { echo 'Public world snapshot must not be deployed' >&2; exit 1; }
@@ -153,6 +154,11 @@ jobs:
           grep -q '/api/v1/invites' _site/server-list.js
           grep -q "new URL('invite.html'" _site/server-list.js
           grep -q 'dragonwilds-sync://join' _site/world-invite.js
+          grep -q 'dragonwilds-sync://join' _site/server-list.js
+          grep -q 'dialog.showModal()' _site/server-list.js
+          grep -q 'dialog.showModal()' _site/world-invite.js
+          grep -q 'app-join-dialog.css' _site/servers.html
+          grep -q 'app-join-dialog.css' _site/invite.html
 
           grep -q 'styles.css?v=ubuntu-download-1' _site/index.html
           grep -q 'script.js?v=ubuntu-download-1' _site/index.html

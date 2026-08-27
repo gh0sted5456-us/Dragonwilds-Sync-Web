@@ -1,0 +1,21 @@
+.app-join-dialog {
+  width: min(520px, calc(100% - 32px));
+  padding: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  background: var(--panel);
+  color: var(--text);
+  box-shadow: 0 28px 80px rgba(0, 0, 0, .55);
+}
+.app-join-dialog::backdrop { background: rgba(2, 5, 7, .78); }
+.app-join-dialog form { display: grid; gap: 12px; padding: 24px; }
+.app-join-dialog h2 { margin: 0; font-family: Georgia, serif; font-size: 26px; }
+.app-join-dialog p { margin: 0; color: var(--muted); line-height: 1.6; }
+.app-join-kicker { color: var(--gold); font-size: 9px; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; }
+.app-join-dialog-actions { display: flex; justify-content: flex-end; gap: 9px; margin-top: 8px; }
+.app-join-dialog-actions button { min-height: 42px; padding: 9px 14px; border: 1px solid var(--line-strong); border-radius: 9px; background: var(--panel-soft); color: var(--text); font: inherit; font-weight: 800; cursor: pointer; }
+.app-join-dialog-actions .primary { border-color: var(--gold); background: var(--gold); color: #100c05; }
+@media (max-width: 720px) {
+  .app-join-dialog-actions { align-items: stretch; flex-direction: column; }
+  .app-join-dialog-actions > * { width: 100%; }
+}
