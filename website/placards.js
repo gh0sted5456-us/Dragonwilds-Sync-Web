@@ -2,6 +2,9 @@
    This file is concatenated after website/script.js by the Pages workflow so it can
    extend the existing sanitizer, API normalization, filters and refresh lifecycle. */
 (() => {
+  // This parity layer is concatenated into the shared bundle for every page,
+  // while only directory-backed pages expose normalizeWorld.
+  if (typeof normalizeWorld !== 'function') return;
   const originalNormalizeWorld = normalizeWorld;
 
   const safeImageUrl = (value) => {
