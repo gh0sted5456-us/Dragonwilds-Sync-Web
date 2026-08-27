@@ -31,6 +31,13 @@
       return url.protocol === 'https:' || url.origin === location.origin ? url.href : fallback;
     } catch (_) { return fallback; }
   };
+  const firstMedia = (fallback, ...values) => {
+    for (const value of values) {
+      const resolved = mediaUrl(value, '');
+      if (resolved) return resolved;
+    }
+    return fallback;
+  };
   const time = (seconds) => {
     const age = Math.max(0, Math.floor(Date.now() / 1000) - Number(seconds || 0));
     if (age < 60) return `${age}s ago`;
@@ -43,6 +50,8 @@
     const players = raw?.players && typeof raw.players === 'object' ? raw.players : {};
     const connect = raw?.public_connect && typeof raw.public_connect === 'object' ? raw.public_connect : null;
     const presentation = raw?.presentation && typeof raw.presentation === 'object' ? raw.presentation : {};
+    const artwork = raw?.artwork && typeof raw.artwork === 'object' ? raw.artwork : {};
+    const profile = raw?.profile && typeof raw.profile === 'object' ? raw.profile : {};
     return {
       id: text(raw?.world_id, 'unknown-world'), name: text(raw?.world_name, 'Unnamed World'),
       description: text(raw?.description, 'A launcher-broadcast Dragonwilds Sync World.'),
@@ -57,9 +66,9 @@
       serverCurrent: raw?.server_current === true,
       platforms: list(raw?.declared_platforms).map((value) => value.toLowerCase()),
       platformCompatibility: raw?.platform_compatibility && typeof raw.platform_compatibility === 'object' ? raw.platform_compatibility : { pc: true },
-      iconUrl: mediaUrl(raw?.icon_url || raw?.icon || presentation.icon_url || presentation.icon, DEFAULT_ICON),
-      bannerUrl: mediaUrl(raw?.banner_url || raw?.banner || presentation.banner_url || presentation.banner, DEFAULT_BANNER),
-      backgroundUrl: mediaUrl(raw?.background_url || presentation.background_url || presentation.background, DEFAULT_BACKGROUND),
+      iconUrl: firstMedia(DEFAULT_ICON, raw?.icon_url, raw?.iconUrl, raw?.icon, presentation.icon_url, presentation.iconUrl, presentation.icon, artwork.icon_url, artwork.iconUrl, artwork.icon, profile.icon_url, profile.iconUrl, profile.icon),
+      bannerUrl: firstMedia(DEFAULT_BANNER, raw?.banner_url, raw?.bannerUrl, raw?.banner, presentation.banner_url, presentation.bannerUrl, presentation.banner, artwork.banner_url, artwork.bannerUrl, artwork.banner, profile.banner_url, profile.bannerUrl, profile.banner),
+      backgroundUrl: firstMedia(DEFAULT_BACKGROUND, raw?.background_url, raw?.backgroundUrl, raw?.background, presentation.background_url, presentation.backgroundUrl, presentation.background, artwork.background_url, artwork.backgroundUrl, artwork.background, profile.background_url, profile.backgroundUrl, profile.background),
     };
   }
 
@@ -97,7 +106,12 @@
     }, { once: true }));
     const flip = () => article.classList.toggle('flipped');
     article.addEventListener('click', flip);
-    article.querySelector('[data-world-join]')?.addEventListener('click', (event) => event.stopPropagation());
+    article.querySelector('[data-world-join]')?.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const status = article.querySelector('.world-share-status');
+      if (status) status.textContent = 'Opening this World in Dragonwilds Sync…';
+      window.location.assign(joinUrl);
+    });
     article.querySelector('[data-world-share]')?.addEventListener('click', async (event) => {
       event.stopPropagation();
       const button = event.currentTarget;
