@@ -74,6 +74,8 @@
       const named = (pattern) => assets.find((asset) => pattern.test(String(asset?.name || '')) && asset?.browser_download_url);
       const executable = named(/Portable.*\.exe$/i) || named(/\.exe$/i);
       const appImage = named(/Ubuntu.*\.AppImage$/i) || named(/\.AppImage$/i);
+      const windowsHeadless = named(/^Dragonwilds Sync Headless-.*\.exe$/i);
+      const linuxHeadless = named(/^Dragonwilds-Sync-Headless-Ubuntu-/i);
       const windowsChecksum = named(/^checksums-windows\.sha256$/i);
       const linuxChecksum = named(/^checksums-linux\.sha256$/i);
       flip.querySelector('[data-main-version]').textContent = release.tag_name || release.name || 'Latest';
@@ -86,6 +88,8 @@
         document.querySelectorAll('[data-linux-download],[data-linux-quick-download]').forEach((link) => { link.href = appImage.browser_download_url; link.setAttribute('download', ''); });
         document.querySelectorAll('[data-linux-file],[data-linux-quick-file]').forEach((note) => { note.textContent = appImage.name; });
       }
+      if (windowsHeadless) document.querySelectorAll('[data-headless-windows-download]').forEach((link) => { link.href = windowsHeadless.browser_download_url; link.setAttribute('download', ''); });
+      if (linuxHeadless) document.querySelectorAll('[data-headless-linux-download]').forEach((link) => { link.href = linuxHeadless.browser_download_url; link.setAttribute('download', ''); });
       if (windowsChecksum) document.querySelectorAll('[data-windows-checksum]').forEach((link) => { link.href = windowsChecksum.browser_download_url; });
       if (linuxChecksum) document.querySelectorAll('[data-linux-checksum]').forEach((link) => { link.href = linuxChecksum.browser_download_url; });
     }).catch(() => {

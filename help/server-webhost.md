@@ -16,6 +16,12 @@ Open **Dragonwilds → Hosting** for dedicated paths, validation, setup, and hos
 
 Stop and restart use the same operation guard and verify process-tree cleanup before reporting success.
 
+## Quick Launch and headless servers
+
+Use **Create Quick Shortcut** from a validated Server Profile. **Open Quick** and **Open Quick + Start** target the exact normal application executable and open only the focused World manager and console. **Headless Start** targets the version-matched standalone `Dragonwilds Sync Headless-<version>.exe` beside the Portable EXE and runs the same saved profile without opening Electron.
+
+Windows shortcuts store absolute paths. Keep the Portable and Headless executables together in their final destination folder, and recreate shortcuts after moving either file.
+
 ## WebHost
 
 WebHost can project the public World browser, accept authenticated Sync heartbeats, expose public-safe API routes, and provide paired remote server administration when enabled.

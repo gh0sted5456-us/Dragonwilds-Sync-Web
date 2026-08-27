@@ -1,6 +1,6 @@
 {
   "schema": "DragonwildsSync.Help.v1",
-  "version": 11,
+  "version": 12,
   "title": "Dragonwilds Sync Helpy",
   "subtitle": "A living, system-by-system field guide shared by the website and desktop application.",
   "updated_at": "2026-08-26",
@@ -94,7 +94,7 @@
         },
         {
           "title": "Sync",
-          "body": "Verify fingerprints, compare manifests, transfer only required files, and expose Website or Remote Access separately. Server notices remain non-intrusive launcher or authenticated WebGUI notifications in V3."
+          "body": "Verify fingerprints, compare manifests, and transfer only required files. Sync always hydrates the same four tabs: Website & Directory, Manifest & Heartbeats, Server Management, and WebGUI Preview. Server notices remain non-intrusive launcher or authenticated WebGUI notifications in V3."
         },
         {
           "title": "Helpy and Settings",
@@ -178,6 +178,10 @@
           "body": "Direct Connect uses an explicit private endpoint without requiring a public listing. It does not bypass fingerprints, passwords, profile boundaries, or server-side permissions."
         },
         {
+          "title": "Public World cards",
+          "body": "Launcher-broadcast Worlds project sanitized identity, runtimes, platforms, mods, player counts, and status. Worlds without custom art use the built-in Sync icon, banner, and background so directory placards remain complete and readable."
+        },
+        {
           "title": "Notification boundary",
           "body": "Heartbeat and World broadcast make a server discoverable; they do not inject text into Dragonwilds. V3 delivers restart, update, maintenance, and connection notices through the launcher and authenticated WebGUI. Native game-chat delivery remains a future feature."
         }
@@ -227,7 +231,7 @@
         },
         {
           "title": "Preview behavior",
-          "body": "Draft edits do not reset the 3D model automatically. See changes is the explicit preview boundary; camera and pose controls remain preview-only."
+          "body": "Draft edits do not reset the 3D model automatically. See changes waits for the RSDWModel bridge, applies save-backed appearance and armour, and reports a real renderer error when hydration fails. Camera and pose controls remain preview-only."
         },
         {
           "title": "Item Editor",
@@ -303,6 +307,10 @@
         {
           "title": "Remote administration",
           "body": "Remote control is separate from discovery and requires an authenticated session plus explicit World-scoped permissions."
+        },
+        {
+          "title": "Quick and headless launch",
+          "body": "Create Quick Shortcut opens the focused World manager. Server profiles also offer Headless Start, which targets the matching standalone Headless EXE beside the normal portable application and runs the saved profile without opening Electron. Keep both Windows executables together and recreate shortcuts after moving them."
         },
         {
           "title": "Server notices",
@@ -734,6 +742,36 @@
         "Ubuntu is the supported native-server baseline; other distributions remain visible as community paths.",
         "Host distro and game ABI are separate decisions.",
         "Use the Settings preview to compare exact, derivative, and family-fallback detections."
+      ]
+    },
+    {
+      "id": "headless-quick-start",
+      "title": "Quick Launch & Headless Servers",
+      "category": "Hosting",
+      "summary": "Desktop shortcuts, low-resource server operation, console access, and executable placement.",
+      "intro": "Build and validate a profile in the full application, then run that exact stable profile through focused Quick Launch or the standalone headless executable.",
+      "sections": [
+        {
+          "title": "Choose the right shortcut",
+          "steps": [
+            "Open a World profile and choose Create Quick Shortcut.",
+            "Use Open Quick or Open Quick + Start for the focused graphical World manager and console.",
+            "Use Headless Start for a dedicated server that should run without the Electron interface."
+          ]
+        },
+        {
+          "title": "Executable routing",
+          "body": "GUI shortcuts point to the exact normal application EXE that created them. Headless shortcuts point to the version-matched Dragonwilds Sync Headless EXE in the same destination folder. Windows shortcuts contain absolute paths, so recreate them after moving either executable."
+        },
+        {
+          "title": "Server operations",
+          "body": "The headless CLI uses the same profile identity and backend authority as the application for status, start, run, stop, restart, update, logs, broadcast, and routed console commands. It does not create a second server lifecycle."
+        }
+      ],
+      "tips": [
+        "Keep the Portable and Headless Windows downloads together.",
+        "Configure profiles in the full application before running them headlessly.",
+        "Use logs or status to verify runtime, Sync listener, and broadcast health."
       ]
     },
     {

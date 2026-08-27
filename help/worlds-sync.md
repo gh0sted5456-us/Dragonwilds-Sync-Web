@@ -9,6 +9,7 @@ A **World profile** is the presentation and runtime identity Dragonwilds Sync us
 - **Placard** and **Horizontal** are two presentations of the same World profile. Badges, classification, audience, platform marks, and profile metadata should remain consistent between them.
 - **Declared** means the current WebHost is actively receiving a still-live, fingerprint-verified Sync heartbeat from that World.
 - **Sync Ready** means the endpoint supports Dragonwilds Sync. It does not necessarily mean that World declared itself to your WebHost.
+- Public launcher-broadcast Worlds project sanitized runtimes, platforms, mods, player counts, and status. Missing custom art falls back to the built-in Sync icon, banner, and background.
 
 ## Connecting
 

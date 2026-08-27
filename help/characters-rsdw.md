@@ -23,6 +23,8 @@ The preview workspace now keeps the working character in one stable three-column
 - The bottom bar mirrors exactly eight current action slots. Select a slot or **Manage** to continue in the full Item Editor.
 - **Equipment** and **Pose** switch their left-side controls without rebuilding the 3D preview. Pose and camera changes are preview-only.
 
+**See changes** waits for the RSDWModel bridge before it applies save-backed appearance and armour. If the bridge, canvas, model, or background fails, the preview reports that renderer error instead of remaining on an indefinite Loading state.
+
 Use **Undo**, **Redo**, or **Revert** before **Save Character**. Save still validates the draft, creates a recovery backup, checks the source checksum, writes the save, and reparses it before reporting success. **Export** uses the existing portable character export flow.
 
 ## Item Editor

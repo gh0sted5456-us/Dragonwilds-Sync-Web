@@ -283,7 +283,8 @@ async function loadLatestRelease() {
     const date = new Date(release.published_at || release.created_at);
     if (releaseVersion) releaseVersion.textContent = safeText(release.tag_name || release.name, 'Latest');
     if (releaseDate) releaseDate.textContent = Number.isNaN(date.getTime()) ? 'GitHub Releases' : date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
-    const executable = (release.assets || []).find((asset) => /\.exe$/i.test(String(asset?.name || '')) && asset?.browser_download_url);
+    const executable = (release.assets || []).find((asset) => /Portable.*\.exe$/i.test(String(asset?.name || '')) && asset?.browser_download_url)
+      || (release.assets || []).find((asset) => /\.exe$/i.test(String(asset?.name || '')) && !/Headless/i.test(String(asset?.name || '')) && asset?.browser_download_url);
     if (releaseLink && executable) {
       releaseLink.href = executable.browser_download_url;
       releaseLink.setAttribute('download', '');

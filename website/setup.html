@@ -30,7 +30,7 @@
     <div class="section-shell setup-layout">
       <nav class="setup-toc" aria-label="Setup guide sections">
         <strong>IN THIS GUIDE</strong>
-        <a href="#mental-model">The mental model</a><a href="#windows">Windows setup</a><a href="#linux">Linux setup</a><a href="#paths">Finding file paths</a><a href="#profiles">What Profiles are</a><a href="#connect">Connecting to servers</a><a href="#server">Setting up a server</a><a href="#networking">Connection & port forwarding</a><a href="#broadcast">Broadcasting</a><a href="#remote">Remote login & WebHost</a><a href="#heartbeat">Heartbeat telemetry</a><a href="#mods">Default mods & loaders</a><a href="#troubleshooting">Troubleshooting</a>
+        <a href="#mental-model">The mental model</a><a href="#windows">Windows setup</a><a href="#linux">Linux setup</a><a href="#paths">Finding file paths</a><a href="#profiles">What Profiles are</a><a href="#connect">Connecting to servers</a><a href="#server">Setting up a server</a><a href="#headless">Quick & headless</a><a href="#networking">Connection & port forwarding</a><a href="#broadcast">Broadcasting</a><a href="#remote">Remote login & WebHost</a><a href="#heartbeat">Heartbeat telemetry</a><a href="#mods">Default mods & loaders</a><a href="#troubleshooting">Troubleshooting</a>
       </nav>
 
       <article class="setup-content">
@@ -116,6 +116,13 @@
           <h3>Before publishing the server</h3>
           <ul><li>Start locally first and confirm the server remains healthy before changing router rules.</li><li>Give the host machine a DHCP reservation or stable LAN address so forwards do not silently point at a different device later.</li><li>Use a unique game and Sync port pair for every simultaneous instance. Dragonwilds Sync normally increments from the configured base ports.</li><li>Set strong, different World and administrator passwords. Never publish the administrator password in a World card, manifest, screenshot, or support log.</li><li>Back up the World/Profile and verify the restore path before enabling automatic updates or experimental runtime flavors.</li></ul>
           <div class="setup-callout"><strong>Server-only loader placement:</strong> the dedicated-server <code>version.dll</code> belongs only on servers and should live with the server bootstrap/runtime component such as <code>dwampi.dll</code>. It should not be copied into the player-client runtime.</div>
+        </section>
+
+        <section class="setup-section" id="headless">
+          <div class="eyebrow">08 · Focused operation</div><h2>Quick Launch and headless servers</h2>
+          <p>Build and validate the Server Profile in the full application, then use <strong>Create Quick Shortcut</strong> from that profile. Open Quick keeps the focused World manager and console; Headless Start runs the same profile without loading Electron.</p>
+          <ol class="setup-steps"><li>Place the Portable EXE and matching Headless EXE together in their final writable folder.</li><li>Create an Open Quick, Open Quick + Start, or server-only Headless Start shortcut.</li><li>Use status and logs to verify the dedicated process, Sync listener, and broadcast heartbeat.</li><li>Recreate shortcuts after moving either executable because Windows stores the absolute target path.</li></ol>
+          <div class="setup-callout"><strong>One lifecycle:</strong> Quick and headless commands use the same stable profile ID and backend controller as the full application. They do not create duplicate server ownership.</div>
         </section>
 
         <section class="setup-section" id="networking">
