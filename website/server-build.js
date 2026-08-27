@@ -1,5 +1,6 @@
 /* Dedicated-server build authority from the Steam-generated Pages artifact. */
 (() => {
+  if (typeof normalizeWorld !== 'function') return;
   let currentSteamServerBuild = '';
   const previousNormalizeWorld = normalizeWorld;
 

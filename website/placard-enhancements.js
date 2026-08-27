@@ -2,6 +2,7 @@
    Real SVG artwork from renderer/assets is preferred; semantic inline SVGs are
    only a fallback when the application does not ship a matching badge asset. */
 (() => {
+  if (typeof createWorldCard !== 'function') return;
   const SVG_NS = 'http://www.w3.org/2000/svg';
   const baseCreateWorldCard = createWorldCard;
 
