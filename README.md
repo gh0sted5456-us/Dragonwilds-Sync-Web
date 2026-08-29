@@ -1,13 +1,21 @@
 # Dragonwilds Sync Website
 
-Official website, Helpy documentation, Modding guidance, Downloads presentation, and Launcher Preview for [Dragonwilds Sync](https://github.com/gh0sted5456-us/Dragonwilds-Sync).
+This repository is the standalone public website for [Dragonwilds Sync](https://github.com/gh0sted5456-us/Dragonwilds-Sync).
+
+**Live site:** https://gh0sted5456-us.github.io/Dragonwilds-Sync-Web/
+
+It contains Downloads, Setup Instructions, Experience, World Builder, Launcher Preview, Public Server List, Helpy, Modding/RuneSchema guidance, technical boundaries, and the public-facing V3 release record.
+
+## Source of truth
+
+The application repository remains authoritative for application code, packaged releases, capability contracts, release verification, and `docs/changelog.json`.
+
+The website mirrors user-facing release information from that authority. The Pages workflow also rebuilds the deployed release changelog from the current application-repository V3 changelog so the live site cannot quietly remain on an older release record.
 
 ## Publishing
 
-GitHub Pages deploys the contents of `website/` from the `main` branch through `.github/workflows/pages.yml`.
+GitHub Pages deploys the contents of `website/` from this repository's `main` branch through `.github/workflows/pages.yml`.
 
-The public technical overview lives at `website/tech.html`. The current stable
-release record is mirrored in `website/assets/release-changelog.json` from the
-application repository's canonical `docs/changelog.json` entry.
+The deployment is intentionally static/read-only. Public World status is read from the sanitized Cloudflare directory API; GitHub Pages never receives server heartbeats, World passwords, or Remote Admin credentials.
 
-Application source and downloadable releases remain in the [Dragonwilds-Sync application repository](https://github.com/gh0sted5456-us/Dragonwilds-Sync).
+Application downloads remain in [Dragonwilds-Sync Releases](https://github.com/gh0sted5456-us/Dragonwilds-Sync/releases).
