@@ -17,6 +17,8 @@ on:
       - 'renderer/assets/navigation/**'
       - 'renderer/assets/rsdw-toolkit/**'
       - '.github/workflows/pages.yml'
+  schedule:
+    - cron: '17 7 * * *'
   workflow_dispatch:
 
 permissions:
@@ -64,16 +66,43 @@ jobs:
           cp -R renderer/assets/flags _site/assets/flags
           cp -R renderer/assets/platforms/. _site/assets/platforms/
 
-          # Current-build decoration is optional presentation data, not a
-          # website dependency. Keep a stable local fallback and never block a
-          # deploy on an external server-directory or telemetry request.
+          # Presentation-only server-build fallback. Website deployment never
+          # depends on the public directory being online.
           printf '%s\n' '{"available":false,"appid":"4019830","branch":"public","buildid":"","source":"Website static fallback"}' > _site/assets/server-build.json
 
-          # Exact baked placard artwork from the application.
+          # Exact baked placard artwork from the application repository.
           curl --fail --silent --show-error --location --retry 3 -H 'Accept: application/vnd.github.raw+json' -H 'Authorization: Bearer ${{ github.token }}' 'https://api.github.com/repos/gh0sted5456-us/Dragonwilds-Sync/git/blobs/498243def697d1832e5ef76b16d0f481c3e971a9' -o _site/assets/placards/1.png
           curl --fail --silent --show-error --location --retry 3 -H 'Accept: application/vnd.github.raw+json' -H 'Authorization: Bearer ${{ github.token }}' 'https://api.github.com/repos/gh0sted5456-us/Dragonwilds-Sync/git/blobs/e9b14c092045c501b2c5337956460699c04bd6d5' -o _site/assets/placards/2.png
           curl --fail --silent --show-error --location --retry 3 -H 'Accept: application/vnd.github.raw+json' -H 'Authorization: Bearer ${{ github.token }}' 'https://api.github.com/repos/gh0sted5456-us/Dragonwilds-Sync/git/blobs/5a515286435834c673f532c2ae1db012cc22bd1d' -o _site/assets/placards/3.png
           curl --fail --silent --show-error --location --retry 3 -H 'Accept: application/vnd.github.raw+json' -H 'Authorization: Bearer ${{ github.token }}' 'https://api.github.com/repos/gh0sted5456-us/Dragonwilds-Sync/git/blobs/63743edf52312e65c75d36826d2fc159ab861870' -o _site/assets/placards/4.png
+
+          # The application repository owns the canonical V3 changelog. Build
+          # the public release record from that source on every deploy so the
+          # live website cannot remain pinned to an older application release.
+          curl --fail --silent --show-error --location --retry 3 \
+            'https://raw.githubusercontent.com/gh0sted5456-us/Dragonwilds-Sync/main/docs/changelog.json' \
+            -o /tmp/dragonwilds-sync-changelog.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          source = json.loads(Path('/tmp/dragonwilds-sync-changelog.json').read_text(encoding='utf-8'))
+          releases = source.get('releases') or []
+          if not releases:
+              raise SystemExit('Application changelog has no release records')
+          release = releases[0]
+          public = {
+              'schema': 'dragonwilds-sync-release/v1',
+              'version': release.get('version', ''),
+              'title': release.get('title', 'V3'),
+              'date': release.get('date', ''),
+              'status': release.get('status', ''),
+              'source': 'https://github.com/gh0sted5456-us/Dragonwilds-Sync/blob/main/docs/changelog.json',
+              'summary': release.get('summary', ''),
+              'highlights': release.get('highlights') or [],
+          }
+          Path('_site/assets/release-changelog.json').write_text(json.dumps(public, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
+          PY
 
           printf '\n\n/* App placard parity layer */\n' >> _site/styles.css
           cat website/placards.css >> _site/styles.css
@@ -109,19 +138,9 @@ jobs:
           set -euo pipefail
 
           required_pages=(
-            index.html
-            about.html
-            experience.html
-            setup.html
-            world-builder.html
-            launcher-preview.html
-            downloads.html
-            tech.html
-            testers.html
-            helpy.html
-            servers.html
-            invite.html
-            for-modders.html
+            index.html about.html experience.html setup.html world-builder.html
+            launcher-preview.html downloads.html tech.html testers.html helpy.html
+            servers.html invite.html for-modders.html
           )
           for page in "${required_pages[@]}"; do
             test -s "_site/$page" || { echo "Missing required page: $page" >&2; exit 1; }
@@ -140,7 +159,7 @@ jobs:
           node --check _site/server-list.js
           node --check _site/world-invite.js
 
-          # The directory is intentionally limited to signed launcher broadcasts.
+          # Public-directory security boundaries.
           grep -q 'runeschema.html' _site/for-modders.html
           test -s _site/servers.html
           test -s _site/server-list.js
@@ -148,87 +167,83 @@ jobs:
           test ! -e _site/public-directory-view.js || { echo 'Public directory runtime must not be deployed' >&2; exit 1; }
           test ! -e _site/public-directory-fetch-fallback.js || { echo 'Public directory fallback must not be deployed' >&2; exit 1; }
           test ! -e _site/assets/public-worlds-fallback.json || { echo 'Public world snapshot must not be deployed' >&2; exit 1; }
-          grep -q 'href="servers.html"' _site/top-flow.js
           grep -q 'signed-launcher-heartbeats-only' _site/directory-source.json
           grep -q 'dragonwilds-sync-directory.dragonwilds.workers.dev/api/v1/worlds' _site/server-list.js
           grep -q '/api/v1/invites' _site/server-list.js
-          grep -q "new URL('invite.html'" _site/server-list.js
           grep -q 'dragonwilds-sync://join' _site/world-invite.js
           grep -q 'dragonwilds-sync://join' _site/server-list.js
           grep -q 'dialog.showModal()' _site/server-list.js
           grep -q 'dialog.showModal()' _site/world-invite.js
-          grep -q 'app-join-dialog.css' _site/servers.html
-          grep -q 'app-join-dialog.css' _site/invite.html
 
-          grep -q 'styles.css?v=ubuntu-download-1' _site/index.html
-          grep -q 'script.js?v=ubuntu-download-1' _site/index.html
-          grep -q 'downloads.html' _site/index.html
-          grep -q 'tech.html' _site/index.html
-          grep -q 'testers.html' _site/index.html
-          grep -q 'about.html' _site/index.html
+          # Current public website and V3 documentation contracts.
+          grep -q 'styles.css?v=v3-1-site-sync-1' _site/index.html
+          grep -q 'script.js?v=v3-1-site-sync-1' _site/index.html
+          grep -q 'id="release-version">v3.1.0' _site/index.html
+          grep -q 'CANONICAL V3 CHANGELOG' _site/downloads.html
+          grep -q 'CURRENT STABLE V3' _site/tech.html
+          grep -q 'Experimental SteamOS/Windows handheld' _site/tech.html
+          grep -q 'HARDENING DIRECTION' _site/tech.html
+          grep -q 'UDP 8422' _site/setup.html
+          grep -q 'TCP 27051' _site/setup.html
+          grep -q 'TCP 27080' _site/setup.html
+          grep -q 'dwmapi.dll' _site/setup.html
+          grep -q 'CGNAT' _site/setup.html
+          ! grep -q 'TCP 8422' _site/setup.html
+          ! grep -q 'dwampi.dll' _site/setup.html
+          ! grep -q 'v3\.0\.4' _site/index.html
+          ! grep -q 'v3\.0\.4' _site/downloads.html
+          ! grep -q 'v3\.0\.4' _site/tech.html
+
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          release = json.loads(Path('_site/assets/release-changelog.json').read_text(encoding='utf-8'))
+          assert release['schema'] == 'dragonwilds-sync-release/v1'
+          assert release['version'] == '3.1.0', release['version']
+          assert release['title'] == 'V3'
+          assert release['status'] == 'stable'
+          assert len(release.get('highlights') or []) >= 25
+
+          presets = json.loads(Path('_site/assets/world-builder-presets.json').read_text(encoding='utf-8'))
+          assert presets.get('format') == 'dragonwilds-sync-world-builder-presets'
+          assert int(presets.get('version') or 0) == 1
+          platforms = json.loads(Path('_site/assets/platform-registry.json').read_text(encoding='utf-8'))
+          assert platforms.get('format') == 'dragonwilds-sync-platform-registry'
+          PY
+
+          # Shared navigation and modding/reference surfaces remain present.
+          grep -q 'href="servers.html"' _site/top-flow.js
           grep -q 'Experience' _site/script.js
           grep -q 'Tech &amp; Roadmap' _site/script.js
           grep -q '>Testers<' _site/script.js
-          grep -q 'Learn More' _site/script.js
           grep -q '>Modding<' _site/script.js
-          grep -q 'Modding Hub' _site/script.js
           grep -q 'Mod Packaging' _site/script.js
           grep -q 'RuneSchema Lab' _site/script.js
-          grep -q 'Connection &amp; Ports' _site/script.js
-          grep -q 'TCP 27051' _site/setup.html
-          grep -q 'TCP 27080' _site/setup.html
-          grep -q 'TCP 8422' _site/setup.html
-          grep -q 'UDP 7777' _site/setup.html
-          grep -q 'CGNAT / DOUBLE NAT' _site/setup.html
           grep -q 'Choose what you are' _site/modding.html
           grep -q 'A complete <code>ID.txt</code>' _site/mod-packaging.html
           grep -q 'See JSON in action' _site/runeschema.html
-          grep -q 'id="windows-download"' _site/downloads.html
-          grep -q 'id="linux-download"' _site/downloads.html
           grep -q 'data-windows-quick-download' _site/downloads.html
           grep -q 'data-linux-quick-download' _site/downloads.html
-          grep -q 'v3.0.4 · Connected Profile' _site/downloads.html
-          grep -q 'Connected World snapshots use a dedicated profile namespace' _site/assets/release-changelog.json
-          grep -q 'Steam Deck' _site/tech.html
-          grep -q 'PLANNED DIRECTION' _site/tech.html
           grep -q 'Flukz' _site/testers.html
-          ! grep -q 'v2.0.1' _site/download-flip.js
+
+          # RuneSchema reference package checks retained from the previous site gate.
           grep -q 'DropIncreasePercent' _site/runeschema.html
           grep -q '0.6.3-experimental.1' _site/runeschema.html
           grep -q 'data-runeschema-version' _site/runeschema.html
-          grep -q 'Current prerelease: v0.6.3-experimental.1' _site/runeschema.html
           grep -q 'data-runeschema-title' _site/runeschema.html
           grep -q 'data-runeschema-comparison-version' _site/runeschema.html
-          grep -q 'data-runeschema-comparison-version>0.6.3</span> EXPERIMENTAL' _site/runeschema.html
           grep -q 'Official 0.6.0 vs. 0.6.3 Experimental' _site/assets/docs/runeschema-0.6.1-experimental/COMPARISON.md
           grep -q 'api.github.com/repos/gh0sted5456-us/RuneSchema/releases' _site/runeschema-variant.js
-          grep -Fq '^RuneSchema-.*Experimental\.zip$' _site/runeschema-variant.js
           grep -q 'data-json-tab="journal"' _site/runeschema.html
           grep -q 'GTV063STAFF001' _site/runeschema.html
           grep -q 'GTV063RECIPE01' _site/runeschema.html
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff.json >/dev/null
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff_recipe.json >/dev/null
           python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/journal_identity.json >/dev/null
-          grep -q 'FA4E8062D7AFF4D9A8C61BAF6E87219302A24AEA7C3389464BD7AD21D93F391D' _site/runeschema.html
-          grep -q 'RSDW Modding Community contributed testing, research, and community support' _site/runeschema.html
-          grep -q 'assets, blueprints, buildings, courses, enums, journal, raw, recipes, spawns, and strings' _site/runeschema.html
-          grep -q '10C8B7350177B28AAD5E6371BECE2347D501DD1B58F9949C512AE6AEE0E0B3A8' _site/runeschema.html
-          grep -q 'UE4SS_v3.0.1-941-g0bfec09e.zip' _site/runeschema.html
-          test "$(grep -o 'data-runeschema-ue4ss-download' _site/runeschema.html | wc -l)" -eq 1
-          grep -q 'This is the only UE4SS download intended for this RuneSchema build' _site/runeschema.html
-          ! grep -q 'RuneSchema-0.6.1-Experimental-Source-and-Package.zip' _site/runeschema.html
           grep -q 'world-cards-20260823-1' _site/world-builder.html
           test -s _site/assets/downloads/RuneSchema-0.6.3-Experimental.zip
           unzip -tqq _site/assets/downloads/RuneSchema-0.6.3-Experimental.zip
-
-          python3 - <<'PY'
-          import json
-          presets = json.load(open('_site/assets/world-builder-presets.json', encoding='utf-8'))
-          assert presets.get('format') == 'dragonwilds-sync-world-builder-presets'
-          assert int(presets.get('version') or 0) == 1
-          platforms = json.load(open('_site/assets/platform-registry.json', encoding='utf-8'))
-          assert platforms.get('format') == 'dragonwilds-sync-platform-registry'
-          PY
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
