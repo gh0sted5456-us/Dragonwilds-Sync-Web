@@ -18,6 +18,8 @@
   const DEFAULT_ICON = 'assets/application-icon.png';
   const DEFAULT_BANNER = 'assets/demo-world-banner.svg';
   const DEFAULT_BACKGROUND = 'assets/backgrounds/world-bg-dark.webp';
+  const SYNC_STATUS_ICON = 'assets/application-icon.png';
+  const GAME_STATUS_ICON = 'https://raw.githubusercontent.com/gh0sted5456-us/Dragonwilds-Sync/main/renderer/assets/navigation/dragonwilds.webp';
 
   const text = (value, fallback = '—') => String(value ?? '').trim() || fallback;
   const list = (value) => Array.isArray(value) ? value.map((item) => text(item, '')).filter(Boolean) : [];
@@ -73,6 +75,7 @@
     const gameActive = raw?.game_active == null
       ? syncBroadcasting && ['online', 'active', 'starting', 'maintenance', 'stopping'].includes(text(raw?.status, 'offline').toLowerCase())
       : raw.game_active === true;
+    const launcherBroadcasting = raw?.launcher_broadcasting == null ? syncBroadcasting || gameActive : raw.launcher_broadcasting === true;
     return {
       id: text(raw?.world_id, 'unknown-world'), name: text(raw?.world_name, 'Unnamed World'),
       description: text(raw?.description, 'A launcher-broadcast Dragonwilds Sync World.'),
@@ -90,9 +93,23 @@
       iconUrl: firstMedia(DEFAULT_ICON, raw?.icon_url, raw?.iconUrl, raw?.icon, presentation.icon_url, presentation.iconUrl, presentation.icon, artwork.icon_url, artwork.iconUrl, artwork.icon, profile.icon_url, profile.iconUrl, profile.icon),
       bannerUrl: firstMedia(DEFAULT_BANNER, raw?.banner_url, raw?.bannerUrl, raw?.banner, presentation.banner_url, presentation.bannerUrl, presentation.banner, artwork.banner_url, artwork.bannerUrl, artwork.banner, profile.banner_url, profile.bannerUrl, profile.banner),
       backgroundUrl: firstMedia(DEFAULT_BACKGROUND, raw?.background_url, raw?.backgroundUrl, raw?.background, presentation.background_url, presentation.backgroundUrl, presentation.background, artwork.background_url, artwork.backgroundUrl, artwork.background, profile.background_url, profile.backgroundUrl, profile.background),
-      syncBroadcasting, gameActive,
-      broadcastState: text(raw?.broadcast_state, gameActive ? 'sync-and-game' : 'sync-only'),
+      syncBroadcasting, gameActive, launcherBroadcasting,
+      broadcastState: text(raw?.broadcast_state, syncBroadcasting && gameActive ? 'sync-and-game' : syncBroadcasting ? 'sync-only' : gameActive ? 'game-only' : 'offline'),
+      broadcastWarning: text(raw?.broadcast_warning, ''),
     };
+  }
+
+  function broadcastDescriptor(world) {
+    if (world.syncBroadcasting && world.gameActive) return { key: 'sync-and-game', label: 'SYNC + DRAGONWILDS', icons: [SYNC_STATUS_ICON, GAME_STATUS_ICON] };
+    if (world.syncBroadcasting) return { key: 'sync-only', label: 'SYNC ONLY', icons: [SYNC_STATUS_ICON] };
+    if (world.gameActive) return { key: 'game-only', label: 'DRAGONWILDS ONLY', icons: [GAME_STATUS_ICON] };
+    return { key: 'offline', label: 'OFFLINE', icons: [] };
+  }
+
+  function broadcastBadge(world) {
+    const descriptor = broadcastDescriptor(world);
+    const icons = descriptor.icons.map((src) => `<img src="${escapeHtml(src)}" alt="">`).join('');
+    return `<span class="status-pill broadcast-status ${descriptor.key}"><span class="broadcast-status-icons">${icons}</span>${descriptor.label}</span>`;
   }
 
   function chipSection(title, values) {
@@ -104,7 +121,8 @@
   }
   function card(world) {
     const article = document.createElement('article');
-    article.className = `world-card ${world.gameActive ? 'game-active' : 'sync-only'}`; article.tabIndex = 0; article.setAttribute('role', 'button');
+    const broadcast = broadcastDescriptor(world);
+    article.className = `world-card ${broadcast.key}`; article.tabIndex = 0; article.setAttribute('role', 'button');
     const connect = world.connect?.host ? `${text(world.connect.host, '')}${world.connect.port ? `:${world.connect.port}` : ''}` : '';
     const runtimes = [`UE4SS · ${text(world.runtimeChannels.ue4ss, 'Unknown')}`, `RuneSchema · ${text(world.runtimeChannels.runeschema, 'Unknown')}`];
     const hostDetails = [world.hostOsLabel || world.hostOs || 'OS not published', world.passwordRequired ? 'Password required' : 'No World Password'];
@@ -117,10 +135,12 @@
       return [name, loader, audience, version].filter(Boolean).join(' · ');
     }) : world.mods;
     const joinUrl = `dragonwilds-sync://join?directory=${encodeURIComponent(DIRECTORY)}&world_id=${encodeURIComponent(world.id)}`;
+    const warning = world.gameActive && !world.syncBroadcasting ? `<div class="world-broadcast-warning">${escapeHtml(world.broadcastWarning || 'Dragonwilds is active without Sync. File matching and managed joining are unavailable.')}</div>` : '';
+    const joinAction = world.syncBroadcasting ? `<a class="world-join-button" href="${escapeHtml(joinUrl)}" data-world-join="1">Join in Dragonwilds Sync</a>` : '<button class="world-join-button unavailable" type="button" disabled>Sync unavailable</button>';
     const tags = (world.tags.length ? world.tags.slice(0, 5) : ['Sync broadcast']).map((tag, index) => `<span class="tag tone-${index % 8}">#${escapeHtml(tag)}</span>`).join('');
     article.innerHTML = `<div class="world-card-inner">
-      <div class="world-card-face world-card-front"><img class="world-placard-backdrop" src="${escapeHtml(world.backgroundUrl)}" alt=""><div class="world-mode-banner dedicated">DEDICATED SYNC WORLD</div><div class="world-origin-banner">DRAGONWILDS SYNC NETWORK</div><div class="world-card-media"><img class="world-card-banner" src="${escapeHtml(world.bannerUrl)}" alt=""><div class="world-card-banner-blend"></div></div><div class="world-card-body"><img class="world-icon" src="${escapeHtml(world.iconUrl)}" alt=""><div class="card-topline"><div class="card-title"><h3>${escapeHtml(world.name)}</h3><small>${escapeHtml(world.id)}</small></div><span class="status-pill ${world.gameActive ? 'online' : 'sync-only'}">${world.gameActive ? 'SYNC + GAME ACTIVE' : 'SYNC ONLY'}</span></div><div class="card-description">${escapeHtml(world.description)}</div><div class="tags">${tags}</div><div class="world-metrics"><div class="world-metric"><span>REGION</span><strong>${escapeHtml(world.region)}</strong></div><div class="world-metric"><span>PLAYERS</span><strong>${world.current} / ${world.max || '—'}</strong></div><div class="world-metric"><span>BUILD</span><strong>${escapeHtml(world.version)}</strong></div></div><div class="card-footer"><div class="card-metrics"><span data-last-seen="${world.lastSeen}">Last seen ${time(world.lastSeen)}</span></div><b class="card-flip-hint">DETAILS ↻</b></div></div></div>
-      <div class="world-card-face world-card-back"><img class="world-placard-backdrop" src="${escapeHtml(world.backgroundUrl)}" alt=""><div class="world-mode-banner dedicated">SYNC DETAILS</div><div class="world-card-body"><div class="card-topline"><div class="card-title"><h3>${escapeHtml(world.name)}</h3><small>${escapeHtml(world.id)}</small></div><span class="status-pill ${world.gameActive ? 'online' : 'sync-only'}">${world.gameActive ? 'DRAGONWILDS ACTIVE' : 'SYNC BROADCAST'}</span></div><div class="world-back-grid">${chipSection('Broadcast', [world.gameActive ? 'Sync + Dragonwilds active' : 'Sync only · game not active'])}${chipSection('Mods', publishedMods)}${chipSection('Runtimes', runtimes)}${chipSection('Platforms', platforms)}${chipSection('Host', hostDetails)}${chipSection('Rules', world.rules)}${chipSection('Badges', world.badges)}${chipSection('Tags', world.tags)}</div>${connect ? `<div class="world-connect">Public connect: ${escapeHtml(connect)}</div>` : ''}<div class="world-invite-actions"><a class="world-join-button" href="${escapeHtml(joinUrl)}" data-world-join="1">Join in Dragonwilds Sync</a><button class="world-share-button" type="button" data-world-share="1">Share World Invite</button></div><small class="world-share-status" aria-live="polite"></small><div class="card-footer"><span>Signed launcher heartbeat</span><b class="card-flip-hint">FRONT ↻</b></div></div></div>
+      <div class="world-card-face world-card-front"><img class="world-placard-backdrop" src="${escapeHtml(world.backgroundUrl)}" alt=""><div class="world-mode-banner dedicated">DEDICATED SYNC WORLD</div><div class="world-origin-banner">DRAGONWILDS SYNC NETWORK</div><div class="world-card-media"><img class="world-card-banner" src="${escapeHtml(world.bannerUrl)}" alt=""><div class="world-card-banner-blend"></div></div><div class="world-card-body"><img class="world-icon" src="${escapeHtml(world.iconUrl)}" alt=""><div class="card-topline"><div class="card-title"><h3>${escapeHtml(world.name)}</h3><small>${escapeHtml(world.id)}</small></div>${broadcastBadge(world)}</div><div class="card-description">${escapeHtml(world.description)}</div>${warning}<div class="tags">${tags}</div><div class="world-metrics"><div class="world-metric"><span>REGION</span><strong>${escapeHtml(world.region)}</strong></div><div class="world-metric"><span>PLAYERS</span><strong>${world.current} / ${world.max || '—'}</strong></div><div class="world-metric"><span>BUILD</span><strong>${escapeHtml(world.version)}</strong></div></div><div class="card-footer"><div class="card-metrics"><span data-last-seen="${world.lastSeen}">Last seen ${time(world.lastSeen)}</span></div><b class="card-flip-hint">DETAILS ↻</b></div></div></div>
+      <div class="world-card-face world-card-back"><img class="world-placard-backdrop" src="${escapeHtml(world.backgroundUrl)}" alt=""><div class="world-mode-banner dedicated">SYNC DETAILS</div><div class="world-card-body"><div class="card-topline"><div class="card-title"><h3>${escapeHtml(world.name)}</h3><small>${escapeHtml(world.id)}</small></div>${broadcastBadge(world)}</div><div class="world-back-grid">${chipSection('Broadcast', [broadcast.label])}${chipSection('Mods', publishedMods)}${chipSection('Runtimes', runtimes)}${chipSection('Platforms', platforms)}${chipSection('Host', hostDetails)}${chipSection('Rules', world.rules)}${chipSection('Badges', world.badges)}${chipSection('Tags', world.tags)}</div>${warning}${connect ? `<div class="world-connect">Public connect: ${escapeHtml(connect)}</div>` : ''}<div class="world-invite-actions">${joinAction}<button class="world-share-button" type="button" data-world-share="1">Share World Invite</button></div><small class="world-share-status" aria-live="polite"></small><div class="card-footer"><span>Signed launcher heartbeat</span><b class="card-flip-hint">FRONT ↻</b></div></div></div>
     </div>`;
     article.querySelectorAll('img').forEach((image) => image.addEventListener('error', () => {
       if (image.classList.contains('world-icon')) image.src = DEFAULT_ICON;
@@ -162,7 +182,7 @@
   function selected() {
     const query = (document.querySelector('#world-search')?.value || '').trim().toLowerCase();
     return worlds.filter((world) => {
-      const matches = filter === 'all' || (filter === 'game-active' && world.gameActive) || (filter === 'sync-only' && !world.gameActive) || (filter === 'modded' && (world.mods.length || world.modSummary.length)) || (filter === 'current' && world.serverCurrent);
+      const matches = filter === 'all' || (filter === 'game-active' && world.gameActive && world.syncBroadcasting) || (filter === 'sync-only' && world.syncBroadcasting && !world.gameActive) || (filter === 'game-only' && world.gameActive && !world.syncBroadcasting) || (filter === 'modded' && (world.mods.length || world.modSummary.length)) || (filter === 'current' && world.serverCurrent);
       if (!matches || (query && ![world.name, world.region, world.version, ...world.tags, ...world.mods, ...world.modSummary.map((mod) => mod.name || mod.key || '')].join(' ').toLowerCase().includes(query))) return false;
       if (world.current < Number(advanced.minPlayers || 0)) return false;
       if (advanced.openSlots && world.max > 0 && world.current >= world.max) return false;
@@ -245,8 +265,8 @@
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const payload = await response.json();
       const nextWorlds = (Array.isArray(payload.worlds) ? payload.worlds : [])
-        .filter((world) => world?.is_sync_world === true && world?.directory_source === 'dragonwilds-sync' && world?.sync_broadcasting !== false)
-        .map(normalize).filter((world) => world.syncBroadcasting);
+        .filter((world) => world?.is_sync_world === true && world?.directory_source === 'dragonwilds-sync')
+        .map(normalize).filter((world) => world.launcherBroadcasting);
       const nextSignature = materialSignature(nextWorlds);
       const changed = nextSignature !== renderedSignature;
       worlds = nextWorlds;

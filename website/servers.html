@@ -12,7 +12,7 @@
   <link rel="icon" href="assets/application-icon.png">
   <link rel="dragonwilds-sync-directory" type="application/json" href="directory-source.json">
   <link rel="stylesheet" href="styles.css?v=public-directory-6">
-  <link rel="stylesheet" href="placards.css?v=public-directory-placards-1">
+  <link rel="stylesheet" href="placards.css?v=public-directory-broadcast-states-2">
   <link rel="stylesheet" href="placard-enhancements.css?v=public-directory-placards-1">
   <link rel="stylesheet" href="public-directory-view.css?v=public-directory-9">
   <link rel="stylesheet" href="app-join-dialog.css?v=1">
@@ -39,7 +39,7 @@
         <p id="network-message">Connecting to the Dragonwilds Sync World directory…</p>
       </div>
       <div class="network-stats reveal delay-1" aria-live="polite">
-        <article><span>SYNC BROADCASTS</span><strong id="stat-worlds">—</strong><small>authenticated launcher heartbeats</small></article>
+        <article><span>LAUNCHER BROADCASTS</span><strong id="stat-worlds">—</strong><small>authenticated launcher heartbeats</small></article>
         <article><span>DRAGONWILDS ACTIVE</span><strong id="stat-game-active">—</strong><small>Sync Worlds with the game server running</small></article>
         <article><span>PLAYERS LISTED</span><strong id="stat-players">—</strong><small>across visible Sync Worlds</small></article>
         <article><span>TOTAL WORLDS STARTED WITH SYNC</span><strong id="stat-total-sync-starts">—</strong><small>cumulative Sync world starts</small></article>
@@ -63,6 +63,7 @@
             <button class="filter-button active" type="button" data-world-filter="all">All Broadcasting</button>
             <button class="filter-button" type="button" data-world-filter="game-active">Sync + Game Active</button>
             <button class="filter-button" type="button" data-world-filter="sync-only">Sync Only</button>
+            <button class="filter-button" type="button" data-world-filter="game-only">Game Without Sync</button>
             <button class="filter-button" type="button" data-world-filter="modded">Modded</button>
             <button class="filter-button" type="button" data-world-filter="current">Current build</button>
           </div>
@@ -129,6 +130,6 @@
   </div>
 
   <script src="script.js?v=ubuntu-download-1"></script>
-  <script src="server-list.js?v=sync-broadcasts-placards-7"></script>
+  <script src="server-list.js?v=sync-broadcast-states-8"></script>
 </body>
 </html>
