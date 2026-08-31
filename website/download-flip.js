@@ -72,21 +72,21 @@
       const date = new Date(release.published_at || release.created_at);
       const assets = release.assets || [];
       const named = (pattern) => assets.find((asset) => pattern.test(String(asset?.name || '')) && asset?.browser_download_url);
-      const executable = named(/Portable.*\.exe$/i) || named(/\.exe$/i);
+      const executable = named(/Portable.*\.exe$/i) || assets.find((asset) => /\.exe$/i.test(String(asset?.name || '')) && !/headless/i.test(String(asset?.name || '')) && asset?.browser_download_url);
       const appImage = named(/Ubuntu.*\.AppImage$/i) || named(/\.AppImage$/i);
-      const windowsHeadless = named(/^Dragonwilds Sync Headless-.*\.exe$/i);
-      const linuxHeadless = named(/^Dragonwilds-Sync-Headless-Ubuntu-/i);
+      const windowsHeadless = named(/^Dragonwilds[ .]Sync[ .]Headless(?:[- .].*)?\.exe$/i);
+      const linuxHeadless = named(/^Dragonwilds[ .-]Sync[ .-]Headless(?:[- .].*)?\.tar\.gz$/i);
       const windowsChecksum = named(/^checksums-windows\.sha256$/i);
       const linuxChecksum = named(/^checksums-linux\.sha256$/i);
       flip.querySelector('[data-main-version]').textContent = release.tag_name || release.name || 'Latest';
       flip.querySelector('[data-main-date]').textContent = Number.isNaN(date.getTime()) ? 'Latest release' : date.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
       if (executable) {
-        document.querySelectorAll('[data-windows-download],[data-windows-quick-download]').forEach((link) => { link.href = executable.browser_download_url; link.setAttribute('download', ''); });
-        document.querySelectorAll('[data-windows-file],[data-windows-quick-file]').forEach((note) => { note.textContent = executable.name; });
+        document.querySelectorAll('[data-windows-download],[data-windows-quick-download]').forEach((link) => { link.href = executable.browser_download_url; link.setAttribute('download', 'Dragonwilds Sync.exe'); });
+        document.querySelectorAll('[data-windows-file],[data-windows-quick-file]').forEach((note) => { note.textContent = 'Dragonwilds Sync.exe'; });
       }
       if (appImage) {
-        document.querySelectorAll('[data-linux-download],[data-linux-quick-download]').forEach((link) => { link.href = appImage.browser_download_url; link.setAttribute('download', ''); });
-        document.querySelectorAll('[data-linux-file],[data-linux-quick-file]').forEach((note) => { note.textContent = appImage.name; });
+        document.querySelectorAll('[data-linux-download],[data-linux-quick-download]').forEach((link) => { link.href = appImage.browser_download_url; link.setAttribute('download', 'Dragonwilds Sync.AppImage'); });
+        document.querySelectorAll('[data-linux-file],[data-linux-quick-file]').forEach((note) => { note.textContent = 'Dragonwilds Sync.AppImage'; });
       }
       if (windowsHeadless) document.querySelectorAll('[data-headless-windows-download]').forEach((link) => { link.href = windowsHeadless.browser_download_url; link.setAttribute('download', ''); });
       if (linuxHeadless) document.querySelectorAll('[data-headless-linux-download]').forEach((link) => { link.href = linuxHeadless.browser_download_url; link.setAttribute('download', ''); });
