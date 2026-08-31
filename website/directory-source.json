@@ -1,7 +1,7 @@
 {
   "format": "dragonwilds-sync-public-directory-link",
-  "version": 1,
-  "name": "Dragonwilds Sync Public Server Directory",
+  "version": 2,
+  "name": "Dragonwilds Sync Public World Directory",
   "page_url": "https://gh0sted5456-us.github.io/Dragonwilds-Sync-Web/servers.html",
   "api_base": "https://dragonwilds-sync-directory.dragonwilds.workers.dev",
   "worlds_url": "https://dragonwilds-sync-directory.dragonwilds.workers.dev/api/v1/worlds",
@@ -15,15 +15,17 @@
     "mode": "signed-launcher-heartbeats-only",
     "scheduled_refresh_minutes": 1,
     "progressive": false,
-    "sync_offline_retention_seconds": 2592000
+    "sync_offline_retention_seconds": 2592000,
+    "visible_rows": "active-sync-heartbeats-only"
   },
   "presentation": {
-    "preferred_label": "Public Server List",
+    "preferred_label": "Sync Public World Directory",
     "supports_placards": true,
     "supports_horizontal": true,
     "page_size": 10,
     "sync_first": true,
-    "offline_sync_category": true
+    "offline_sync_category": false,
+    "broadcast_states": ["sync-and-game", "sync-only"]
   },
   "metrics": {
     "total_sync_world_starts": "directory.total_sync_world_starts"

@@ -8,7 +8,7 @@
   <meta property="og:title" content="Sync Worlds — Dragonwilds Sync">
   <meta property="og:description" content="A public directory of Dragonwilds Sync-enabled Worlds with heartbeat status, build information, mods, rules, tags, and connection details.">
   <meta property="og:type" content="website">
-  <title>Sync Worlds — Dragonwilds Sync</title>
+  <title>Sync Public World Directory — Dragonwilds Sync</title>
   <link rel="icon" href="assets/application-icon.png">
   <link rel="dragonwilds-sync-directory" type="application/json" href="directory-source.json">
   <link rel="stylesheet" href="styles.css?v=public-directory-6">
@@ -28,8 +28,8 @@
     <section class="section-shell directory-page-hero">
       <div class="section-heading reveal visible">
         <div class="eyebrow"><span class="pulse-heart" aria-hidden="true">♥</span> Dragonwilds Sync Network</div>
-        <h1>Public Sync Worlds.</h1>
-        <p>This directory only shows Worlds whose launcher broadcast was accepted by the Dragonwilds Sync network. Ordinary public Dragonwilds servers and third-party observations are excluded. A registration is removed after 30 consecutive offline days, or immediately when its host deletes the Server profile.</p>
+        <h1>Sync Public World Directory.</h1>
+        <p>This directory only shows Worlds currently broadcasting an authenticated Dragonwilds Sync heartbeat. Ordinary public Dragonwilds servers and third-party observations are excluded. The state badge distinguishes a live game server from a Sync service that remains available while Dragonwilds is stopped.</p>
       </div>
     </section>
 
@@ -39,8 +39,8 @@
         <p id="network-message">Connecting to the Dragonwilds Sync World directory…</p>
       </div>
       <div class="network-stats reveal delay-1" aria-live="polite">
-        <article><span>ACTIVE USERS</span><strong id="stat-users">—</strong><small>anonymous active installations</small></article>
-        <article><span>SYNC WORLDS ONLINE</span><strong id="stat-worlds">—</strong><small>broadcasting through Dragonwilds Sync</small></article>
+        <article><span>SYNC BROADCASTS</span><strong id="stat-worlds">—</strong><small>authenticated launcher heartbeats</small></article>
+        <article><span>DRAGONWILDS ACTIVE</span><strong id="stat-game-active">—</strong><small>Sync Worlds with the game server running</small></article>
         <article><span>PLAYERS LISTED</span><strong id="stat-players">—</strong><small>across visible Sync Worlds</small></article>
         <article><span>TOTAL WORLDS STARTED WITH SYNC</span><strong id="stat-total-sync-starts">—</strong><small>cumulative Sync world starts</small></article>
         <article><span>CURRENT BUILD</span><strong id="stat-build">—</strong><small>checking Steam dedicated-server build</small></article>
@@ -60,9 +60,9 @@
 
         <div class="world-toolbar reveal delay-1">
           <div class="filter-group" role="group" aria-label="Sync World directory filter">
-            <button class="filter-button active" type="button" data-world-filter="all">All Sync Worlds</button>
-            <button class="filter-button" type="button" data-world-filter="online">Online</button>
-            <button class="filter-button" type="button" data-world-filter="offline-sync">Offline</button>
+            <button class="filter-button active" type="button" data-world-filter="all">All Broadcasting</button>
+            <button class="filter-button" type="button" data-world-filter="game-active">Sync + Game Active</button>
+            <button class="filter-button" type="button" data-world-filter="sync-only">Sync Only</button>
             <button class="filter-button" type="button" data-world-filter="modded">Modded</button>
             <button class="filter-button" type="button" data-world-filter="current">Current build</button>
           </div>

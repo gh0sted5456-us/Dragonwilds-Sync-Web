@@ -1,9 +1,9 @@
 {
   "schema": "DragonwildsSync.Help.v1",
-  "version": 12,
+  "version": 13,
   "title": "Dragonwilds Sync Helpy",
   "subtitle": "A living, system-by-system field guide shared by the website and desktop application.",
-  "updated_at": "2026-08-26",
+  "updated_at": "2026-08-30",
   "pages": [
     {
       "id": "getting-started",
@@ -18,6 +18,7 @@
         {
           "title": "First launch",
           "steps": [
+            "On Windows, launch Dragonwilds Sync.exe. Keep Dragonwilds Sync Headless.exe beside it when you use Headless server shortcuts. On Linux, launch Dragonwilds Sync.AppImage; the separate Headless package is Dragonwilds Sync Headless.tar.gz.",
             "Complete Player Setup and select the Dragonwilds installation.",
             "Let Sync validate the game layout before installing or repairing shared prerequisites.",
             "Pick a character after discovery completes.",
@@ -204,6 +205,47 @@
           "description": "Show identity, endpoint, required changes, confirmation, and final verification.",
           "suggested_file": "assets/help/46-sync-comparison.png"
         }
+      ]
+    },
+    {
+      "id": "public-world-directory",
+      "title": "Sync Public World Directory",
+      "category": "Worlds",
+      "summary": "Find authenticated launcher-broadcast Worlds and distinguish Sync availability from a running Dragonwilds server.",
+      "image": "../assets/help/44-connected-worlds.png",
+      "image_alt": "Connected Worlds and Sync discovery",
+      "images": [{"src":"../assets/help/44-connected-worlds.png","alt":"Connected Worlds and Sync discovery"},{"src":"../assets/help/53-sync-server-login.png","alt":"Verified World login and synchronization"},{"src":"../assets/help/47-sync-hosting.png","alt":"Sync Hosting heartbeat controls"}],
+      "intro": "The public directory is intentionally limited to authenticated Dragonwilds Sync heartbeats. It does not import general EOS sessions, third-party server lists, or gameplay-only observations.",
+      "sections": [
+        {
+          "title": "What appears",
+          "body": "A World appears only while its launcher is actively broadcasting a verified Sync heartbeat. The public row can include its World name, artwork, build, players, declared platforms, public mod manifest, rules, tags, runtime channels, and an explicitly published route. Passwords and administrator credentials are never directory fields."
+        },
+        {
+          "title": "Broadcast states",
+          "steps": [
+            "Sync + Game Active means both the Dragonwilds Sync service and the dedicated game server are currently active.",
+            "Sync Only means the Sync service is still available, but the Dragonwilds game server is not currently active.",
+            "When the Sync heartbeat stops, the World leaves the visible directory. Its registration may remain privately recoverable for up to 30 consecutive offline days before expiry."
+          ]
+        },
+        {
+          "title": "Search and connect",
+          "steps": [
+            "Filter All Broadcasting, Sync + Game Active, Sync Only, Modded, or Current build.",
+            "Use advanced filters for player count, host OS, declared platforms, runtime channels, password state, and individual mods.",
+            "Choose Join in Dragonwilds Sync to hand the stable World ID to the desktop application's verified login and synchronization dialog."
+          ]
+        },
+        {
+          "title": "Identity and address changes",
+          "body": "The directory resolves a stable World ID rather than treating an IP address as identity. A host can publish a changed public address on its next accepted heartbeat without becoming a different World."
+        }
+      ],
+      "tips": [
+        "A visible World is a Sync participant, not proof that the game server is accepting players.",
+        "Use the state badge before connecting.",
+        "Public discovery never grants Remote Server administration."
       ]
     },
     {
@@ -600,7 +642,12 @@
       "sections": [
         {
           "title": "Application updates",
-          "body": "Update checks compare channel and installed version against an authoritative release source. Download, verification, installation, and restart are separate stages."
+          "steps": [
+            "Update checks compare the running package version with the latest authoritative GitHub release and must not offer the same version to itself.",
+            "Choose Download Update to save the verified portable package in Downloads. Dragonwilds Sync remains open and does not execute, install, or replace the running file.",
+            "Review the update receipt, close Dragonwilds Sync, manually replace the old portable file, and launch the replacement.",
+            "UE4SS, RuneSchema, RSDW, and dedicated-server updates remain separate operations with independent recovery controls."
+          ]
         },
         {
           "title": "Runtime health",
