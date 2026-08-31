@@ -178,7 +178,7 @@ jobs:
           # Current public website and V3 documentation contracts.
           grep -q 'styles.css?v=v3-1-site-sync-1' _site/index.html
           grep -q 'script.js?v=v3-1-site-sync-1' _site/index.html
-          grep -q 'id="release-version">v3.1.0' _site/index.html
+          grep -q 'id="release-version">v3.5.1' _site/index.html
           grep -q 'CANONICAL V3 CHANGELOG' _site/downloads.html
           grep -q 'CURRENT STABLE V3' _site/tech.html
           grep -q 'Experimental SteamOS/Windows handheld' _site/tech.html
@@ -200,7 +200,7 @@ jobs:
 
           release = json.loads(Path('_site/assets/release-changelog.json').read_text(encoding='utf-8'))
           assert release['schema'] == 'dragonwilds-sync-release/v1'
-          assert release['version'] == '3.1.0', release['version']
+          assert release['version'] == '3.5.1', release['version']
           assert release['title'] == 'V3'
           assert release['status'] == 'stable'
           assert len(release.get('highlights') or []) >= 25
