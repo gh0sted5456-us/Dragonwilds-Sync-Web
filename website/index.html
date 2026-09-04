@@ -9,12 +9,12 @@
   <link rel="icon" href="assets/application-icon.png">
   <link rel="stylesheet" href="site-overhaul.css?v=1">
 </head>
-<body>
+<body><a class="skip-link" href="#main-content">Skip to content</a>
 <header class="site-header">
   <div class="shell header-inner">
     <a class="brand" href="index.html"><img src="assets/application-icon.png" alt=""><span>Dragonwilds <em>Sync</em></span></a>
-    <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false">Menu</button>
-    <nav class="nav" data-nav aria-label="Primary navigation">
+    <button class="nav-toggle" type="button" data-nav-toggle aria-controls="primary-nav" aria-expanded="false">Menu</button>
+    <nav class="nav" data-nav id="primary-nav" aria-label="Primary navigation">
       <a href="index.html" aria-current="page">Home</a>
       <a href="downloads.html">Download</a>
       <a href="runeschema.html">RuneSchema</a>
@@ -24,38 +24,23 @@
     </nav>
   </div>
 </header>
-<main>
+<main id="main-content">
   <section class="hero">
-    <div class="shell hero-grid">
+    <div class="shell">
       <div>
         <div class="kicker"><span class="kicker-dot"></span> Community-built Dragonwilds toolkit</div>
         <h1>Your worlds. Your mods. <span>One launcher.</span></h1>
         <p class="lede">Dragonwilds Sync keeps local play, co-op, dedicated servers, client synchronization, and mod management together without making you babysit a pile of separate tools.</p>
         <div class="actions">
-          <a class="button primary" data-sync-download href="https://github.com/gh0sted5456-us/Dragonwilds-Sync/releases">Download Dragonwilds Sync ↓</a>
+          <a class="button primary" href="downloads.html">Download Dragonwilds Sync ↓</a>
           <a class="button" href="docs.html">Read the docs →</a>
         </div>
-        <div class="release-strip">
-          <span class="pill">Latest <strong data-sync-version>GitHub release</strong></span>
-          <span class="pill">Windows portable</span>
-          <span class="pill">Linux AppImage</span>
-          <span class="pill">Free &amp; open source</span>
-        </div>
       </div>
-      <aside class="hero-card">
-        <div class="product-mark"><img src="assets/application-icon.png" alt=""><div><h2>Dragonwilds Sync</h2><p>One place to operate your game.</p></div></div>
-        <div class="mini-list">
-          <div><span>Worlds</span><strong>Local · Co-op · Dedicated</strong></div>
-          <div><span>Mods</span><strong>UE4SS · RuneSchema · PAK</strong></div>
-          <div><span>Sync</span><strong>Profiles · Clients · Servers</strong></div>
-          <div><span>Tools</span><strong>Characters · RSDW · Remote admin</strong></div>
-        </div>
-      </aside>
     </div>
   </section>
   <section class="section">
     <div class="shell">
-      <div class="section-head"><div><div class="kicker">What it does</div><h2>Three jobs. Kept simple.</h2></div><p>The site should explain the product the same way the application ought to feel: clear destination, clear action, details only when you ask for them.</p></div>
+      <div class="section-head"><div><div class="kicker">What it does</div><h2>Three jobs. Kept simple.</h2></div><p>For solo players, co-op groups, and dedicated server hosts.</p></div>
       <div class="grid-3">
         <article class="card"><span class="num">01</span><h3>Play</h3><p>Keep Singleplayer, Co-op, Connected, and Dedicated World profiles organized and ready to launch.</p></article>
         <article class="card"><span class="num">02</span><h3>Sync</h3><p>Keep the right runtime and mod set aligned between a World and the players connecting to it.</p></article>
@@ -64,13 +49,13 @@
     </div>
   </section>
   <section class="section">
-    <div class="shell grid-2">
-      <article class="card"><span class="label">For players &amp; hosts</span><h3>Get Dragonwilds Sync</h3><p>Choose the current Windows or Linux build and get straight to setup.</p><a class="card-link" href="downloads.html">Open downloads →</a></article>
+    <div class="shell">
+
       <article class="card"><span class="label">For mod authors</span><h3>RuneSchema</h3><p>Author deterministic data-driven Dragonwilds mods, runtime items, player rules, recipes, spawns, and more.</p><a class="card-link" href="runeschema.html">Explore RuneSchema →</a></article>
     </div>
   </section>
   <section class="section">
-    <div class="shell callout"><div><h2>Looking for the technical detail?</h2><p>Setup, server networking, mod packaging, author guides, testing material, and the older deep-dive pages still exist. They now live behind one documentation front door.</p></div><a class="button" href="docs.html">Browse documentation →</a></div>
+    <div class="shell callout"><div><h2>A community passion project</h2><p>Built independently for the Dragonwilds community. Help improve it by reporting issues, sharing feedback, or contributing on GitHub.</p></div><a class="button" href="https://github.com/gh0sted5456-us/Dragonwilds-Sync/issues">Contribute feedback ↗</a></div>
   </section>
 </main>
 <footer class="site-footer"><div class="shell footer-inner"><div><strong>Dragonwilds Sync</strong><br>Independent community toolkit for RuneScape: Dragonwilds.</div><div class="footer-links"><a href="downloads.html">Download</a><a href="runeschema.html">RuneSchema</a><a href="changelog.html">Changelog</a><a href="docs.html">Docs</a></div><p class="legal">Dragonwilds Sync is an independent community project and is not affiliated with, endorsed by, or sponsored by Jagex Ltd.</p></div></footer>

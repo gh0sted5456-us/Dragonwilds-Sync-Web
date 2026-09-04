@@ -9,18 +9,18 @@
   <link rel="icon" href="assets/application-icon.png">
   <link rel="stylesheet" href="site-overhaul.css?v=1">
 </head>
-<body>
-<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><img src="assets/application-icon.png" alt=""><span>Dragonwilds <em>Sync</em></span></a><button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false">Menu</button><nav class="nav" data-nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="downloads.html">Download</a><a href="runeschema.html">RuneSchema</a><a href="changelog.html" aria-current="page">Changelog</a><a href="docs.html">Docs</a><a class="github" href="https://github.com/gh0sted5456-us/Dragonwilds-Sync-Web">GitHub ↗</a></nav></div></header>
-<main>
-  <section class="page-hero"><div class="shell"><div class="kicker">Release history</div><h1>What changed.<br><span>Without the archaeology.</span></h1><p class="lede">Release notes belong in one predictable place. Major changes are summarized first; technical detail stays one click away inside each section.</p></div></section>
+<body><a class="skip-link" href="#main-content">Skip to content</a>
+<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><img src="assets/application-icon.png" alt=""><span>Dragonwilds <em>Sync</em></span></a><button class="nav-toggle" type="button" data-nav-toggle aria-controls="primary-nav" aria-expanded="false">Menu</button><nav class="nav" data-nav id="primary-nav" aria-label="Primary navigation"><a href="index.html">Home</a><a href="downloads.html">Download</a><a href="runeschema.html">RuneSchema</a><a href="changelog.html" aria-current="page">Changelog</a><a href="docs.html">Docs</a><a class="github" href="https://github.com/gh0sted5456-us/Dragonwilds-Sync-Web">GitHub ↗</a></nav></div></header>
+<main id="main-content">
+  <section class="page-hero"><div class="shell"><div class="kicker">Release history</div><h1>What changed.<br><span>Without the archaeology.</span></h1><p class="lede">Changes to Dragonwilds Sync and RuneSchema. Expand a section for authoring details, compatibility notes, and testing status.</p></div></section>
 
   <section class="section" id="runeschema-061e"><div class="shell">
     <div class="release-header"><div><div class="kicker">RuneSchema</div><h2>0.6.1E Experimental</h2></div><span class="release-tag">Changes since 0.6.0</span></div>
     <p class="lede">RuneSchema 0.6.1E expands item authoring, player profiles, persistent spawning, configuration, and deterministic multi-mod behavior while retaining the established RuneSchema loader layout.</p>
     <div class="release-strip"><span class="pill">Deterministic load order</span><span class="pill">$Patch · $Clone · $Create</span><span class="pill">New DataTable rows</span><span class="pill">Player profiles</span><span class="pill">Persistent spawns</span></div>
 
-    <div class="details-list" style="margin-top:28px">
-      <details open><summary>Deterministic mod management</summary><div class="details-body"><ul>
+    <p class="note">Historical release record: 0.6.0 → 0.6.1E Experimental. <a href="https://github.com/gh0sted5456-us/RuneSchema/releases">Current downloadable builds</a> may be newer. Build results below describe this release record, not fresh in-game verification.</p><div class="details-list" >
+      <details><summary>Deterministic mod management</summary><div class="details-body"><ul>
         <li>Added <code>RuneSchema/mods/mods.txt</code> as the authoritative mod enable and load-order file.</li><li>Added <code>1</code> and <code>0</code> enable states for individual mod folders.</li><li>Added automatic <code>mods.txt</code> creation, optional folder reconciliation, comment preservation, and optional strict state validation.</li><li>Added control-panel actions for enabling, disabling, and reordering mods.</li><li>Mod folders now load in deterministic <code>mods.txt</code> order; files inside loader folders load in stable sorted-path order.</li><li>Matching changes from later mods and files are applied predictably after earlier changes.</li>
       </ul></div></details>
 
@@ -41,7 +41,7 @@
       </ul></div></details>
 
       <details><summary>/raw</summary><div class="details-body"><ul>
-        <li><code>/raw</code> can add genuinely new DataTable rows as well as edit existing rows.</li><li>New item assets can point row handles at newly authored rows.</li><li>This supports independent wearable-equipment values for Defense, Melee resistance, Ranged resistance, Magic resistance, and Maximum vital shield.</li><li>Row structures and values remain governed by the native cooked DataTable schema.</li>
+        <li>DataTable authoring supports <code>$Patch</code>, <code>$Append</code>, and <code>$Replace</code>; use the operation appropriate to the target row and native data structure.</li><li><code>/raw</code> can add genuinely new DataTable rows as well as edit existing rows.</li><li>New item assets can point row handles at newly authored rows.</li><li>This supports independent wearable-equipment values for Defense, Melee resistance, Ranged resistance, Magic resistance, and Maximum vital shield.</li><li>Row structures and values remain governed by the native cooked DataTable schema.</li>
       </ul></div></details>
 
       <details><summary>/recipes</summary><div class="details-body"><ul>
@@ -56,7 +56,7 @@
         <li>Added Scale; health/max health; defense/damage; stamina/max stamina; walk/run speed; carry weight/max carry weight; poison resistance; stamina recovery; and physical, magical, and ranged attack/defense multipliers.</li><li>Added the documented <code>BaseHealth</code>, Magic/Magical, and Range/Ranged aliases.</li><li>Added <code>AttributeMultipliers</code> for normalized named attribute assets/classes.</li><li>Added <code>Attributes</code> operations: <code>Set</code>, <code>Add</code>, and <code>Multiply</code> against captured baselines.</li><li>Attribute identifiers accept normalized FModel object paths, data-asset names, generated-class names, and common naming prefixes/suffixes.</li><li>Invalid, missing, or ambiguous attributes fail safely and are reported.</li>
       </ul></div></details>
 
-      <details><summary>/players — appearance</summary><div class="details-body"><ul>
+      <details><summary>/players/appearance</summary><div class="details-body"><ul>
         <li>Added body type, face/head, hair, facial hair, skin tone, hair color, eye color, and eyebrow color selection.</li><li>Appearance values may reference vanilla rows directly.</li><li>Added source manifests for custom appearance packs; all enabled sources register before player rules are parsed so cross-mod references are independent of <code>mods.txt</code> position.</li><li>Custom sources require safe vanilla fallback rows.</li><li>Applied appearance provenance is saved under <code>RuneSchema/player-data</code>.</li><li>When an appearance source is disabled, RuneSchema can reconcile the affected player back to its recorded vanilla fallback.</li>
       </ul></div></details>
 
@@ -68,7 +68,7 @@
         <li>Added a ten-cape example pack based on the White Adventurer's Cape.</li><li>Each example cape has a unique asset path, persistence ID, internal name, display name, flavor text, and wearable-equipment row.</li><li>Added ten new <code>DT_WearableEquipment</code> rows with different defensive profiles and ten Mystic Forge crafting recipes.</li><li>Added four connection-order player profiles demonstrating health, stamina, scale, movement, carrying, recovery, attack, and defense roles.</li><li>Added disabled templates for arbitrary attributes and player appearance.</li><li>Added a named spectral-zombie spawn example and expanded example READMEs with supported fields, ranges, conflicts, deterministic composition, use cases, and testing guidance.</li>
       </ul></div></details>
 
-      <details><summary>Compatibility and safety</summary><div class="details-body"><ul>
+      <details><summary>/blueprints</summary><div class="details-body"><p>Blueprint-class creation remains owned by <code>/blueprints</code>, separate from reflected DataAsset and Curve creation in <code>/assets</code>.</p></div></details><details><summary>Compatibility and safety</summary><div class="details-body"><ul>
         <li>Retains the established RuneSchema loader directories and 0.6.0 authoring model.</li><li>Does not import unrelated later quest, event, dialogue, NPC, resource, or replacement spawn-scheduler systems.</li><li>Does not allow temporary/session-generated item identities, clone identity inheritance, patch-based identity mutation, or unrestricted cloning of arbitrary complex DataAssets.</li><li>Invalid operations are rejected or logged instead of silently changing identity state.</li>
       </ul></div></details>
 

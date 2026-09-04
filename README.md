@@ -4,7 +4,7 @@ This repository is the standalone public website for [Dragonwilds Sync](https://
 
 **Live site:** https://gh0sted5456-us.github.io/Dragonwilds-Sync-Web/
 
-It contains Downloads, Setup Instructions, Experience, World Builder, Launcher Preview, Public Server List, Helpy, Modding/RuneSchema guidance, technical boundaries, and the public-facing V3 release record.
+The public navigation is Home, Download, RuneSchema, Changelog, and Docs. Detailed setup, hosting, authoring, and reference material is organized under Docs. See [SITE-AUDIT.md](SITE-AUDIT.md) for page decisions, asset dependencies, validation, and remaining review.
 
 ## Source of truth
 
