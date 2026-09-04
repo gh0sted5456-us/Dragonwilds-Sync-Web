@@ -104,3 +104,10 @@ html[data-theme="white"] .mock-cl-badge{color:#236b42!important;border-color:rgb
 
 /* Structured primary navigation */
 .nav-home{position:relative}.nav-home>a span:after{content:"";display:inline-block;width:5px;height:5px;margin:0 0 3px 4px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg)}.nav-home-menu{position:absolute;top:calc(100% + 7px);left:0;display:grid;min-width:145px;padding:7px;border:1px solid var(--line);border-radius:11px;background:var(--header);backdrop-filter:blur(24px);box-shadow:var(--shadow);opacity:0;visibility:hidden;transform:translateY(-4px);transition:.18s}.nav-home-menu a{padding:9px 10px}.nav-home:hover .nav-home-menu,.nav-home:focus-within .nav-home-menu{opacity:1;visibility:visible;transform:none}@media(max-width:720px){.nav-home>a{display:none}.nav-home-menu{position:static;display:grid;min-width:0;padding:3px 0 6px 12px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:transparent;box-shadow:none;opacity:1;visibility:visible;transform:none}.nav-home-menu:before{content:"HOME";padding:8px 13px 4px;color:var(--faint);font-size:8px;font-weight:800;letter-spacing:.14em}}
+
+/* Flat documentation navigation and readable reference content. */
+.main-nav>a[aria-current]{text-decoration:underline;text-underline-offset:6px}
+:focus-visible{outline:3px solid #d8ad55;outline-offset:4px}
+pre{max-width:100%;overflow:auto}
+@media(max-width:900px){.main-nav.open{max-height:75dvh;overflow:auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
