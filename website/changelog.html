@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b0d0f">
+  <meta name="description" content="Release history for Dragonwilds Sync and RuneSchema, including the RuneSchema 0.6.0 to 0.6.1E experimental changes.">
+  <title>Changelog | Dragonwilds Sync</title>
+  <link rel="icon" href="assets/application-icon.png">
+  <link rel="stylesheet" href="site-overhaul.css?v=1">
+</head>
+<body>
+<header class="site-header"><div class="shell header-inner"><a class="brand" href="index.html"><img src="assets/application-icon.png" alt=""><span>Dragonwilds <em>Sync</em></span></a><button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false">Menu</button><nav class="nav" data-nav aria-label="Primary navigation"><a href="index.html">Home</a><a href="downloads.html">Download</a><a href="runeschema.html">RuneSchema</a><a href="changelog.html" aria-current="page">Changelog</a><a href="docs.html">Docs</a><a class="github" href="https://github.com/gh0sted5456-us/Dragonwilds-Sync-Web">GitHub ↗</a></nav></div></header>
+<main>
+  <section class="page-hero"><div class="shell"><div class="kicker">Release history</div><h1>What changed.<br><span>Without the archaeology.</span></h1><p class="lede">Release notes belong in one predictable place. Major changes are summarized first; technical detail stays one click away inside each section.</p></div></section>
+
+  <section class="section" id="runeschema-061e"><div class="shell">
+    <div class="release-header"><div><div class="kicker">RuneSchema</div><h2>0.6.1E Experimental</h2></div><span class="release-tag">Changes since 0.6.0</span></div>
+    <p class="lede">RuneSchema 0.6.1E expands item authoring, player profiles, persistent spawning, configuration, and deterministic multi-mod behavior while retaining the established RuneSchema loader layout.</p>
+    <div class="release-strip"><span class="pill">Deterministic load order</span><span class="pill">$Patch · $Clone · $Create</span><span class="pill">New DataTable rows</span><span class="pill">Player profiles</span><span class="pill">Persistent spawns</span></div>
+
+    <div class="details-list" style="margin-top:28px">
+      <details open><summary>Deterministic mod management</summary><div class="details-body"><ul>
+        <li>Added <code>RuneSchema/mods/mods.txt</code> as the authoritative mod enable and load-order file.</li><li>Added <code>1</code> and <code>0</code> enable states for individual mod folders.</li><li>Added automatic <code>mods.txt</code> creation, optional folder reconciliation, comment preservation, and optional strict state validation.</li><li>Added control-panel actions for enabling, disabling, and reordering mods.</li><li>Mod folders now load in deterministic <code>mods.txt</code> order; files inside loader folders load in stable sorted-path order.</li><li>Matching changes from later mods and files are applied predictably after earlier changes.</li>
+      </ul></div></details>
+
+      <details><summary>Expanded configuration and tools</summary><div class="details-body"><ul>
+        <li>Expanded <code>config/config.json</code> with automatic reload, debug logging, experimental spawn drop scaling, authoring tools, JSON Schema generation, FModel snippet generation, <code>mods.txt</code> management, and compatibility-report settings.</li><li>Expanded the control panel with Overview, Settings, Generators, Load Order, and Compatibility sections.</li><li>Added optional compatibility reports for mods writing to the same assets, properties, or arrays.</li><li>Added broader generated JSON Schema coverage, FModel-oriented authoring helpers, and normalized Unreal object paths.</li>
+      </ul></div></details>
+
+      <details><summary>/assets — deterministic $Patch</summary><div class="details-body"><ul>
+        <li>Added the exact-case <code>$Patch</code> and <code>$Target</code> envelope with deterministic recursive merging of nested objects.</li><li>Patch results follow deterministic mod/file order; later matching field writes win predictably.</li><li>Identity fields cannot be changed through <code>$Patch</code>.</li><li>Nested <code>$Patch</code>, <code>$Clone</code>, and <code>$Create</code> directives are rejected.</li><li>Incomplete, empty, or malformed patch envelopes fail safely.</li>
+      </ul></div></details>
+
+      <details><summary>/assets — new-item $Clone</summary><div class="details-body"><ul>
+        <li>Added exact-case <code>$Clone</code> for <code>ItemData</code> assets, constructing genuinely separate runtime items.</li><li>Supported reflected properties are copied while transient, editor-only, instanced, deprecated, and unsafe identity state is excluded.</li><li>Authored fields apply after source properties are copied.</li><li>Clones require unique <code>InternalName</code> and canonical <code>PersistenceID</code>; source identity cannot be retained or aliased.</li><li>New items register with the native item subsystem and remain discoverable by authoring path, runtime path, object name, internal name, and persistence ID.</li><li>Authoring-path aliases allow recipes and supported references to resolve runtime-created items.</li>
+      </ul></div></details>
+
+      <details><summary>/assets — $Create, extended data, and consumable packs</summary><div class="details-body"><ul>
+        <li>Added exact-case <code>$Create</code> for supported reflected DataAsset and Curve classes with deterministic runtime object paths.</li><li>Item creation requires explicit permanent identity fields; Blueprint-class creation remains owned by <code>/blueprints</code>.</li><li>Supported reflected item fields include name/flavor text, icon/world mesh, equipped meshes, equipment slot, skill references, power level, durability, weight, tags, audio tags, drop/break behavior, buff presentation, and granted effects where supported.</li><li>Nested reflected structs, arrays, sets, maps, enums, text, objects, and soft references continue to use native reflected Unreal types.</li><li>Added normalized <code>$ConsumablePack</code> authoring with concise <code>Drops</code> and native <code>ItemsToDrop</code> spellings.</li><li>Runtime-created item references are supported; pack application waits when a referenced runtime item is not yet registered.</li><li>Ambiguous simultaneous pack/native-drop fields are rejected, and unsafe direct mutation of baked live emitter arrays remains blocked.</li>
+      </ul></div></details>
+
+      <details><summary>/raw</summary><div class="details-body"><ul>
+        <li><code>/raw</code> can add genuinely new DataTable rows as well as edit existing rows.</li><li>New item assets can point row handles at newly authored rows.</li><li>This supports independent wearable-equipment values for Defense, Melee resistance, Ranged resistance, Magic resistance, and Maximum vital shield.</li><li>Row structures and values remain governed by the native cooked DataTable schema.</li>
+      </ul></div></details>
+
+      <details><summary>/recipes</summary><div class="details-body"><ul>
+        <li>Runtime-created items can be recipe results through their authoring paths.</li><li>Recipes can be added to selected crafting-station rows and menu categories.</li><li>Authoring supports consumed items, created items, extra outputs, counts, crafting audio, crafting skills, and notification behavior.</li><li>Separate recipe mods can expose the same authored item at different stations without changing the item definition.</li>
+      </ul></div></details>
+
+      <details><summary>/players — persistent profiles and selectors</summary><div class="details-body"><ul>
+        <li>Added persistent <code>/players</code> rules to the runtime lifecycle, checked after startup and while players join or respawn.</li><li>Replacement player pawns receive their profiles after respawn.</li><li>Original player values are captured as baselines to prevent repeated multiplier drift.</li><li>Matching rules compose in deterministic mod, file, and array order.</li><li>Selectors include <code>PlayerName</code>, <code>PlayerNames</code>, <code>PlayerGuid</code>, <code>PlayerGuids</code>, <code>*</code>, and stable first-seen connection slots <code>*1</code>, <code>*2</code>, and subsequent <code>*N</code>.</li><li>GUID matching is authoritative when a GUID selector is supplied.</li>
+      </ul></div></details>
+
+      <details><summary>/players — adjustments and attributes</summary><div class="details-body"><ul>
+        <li>Added Scale; health/max health; defense/damage; stamina/max stamina; walk/run speed; carry weight/max carry weight; poison resistance; stamina recovery; and physical, magical, and ranged attack/defense multipliers.</li><li>Added the documented <code>BaseHealth</code>, Magic/Magical, and Range/Ranged aliases.</li><li>Added <code>AttributeMultipliers</code> for normalized named attribute assets/classes.</li><li>Added <code>Attributes</code> operations: <code>Set</code>, <code>Add</code>, and <code>Multiply</code> against captured baselines.</li><li>Attribute identifiers accept normalized FModel object paths, data-asset names, generated-class names, and common naming prefixes/suffixes.</li><li>Invalid, missing, or ambiguous attributes fail safely and are reported.</li>
+      </ul></div></details>
+
+      <details><summary>/players — appearance</summary><div class="details-body"><ul>
+        <li>Added body type, face/head, hair, facial hair, skin tone, hair color, eye color, and eyebrow color selection.</li><li>Appearance values may reference vanilla rows directly.</li><li>Added source manifests for custom appearance packs; all enabled sources register before player rules are parsed so cross-mod references are independent of <code>mods.txt</code> position.</li><li>Custom sources require safe vanilla fallback rows.</li><li>Applied appearance provenance is saved under <code>RuneSchema/player-data</code>.</li><li>When an appearance source is disabled, RuneSchema can reconcile the affected player back to its recorded vanilla fallback.</li>
+      </ul></div></details>
+
+      <details><summary>/spawns</summary><div class="details-body"><ul>
+        <li>Added uniform numeric and per-axis vector scale for persistent actors and AI; scale reapplies as persistent or streamed AI is created.</li><li>Added optional <code>DropIncreasePercent</code>, controlled separately from actor scale.</li><li>Added per-instance top-level <code>DisplayName</code>, allowing two instances of the same AI class to have different names.</li><li>Retained native <code>PowerLevel</code> naming and added bounded <code>HealthMultiplier</code> and <code>DamageMultiplier</code>.</li><li>Added <code>LootRow</code> selection for native <code>/raw</code>-authored enemy loot routes and additional drops.</li><li>Added <code>CharacterProperties</code> and <code>ComponentProperties</code> for exact FModel-derived reflected fields.</li><li>Retained persistent actor IDs, duplicate prevention, variants, progress conditions, roam, sentry, perception, distance, tag, respawn, activation, and advanced reflected-property controls.</li>
+      </ul></div></details>
+
+      <details><summary>Example authoring packages</summary><div class="details-body"><ul>
+        <li>Added a ten-cape example pack based on the White Adventurer's Cape.</li><li>Each example cape has a unique asset path, persistence ID, internal name, display name, flavor text, and wearable-equipment row.</li><li>Added ten new <code>DT_WearableEquipment</code> rows with different defensive profiles and ten Mystic Forge crafting recipes.</li><li>Added four connection-order player profiles demonstrating health, stamina, scale, movement, carrying, recovery, attack, and defense roles.</li><li>Added disabled templates for arbitrary attributes and player appearance.</li><li>Added a named spectral-zombie spawn example and expanded example READMEs with supported fields, ranges, conflicts, deterministic composition, use cases, and testing guidance.</li>
+      </ul></div></details>
+
+      <details><summary>Compatibility and safety</summary><div class="details-body"><ul>
+        <li>Retains the established RuneSchema loader directories and 0.6.0 authoring model.</li><li>Does not import unrelated later quest, event, dialogue, NPC, resource, or replacement spawn-scheduler systems.</li><li>Does not allow temporary/session-generated item identities, clone identity inheritance, patch-based identity mutation, or unrestricted cloning of arbitrary complex DataAssets.</li><li>Invalid operations are rejected or logged instead of silently changing identity state.</li>
+      </ul></div></details>
+
+      <details><summary>Credits</summary><div class="details-body"><div class="credits"><span><strong>Okaetsu</strong> — original PalSchema lineage.</span><span><strong>Snorkles</strong> — creator of RuneSchema.</span><span><strong>Jonesing4Space</strong> — extended features in RuneSchema 0.6.1E.</span></div></div></details>
+
+      <details><summary>Testing status</summary><div class="details-body"><p>The Windows <code>Game__Shipping__Win64</code> DLL builds successfully against the pinned UE4SS dependency, and package plus embedded example JSON validation completes without errors.</p><p>In-game testing remains recommended for multiplayer connection ordering, each player attribute family, appearance refresh/fallbacks, custom overhead AI names, crafting registration, item save persistence, and multi-mod conflict order.</p></div></details>
+    </div>
+  </div></section>
+
+  <section class="section" id="sync-v3"><div class="shell"><div class="release-header"><div><div class="kicker">Dragonwilds Sync</div><h2>V3 release record</h2></div><span class="release-tag">Stable record</span></div><p class="lede">The existing Dragonwilds Sync V3 changelog remains authoritative in the application repository. Rather than duplicating dozens of implementation bullets here, this site points to that canonical record.</p><div class="actions"><a class="button" href="https://github.com/gh0sted5456-us/Dragonwilds-Sync/blob/main/docs/changelog.json">Open canonical V3 changelog ↗</a><a class="button quiet" href="https://github.com/gh0sted5456-us/Dragonwilds-Sync/releases">Release history ↗</a></div></div></section>
+</main>
+<footer class="site-footer"><div class="shell footer-inner"><div><strong>Release history</strong><br>One front door for Dragonwilds Sync and RuneSchema changes.</div><div class="footer-links"><a href="index.html">Home</a><a href="runeschema.html">RuneSchema</a><a href="docs.html">Docs</a></div><p class="legal">Dragonwilds Sync and RuneSchema are independent community projects and are not affiliated with, endorsed by, or sponsored by Jagex Ltd.</p></div></footer>
+<script src="site-overhaul.js?v=1"></script>
+</body>
+</html>
