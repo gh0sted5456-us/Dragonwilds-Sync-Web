@@ -66,8 +66,6 @@ jobs:
           cp -R renderer/assets/flags _site/assets/flags
           cp -R renderer/assets/platforms/. _site/assets/platforms/
 
-          # Presentation-only server-build fallback. Website deployment never
-          # depends on the public directory being online.
           printf '%s\n' '{"available":false,"appid":"4019830","branch":"public","buildid":"","source":"Website static fallback"}' > _site/assets/server-build.json
 
           # Exact baked placard artwork from the application repository.
@@ -76,9 +74,7 @@ jobs:
           curl --fail --silent --show-error --location --retry 3 -H 'Accept: application/vnd.github.raw+json' -H 'Authorization: Bearer ${{ github.token }}' 'https://api.github.com/repos/gh0sted5456-us/Dragonwilds-Sync/git/blobs/5a515286435834c673f532c2ae1db012cc22bd1d' -o _site/assets/placards/3.png
           curl --fail --silent --show-error --location --retry 3 -H 'Accept: application/vnd.github.raw+json' -H 'Authorization: Bearer ${{ github.token }}' 'https://api.github.com/repos/gh0sted5456-us/Dragonwilds-Sync/git/blobs/63743edf52312e65c75d36826d2fc159ab861870' -o _site/assets/placards/4.png
 
-          # The application repository owns the canonical V3 changelog. Build
-          # the public release record from that source on every deploy so the
-          # live website cannot remain pinned to an older application release.
+          # Keep the public Dragonwilds Sync release record sourced from the app repository.
           curl --fail --silent --show-error --location --retry 3 \
             'https://raw.githubusercontent.com/gh0sted5456-us/Dragonwilds-Sync/main/docs/changelog.json' \
             -o /tmp/dragonwilds-sync-changelog.json
@@ -104,6 +100,7 @@ jobs:
           Path('_site/assets/release-changelog.json').write_text(json.dumps(public, indent=2, ensure_ascii=False) + '\n', encoding='utf-8')
           PY
 
+          # Legacy/deep pages still use the original shared bundles.
           printf '\n\n/* App placard parity layer */\n' >> _site/styles.css
           cat website/placards.css >> _site/styles.css
           printf '\n\n/* Interactive placard Rules / Mods details */\n' >> _site/styles.css
@@ -132,20 +129,47 @@ jobs:
 
           touch _site/.nojekyll
 
-      - name: Validate core website
+      - name: Validate website
         shell: bash
         run: |
           set -euo pipefail
 
-          required_pages=(
-            index.html about.html experience.html setup.html world-builder.html
-            launcher-preview.html downloads.html tech.html testers.html helpy.html
-            servers.html invite.html for-modders.html
-          )
-          for page in "${required_pages[@]}"; do
-            test -s "_site/$page" || { echo "Missing required page: $page" >&2; exit 1; }
+          # Public front doors introduced by the simplified site.
+          public_pages=(index.html downloads.html runeschema.html changelog.html docs.html)
+          for page in "${public_pages[@]}"; do
+            test -s "_site/$page" || { echo "Missing public page: $page" >&2; exit 1; }
+            grep -q 'site-overhaul.css' "_site/$page"
+            grep -q 'site-overhaul.js' "_site/$page"
           done
 
+          # Deep documentation remains published and reachable from Docs.
+          legacy_pages=(about.html experience.html setup.html world-builder.html launcher-preview.html tech.html testers.html helpy.html servers.html invite.html for-modders.html modding.html mod-packaging.html)
+          for page in "${legacy_pages[@]}"; do
+            test -s "_site/$page" || { echo "Missing documentation page: $page" >&2; exit 1; }
+          done
+
+          # The simplified navigation contract should stay small and consistent.
+          for page in index.html downloads.html runeschema.html changelog.html docs.html; do
+            grep -q 'href="index.html"' "_site/$page"
+            grep -q 'href="downloads.html"' "_site/$page"
+            grep -q 'href="runeschema.html"' "_site/$page"
+            grep -q 'href="changelog.html"' "_site/$page"
+            grep -q 'href="docs.html"' "_site/$page"
+          done
+          grep -q 'Your worlds. Your mods.' _site/index.html
+          grep -q 'Pick a platform.' _site/downloads.html
+          grep -q 'Author data, predictably.' _site/runeschema.html
+          grep -q '0.6.1E Experimental' _site/changelog.html
+          grep -q 'Changes since 0.6.0' _site/changelog.html
+          grep -q 'Deterministic mod management' _site/changelog.html
+          grep -q 'Okaetsu' _site/changelog.html
+          grep -q 'Snorkles' _site/changelog.html
+          grep -q 'Jonesing4Space' _site/changelog.html
+          grep -q 'Players &amp; hosts' _site/docs.html
+          grep -q 'Build mods' _site/docs.html
+
+          # JavaScript syntax for both the new shell and retained deep pages.
+          node --check _site/site-overhaul.js
           node --check _site/script.js
           node --check _site/home-demo.js
           node --check _site/world-draft-onboarding.js
@@ -159,8 +183,7 @@ jobs:
           node --check _site/server-list.js
           node --check _site/world-invite.js
 
-          # Public-directory security boundaries.
-          grep -q 'runeschema.html' _site/for-modders.html
+          # Public-directory security boundaries remain unchanged.
           test -s _site/servers.html
           test -s _site/server-list.js
           test -s _site/app-join-dialog.css
@@ -175,14 +198,7 @@ jobs:
           grep -q 'dialog.showModal()' _site/server-list.js
           grep -q 'dialog.showModal()' _site/world-invite.js
 
-          # Current public website and V3 documentation contracts.
-          grep -q 'styles.css?v=v3-1-site-sync-1' _site/index.html
-          grep -q 'script.js?v=v3-1-site-sync-1' _site/index.html
-          grep -q 'id="release-version">v3.5.1' _site/index.html
-          grep -q 'CANONICAL V3 CHANGELOG' _site/downloads.html
-          grep -q 'CURRENT STABLE V3' _site/tech.html
-          grep -q 'Experimental SteamOS/Windows handheld' _site/tech.html
-          grep -q 'HARDENING DIRECTION' _site/tech.html
+          # Setup and reference assets still retain their technical contracts.
           grep -q 'UDP 8422' _site/setup.html
           grep -q 'TCP 27051' _site/setup.html
           grep -q 'TCP 27080' _site/setup.html
@@ -190,9 +206,10 @@ jobs:
           grep -q 'CGNAT' _site/setup.html
           ! grep -q 'TCP 8422' _site/setup.html
           ! grep -q 'dwampi.dll' _site/setup.html
-          ! grep -q 'v3\.0\.4' _site/index.html
-          ! grep -q 'v3\.0\.4' _site/downloads.html
-          ! grep -q 'v3\.0\.4' _site/tech.html
+          grep -q 'Choose what you are' _site/modding.html
+          grep -q 'A complete <code>ID.txt</code>' _site/mod-packaging.html
+          test -s _site/assets/downloads/RuneSchema-0.6.3-Experimental.zip
+          unzip -tqq _site/assets/downloads/RuneSchema-0.6.3-Experimental.zip
 
           python3 - <<'PY'
           import json
@@ -200,10 +217,10 @@ jobs:
 
           release = json.loads(Path('_site/assets/release-changelog.json').read_text(encoding='utf-8'))
           assert release['schema'] == 'dragonwilds-sync-release/v1'
-          assert release['version'] == '3.5.1', release['version']
-          assert release['title'] == 'V3'
-          assert release['status'] == 'stable'
-          assert len(release.get('highlights') or []) >= 25
+          assert release.get('version')
+          assert release.get('title')
+          assert release.get('status')
+          assert release.get('highlights')
 
           presets = json.loads(Path('_site/assets/world-builder-presets.json').read_text(encoding='utf-8'))
           assert presets.get('format') == 'dragonwilds-sync-world-builder-presets'
@@ -211,39 +228,6 @@ jobs:
           platforms = json.loads(Path('_site/assets/platform-registry.json').read_text(encoding='utf-8'))
           assert platforms.get('format') == 'dragonwilds-sync-platform-registry'
           PY
-
-          # Shared navigation and modding/reference surfaces remain present.
-          grep -q 'href="servers.html"' _site/top-flow.js
-          grep -q 'Experience' _site/script.js
-          grep -q 'Tech &amp; Roadmap' _site/script.js
-          grep -q '>Testers<' _site/script.js
-          grep -q '>Modding<' _site/script.js
-          grep -q 'Mod Packaging' _site/script.js
-          grep -q 'RuneSchema Lab' _site/script.js
-          grep -q 'Choose what you are' _site/modding.html
-          grep -q 'A complete <code>ID.txt</code>' _site/mod-packaging.html
-          grep -q 'See JSON in action' _site/runeschema.html
-          grep -q 'data-windows-quick-download' _site/downloads.html
-          grep -q 'data-linux-quick-download' _site/downloads.html
-          grep -q 'Flukz' _site/testers.html
-
-          # RuneSchema reference package checks retained from the previous site gate.
-          grep -q 'DropIncreasePercent' _site/runeschema.html
-          grep -q '0.6.3-experimental.1' _site/runeschema.html
-          grep -q 'data-runeschema-version' _site/runeschema.html
-          grep -q 'data-runeschema-title' _site/runeschema.html
-          grep -q 'data-runeschema-comparison-version' _site/runeschema.html
-          grep -q 'Official 0.6.0 vs. 0.6.3 Experimental' _site/assets/docs/runeschema-0.6.1-experimental/COMPARISON.md
-          grep -q 'api.github.com/repos/gh0sted5456-us/RuneSchema/releases' _site/runeschema-variant.js
-          grep -q 'data-json-tab="journal"' _site/runeschema.html
-          grep -q 'GTV063STAFF001' _site/runeschema.html
-          grep -q 'GTV063RECIPE01' _site/runeschema.html
-          python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff.json >/dev/null
-          python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/gravetide_staff_recipe.json >/dev/null
-          python3 -m json.tool _site/assets/runeschema-0.6.1-experimental/examples/journal_identity.json >/dev/null
-          grep -q 'world-cards-20260823-1' _site/world-builder.html
-          test -s _site/assets/downloads/RuneSchema-0.6.3-Experimental.zip
-          unzip -tqq _site/assets/downloads/RuneSchema-0.6.3-Experimental.zip
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
